@@ -1,7 +1,6 @@
 from model.CyclomaticComplexity import CyclomaticComplexity
 from model.LinesOfCode import LinesOfCode
 from model.NumberOfComplexFunctions import NumberOfComplexFunctions
-from model.measurement.Measure import BaseMeasure, MeasurementMethod, DerivedMeasure
 
 if __name__ == "__main__":
     print("Hello, world!")

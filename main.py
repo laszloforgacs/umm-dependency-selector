@@ -1,3 +1,4 @@
+from testing.characteristic.Maintainability import Maintainability
 from testing.measurableconcepts.ComplexityOfSourceCode import ComplexityOfSourceCode
 from testing.measures.CyclomaticComplexity import CyclomaticComplexity
 from testing.measures.LinesOfCode import LinesOfCode
@@ -35,3 +36,6 @@ if __name__ == "__main__":
     analyzability.add_component(complexityOfSourceCode)
     print(analyzability.run().value)
 
+    maintainability = Maintainability({})
+    maintainability.add_component(analyzability)
+    print(maintainability.run().value)

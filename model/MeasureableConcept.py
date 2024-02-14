@@ -27,5 +27,9 @@ class MeasurableConcept(CompositeComponent, metaclass=ABCMeta):
         self._quality_requirement = quality_requirement
 
     @abstractmethod
+    def run(self) -> Result:
+        pass
+
+    @abstractmethod
     def measure(self) -> Result:
         pass

@@ -34,6 +34,9 @@ class Component(ABC):
     def normalize(self) -> list[Result]:
         pass
 
+    def run(self) -> Result:
+        pass
+
 
 class CompositeComponent(Component, metaclass=ABCMeta):
     @property

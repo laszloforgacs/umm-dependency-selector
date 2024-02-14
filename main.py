@@ -1,21 +1,31 @@
-from model.CyclomaticComplexity import CyclomaticComplexity
-from model.LinesOfCode import LinesOfCode
-from model.NumberOfComplexFunctions import NumberOfComplexFunctions
+from measurableconcepts.ComplexityOfSourceCode import ComplexityOfSourceCode
+from measures.CyclomaticComplexity import CyclomaticComplexity
+from measures.LinesOfCode import LinesOfCode
+from measures.NumberOfComplexFunctions import NumberOfComplexFunctions
+from measures.NumberOfStatements import NumberOfStatements
 
 if __name__ == "__main__":
     print("Hello, world!")
 
-    baseMeasure1 = LinesOfCode()
-    print(baseMeasure1.name)
-    print(baseMeasure1.children)
-    baseMeasure2 = NumberOfComplexFunctions()
-    derivedMeasure1 = CyclomaticComplexity()
-    derivedMeasure1.add_component(baseMeasure1)
-    derivedMeasure1.add_component(baseMeasure2)
-    print(derivedMeasure1.name)
-    print(derivedMeasure1.children)
-    results = [success.value for success in derivedMeasure1.measure()]
-    print(results)
+    linesOfCode = LinesOfCode()
+    numberOfComplexFunctions = NumberOfComplexFunctions()
+    cyclomaticComplexity = CyclomaticComplexity()
+    cyclomaticComplexity.add_component(linesOfCode)
+    cyclomaticComplexity.add_component(numberOfComplexFunctions)
+    numberOfStatements = NumberOfStatements()
 
+    resultCyclomaticComplexity = [
+        component.measure().value
+        for component in cyclomaticComplexity.children.values()
+    ]
 
+    resultNumberOfStatements = numberOfStatements.measure().value
 
+    print(resultCyclomaticComplexity)
+    print(resultNumberOfStatements)
+
+    complexityOfSourceCode = ComplexityOfSourceCode()
+    complexityOfSourceCode.add_component(cyclomaticComplexity)
+    complexityOfSourceCode.add_component(numberOfStatements)
+    codeComplexity = complexityOfSourceCode.run().value
+    print(codeComplexity)

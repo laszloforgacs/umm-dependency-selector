@@ -2,14 +2,14 @@ from model.Result import Result, Success
 from model.measurement.Measure import BaseMeasure, MeasurementMethod
 
 
-class LinesOfCode(BaseMeasure):
+class NumberOfStatements(BaseMeasure):
     def __init__(self):
-        super().__init__("Lines of Code", "unit", 1.0, MeasurementMethod.AUTOMATIC)
+        super().__init__("Number of statements", "statements", 1, MeasurementMethod.AUTOMATIC)
 
     def run(self) -> Result:
         return self.measure()
 
     def measure(self) -> Result:
         return Success(
-            value=39821048
+            value = 399
         )

@@ -1,3 +1,4 @@
+from testing.DeveloperViewpoint import DeveloperViewpoint
 from testing.characteristic.Maintainability import Maintainability
 from testing.measurableconcepts.ComplexityOfSourceCode import ComplexityOfSourceCode
 from testing.measures.CyclomaticComplexity import CyclomaticComplexity
@@ -32,10 +33,14 @@ if __name__ == "__main__":
     codeComplexity = complexityOfSourceCode.run().value
     print(codeComplexity)
 
-    analyzability = Analyzability({})
+    analyzability = Analyzability()
     analyzability.add_component(complexityOfSourceCode)
     print(analyzability.run().value)
 
     maintainability = Maintainability({})
     maintainability.add_component(analyzability)
     print(maintainability.run().value)
+
+    developer_viewpoint = DeveloperViewpoint()
+    developer_viewpoint.add_component(maintainability)
+    print(developer_viewpoint.run().value)

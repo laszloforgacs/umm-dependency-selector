@@ -1,11 +1,11 @@
-from model.MeasureableConcept import MeasurableConcept
+from model.Characteristic import Characteristic
 from model.Result import Result, Success
-from model.SubCharacteristic import SubCharacteristic
+from model.Viewpoint import Viewpoint
 
 
-class Analyzability(SubCharacteristic):
-    def __init__(self, children: dict[str, MeasurableConcept] = {}):
-        super().__init__("Analyzability", children)
+class DeveloperViewpoint(Viewpoint):
+    def __init__(self, children: dict[str, Characteristic] = {}, preference_matrix: dict[tuple[str, str], float] = {}):
+        super().__init__("Developer Viewpoint", children, preference_matrix)
 
     def run(self) -> Result:
         measurements = [result.value for result in self.measure()]

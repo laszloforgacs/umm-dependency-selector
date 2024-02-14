@@ -5,10 +5,10 @@ from model.Result import Result, Success
 class ComplexityOfSourceCode(MeasurableConcept):
     def __init__(self):
         super().__init__("Complexity of source code", {}, Impact.NEGATIVE, "Source code", OSSAspect.CODE,
-                         "Affects Maintainability negatively")
+                         "Calculation of source code complexity", "Affects Maintainability negatively")
 
     def run(self) -> Result:
-        measurements = [ result.value for result in self.measure()]
+        measurements = [result.value for result in self.measure()]
         return Success(
             value=sum(measurements) / len(measurements)
         )

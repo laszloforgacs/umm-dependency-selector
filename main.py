@@ -1,4 +1,8 @@
-from testing.DeveloperViewpoint import DeveloperViewpoint
+import itertools
+from copy import deepcopy
+
+from testing.qualitymodels.TestQualityModel import TestQualityModel
+from testing.viewpoints.DeveloperViewpoint import DeveloperViewpoint
 from testing.characteristic.Maintainability import Maintainability
 from testing.measurableconcepts.ComplexityOfSourceCode import ComplexityOfSourceCode
 from testing.measures.CyclomaticComplexity import CyclomaticComplexity
@@ -41,6 +45,20 @@ if __name__ == "__main__":
     maintainability.add_component(analyzability)
     print(maintainability.run().value)
 
-    developer_viewpoint = DeveloperViewpoint()
-    developer_viewpoint.add_component(maintainability)
+    maintainability2 = deepcopy(maintainability)
+    maintainability3 = deepcopy(maintainability)
+
+    developer_viewpoint = DeveloperViewpoint(children={
+        maintainability.name: maintainability
+    })
     print(developer_viewpoint.run().value)
+    print(developer_viewpoint.is_valid_preference_matrix)
+    print(developer_viewpoint.preference_matrix)
+
+    test_quality_model = TestQualityModel(
+        children={
+            developer_viewpoint.name: developer_viewpoint
+        }
+    )
+
+    preference_matrix = {}

@@ -1,9 +1,9 @@
 from abc import ABCMeta, abstractmethod
 from enum import Enum
 
-from model.Result import Result
-from model.components.Component import CompositeComponent
-from model.measurement.Measure import Measure
+from domain.model.Result import Result
+from domain.model.components.Component import CompositeComponent
+from domain.model.measurement.Measure import Measure
 
 
 class Impact(Enum):

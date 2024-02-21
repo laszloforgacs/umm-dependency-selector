@@ -1,8 +1,8 @@
 from abc import ABCMeta, abstractmethod
 
-from model.MeasureableConcept import MeasurableConcept
-from model.Result import Result
-from model.components.Component import CompositeComponent
+from domain.model.MeasureableConcept import MeasurableConcept
+from domain.model.Result import Result
+from domain.model.components.Component import CompositeComponent
 
 
 class SubCharacteristic(CompositeComponent, metaclass=ABCMeta):

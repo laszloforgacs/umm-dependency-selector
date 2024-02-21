@@ -1,6 +1,6 @@
-from model.Characteristic import Characteristic
-from model.Result import Result, Success
-from model.Viewpoint import Viewpoint
+from domain.model.Characteristic import Characteristic
+from domain.model.Result import Result, Success
+from domain.model.Viewpoint import Viewpoint
 
 
 class DeveloperViewpoint(Viewpoint):

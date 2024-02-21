@@ -1,8 +1,8 @@
 from abc import ABC, ABCMeta, abstractmethod
 from enum import Enum
 
-from model.Result import Result
-from model.components.Component import LeafComponent, CompositeComponent
+from domain.model.Result import Result
+from domain.model.components.Component import LeafComponent, CompositeComponent
 
 
 class MeasurementMethod(Enum):

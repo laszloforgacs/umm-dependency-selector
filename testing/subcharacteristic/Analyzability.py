@@ -1,6 +1,6 @@
-from model.MeasureableConcept import MeasurableConcept
-from model.Result import Result, Success
-from model.SubCharacteristic import SubCharacteristic
+from domain.model.MeasureableConcept import MeasurableConcept
+from domain.model.Result import Result, Success
+from domain.model.SubCharacteristic import SubCharacteristic
 
 
 class Analyzability(SubCharacteristic):

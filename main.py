@@ -1,64 +1,26 @@
-import itertools
-from copy import deepcopy
+import asyncio
 
-from testing.qualitymodels.TestQualityModel import TestQualityModel
-from testing.viewpoints.DeveloperViewpoint import DeveloperViewpoint
-from testing.characteristic.Maintainability import Maintainability
-from testing.measurableconcepts.ComplexityOfSourceCode import ComplexityOfSourceCode
-from testing.measures.CyclomaticComplexity import CyclomaticComplexity
-from testing.measures.LinesOfCode import LinesOfCode
-from testing.measures.NumberOfComplexFunctions import NumberOfComplexFunctions
-from testing.measures.NumberOfStatements import NumberOfStatements
-from testing.subcharacteristic.Analyzability import Analyzability
+from data.repository.QualityModelRepositoryImpl import QualityModelRepositoryImpl
+from presentation.core.SharedViewModel import SharedViewModel
+from presentation.quality_model_list.QualityModelListScreen import QualityModelListScreen
+from presentation.quality_model_list.QualityModelListViewModel import QualityModelListViewModel
+
+
+async def main():
+    quality_model_repository = QualityModelRepositoryImpl()
+    shared_view_model = SharedViewModel(quality_model_repository=quality_model_repository)
+    quality_model_list_view_model = QualityModelListViewModel(shared_view_model=shared_view_model)
+    quality_model_list_screen = QualityModelListScreen(
+        view_model=quality_model_list_view_model,
+        on_navigate_back=lambda: print("Navigate back")
+    )
+    quality_model_list_screen.on_created()
+    # preference_matrix_screen = PreferenceMatrixScreen(
+    #    view_model=PreferenceMatrixViewModel(shared_view_model=shared_view_model),
+    #    on_navigate_back=lambda: print("Navigate back")
+    # )
+    # preference_matrix_screen.on_created()
+
 
 if __name__ == "__main__":
-    print("Hello, world!")
-
-    linesOfCode = LinesOfCode()
-    numberOfComplexFunctions = NumberOfComplexFunctions()
-    cyclomaticComplexity = CyclomaticComplexity()
-    cyclomaticComplexity.add_component(linesOfCode)
-    cyclomaticComplexity.add_component(numberOfComplexFunctions)
-    numberOfStatements = NumberOfStatements()
-
-    resultCyclomaticComplexity = [
-        component.measure().value
-        for component in cyclomaticComplexity.children.values()
-    ]
-
-    resultNumberOfStatements = numberOfStatements.measure().value
-
-    print(resultCyclomaticComplexity)
-    print(resultNumberOfStatements)
-
-    complexityOfSourceCode = ComplexityOfSourceCode()
-    complexityOfSourceCode.add_component(cyclomaticComplexity)
-    complexityOfSourceCode.add_component(numberOfStatements)
-    codeComplexity = complexityOfSourceCode.run().value
-    print(codeComplexity)
-
-    analyzability = Analyzability()
-    analyzability.add_component(complexityOfSourceCode)
-    print(analyzability.run().value)
-
-    maintainability = Maintainability({})
-    maintainability.add_component(analyzability)
-    print(maintainability.run().value)
-
-    maintainability2 = deepcopy(maintainability)
-    maintainability3 = deepcopy(maintainability)
-
-    developer_viewpoint = DeveloperViewpoint(children={
-        maintainability.name: maintainability
-    })
-    print(developer_viewpoint.run().value)
-    print(developer_viewpoint.is_valid_preference_matrix)
-    print(developer_viewpoint.preference_matrix)
-
-    test_quality_model = TestQualityModel(
-        children={
-            developer_viewpoint.name: developer_viewpoint
-        }
-    )
-
-    preference_matrix = {}
+    asyncio.run(main())

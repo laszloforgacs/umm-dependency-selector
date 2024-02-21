@@ -1,6 +1,6 @@
-from model.Characteristic import Characteristic
-from model.Result import Result, Success
-from model.SubCharacteristic import SubCharacteristic
+from domain.model.Characteristic import Characteristic
+from domain.model.Result import Result, Success
+from domain.model.SubCharacteristic import SubCharacteristic
 
 
 class Maintainability(Characteristic):

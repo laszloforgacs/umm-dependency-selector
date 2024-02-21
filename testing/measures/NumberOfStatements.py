@@ -1,5 +1,5 @@
-from model.Result import Result, Success
-from model.measurement.Measure import BaseMeasure, MeasurementMethod
+from domain.model.Result import Result, Success
+from domain.model.measurement.Measure import BaseMeasure, MeasurementMethod
 
 
 class NumberOfStatements(BaseMeasure):

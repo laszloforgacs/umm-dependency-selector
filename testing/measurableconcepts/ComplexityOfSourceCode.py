@@ -1,5 +1,5 @@
-from model.MeasureableConcept import MeasurableConcept, Impact, OSSAspect
-from model.Result import Result, Success
+from domain.model.MeasureableConcept import MeasurableConcept, Impact, OSSAspect
+from domain.model.Result import Result, Success
 
 
 class ComplexityOfSourceCode(MeasurableConcept):

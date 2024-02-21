@@ -1,8 +1,8 @@
 from abc import abstractmethod, ABCMeta
 
-from model.Result import Result
-from model.SubCharacteristic import SubCharacteristic
-from model.components.Component import CompositeComponent
+from domain.model.Result import Result
+from domain.model.SubCharacteristic import SubCharacteristic
+from domain.model.components.Component import CompositeComponent
 
 
 class Characteristic(CompositeComponent, metaclass=ABCMeta):

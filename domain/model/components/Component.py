@@ -1,6 +1,6 @@
 from abc import abstractmethod, ABCMeta, ABC
 
-from model.Result import Result
+from domain.model.Result import Result
 
 
 class Component(ABC):

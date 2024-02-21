@@ -1,5 +1,5 @@
-from model.Result import Result, Success
-from model.measurement.Measure import DerivedMeasure, MeasurementMethod
+from domain.model.Result import Result, Success
+from domain.model.measurement.Measure import DerivedMeasure, MeasurementMethod
 
 
 class CyclomaticComplexity(DerivedMeasure):

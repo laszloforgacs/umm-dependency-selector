@@ -1,5 +1,5 @@
-from model.QualityModel import QualityModel
-from model.Viewpoint import Viewpoint
+from domain.model.QualityModel import QualityModel
+from domain.model.Viewpoint import Viewpoint
 
 
 class TestQualityModel(QualityModel):

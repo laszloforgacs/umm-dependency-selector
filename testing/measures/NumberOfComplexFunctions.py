@@ -1,5 +1,5 @@
-from model.Result import Success, Result
-from model.measurement.Measure import BaseMeasure, MeasurementMethod
+from domain.model.Result import Success, Result
+from domain.model.measurement.Measure import BaseMeasure, MeasurementMethod
 
 
 class NumberOfComplexFunctions(BaseMeasure):

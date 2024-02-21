@@ -1,9 +1,9 @@
 import itertools
 from abc import abstractmethod, ABCMeta
 
-from model.Characteristic import Characteristic
-from model.Result import Result
-from model.components.Component import CompositeComponent, Component
+from domain.model.Characteristic import Characteristic
+from domain.model.Result import Result
+from domain.model.components.Component import CompositeComponent
 
 
 class Viewpoint(CompositeComponent, metaclass=ABCMeta):

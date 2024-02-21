@@ -21,7 +21,7 @@ class QualityModelListStateSubject(Subject):
     def detach(self, observer: 'Observer') -> None:
         self._observers.remove(observer)
 
-    async def notify(self) -> None:
+    def notify(self) -> None:
         for observer in self._observers:
             observer.update(self)
 

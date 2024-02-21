@@ -9,6 +9,7 @@ packages = [{include = "umm_dependency_selector"}]
 [tool.poetry.dependencies]
 python = "^3.11"
 ahpy = "^2.0"
+aioconsole = "^0.7.0"
 
 
 [build-system]

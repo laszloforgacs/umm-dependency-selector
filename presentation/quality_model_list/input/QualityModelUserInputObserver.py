@@ -15,12 +15,12 @@ class QualityModelUserInputObserver(Observer):
         self._quality_model_list_state_subject = quality_model_list_state_subject
         self._on_update = on_update
 
-    def update(self, subject: QualityModelUserInputSubject):
+    async def update(self, subject: QualityModelUserInputSubject):
         state = subject.state
 
         if state.should_wait_for_user_input:
             while True:
-                user_input = 1
+                user_input = await aioconsole.ainput("Select a quality model: ")
                 quality_model_list = self._quality_model_list_state_subject.state.quality_model_list
                 list_size = len(quality_model_list)
                 result = self._handle_user_input(
@@ -31,10 +31,10 @@ class QualityModelUserInputObserver(Observer):
                 if isinstance(result, Success):
                     if result.value == list_size + 1:
                         print("Exiting...")
-                        self._on_update(True)
+                        await self._on_update(True)
                         break
                     print("Selected quality model: ", quality_model_list[result.value - 1].name)
-                    self._on_update(True)
+                    await self._on_update(True)
                     break
                 else:
                     print(f"Error: {result.message}")

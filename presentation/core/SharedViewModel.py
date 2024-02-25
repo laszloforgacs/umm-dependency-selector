@@ -19,9 +19,9 @@ class SharedViewModel():
         return self._quality_model_state_subject
 
     async def fetch_quality_models(self):
-        self._quality_model_state_subject.set_state(self._quality_model_state_subject.state.copy(is_loading=True))
+        await self._quality_model_state_subject.set_state(self._quality_model_state_subject.state.copy(is_loading=True))
         result = await self._quality_model_repository.fetch_quality_models()
-        self._quality_model_state_subject.set_state(self._quality_model_state_subject.state.copy(
+        await self._quality_model_state_subject.set_state(self._quality_model_state_subject.state.copy(
             quality_model_list=result.value if result.is_valid else [],
             is_loading=False,
             error=ErrorState(message=result.message) if not result.is_valid else None

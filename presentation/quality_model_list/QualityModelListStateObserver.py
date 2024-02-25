@@ -12,7 +12,7 @@ class QualityModelListStateObserver(Observer):
     def __init__(self, on_update: Callable[[bool], None] = None):
         self._on_update = on_update
 
-    def update(self, subject: QualityModelStateSubject) -> None:
+    async def update(self, subject: QualityModelStateSubject) -> None:
         state = subject.state
 
         if state.is_loading:
@@ -29,4 +29,4 @@ class QualityModelListStateObserver(Observer):
             ]
 
             print_items_with_last(quality_model_list, "Exit")
-            self._on_update(True)
+            await self._on_update(True)

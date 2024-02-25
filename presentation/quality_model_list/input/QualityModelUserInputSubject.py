@@ -18,10 +18,12 @@ class QualityModelUserInputSubject(Subject):
     def detach(self, observer: 'Observer'):
         self._observers.remove(observer)
 
-    def notify(self):
+    async def notify(self):
+        tasks = []
         for observer in self._observers:
-            observer.update(self)
+            tasks.append(asyncio.create_task(observer.update(self)))
+        await asyncio.gather(*tasks)
 
-    def set_state(self, state: QualityModelUserInputState):
+    async def set_state(self, state: QualityModelUserInputState):
         self._state = state
-        self.notify()
+        await self.notify()

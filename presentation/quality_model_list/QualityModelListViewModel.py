@@ -18,15 +18,15 @@ class QualityModelListViewModel:
     def quality_model_user_input_subject(self) -> QualityModelUserInputSubject:
         return self._quality_model_user_input_subject
 
-    def wait_for_user_input(self):
-        self._quality_model_user_input_subject.set_state(
+    async def wait_for_user_input(self):
+        await self._quality_model_user_input_subject.set_state(
             state=QualityModelUserInputState(
                 should_wait_for_user_input=True
             )
         )
 
-    def user_input_handled(self):
-        self._quality_model_user_input_subject.set_state(
+    async def user_input_handled(self):
+        await self._quality_model_user_input_subject.set_state(
             state=QualityModelUserInputState(
                 should_wait_for_user_input=False
             )

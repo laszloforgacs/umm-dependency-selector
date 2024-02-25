@@ -16,12 +16,13 @@ async def main():
         on_navigate_back=lambda: print("Navigate back")
     )
     quality_model_list_screen.on_created()
+    tasks = [t for t in asyncio.all_tasks() if t is not asyncio.current_task()]
+    await asyncio.gather(*tasks)
     # preference_matrix_screen = PreferenceMatrixScreen(
     #    view_model=PreferenceMatrixViewModel(shared_view_model=shared_view_model),
     #    on_navigate_back=lambda: print("Navigate back")
     # )
     # preference_matrix_screen.on_created()
-    await asyncio.sleep(1000)
 
 
 if __name__ == "__main__":

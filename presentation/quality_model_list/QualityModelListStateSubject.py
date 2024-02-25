@@ -23,10 +23,12 @@ class QualityModelListStateSubject(Subject):
     def detach(self, observer: 'Observer') -> None:
         self._observers.remove(observer)
 
-    def notify(self) -> None:
+    async def notify(self) -> None:
+        tasks = []
         for observer in self._observers:
-            observer.update(self)
+            tasks.append(asyncio.create_task(observer.update(self)))
+        await asyncio.gather(*tasks)
 
-    def set_state(self, state: QualityModelListState) -> None:
+    async def set_state(self, state: QualityModelListState) -> None:
         self._state = state
-        self.notify()
+        await self.notify()

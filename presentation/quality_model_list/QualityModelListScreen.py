@@ -35,18 +35,16 @@ class QualityModelListScreen(Screen):
 
     def on_created(self):
         self.observe_subjects()
-        self._view_model.quality_model_state_subject.notify()
-        self._view_model.quality_model_user_input_subject.notify()
 
     def on_destroy(self):
         self.dispose_observers()
         self._quality_model_list_state_observer = None
         self._quality_model_user_input_observer = None
 
-    def _handle_update(self, should_wait_for_user_input: bool):
+    async def _handle_update(self, should_wait_for_user_input: bool):
         if should_wait_for_user_input:
-            self._view_model.wait_for_user_input()
+            await self._view_model.wait_for_user_input()
 
-    def _user_input_handled(self, is_handled: bool):
+    async def _user_input_handled(self, is_handled: bool):
         if is_handled:
-            self._view_model.user_input_handled()
+            await self._view_model.user_input_handled()

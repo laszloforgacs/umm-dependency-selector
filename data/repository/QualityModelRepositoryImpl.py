@@ -67,7 +67,7 @@ class QualityModelRepositoryImpl(QualityModelRepository):
             }
         )
 
-        await asyncio.sleep(10000)
+        await asyncio.sleep(10)
         return Success(
             [
                 test_quality_model

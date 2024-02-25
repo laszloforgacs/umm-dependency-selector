@@ -1,17 +1,15 @@
 import asyncio
 
-from presentation.core.QualityModelState import QualityModelState
+from presentation.quality_model_list.input.QualityModelUserInputState import QualityModelUserInputState
 from presentation.util.Subject import Subject
 
 
-class QualityModelStateSubject(Subject):
-    _state: QualityModelState = QualityModelState(
-        quality_model_list=[]
-    )
+class QualityModelUserInputSubject(Subject):
+    _state: QualityModelUserInputState = QualityModelUserInputState()
     _observers: list['Observer'] = []
 
     @property
-    def state(self) -> QualityModelState:
+    def state(self) -> QualityModelUserInputState:
         return self._state
 
     def attach(self, observer: 'Observer'):
@@ -24,6 +22,6 @@ class QualityModelStateSubject(Subject):
         for observer in self._observers:
             observer.update(self)
 
-    def set_state(self, state: QualityModelState):
+    def set_state(self, state: QualityModelUserInputState):
         self._state = state
         self.notify()

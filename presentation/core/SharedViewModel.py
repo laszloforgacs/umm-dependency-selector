@@ -13,7 +13,6 @@ class SharedViewModel():
     def __init__(self, quality_model_repository: QualityModelRepository):
         self._quality_model_state_subject = QualityModelStateSubject()
         self._quality_model_repository = quality_model_repository
-        asyncio.create_task(self.fetch_quality_models())
 
     @property
     def quality_model_state_subject(self) -> QualityModelStateSubject:

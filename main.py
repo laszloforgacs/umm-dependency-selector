@@ -9,6 +9,7 @@ from presentation.quality_model_list.QualityModelListViewModel import QualityMod
 async def main():
     quality_model_repository = QualityModelRepositoryImpl()
     shared_view_model = SharedViewModel(quality_model_repository=quality_model_repository)
+    asyncio.create_task(shared_view_model.fetch_quality_models())
     quality_model_list_view_model = QualityModelListViewModel(shared_view_model=shared_view_model)
     quality_model_list_screen = QualityModelListScreen(
         view_model=quality_model_list_view_model,
@@ -20,6 +21,7 @@ async def main():
     #    on_navigate_back=lambda: print("Navigate back")
     # )
     # preference_matrix_screen.on_created()
+    await asyncio.sleep(1000)
 
 
 if __name__ == "__main__":

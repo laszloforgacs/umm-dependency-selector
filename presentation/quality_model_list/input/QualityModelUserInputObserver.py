@@ -20,7 +20,7 @@ class QualityModelUserInputObserver(Observer):
 
         if state.should_wait_for_user_input:
             while True:
-                user_input = await aioconsole.ainput("Select a quality model: ")
+                user_input = await aioconsole.ainput("Select a quality model by entering a number")
                 quality_model_list = self._quality_model_list_state_subject.state.quality_model_list
                 list_size = len(quality_model_list)
                 result = self._handle_user_input(

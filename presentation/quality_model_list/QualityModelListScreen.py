@@ -1,9 +1,6 @@
 import asyncio
 from typing import Callable, Optional
 
-import aioconsole
-
-from domain.model.Result import Result, Success, Failure
 from presentation.core.Screen import Screen
 from presentation.quality_model_list.QualityModelListStateObserver import QualityModelListStateObserver
 from presentation.quality_model_list.QualityModelListViewModel import QualityModelListViewModel

@@ -1,4 +1,5 @@
 import asyncio
+from typing import Optional
 
 from domain.model.QualityModel import QualityModel
 from domain.model.Result import Result, Success
@@ -17,6 +18,14 @@ class SharedViewModel():
     @property
     def quality_model_state_subject(self) -> QualityModelStateSubject:
         return self._quality_model_state_subject
+
+    def viewpoints(self, selected_quality_model: str) -> dict[str, 'Viewpoint']:
+        selected_quality_model = next(
+            (quality_model for quality_model in self._quality_model_state_subject.state.quality_model_list if
+             quality_model.name == selected_quality_model),
+            {}
+        )
+        return selected_quality_model.children
 
     async def fetch_quality_models(self):
         await self._quality_model_state_subject.set_state(self._quality_model_state_subject.state.copy(is_loading=True))

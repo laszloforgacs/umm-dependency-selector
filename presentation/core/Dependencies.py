@@ -5,6 +5,7 @@ from presentation.core.SharedViewModel import SharedViewModel
 from presentation.quality_model_list.QualityModelListScreen import QualityModelListScreen
 from presentation.quality_model_list.QualityModelListViewModel import QualityModelListViewModel
 from presentation.viewpoint_list.ViewpointListScreen import ViewpointListScreen
+from presentation.viewpoint_list.ViewpointListViewModel import ViewpointListViewModel
 
 
 class Dependencies:
@@ -30,5 +31,8 @@ class Dependencies:
     def provide_viewpoint_list_screen(self, selected_quality_model: str):
         return lambda: ViewpointListScreen(
             navigator=self.navigator,
+            view_model=ViewpointListViewModel(
+                shared_view_model=self.shared_view_model
+            ),
             selected_quality_model=selected_quality_model
         )

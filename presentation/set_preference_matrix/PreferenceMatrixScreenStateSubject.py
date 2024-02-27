@@ -8,18 +8,18 @@ class PreferenceMatrixScreenStateSubject(Subject):
         preferences_shown_to_user=[],
         error=None
     )
-    _observers: list['Observer'] = []
+    _observers: set['Observer'] = set()
 
     @property
     def state(self) -> PreferenceMatrixScreenState:
         return self._state
 
     def attach(self, observer: 'Observer') -> None:
-        if observer not in self._observers:
-            self._observers.append(observer)
+        self._observers.add(observer)
 
     def detach(self, observer: 'Observer') -> None:
-        self._observers.remove(observer)
+        if observer in self._observers:
+            self._observers.remove(observer)
 
     def notify(self) -> None:
         for observer in self._observers:

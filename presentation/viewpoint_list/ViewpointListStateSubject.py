@@ -6,17 +6,18 @@ from presentation.viewpoint_list.ViewpointListScreenState import ViewpointListSc
 
 class ViewpointListStateSubject(Subject):
     _state: ViewpointListScreenState = ViewpointListScreenState(viewpoints=[])
-    _observers: list['Observer'] = []
+    _observers: set['Observer'] = set()
 
     @property
     def state(self):
         return self._state
 
     def attach(self, observer):
-        self._observers.append(observer)
+        self._observers.add(observer)
 
     def detach(self, observer):
-        self._observers.remove(observer)
+        if observer in self._observers:
+            self._observers.remove(observer)
 
     async def notify(self):
         tasks = []

@@ -6,17 +6,18 @@ from presentation.util.Subject import Subject
 
 class QualityModelUserInputSubject(Subject):
     _state: QualityModelUserInputState = QualityModelUserInputState()
-    _observers: list['Observer'] = []
+    _observers: set['Observer'] = set()
 
     @property
     def state(self) -> QualityModelUserInputState:
         return self._state
 
     def attach(self, observer: 'Observer'):
-        self._observers.append(observer)
+        self._observers.add(observer)
 
     def detach(self, observer: 'Observer'):
-        self._observers.remove(observer)
+        if observer in self._observers:
+            self._observers.remove(observer)
 
     async def notify(self):
         tasks = []

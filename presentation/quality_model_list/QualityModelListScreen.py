@@ -10,8 +10,9 @@ from presentation.util.Constants import VIEWPOINT_LIST_SCREEN
 
 
 class QualityModelListScreen(Screen):
-    _quality_model_list_state_observer: Optional[QualityModelListStateObserver] = None
-    _quality_model_user_input_observer: Optional[QualityModelUserInputObserver] = None
+    _is_created: bool = False
+    _quality_model_list_state_observer: QualityModelListStateObserver
+    _quality_model_user_input_observer: QualityModelUserInputObserver
 
     def __init__(self, navigator: Navigator, view_model: QualityModelListViewModel):
         self._navigator = navigator
@@ -35,10 +36,14 @@ class QualityModelListScreen(Screen):
     async def on_created(self):
         self.observe_subjects()
 
+        if self._is_created:
+            await self._view_model.quality_model_state_subject.notify()
+
+        if not self._is_created:
+            self._is_created = True
+
     def on_destroy(self):
         self.dispose_observers()
-        self._quality_model_list_state_observer = None
-        self._quality_model_user_input_observer = None
 
     async def _handle_update(self, should_wait_for_user_input: bool):
         if should_wait_for_user_input:

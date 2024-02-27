@@ -56,7 +56,7 @@ class ViewpointListScreen(Screen, Observer):
                         if result.value == dict_size + 1:
                             print("Going back...")
                             await self._view_model.input_handled()
-                            self._navigator.navigate_up()
+                            await self._navigator.navigate_up()
                             break
 
                         viewpoint_list = list(viewpoint_dict.keys())

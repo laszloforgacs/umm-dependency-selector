@@ -20,5 +20,5 @@ class Navigator:
                 )
             )
 
-    def navigate_up(self):
-        self._navigation_controller.navigate_back()
+    async def navigate_up(self):
+        await self._navigation_controller.navigate_back()

@@ -10,7 +10,7 @@ class Screen(ABC, Generic[T]):
         pass
 
     @abstractmethod
-    def on_created(self):
+    async def on_created(self):
         pass
 
     @abstractmethod

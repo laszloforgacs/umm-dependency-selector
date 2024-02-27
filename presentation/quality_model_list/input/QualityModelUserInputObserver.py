@@ -5,6 +5,7 @@ import aioconsole
 from domain.model.Result import Success, Failure, Result
 from presentation.quality_model_list.QualityModelListStateSubject import QualityModelListStateSubject
 from presentation.quality_model_list.input.QualityModelUserInputSubject import QualityModelUserInputSubject
+from presentation.util.Constants import QUALITY_MODEL_USER_INPUT
 from presentation.util.Observer import Observer
 
 
@@ -20,7 +21,7 @@ class QualityModelUserInputObserver(Observer):
 
         if state.should_wait_for_user_input:
             while True:
-                user_input = await aioconsole.ainput("Select a quality model by entering a number")
+                user_input = await aioconsole.ainput(QUALITY_MODEL_USER_INPUT)
                 quality_model_list = self._quality_model_list_state_subject.state.quality_model_list
                 list_size = len(quality_model_list)
                 result = self._handle_user_input(

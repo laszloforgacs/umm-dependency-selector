@@ -23,7 +23,7 @@ class PreferenceMatrixScreen(Screen):
             self._view_model.preference_matrix_screen_state_subject.detach(
                 self._preference_matrix_screen_state_observer)
 
-    def on_created(self):
+    async def on_created(self):
         if len(self._view_model.preference_matrix_state.matrix) == 0:
             is_set_prefs = input("Do you want to set preferences? (y/n): ")
             if is_set_prefs.lower() == "n":

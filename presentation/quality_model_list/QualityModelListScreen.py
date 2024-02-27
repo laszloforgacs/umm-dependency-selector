@@ -32,7 +32,7 @@ class QualityModelListScreen(Screen):
         self._view_model.quality_model_state_subject.detach(self._quality_model_list_state_observer)
         self._view_model.quality_model_user_input_subject.detach(self._quality_model_user_input_observer)
 
-    def on_created(self):
+    async def on_created(self):
         self.observe_subjects()
 
     def on_destroy(self):
@@ -46,7 +46,7 @@ class QualityModelListScreen(Screen):
 
     async def _user_input_handled(self, selected_quality_model: Optional[str]):
         if selected_quality_model is not None:
-            self._navigator.navigate_to(
+            await self._navigator.navigate_to(
                 destination=VIEWPOINT_LIST_SCREEN,
                 selected_quality_model=selected_quality_model
             )

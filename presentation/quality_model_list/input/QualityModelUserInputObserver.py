@@ -1,4 +1,4 @@
-from typing import Callable
+from typing import Callable, Optional
 
 import aioconsole
 
@@ -11,7 +11,7 @@ from presentation.util.Observer import Observer
 class QualityModelUserInputObserver(Observer):
 
     def __init__(self, quality_model_list_state_subject: QualityModelListStateSubject,
-                 on_update: Callable[[bool], None] = None):
+                 on_update: Callable[[Optional[str]], None] = None):
         self._quality_model_list_state_subject = quality_model_list_state_subject
         self._on_update = on_update
 
@@ -31,10 +31,11 @@ class QualityModelUserInputObserver(Observer):
                 if isinstance(result, Success):
                     if result.value == list_size + 1:
                         print("Exiting...")
-                        await self._on_update(True)
+                        await self._on_update(None)
                         break
-                    print("Selected quality model: ", quality_model_list[result.value - 1].name)
-                    await self._on_update(True)
+                    quality_model = quality_model_list[result.value - 1]
+                    print("Selected quality model: ", quality_model.name)
+                    await self._on_update(quality_model.name)
                     break
                 else:
                     print(f"Error: {result.message}")

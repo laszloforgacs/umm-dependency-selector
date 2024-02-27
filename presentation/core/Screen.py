@@ -6,7 +6,7 @@ T = TypeVar('T')
 
 class Screen(ABC, Generic[T]):
     @abstractmethod
-    def __init__(self, on_navigate_back: Callable[[T], None]):
+    def __init__(self):
         pass
 
     @abstractmethod

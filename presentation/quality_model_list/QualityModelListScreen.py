@@ -1,6 +1,7 @@
 import asyncio
 from typing import Callable, Optional
 
+from presentation.core.Navigator import Navigator
 from presentation.core.Screen import Screen
 from presentation.quality_model_list.QualityModelListStateObserver import QualityModelListStateObserver
 from presentation.quality_model_list.QualityModelListViewModel import QualityModelListViewModel
@@ -11,9 +12,9 @@ class QualityModelListScreen(Screen):
     _quality_model_list_state_observer: Optional[QualityModelListStateObserver] = None
     _quality_model_user_input_observer: Optional[QualityModelUserInputObserver] = None
 
-    def __init__(self, view_model: QualityModelListViewModel, on_navigate_back: Callable[[None], None]):
+    def __init__(self, navigator: Navigator, view_model: QualityModelListViewModel):
+        self._navigator = navigator
         self._view_model = view_model
-        self._on_navigate_back = on_navigate_back
         self._quality_model_list_state_observer = QualityModelListStateObserver(
             on_update=self._handle_update
         )

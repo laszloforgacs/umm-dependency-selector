@@ -4,7 +4,7 @@ from typing import Callable
 class NavigationController:
     _stack: list['Screen'] = []
 
-    def navigate_back(self):
+    def navigate_back(self) -> 'Screen':
         if len(self._stack) > 1:
             popped_screen = self._stack.pop()
             popped_screen.on_destroy()

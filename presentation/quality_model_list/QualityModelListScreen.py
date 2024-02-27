@@ -6,6 +6,7 @@ from presentation.core.Screen import Screen
 from presentation.quality_model_list.QualityModelListStateObserver import QualityModelListStateObserver
 from presentation.quality_model_list.QualityModelListViewModel import QualityModelListViewModel
 from presentation.quality_model_list.input.QualityModelUserInputObserver import QualityModelUserInputObserver
+from presentation.util.Constants import VIEWPOINT_LIST_SCREEN
 
 
 class QualityModelListScreen(Screen):
@@ -43,6 +44,10 @@ class QualityModelListScreen(Screen):
         if should_wait_for_user_input:
             await self._view_model.wait_for_user_input()
 
-    async def _user_input_handled(self, is_handled: bool):
-        if is_handled:
+    async def _user_input_handled(self, selected_quality_model: Optional[str]):
+        if selected_quality_model is not None:
+            self._navigator.navigate_to(
+                destination=VIEWPOINT_LIST_SCREEN,
+                selected_quality_model=selected_quality_model
+            )
             await self._view_model.user_input_handled()

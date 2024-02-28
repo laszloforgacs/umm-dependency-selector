@@ -1,5 +1,5 @@
 from presentation.core.NavigationController import NavigationController
-from presentation.util.Constants import QUALITY_MODEL_LIST_SCREEN, VIEWPOINT_LIST_SCREEN
+from presentation.util.Constants import QUALITY_MODEL_LIST_SCREEN, VIEWPOINT_LIST_SCREEN, VIEWPOINT_PREFERENCES_SCREEN
 
 
 class Navigator:
@@ -17,6 +17,14 @@ class Navigator:
             await self._navigation_controller.navigate_to(
                 self._dependencies.provide_viewpoint_list_screen(
                     selected_quality_model=kwargs['selected_quality_model']
+                )
+            )
+
+        if destination == VIEWPOINT_PREFERENCES_SCREEN:
+            await self._navigation_controller.navigate_to(
+                self._dependencies.provide_viewpoint_preferences_screen(
+                    selected_quality_model=kwargs['selected_quality_model'],
+                    selected_viewpoint=kwargs['selected_viewpoint']
                 )
             )
 

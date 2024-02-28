@@ -6,6 +6,7 @@ from domain.model.Result import Result, Success
 from domain.repository.QualityModelRepository import QualityModelRepository
 from presentation.core.QualityModelStateSubject import QualityModelStateSubject
 from presentation.util.ErrorState import ErrorState
+from presentation.viewpoint_preferences.ViewpointPreferencesState import PrefMatrix
 
 
 class SharedViewModel():
@@ -26,6 +27,18 @@ class SharedViewModel():
             {}
         )
         return selected_quality_model.children
+
+    def viewpoint(self, selected_quality_model: str, selected_viewpoint: str) -> 'Viewpoint':
+        viewpoints = self.viewpoints(selected_quality_model)
+        return viewpoints.get(selected_viewpoint, {})
+
+    def characteristics(self, selected_quality_model: str, selected_viewpoint: str) -> dict[str, 'Characteristic']:
+        selected_viewpoint = self.viewpoints(selected_quality_model).get(selected_viewpoint, {})
+        return selected_viewpoint.children
+
+    def preference_matrix(self, selected_quality_model: str, selected_viewpoint: str) -> PrefMatrix:
+        selected_viewpoint = self.viewpoints(selected_quality_model).get(selected_viewpoint, {})
+        return selected_viewpoint.preference_matrix
 
     async def fetch_quality_models(self):
         await self._quality_model_state_subject.set_state(self._quality_model_state_subject.state.copy(is_loading=True))

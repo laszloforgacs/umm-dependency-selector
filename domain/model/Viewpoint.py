@@ -4,11 +4,12 @@ from abc import abstractmethod, ABCMeta
 from domain.model.Characteristic import Characteristic
 from domain.model.Result import Result
 from domain.model.components.Component import CompositeComponent
+from presentation.viewpoint_preferences.ViewpointPreferencesState import PrefMatrix
 
 
 class Viewpoint(CompositeComponent, metaclass=ABCMeta):
     def __init__(self, name: str, children: dict[str, Characteristic] = {},
-                 preference_matrix: dict[tuple[str, str], float | None] = {}):
+                 preference_matrix: PrefMatrix = {}):
         self._name = name
         self._children = children
         if len(preference_matrix) == 0 and len(children) > 1:
@@ -27,7 +28,7 @@ class Viewpoint(CompositeComponent, metaclass=ABCMeta):
         self._preference_matrix = {}
 
     @property
-    def preference_matrix(self) -> dict[tuple[str, str], float]:
+    def preference_matrix(self) -> PrefMatrix:
         return self._preference_matrix
 
     def set_preference(self, characteristic_tuple: tuple[str, str], preference: float):

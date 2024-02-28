@@ -6,6 +6,8 @@ from presentation.quality_model_list.QualityModelListScreen import QualityModelL
 from presentation.quality_model_list.QualityModelListViewModel import QualityModelListViewModel
 from presentation.viewpoint_list.ViewpointListScreen import ViewpointListScreen
 from presentation.viewpoint_list.ViewpointListViewModel import ViewpointListViewModel
+from presentation.viewpoint_preferences.ViewpointPreferencesScreen import ViewpointPreferencesScreen
+from presentation.viewpoint_preferences.ViewpointPreferencesViewModel import ViewpointPreferencesViewModel
 
 
 class Dependencies:
@@ -35,4 +37,14 @@ class Dependencies:
                 shared_view_model=self.shared_view_model
             ),
             selected_quality_model=selected_quality_model
+        )
+
+    def provide_viewpoint_preferences_screen(self, selected_quality_model: str, selected_viewpoint: str):
+        return lambda: ViewpointPreferencesScreen(
+            navigator=self.navigator,
+            view_model=ViewpointPreferencesViewModel(
+                shared_view_model=self.shared_view_model
+            ),
+            selected_quality_model=selected_quality_model,
+            selected_viewpoint=selected_viewpoint
         )

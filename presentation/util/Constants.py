@@ -12,3 +12,4 @@ VIEWPOINT_LIST_INPUT: Final = "Select a Viewpoint or go back by entering a numbe
 
 QUALITY_MODEL_LIST_SCREEN: Final = "QualityModelListScreen"
 VIEWPOINT_LIST_SCREEN: Final = "ViewpointListScreen"
+VIEWPOINT_PREFERENCES_SCREEN: Final = "ViewpointPreferencesScreen"

@@ -41,4 +41,12 @@ class Loading(ViewpointPreferencesState):
         return Loading()
 
 
-ViewpointPrefState = ViewpointState | UserInput | Error | Loading
+@dataclass
+class NavigateBack(ViewpointPreferencesState):
+    pass
+
+    def copy(self, **kwargs):
+        return NavigateBack()
+
+
+ViewpointPrefState = ViewpointState | UserInput | Error | Loading | NavigateBack

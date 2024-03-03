@@ -1,9 +1,14 @@
 import asyncio
+import json
+import os
 from copy import deepcopy
+
+import aiofiles
 
 from domain.model.QualityModel import QualityModel
 from domain.model.Result import Result, Success
 from domain.repository.QualityModelRepository import QualityModelRepository
+from presentation.util.Util import reversed_ahp_values
 from testing.characteristic.Maintainability import Maintainability
 from testing.measurableconcepts.ComplexityOfSourceCode import ComplexityOfSourceCode
 from testing.measures.CyclomaticComplexity import CyclomaticComplexity
@@ -78,3 +83,32 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 test_quality_model
             ]
         )
+
+    async def set_preference(
+            self,
+            filename: str,
+            component: 'CompositeComponent',
+            characteristic_tuple: tuple[str, str],
+            preference: str
+    ):
+        folder = "config"
+        extension = ".json"
+        path = os.path.join(folder, filename + extension)
+        data = {
+            "preference_matrix": {}
+        }
+
+        if os.path.exists(path):
+            async with aiofiles.open(path, "r") as file:
+                content = await file.read()
+                if content:
+                    data = json.loads(content)
+
+        key = str(characteristic_tuple)
+        data["preference_matrix"][key] = preference
+        other_key = str((characteristic_tuple[1], characteristic_tuple[0]))
+        data["preference_matrix"][other_key] = reversed_ahp_values()[preference]
+
+        async with aiofiles.open(path, "w") as file:
+            json_string = json.dumps(data, indent=4)
+            await file.write(json_string)

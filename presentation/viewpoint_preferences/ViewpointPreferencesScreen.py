@@ -4,7 +4,7 @@ from presentation.core.Screen import Screen
 from presentation.util.Constants import VIEWPOINT_PREFERENCES_EVALUATE_OR_RESET_INPUT, ERROR_INVALID_INPUT, \
     VIEWPOINT_WANT_TO_SET_PREFERENCES
 from presentation.util.Observer import Observer
-from presentation.util.Util import print_items_with_last
+from presentation.util.Util import print_items_with_last, print_ahp_ratings, accepted_ahp_values
 from presentation.viewpoint_preferences.ComponentPreferencesState import ComponentsState, UserInput, Loading, Error, \
     NavigateBack, SetPreferences
 
@@ -57,6 +57,8 @@ class ViewpointPreferencesScreen(Screen, Observer):
                 )
                 if first_none_comparison is not None:
                     print(f"Setting preferences for {first_none_comparison}")
+                    print_ahp_ratings(comparisons=first_none_comparison)
+                    await self._handle_ahp_input()
         elif isinstance(state, UserInput):
             print("User input state updated")
         elif isinstance(state, Loading):
@@ -105,3 +107,18 @@ class ViewpointPreferencesScreen(Screen, Observer):
                 break
             else:
                 print(ERROR_INVALID_INPUT)
+
+    async def _handle_ahp_input(self):
+        while True:
+            try:
+                user_input = await aioconsole.ainput()
+                input_value = user_input.replace(" ", "")
+                if input_value in accepted_ahp_values():
+                    print("User input: ", input_value)
+                    break
+                else:
+                    print(ERROR_INVALID_INPUT)
+            except ValueError:
+                print(ERROR_INVALID_INPUT)
+                print("Please enter a valid value.")
+                continue

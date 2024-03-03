@@ -16,3 +16,6 @@ VIEWPOINT_PREFERENCES_EVALUATE_OR_RESET_INPUT: Final = "Would you like to evalua
 QUALITY_MODEL_LIST_SCREEN: Final = "QualityModelListScreen"
 VIEWPOINT_LIST_SCREEN: Final = "ViewpointListScreen"
 VIEWPOINT_PREFERENCES_SCREEN: Final = "ViewpointPreferencesScreen"
+
+AHP_COMMON_RATINGS: Final = "1: Equal importance\n3: Moderately more important\n5: Strongly more important\n7: Very strongly more important\n9: Extremely more important"
+AHP_INTERMEDIATE_RATINGS: Final = "2, 4, 6, 8: Intermediate values between two adjacent judgments"

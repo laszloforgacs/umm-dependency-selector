@@ -1,5 +1,6 @@
 import itertools
 
+from domain.model.Characteristic import Characteristic
 from presentation.viewpoint_preferences.ComponentPreferencesState import Loading, ComponentsState, Error
 from presentation.viewpoint_preferences.ViewpointPreferencesStateSubject import ViewpointPreferencesStateSubject
 
@@ -38,6 +39,24 @@ class ViewpointPreferencesViewModel:
                     message=str(e)
                 )
             )
+
+    async def set_preference(
+            self,
+            selected_quality_model: str,
+            selected_viewpoint: str,
+            component: 'CompositeComponent',
+            characteristic_tuple: tuple[str, str],
+            preference: str
+    ):
+        post_fix = f"-{component.name}" if isinstance(component, Characteristic) else ""
+        filename = f"{selected_quality_model}-{selected_viewpoint}{post_fix}".replace(" ", "_")
+        await self._shared_view_model.set_preference(
+            filename=filename,
+            component=component,
+            characteristic_tuple=characteristic_tuple,
+            preference=preference
+        )
+
 
     @property
     def pref_state_subject(self) -> 'ViewpointPreferencesStateSubject':

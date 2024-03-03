@@ -58,7 +58,15 @@ class ViewpointPreferencesScreen(Screen, Observer):
                 if first_none_comparison is not None:
                     print(f"Setting preferences for {first_none_comparison}")
                     print_ahp_ratings(comparisons=first_none_comparison)
-                    await self._handle_ahp_input()
+                    preference_value = await self._handle_ahp_input()
+                    await self._view_model.set_preference(
+                        selected_quality_model=self._selected_quality_model,
+                        selected_viewpoint=self._selected_viewpoint,
+                        component=component,
+                        characteristic_tuple=first_none_comparison,
+                        preference=preference_value
+                    )
+
         elif isinstance(state, UserInput):
             print("User input state updated")
         elif isinstance(state, Loading):
@@ -108,14 +116,13 @@ class ViewpointPreferencesScreen(Screen, Observer):
             else:
                 print(ERROR_INVALID_INPUT)
 
-    async def _handle_ahp_input(self):
+    async def _handle_ahp_input(self) -> str:
         while True:
             try:
                 user_input = await aioconsole.ainput()
                 input_value = user_input.replace(" ", "")
                 if input_value in accepted_ahp_values():
-                    print("User input: ", input_value)
-                    break
+                    return input_value
                 else:
                     print(ERROR_INVALID_INPUT)
             except ValueError:

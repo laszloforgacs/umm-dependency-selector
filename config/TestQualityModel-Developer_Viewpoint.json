@@ -1,5 +1,6 @@
 {
-  "preference_matrix": {
-    
-  }
+    "preference_matrix": {
+        "(Characteristic, Characteristic2)": 1.0,
+        "('Maintainability', 'Maintainability')": "1/3"
+    }
 }

@@ -11,3 +11,12 @@ class QualityModelRepository(ABC):
 
     async def fetch_quality_models(self) -> Result[list[QualityModel]]:
         pass
+
+    async def set_preference(
+            self,
+            filename: str,
+            component: 'CompositeComponent',
+            characteristic_tuple: tuple[str, str],
+            preference: str
+    ):
+        pass

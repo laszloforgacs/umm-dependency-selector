@@ -6,7 +6,7 @@ from domain.model.Result import Result, Success
 from domain.repository.QualityModelRepository import QualityModelRepository
 from presentation.core.QualityModelStateSubject import QualityModelStateSubject
 from presentation.util.ErrorState import ErrorState
-from presentation.viewpoint_preferences.ViewpointPreferencesState import PrefMatrix
+from presentation.viewpoint_preferences.ComponentPreferencesState import PrefMatrix
 
 
 class SharedViewModel():

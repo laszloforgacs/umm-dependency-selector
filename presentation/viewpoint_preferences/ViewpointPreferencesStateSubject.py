@@ -1,17 +1,17 @@
 import asyncio
 
 from presentation.util.Subject import Subject
-from presentation.viewpoint_preferences.ViewpointPreferencesState import ViewpointState
+from presentation.viewpoint_preferences.ComponentPreferencesState import ComponentsState
 
 
 class ViewpointPreferencesStateSubject(Subject):
-    _state: 'ViewpointPrefState' = ViewpointState(
-        value=None
+    _state: 'ComponentPrefState' = ComponentsState(
+        components=[]
     )
     _observers: set['Observer'] = set()
 
     @property
-    def state(self) -> 'ViewpointPrefState':
+    def state(self) -> 'ComponentPrefState':
         return self._state
 
     def attach(self, observer: 'Observer'):
@@ -28,6 +28,6 @@ class ViewpointPreferencesStateSubject(Subject):
 
         await asyncio.gather(*tasks)
 
-    async def set_state(self, state: 'ViewpointPrefState'):
+    async def set_state(self, state: 'ComponentPrefState'):
         self._state = state
         await self.notify()

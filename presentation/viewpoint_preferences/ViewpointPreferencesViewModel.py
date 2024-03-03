@@ -1,4 +1,6 @@
-from presentation.viewpoint_preferences.ViewpointPreferencesState import Loading, ViewpointState, Error
+import itertools
+
+from presentation.viewpoint_preferences.ComponentPreferencesState import Loading, ComponentsState, Error
 from presentation.viewpoint_preferences.ViewpointPreferencesStateSubject import ViewpointPreferencesStateSubject
 
 
@@ -18,9 +20,16 @@ class ViewpointPreferencesViewModel:
                 selected_quality_model=selected_quality_model,
                 selected_viewpoint=selected_viewpoint
             )
+            component_list = [
+                [viewpoint],
+                list(viewpoint.children.values())
+            ]
+            print(component_list)
+            components = list(itertools.chain.from_iterable(component_list))
+            print(components)
             await self._pref_state_subject.set_state(
-                state=ViewpointState(
-                    value=viewpoint
+                state=ComponentsState(
+                    components=components
                 )
             )
         except Exception as e:

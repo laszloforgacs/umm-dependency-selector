@@ -4,7 +4,7 @@ from abc import abstractmethod, ABCMeta
 from domain.model.Characteristic import Characteristic
 from domain.model.Result import Result
 from domain.model.components.Component import CompositeComponent
-from presentation.viewpoint_preferences.ViewpointPreferencesState import PrefMatrix
+from presentation.viewpoint_preferences.ComponentPreferencesState import PrefMatrix
 
 
 class Viewpoint(CompositeComponent, metaclass=ABCMeta):

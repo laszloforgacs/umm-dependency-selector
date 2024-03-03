@@ -5,8 +5,8 @@ from presentation.util.Constants import VIEWPOINT_PREFERENCES_EVALUATE_OR_RESET_
     VIEWPOINT_WANT_TO_SET_PREFERENCES
 from presentation.util.Observer import Observer
 from presentation.util.Util import print_items_with_last
-from presentation.viewpoint_preferences.ViewpointPreferencesState import ViewpointState, UserInput, Loading, Error, \
-    NavigateBack
+from presentation.viewpoint_preferences.ComponentPreferencesState import ComponentsState, UserInput, Loading, Error, \
+    NavigateBack, SetPreferences
 
 
 class ViewpointPreferencesScreen(Screen, Observer):
@@ -33,15 +33,30 @@ class ViewpointPreferencesScreen(Screen, Observer):
     def dispose_observers(self):
         self._view_model.pref_state_subject.detach(self)
 
-    async def update(self, subject: 'ViewpointPrefState'):
+    async def update(self, subject: 'ComponentPrefState'):
         state = subject.state
-        if isinstance(state, ViewpointState):
-            viewpoint = state.value
-            #if viewpoint.is_valid_preference_matrix:
-            print("Preference matrix is valid")
-            await self.evaluate_reset_or_go_back()
-            #else:
-             #   await self.set_pref_or_go_back()
+        if isinstance(state, ComponentsState):
+            components = state.components
+            is_all_valid = all(
+                [
+                    component.is_valid_preference_matrix for component in components
+                ]
+            )
+            if is_all_valid:
+                await self.evaluate_reset_or_go_back()
+            else:
+                await self.set_pref_or_go_back(components=components)
+
+        elif isinstance(state, SetPreferences):
+            components = state.components
+            component = next(iter(components), None)
+            if component is not None:
+                first_none_comparison = next(
+                    (key for key, value in component.preference_matrix.items() if value is None),
+                    None
+                )
+                if first_none_comparison is not None:
+                    print(f"Setting preferences for {first_none_comparison}")
         elif isinstance(state, UserInput):
             print("User input state updated")
         elif isinstance(state, Loading):
@@ -53,14 +68,18 @@ class ViewpointPreferencesScreen(Screen, Observer):
         else:
             print("Unknown state")
 
-    async def set_pref_or_go_back(self):
+    async def set_pref_or_go_back(self, components: list['CompositeComponent']):
         while True:
             is_set_prefs = await aioconsole.ainput(VIEWPOINT_WANT_TO_SET_PREFERENCES)
             if is_set_prefs.lower() == "n":
                 await self._view_model.pref_state_subject.set_state(NavigateBack())
                 break
             elif is_set_prefs.lower() == "y":
-                print("Setting preferences...")
+                await self._view_model.pref_state_subject.set_state(
+                    SetPreferences(
+                        components=components
+                    )
+                )
                 break
             else:
                 print(ERROR_INVALID_INPUT)

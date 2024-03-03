@@ -55,8 +55,13 @@ class QualityModelRepositoryImpl(QualityModelRepository):
         maintainability3 = deepcopy(maintainability)
 
         developer_viewpoint = DeveloperViewpoint(children={
-            maintainability.name: maintainability
-        })
+            maintainability.name: maintainability,
+        },
+            preference_matrix={
+                (maintainability.name, maintainability2.name): None,
+                (maintainability.name, maintainability3.name): None,
+            }
+        )
         # print(developer_viewpoint.run().value)
         # print(developer_viewpoint.is_valid_preference_matrix)
         # print(developer_viewpoint.preference_matrix)

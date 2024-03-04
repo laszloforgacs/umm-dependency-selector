@@ -20,6 +20,8 @@ class MeasurableConcept(CompositeComponent, metaclass=ABCMeta):
     def __init__(self, name: str, children: dict[str, Measure], impact: Impact, entity: str,
                  relevant_oss_aspect: OSSAspect, information_need: str, quality_requirement: str):
         self._name = name
+        for child in children.values():
+            child.parent = self
         self._children = children
         self._impact = impact
         self._entity = entity

@@ -36,36 +36,30 @@ class ViewpointPreferencesScreen(Screen, Observer):
     async def update(self, subject: 'ComponentPrefState'):
         state = subject.state
         if isinstance(state, ComponentsState):
-            components = state.components
-            is_all_valid = all(
+            is_viewpoint_valid = state.viewpoint.is_valid_preference_matrix
+            is_characteristics_valid = all(
                 [
-                    component.is_valid_preference_matrix for component in components
+                    characteristic.is_valid_preference_matrix for characteristic in state.characteristics
                 ]
             )
+            is_all_valid = is_viewpoint_valid and is_characteristics_valid
+
             if is_all_valid:
                 await self.evaluate_reset_or_go_back()
             else:
-                await self.set_pref_or_go_back(components=components)
+                await self.set_pref_or_go_back()
 
         elif isinstance(state, SetPreferences):
-            components = state.components
-            component = next(iter(components), None)
-            if component is not None:
-                first_none_comparison = next(
-                    (key for key, value in component.preference_matrix.items() if value is None),
-                    None
-                )
-                if first_none_comparison is not None:
-                    print(f"Setting preferences for {first_none_comparison}")
-                    print_ahp_ratings(comparisons=first_none_comparison)
-                    preference_value = await self._handle_ahp_input()
-                    await self._view_model.set_preference(
-                        selected_quality_model=self._selected_quality_model,
-                        selected_viewpoint=self._selected_viewpoint,
-                        component=component,
-                        characteristic_tuple=first_none_comparison,
-                        preference=preference_value
-                    )
+            preference_combination = state.preference_combination
+            print(f"Setting preferences for {preference_combination[0].name} and {preference_combination[1].name}")
+            print_ahp_ratings((preference_combination[0].name, preference_combination[1].name))
+            preference_value = await self._handle_ahp_input()
+            await self._view_model.set_preference(
+                selected_quality_model=self._selected_quality_model,
+                selected_viewpoint=self._selected_viewpoint,
+                characteristic_tuple=preference_combination,
+                preference=preference_value
+            )
 
         elif isinstance(state, UserInput):
             print("User input state updated")
@@ -78,18 +72,14 @@ class ViewpointPreferencesScreen(Screen, Observer):
         else:
             print("Unknown state")
 
-    async def set_pref_or_go_back(self, components: list['CompositeComponent']):
+    async def set_pref_or_go_back(self):
         while True:
             is_set_prefs = await aioconsole.ainput(VIEWPOINT_WANT_TO_SET_PREFERENCES)
             if is_set_prefs.lower() == "n":
                 await self._view_model.pref_state_subject.set_state(NavigateBack())
                 break
             elif is_set_prefs.lower() == "y":
-                await self._view_model.pref_state_subject.set_state(
-                    SetPreferences(
-                        components=components
-                    )
-                )
+                await self._view_model.prepare_preference_combinations()
                 break
             else:
                 print(ERROR_INVALID_INPUT)

@@ -10,8 +10,10 @@ QUALITY_MODEL_USER_INPUT: Final = "Select a quality model by entering a number: 
 VIEWPOINT_LIST_PRESENTATION: Final = "The following viewpoints are available: "
 VIEWPOINT_LIST_INPUT: Final = "Select a Viewpoint or go back by entering a number: "
 
-VIEWPOINT_WANT_TO_SET_PREFERENCES: Final = "Do you want to set preferences? (y/n): "
+VIEWPOINT_WANT_TO_SET_PREFERENCES: Final = "There are no preferences set for this item, or it is incomplete. Do you want to set preferences now? (y/n): "
 VIEWPOINT_PREFERENCES_EVALUATE_OR_RESET_INPUT: Final = "Would you like to evaluate repositories, or set the preference matrix again? "
+
+PREFERENCES_NOT_ENOUGH_CHARACTERISTICS_OR_SUB_CHARACTERISTICS: Final = f"You need to add more characteristics or sub-characteristics for the AHP calculation by editing the appropriate preference matrix in the config folder"
 
 QUALITY_MODEL_LIST_SCREEN: Final = "QualityModelListScreen"
 VIEWPOINT_LIST_SCREEN: Final = "ViewpointListScreen"

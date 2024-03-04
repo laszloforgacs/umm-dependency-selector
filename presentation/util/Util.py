@@ -80,3 +80,17 @@ def reversed_ahp_values() -> dict[str, float]:
         "1/8": "8",
         "1/9": "9"
     }
+
+
+def convert_tuple_keys_to_string(data):
+    if isinstance(data, dict):
+        return {', '.join(key): value for key, value in data.items()}
+    else:
+        return data
+
+
+def convert_string_keys_to_tuple(data):
+    if isinstance(data, dict):
+        return {tuple(key.split(', ')): value for key, value in data.items()}
+    else:
+        return data

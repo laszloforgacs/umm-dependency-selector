@@ -71,6 +71,8 @@ class DerivedMeasure(Measure, CompositeComponent, metaclass=ABCMeta):
         self._unit = unit
         self._scale = scale
         self._measurement_method = measurement_method
+        for child in children.values():
+            child.parent = self
         self._children = children
 
     @property

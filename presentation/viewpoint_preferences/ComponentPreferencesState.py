@@ -10,18 +10,28 @@ class ComponentPreferencesState:
 
 @dataclass
 class ComponentsState(ComponentPreferencesState):
-    components: list['CompositeComponent']
+    viewpoint: 'Viewpoint'
+    characteristics: list['Characteristic']
+    sub_characteristics: list['SubCharacteristic']
 
     def copy(self, **kwargs):
-        return ComponentsState(components=kwargs.get('components', self.components))
+        return ComponentsState(
+            components=kwargs.get(
+                'viewpoint', self.viewpoint,
+                'characteristics', self.characteristics,
+                'sub_characteristics', self.sub_characteristics
+            )
+        )
 
 
 @dataclass
 class SetPreferences(ComponentPreferencesState):
-    components: list['CompositeComponent']
+    preference_combination: tuple['CompositeComponent', 'CompositeComponent']
 
     def copy(self, **kwargs):
-        return SetPreferences(components=kwargs.get('components', self.components))
+        return SetPreferences(
+            preference_combination=kwargs.get('preference_combination', self.preference_combination)
+        )
 
 
 @dataclass

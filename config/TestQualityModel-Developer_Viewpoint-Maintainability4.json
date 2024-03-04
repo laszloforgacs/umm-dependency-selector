@@ -1,0 +1,10 @@
+{
+    "preference_matrix": {
+        "Analyzability, Analyzability2": "4",
+        "Analyzability, Analyzability3": "5",
+        "Analyzability, Analyzability4": "6",
+        "Analyzability2, Analyzability3": "7",
+        "Analyzability2, Analyzability4": "4",
+        "Analyzability3, Analyzability4": "5"
+    }
+}

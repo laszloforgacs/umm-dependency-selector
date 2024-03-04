@@ -52,13 +52,11 @@ class SharedViewModel():
     async def set_preference(
             self,
             filename: str,
-            component: 'CompositeComponent',
             characteristic_tuple: tuple[str, str],
             preference: str
     ):
         await self._quality_model_repository.set_preference(
             filename=filename,
-            component=component,
             characteristic_tuple=characteristic_tuple,
             preference=preference
         )

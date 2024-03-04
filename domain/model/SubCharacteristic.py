@@ -8,6 +8,8 @@ from domain.model.components.Component import CompositeComponent
 class SubCharacteristic(CompositeComponent, metaclass=ABCMeta):
     def __init__(self, name: str, children: dict[str, MeasurableConcept]):
         self._name = name
+        for child in children.values():
+            child.parent = self
         self._children = children
         self._weight = 0
 

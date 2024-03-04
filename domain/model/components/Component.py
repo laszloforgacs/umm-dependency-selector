@@ -4,9 +4,22 @@ from domain.model.Result import Result
 
 
 class Component(ABC):
+
+    @property
+    def parent(self):
+        return self._parent
+
+    @parent.setter
+    def parent(self, parent):
+        self._parent = parent
+
     @property
     def name(self) -> str:
         return self._name
+
+    @name.setter
+    def name(self, name: str):
+        self._name = name
 
     @property
     @abstractmethod
@@ -45,9 +58,11 @@ class CompositeComponent(Component, metaclass=ABCMeta):
 
     def add_component(self, component: Component):
         self._children[component.name] = component
+        component.parent = self
 
     def remove_component(self, component: Component):
         del self.children[component.name]
+        component.parent = None
 
 
 class LeafComponent(Component, metaclass=ABCMeta):

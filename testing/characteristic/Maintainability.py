@@ -1,11 +1,12 @@
 from domain.model.Characteristic import Characteristic
 from domain.model.Result import Result, Success
 from domain.model.SubCharacteristic import SubCharacteristic
+from presentation.viewpoint_preferences.ComponentPreferencesState import PrefMatrix
 
 
 class Maintainability(Characteristic):
-    def __init__(self, children: dict[str, SubCharacteristic]):
-        super().__init__("Maintainability", children)
+    def __init__(self, children: dict[str, SubCharacteristic] = {}, preference_matrix: PrefMatrix = {}):
+        super().__init__("Maintainability", children, preference_matrix=preference_matrix)
         self._weight = 0.0
 
     def run(self) -> Result:

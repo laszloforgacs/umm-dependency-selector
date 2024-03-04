@@ -1,6 +1,10 @@
 {
     "preference_matrix": {
-        "(Characteristic, Characteristic2)": 1.0,
-        "('Maintainability', 'Maintainability')": "1/3"
+        "Maintainability, Maintainability2": "2",
+        "Maintainability, Maintainability3": "1",
+        "Maintainability, Maintainability4": "5",
+        "Maintainability2, Maintainability3": "1",
+        "Maintainability2, Maintainability4": "9",
+        "Maintainability3, Maintainability4": "1/9"
     }
 }

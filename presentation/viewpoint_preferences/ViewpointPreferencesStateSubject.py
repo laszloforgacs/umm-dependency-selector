@@ -6,8 +6,11 @@ from presentation.viewpoint_preferences.ComponentPreferencesState import Compone
 
 class ViewpointPreferencesStateSubject(Subject):
     _state: 'ComponentPrefState' = ComponentsState(
-        components=[]
+        viewpoint=None,
+        characteristics=[],
+        sub_characteristics=[]
     )
+
     _observers: set['Observer'] = set()
 
     @property

@@ -15,7 +15,7 @@ class QualityModelRepository(ABC):
     async def set_preference(
             self,
             filename: str,
-            characteristic_tuple: tuple[str, str],
+            characteristic_tuple: tuple['CompositeComponent', 'CompositeComponent'],
             preference: str
     ):
         pass

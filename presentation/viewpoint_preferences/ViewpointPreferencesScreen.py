@@ -6,7 +6,7 @@ from presentation.util.Constants import VIEWPOINT_PREFERENCES_EVALUATE_OR_RESET_
 from presentation.util.Observer import Observer
 from presentation.util.Util import print_items_with_last, print_ahp_ratings, accepted_ahp_values
 from presentation.viewpoint_preferences.ComponentPreferencesState import ComponentsState, UserInput, Loading, Error, \
-    NavigateBack, SetPreferences
+    NavigateBack, SetPreferences, Refetch
 
 
 class ViewpointPreferencesScreen(Screen, Observer):
@@ -60,7 +60,11 @@ class ViewpointPreferencesScreen(Screen, Observer):
                 characteristic_tuple=preference_combination,
                 preference=preference_value
             )
-
+        elif isinstance(state, Refetch):
+            await self._view_model.fetch_viewpoint(
+                selected_quality_model=self._selected_quality_model,
+                selected_viewpoint=self._selected_viewpoint
+            )
         elif isinstance(state, UserInput):
             print("User input state updated")
         elif isinstance(state, Loading):

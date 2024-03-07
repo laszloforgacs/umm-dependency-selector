@@ -51,12 +51,23 @@ class SharedViewModel():
 
     async def set_preference(
             self,
+            selected_quality_model: str,
+            selected_viewpoint: str,
             filename: str,
-            characteristic_tuple: tuple[str, str],
+            characteristic_tuple: tuple['CompositeComponent', 'CompositeComponent'],
             preference: str
-    ):
-        await self._quality_model_repository.set_preference(
+    ) -> PrefMatrix:
+        new_pref_matrix = await self._quality_model_repository.set_preference(
             filename=filename,
             characteristic_tuple=characteristic_tuple,
             preference=preference
         )
+
+        self._quality_model_state_subject.set_preference(
+            selected_quality_model=selected_quality_model,
+            selected_viewpoint=selected_viewpoint,
+            component = characteristic_tuple[0],
+            pref_matrix = new_pref_matrix
+        )
+
+        return new_pref_matrix

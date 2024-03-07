@@ -1,5 +1,6 @@
 import asyncio
 
+from domain.model.Characteristic import Characteristic
 from presentation.util.Subject import Subject
 from presentation.viewpoint_preferences.ComponentPreferencesState import ComponentsState
 
@@ -34,3 +35,15 @@ class ViewpointPreferencesStateSubject(Subject):
     async def set_state(self, state: 'ComponentPrefState'):
         self._state = state
         await self.notify()
+
+    def set_preference(
+            self,
+            component: 'CompositeComponent',
+            pref_matrix: 'PrefMatrix'
+    ):
+        if isinstance(component, Characteristic):
+            self._state.viewpoint.preference_matrix = pref_matrix
+        else:
+            for characteristic in self._state.characteristics:
+                if characteristic.name == component.name:
+                    characteristic.preference_matrix = pref_matrix

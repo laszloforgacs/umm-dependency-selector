@@ -3,7 +3,7 @@ import itertools
 from domain.model.Characteristic import Characteristic
 from presentation.util.Constants import PREFERENCES_NOT_ENOUGH_CHARACTERISTICS_OR_SUB_CHARACTERISTICS
 from presentation.viewpoint_preferences.ComponentPreferencesState import Loading, ComponentsState, Error, \
-    SetPreferences, NavigateBack
+    SetPreferences, NavigateBack, Refetch
 from presentation.viewpoint_preferences.ViewpointPreferencesStateSubject import ViewpointPreferencesStateSubject
 
 
@@ -42,19 +42,19 @@ class ViewpointPreferencesViewModel:
                 list(characteristic.children.values())
                 for characteristic in viewpoint.children.values()
             ]
-            sub_characteristics = list(itertools.chain.from_iterable(grandchildren))
 
             self._characteristics_preference_combinations = list(
                 itertools.combinations(children, 2)
             )
-            self._sub_characteristics_preference_combinations = list(
-                itertools.combinations(sub_characteristics, 2)
-            )
+            self._sub_characteristics_preference_combinations = list(itertools.chain.from_iterable([
+                list(itertools.combinations(characteristic.children.values(), 2))
+                for characteristic in viewpoint.children.values()
+            ]))
             await self._pref_state_subject.set_state(
                 state=ComponentsState(
                     viewpoint=viewpoint,
                     characteristics=children,
-                    sub_characteristics=sub_characteristics
+                    sub_characteristics=list(itertools.chain.from_iterable(grandchildren))
                 )
             )
 
@@ -86,7 +86,7 @@ class ViewpointPreferencesViewModel:
         else:
             print(PREFERENCES_NOT_ENOUGH_CHARACTERISTICS_OR_SUB_CHARACTERISTICS)
             await self._pref_state_subject.set_state(
-                state=NavigateBack()
+                state=Refetch()
             )
 
     async def set_preference(
@@ -99,11 +99,19 @@ class ViewpointPreferencesViewModel:
         parent = characteristic_tuple[0].parent
         post_fix = f"-{parent.name}" if isinstance(parent, Characteristic) else ""
         filename = f"{selected_quality_model}-{selected_viewpoint}{post_fix}".replace(" ", "_")
-        await self._shared_view_model.set_preference(
+        new_pref_matrix = await self._shared_view_model.set_preference(
+            selected_quality_model=selected_quality_model,
+            selected_viewpoint=selected_viewpoint,
             filename=filename,
             characteristic_tuple=characteristic_tuple,
             preference=preference
         )
+
+        #self._pref_state_subject.set_preference(
+        #    component=characteristic_tuple[0],
+        #    pref_matrix=new_pref_matrix
+        #)
+
         await self.prepare_preference_combinations()
 
     def characteristics(self, selected_quality_model: str, selected_viewpoint: str) -> dict[str, 'Characteristic']:

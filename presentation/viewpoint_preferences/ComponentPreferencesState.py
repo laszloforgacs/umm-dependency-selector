@@ -35,6 +35,14 @@ class SetPreferences(ComponentPreferencesState):
 
 
 @dataclass
+class Refetch(ComponentPreferencesState):
+    pass
+
+    def copy(self, **kwargs):
+        return Refetch()
+
+
+@dataclass
 class UserInput(ComponentPreferencesState):
     characteristics: tuple[str, str]
 
@@ -66,4 +74,4 @@ class NavigateBack(ComponentPreferencesState):
         return NavigateBack()
 
 
-ComponentPrefState = ComponentsState | SetPreferences | UserInput | Error | Loading | NavigateBack
+ComponentPrefState = ComponentsState | SetPreferences | Refetch | UserInput | Error | Loading | NavigateBack

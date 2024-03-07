@@ -13,14 +13,16 @@ from domain.model.Viewpoint import Viewpoint
 from domain.repository.QualityModelRepository import QualityModelRepository
 from presentation.util.Util import convert_tuple_keys_to_string, convert_string_keys_to_tuple
 from presentation.viewpoint_preferences.ComponentPreferencesState import PrefMatrix
-from testing.characteristic.Maintainability import Maintainability
+from testing.characteristic.Maintainability import Maintainability, Maintainability2, Maintainability3, Maintainability4
 from testing.measurableconcepts.ComplexityOfSourceCode import ComplexityOfSourceCode
 from testing.measures.CyclomaticComplexity import CyclomaticComplexity
 from testing.measures.LinesOfCode import LinesOfCode
 from testing.measures.NumberOfComplexFunctions import NumberOfComplexFunctions
 from testing.measures.NumberOfStatements import NumberOfStatements
 from testing.qualitymodels.TestQualityModel import TestQualityModel
-from testing.subcharacteristic.Analyzability import Analyzability
+from testing.subcharacteristic.Analyzability import Analyzability, Analyzability2, Analyzability3, Analyzability4, \
+    Analyzability5, Analyzability6, Analyzability7, Analyzability8, Analyzability9, Analyzability10, Analyzability11, \
+    Analyzability12, Analyzability13, Analyzability14, Analyzability15, Analyzability16
 from testing.viewpoints.DeveloperViewpoint import DeveloperViewpoint
 
 QM_FOLDER: Final = "config"
@@ -59,12 +61,21 @@ class QualityModelRepositoryImpl(QualityModelRepository):
         analyzability.add_component(complexityOfSourceCode)
         # print(analyzability.run().value)
 
-        analyzability2 = deepcopy(analyzability)
-        analyzability3 = deepcopy(analyzability)
-        analyzability4 = deepcopy(analyzability)
-        analyzability2.name = "Analyzability2"
-        analyzability3.name = "Analyzability3"
-        analyzability4.name = "Analyzability4"
+        analyzability2 = Analyzability2()
+        analyzability3 = Analyzability3()
+        analyzability4 = Analyzability4()
+        analyzability5 = Analyzability5()
+        analyzability6 = Analyzability6()
+        analyzability7 = Analyzability7()
+        analyzability8 = Analyzability8()
+        analyzability9 = Analyzability9()
+        analyzability10 = Analyzability10()
+        analyzability11 = Analyzability11()
+        analyzability12 = Analyzability12()
+        analyzability13 = Analyzability13()
+        analyzability14 = Analyzability14()
+        analyzability15 = Analyzability15()
+        analyzability16 = Analyzability16()
 
         maintainability = Maintainability(children={
             analyzability.name: analyzability,
@@ -75,12 +86,26 @@ class QualityModelRepositoryImpl(QualityModelRepository):
         # maintainability.add_component(analyzability)
         # print(maintainability.run().value)
 
-        maintainability2 = deepcopy(maintainability)
-        maintainability3 = deepcopy(maintainability)
-        maintainability4 = deepcopy(maintainability)
-        maintainability2.name = "Maintainability2"
-        maintainability3.name = "Maintainability3"
-        maintainability4.name = "Maintainability4"
+        maintainability2 = Maintainability2(children={
+            analyzability5.name: analyzability5,
+            analyzability6.name: analyzability6,
+            analyzability7.name: analyzability7,
+            analyzability8.name: analyzability8
+        })
+
+        maintainability3 = Maintainability3(children={
+            analyzability9.name: analyzability9,
+            analyzability10.name: analyzability10,
+            analyzability11.name: analyzability11,
+            analyzability12.name: analyzability12
+        })
+
+        maintainability4 = Maintainability4(children={
+            analyzability13.name: analyzability13,
+            analyzability14.name: analyzability14,
+            analyzability15.name: analyzability15,
+            analyzability16.name: analyzability16
+        })
 
         developer_viewpoint = DeveloperViewpoint(children={
             maintainability.name: maintainability,
@@ -107,14 +132,14 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 viewpoint=viewpoint
             )
 
-        for characteristic in viewpoint.children.values():
-            characteristic.preference_matrix = await self._init_characteristic_pref_matrix(
-                quality_model=test_quality_model.name,
-                viewpoint=viewpoint.name,
-                characteristic=characteristic
-            )
+            for characteristic in viewpoint.children.values():
+                characteristic.preference_matrix = await self._init_characteristic_pref_matrix(
+                    quality_model=test_quality_model.name,
+                    viewpoint=viewpoint.name,
+                    characteristic=characteristic
+                )
 
-        await asyncio.gather(*tasks)
+        #await asyncio.gather(*tasks)
         await asyncio.sleep(5)
         return Success(
             [
@@ -125,9 +150,9 @@ class QualityModelRepositoryImpl(QualityModelRepository):
     async def set_preference(
             self,
             filename: str,
-            characteristic_tuple: tuple[str, str],
+            characteristic_tuple: tuple['CompositeComponent', 'CompositeComponent'],
             preference: str
-    ):
+    ) -> PrefMatrix:
         path = os.path.join(QM_FOLDER, filename + JSON_EXTENSION)
         data = {
             "preference_matrix": {}
@@ -145,6 +170,7 @@ class QualityModelRepositoryImpl(QualityModelRepository):
         async with aiofiles.open(path, "w") as file:
             json_string = json.dumps(data, indent=4)
             await file.write(json_string)
+            return convert_string_keys_to_tuple(data.get("preference_matrix", {}))
 
     async def _init_viewpoint_pref_matrix(
             self,

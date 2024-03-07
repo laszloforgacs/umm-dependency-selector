@@ -41,11 +41,6 @@ class Characteristic(CompositeComponent, metaclass=ABCMeta):
     @property
     def is_valid_preference_matrix(self) -> bool:
         combinations = list(itertools.combinations(self.children, 2))
-        combinations_count = math.comb(len(self.children), 2)
-        matrix_count = len(self.preference_matrix)
-
-        if matrix_count != combinations_count:
-            return False
 
         for combination in combinations:
             if combination not in self.preference_matrix or self.preference_matrix[combination] is None:

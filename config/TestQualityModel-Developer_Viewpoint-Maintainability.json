@@ -1,20 +1,10 @@
 {
     "preference_matrix": {
-        "Analyzability, Analyzability2": "6",
-        "Analyzability, Analyzability3": "3",
-        "Analyzability, Analyzability4": "2",
-        "Analyzability2, Analyzability3": "4",
-        "Analyzability2, Analyzability4": "2",
-        "Analyzability3, Analyzability4": "4",
-        "Analyzability, Analyzability": "5",
-        "Analyzability2, Analyzability": "3",
-        "Analyzability2, Analyzability2": "5",
-        "Analyzability3, Analyzability": "4",
-        "Analyzability3, Analyzability2": "5",
-        "Analyzability3, Analyzability3": "6",
-        "Analyzability4, Analyzability": "2",
-        "Analyzability4, Analyzability2": "3",
-        "Analyzability4, Analyzability3": "4",
-        "Analyzability4, Analyzability4": "3"
+        "Analyzability, Analyzability2": "5",
+        "Analyzability, Analyzability3": "6",
+        "Analyzability, Analyzability4": "7",
+        "Analyzability2, Analyzability3": "8",
+        "Analyzability2, Analyzability4": "5",
+        "Analyzability3, Analyzability4": "4"
     }
 }

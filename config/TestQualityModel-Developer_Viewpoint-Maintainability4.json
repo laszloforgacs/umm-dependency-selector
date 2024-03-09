@@ -1,10 +1,10 @@
 {
     "preference_matrix": {
-        "Analyzability13, Analyzability14": null,
-        "Analyzability13, Analyzability15": null,
-        "Analyzability13, Analyzability16": null,
-        "Analyzability14, Analyzability15": null,
-        "Analyzability14, Analyzability16": null,
-        "Analyzability15, Analyzability16": null
+        "Analyzability13, Analyzability14": "1",
+        "Analyzability13, Analyzability15": "2",
+        "Analyzability13, Analyzability16": "3",
+        "Analyzability14, Analyzability15": "7",
+        "Analyzability14, Analyzability16": "1/9",
+        "Analyzability15, Analyzability16": "6"
     }
 }

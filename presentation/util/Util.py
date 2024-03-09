@@ -94,3 +94,18 @@ def convert_string_keys_to_tuple(data):
         return {tuple(key.split(', ')): value for key, value in data.items()}
     else:
         return data
+
+
+def convert_values_to_numerical(data):
+    new_data = {}
+    for key, value in data.items():
+        try:
+            new_data[key] = int(value)
+        except ValueError:
+            try:
+                numerator, denominator = value.split('/')
+                new_data[key] = int(numerator) / int(denominator)
+            except ValueError:
+                print(f"Invalid value: {value}. Please correct it in the json files.")
+                new_data[key] = 0
+    return new_data

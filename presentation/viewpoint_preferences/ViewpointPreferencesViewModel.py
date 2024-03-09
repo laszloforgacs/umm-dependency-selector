@@ -1,7 +1,11 @@
 import itertools
 
+from ahpy import ahpy
+
 from domain.model.Characteristic import Characteristic
+from domain.model.Viewpoint import Viewpoint
 from presentation.util.Constants import PREFERENCES_NOT_ENOUGH_CHARACTERISTICS_OR_SUB_CHARACTERISTICS
+from presentation.util.Util import convert_values_to_numerical
 from presentation.viewpoint_preferences.ComponentPreferencesState import Loading, ComponentsState, Error, \
     SetPreferences, NavigateBack, Refetch
 from presentation.viewpoint_preferences.ViewpointPreferencesStateSubject import ViewpointPreferencesStateSubject
@@ -107,12 +111,48 @@ class ViewpointPreferencesViewModel:
             preference=preference
         )
 
-        #self._pref_state_subject.set_preference(
+        # self._pref_state_subject.set_preference(
         #    component=characteristic_tuple[0],
         #    pref_matrix=new_pref_matrix
-        #)
+        # )
 
         await self.prepare_preference_combinations()
 
     def characteristics(self, selected_quality_model: str, selected_viewpoint: str) -> dict[str, 'Characteristic']:
         return self._shared_view_model.characteristics(selected_quality_model, selected_viewpoint)
+
+    async def create_ahp_hierarchy(self, viewpoint: Viewpoint, characteristics: list[Characteristic]) -> dict:
+        try:
+            await self._pref_state_subject.set_state(
+                state=Loading()
+            )
+
+            viewpoint.preference_matrix = convert_values_to_numerical(viewpoint.preference_matrix)
+
+            for characteristic in characteristics:
+                characteristic.preference_matrix = convert_values_to_numerical(characteristic.preference_matrix)
+
+            viewpoint_ahp_comparison = ahpy.Compare(
+                name=viewpoint.name,
+                comparisons=viewpoint.preference_matrix,
+                precision=3
+            )
+
+            characteristic_ahp_comparisons = [
+                ahpy.Compare(
+                    name=characteristic.name,
+                    comparisons=characteristic.preference_matrix,
+                    precision=3
+                )
+                for characteristic in characteristics
+            ]
+
+            viewpoint_ahp_comparison.add_children(characteristic_ahp_comparisons)
+
+            return viewpoint_ahp_comparison.report(show=True)
+        except Exception as e:
+            self._pref_state_subject.set_state(
+                state=Error(
+                    message=str(e)
+                )
+            )

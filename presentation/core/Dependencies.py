@@ -2,6 +2,8 @@ from data.repository.QualityModelRepositoryImpl import QualityModelRepositoryImp
 from presentation.core.NavigationController import NavigationController
 from presentation.core.Navigator import Navigator
 from presentation.core.SharedViewModel import SharedViewModel
+from presentation.evaluation.EvaluationScreen import EvaluationScreen
+from presentation.evaluation.EvaluationViewModel import EvaluationViewModel
 from presentation.quality_model_list.QualityModelListScreen import QualityModelListScreen
 from presentation.quality_model_list.QualityModelListViewModel import QualityModelListViewModel
 from presentation.viewpoint_list.ViewpointListScreen import ViewpointListScreen
@@ -47,4 +49,24 @@ class Dependencies:
             ),
             selected_quality_model=selected_quality_model,
             selected_viewpoint=selected_viewpoint
+        )
+
+    def provide_evaluation_screen(
+            self,
+            selected_quality_model: str,
+            viewpoint: 'Viewpoint',
+            characteristics: list['Characteristic'],
+            repository_urls: list[str],
+            ahp_report: dict
+    ):
+        return lambda: EvaluationScreen(
+            navigator=self.navigator,
+            view_model=EvaluationViewModel(
+                shared_view_model=self.shared_view_model
+            ),
+            selected_quality_model=selected_quality_model,
+            viewpoint=viewpoint,
+            characteristics=characteristics,
+            repository_urls=repository_urls,
+            ahp_report=ahp_report
         )

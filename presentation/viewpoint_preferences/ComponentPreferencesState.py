@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-PrefMatrix = dict[tuple[str, str], float | None]
+PrefMatrix = dict[tuple[str, str], int | float | None]
 
 
 @dataclass
@@ -43,11 +43,17 @@ class Refetch(ComponentPreferencesState):
 
 
 @dataclass
-class UserInput(ComponentPreferencesState):
-    characteristics: tuple[str, str]
+class UrlInput(ComponentPreferencesState):
+    viewpoint: 'Viewpoint'
+    characteristics: list['Characteristic']
+    ahp_report: dict
 
     def copy(self, **kwargs):
-        return UserInput(characteristics=kwargs.get('characteristics', self.characteristics))
+        return UrlInput(
+            viewpoint=kwargs.get('viewpoint', self.viewpoint),
+            characteristics=kwargs.get('characteristics', self.characteristics),
+            ahp_report=kwargs.get('ahp_report', self.ahp_report)
+        )
 
 
 @dataclass
@@ -74,4 +80,4 @@ class NavigateBack(ComponentPreferencesState):
         return NavigateBack()
 
 
-ComponentPrefState = ComponentsState | SetPreferences | Refetch | UserInput | Error | Loading | NavigateBack
+ComponentPrefState = ComponentsState | SetPreferences | Refetch | UrlInput | Error | Loading | NavigateBack

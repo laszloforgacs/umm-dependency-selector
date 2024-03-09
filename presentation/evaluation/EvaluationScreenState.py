@@ -7,8 +7,18 @@ class EvaluationScreenState:
 
 
 @dataclass
-class GetRepositories:
-    repositories: list[str]
+class AHPReport(EvaluationScreenState):
+    report: dict
 
 
-EvaluationState = GetRepositories
+@dataclass
+class Loading(EvaluationScreenState):
+    pass
+
+
+@dataclass
+class Error(EvaluationScreenState):
+    message: str
+
+
+EvaluationState = AHPReport | Loading | Error

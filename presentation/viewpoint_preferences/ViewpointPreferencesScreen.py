@@ -1,11 +1,12 @@
 import aioconsole
+import validators
 
 from presentation.core.Screen import Screen
 from presentation.util.Constants import VIEWPOINT_PREFERENCES_EVALUATE_OR_RESET_INPUT, ERROR_INVALID_INPUT, \
-    VIEWPOINT_WANT_TO_SET_PREFERENCES
+    VIEWPOINT_WANT_TO_SET_PREFERENCES, EVALUATION_SCREEN, CONSISTENCY_RATIO_NOT_ACCEPTABLE
 from presentation.util.Observer import Observer
 from presentation.util.Util import print_items_with_last, print_ahp_ratings, accepted_ahp_values
-from presentation.viewpoint_preferences.ComponentPreferencesState import ComponentsState, UserInput, Loading, Error, \
+from presentation.viewpoint_preferences.ComponentPreferencesState import ComponentsState, UrlInput, Loading, Error, \
     NavigateBack, SetPreferences, Refetch
 
 
@@ -33,7 +34,7 @@ class ViewpointPreferencesScreen(Screen, Observer):
     def dispose_observers(self):
         self._view_model.pref_state_subject.detach(self)
 
-    async def update(self, subject: 'ComponentPrefState'):
+    async def update(self, subject: 'ViewpointPreferencesStateSubject'):
         state = subject.state
         if isinstance(state, ComponentsState):
             is_viewpoint_valid = state.viewpoint.is_valid_preference_matrix
@@ -45,7 +46,13 @@ class ViewpointPreferencesScreen(Screen, Observer):
             is_all_valid = is_viewpoint_valid and is_characteristics_valid
 
             if is_all_valid:
-                await self.evaluate_reset_or_go_back()
+                ahp_report = await self._view_model.create_ahp_hierarchy(
+                    viewpoint=state.viewpoint,
+                    characteristics=state.characteristics
+                )
+                if ahp_report["elements"]["consistency_ratio"] > 0.1:
+                    print(CONSISTENCY_RATIO_NOT_ACCEPTABLE)
+                await self.evaluate_reset_or_go_back(state, ahp_report)
             else:
                 await self.set_pref_or_go_back()
 
@@ -65,8 +72,31 @@ class ViewpointPreferencesScreen(Screen, Observer):
                 selected_quality_model=self._selected_quality_model,
                 selected_viewpoint=self._selected_viewpoint
             )
-        elif isinstance(state, UserInput):
-            print("User input state updated")
+        elif isinstance(state, UrlInput):
+            while True:
+                try:
+                    url_input = await aioconsole.ainput("Enter a list of repository Urls separated by space: ")
+                    urls = url_input.split(" ")
+                    invalid_urls = []
+                    for url in urls:
+                        if not validators.url(url):
+                            invalid_urls.append(url)
+                    if len(invalid_urls) > 0:
+                        print(f"Invalid urls: {invalid_urls}")
+                        print("Please try again")
+                    else:
+                        await self._navigator.navigate_to(
+                            destination=EVALUATION_SCREEN,
+                            selected_quality_model=self._selected_quality_model,
+                            viewpoint=state.viewpoint,
+                            characteristics=state.characteristics,
+                            repository_urls=urls,
+                            ahp_report=state.ahp_report
+                        )
+                        break
+                except ValueError:
+                    print(ERROR_INVALID_INPUT)
+                    print("Please enter a valid value.")
         elif isinstance(state, Loading):
             print("Loading...")
         elif isinstance(state, Error):
@@ -88,7 +118,7 @@ class ViewpointPreferencesScreen(Screen, Observer):
             else:
                 print(ERROR_INVALID_INPUT)
 
-    async def evaluate_reset_or_go_back(self):
+    async def evaluate_reset_or_go_back(self, state: 'ComponentsState', ahp_report: dict):
         while True:
             items = [
                 "Evaluate",
@@ -99,7 +129,13 @@ class ViewpointPreferencesScreen(Screen, Observer):
             print_items_with_last(items)
             user_input = await aioconsole.ainput()
             if user_input == "1":
-                print("Evaluating...")
+                await self._view_model.pref_state_subject.set_state(
+                    state=UrlInput(
+                        viewpoint=state.viewpoint,
+                        characteristics=state.characteristics,
+                        ahp_report=ahp_report
+                    )
+                )
                 break
             elif user_input == "2":
                 print("Resetting pref matrix...")

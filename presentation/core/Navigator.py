@@ -1,5 +1,6 @@
 from presentation.core.NavigationController import NavigationController
-from presentation.util.Constants import QUALITY_MODEL_LIST_SCREEN, VIEWPOINT_LIST_SCREEN, VIEWPOINT_PREFERENCES_SCREEN
+from presentation.util.Constants import QUALITY_MODEL_LIST_SCREEN, VIEWPOINT_LIST_SCREEN, VIEWPOINT_PREFERENCES_SCREEN, \
+    EVALUATION_SCREEN
 
 
 class Navigator:
@@ -25,6 +26,17 @@ class Navigator:
                 self._dependencies.provide_viewpoint_preferences_screen(
                     selected_quality_model=kwargs['selected_quality_model'],
                     selected_viewpoint=kwargs['selected_viewpoint']
+                )
+            )
+
+        if destination == EVALUATION_SCREEN:
+            await self._navigation_controller.navigate_to(
+                self._dependencies.provide_evaluation_screen(
+                    selected_quality_model=kwargs['selected_quality_model'],
+                    viewpoint=kwargs['viewpoint'],
+                    characteristics=kwargs['characteristics'],
+                    repository_urls=kwargs['repository_urls'],
+                    ahp_report=kwargs['ahp_report']
                 )
             )
 

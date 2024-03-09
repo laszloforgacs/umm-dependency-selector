@@ -1,10 +1,13 @@
 import asyncio
 
+from presentation.evaluation.EvaluationScreenState import AHPReport
 from presentation.util.Subject import Subject
 
 
 class EvaluationStateSubject(Subject):
-    _state: 'EvaluationState' = None
+    _state: 'EvaluationState' = AHPReport(
+        report={}
+    )
     _observers: set['Observer'] = set()
 
     @property

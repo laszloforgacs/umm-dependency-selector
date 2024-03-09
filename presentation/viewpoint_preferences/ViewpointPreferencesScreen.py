@@ -138,7 +138,10 @@ class ViewpointPreferencesScreen(Screen, Observer):
                 )
                 break
             elif user_input == "2":
-                print("Resetting pref matrix...")
+                await self._view_model.reset_preferences(
+                    selected_quality_model=self._selected_quality_model,
+                    selected_viewpoint=self._selected_viewpoint
+                )
                 break
             elif user_input == "3":
                 await self._view_model.pref_state_subject.set_state(NavigateBack())

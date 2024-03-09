@@ -1,10 +1,10 @@
 {
     "preference_matrix": {
-        "Maintainability, Maintainability2": "1",
-        "Maintainability, Maintainability3": "2",
-        "Maintainability, Maintainability4": "3",
-        "Maintainability2, Maintainability3": "2",
-        "Maintainability2, Maintainability4": "5",
-        "Maintainability3, Maintainability4": "7"
+        "Maintainability, Maintainability2": null,
+        "Maintainability, Maintainability3": null,
+        "Maintainability, Maintainability4": null,
+        "Maintainability2, Maintainability3": null,
+        "Maintainability2, Maintainability4": null,
+        "Maintainability3, Maintainability4": null
     }
 }

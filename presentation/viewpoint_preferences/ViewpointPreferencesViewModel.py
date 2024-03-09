@@ -1,3 +1,4 @@
+import asyncio
 import itertools
 
 from ahpy import ahpy
@@ -100,10 +101,12 @@ class ViewpointPreferencesViewModel:
             characteristic_tuple: tuple['CompositeComponent', 'CompositeComponent'],
             preference: str
     ):
-        parent = characteristic_tuple[0].parent
-        post_fix = f"-{parent.name}" if isinstance(parent, Characteristic) else ""
-        filename = f"{selected_quality_model}-{selected_viewpoint}{post_fix}".replace(" ", "_")
-        new_pref_matrix = await self._shared_view_model.set_preference(
+        filename = self._construct_file_name(
+            selected_quality_model=selected_quality_model,
+            selected_viewpoint=selected_viewpoint,
+            characteristic_tuple=characteristic_tuple
+        )
+        await self._shared_view_model.set_preference(
             selected_quality_model=selected_quality_model,
             selected_viewpoint=selected_viewpoint,
             filename=filename,
@@ -111,12 +114,70 @@ class ViewpointPreferencesViewModel:
             preference=preference
         )
 
-        # self._pref_state_subject.set_preference(
-        #    component=characteristic_tuple[0],
-        #    pref_matrix=new_pref_matrix
-        # )
-
         await self.prepare_preference_combinations()
+
+    async def reset_preferences(
+            self,
+            selected_quality_model: str,
+            selected_viewpoint: str
+    ):
+        try:
+            viewpoint = self._shared_view_model.viewpoint(
+                selected_quality_model=selected_quality_model,
+                selected_viewpoint=selected_viewpoint
+            )
+            children = list(viewpoint.children.values())
+
+            characteristics_preference_combinations = list(
+                itertools.combinations(children, 2)
+            )
+
+            sub_characteristics_preference_combinations = list(itertools.chain.from_iterable([
+                list(itertools.combinations(characteristic.children.values(), 2))
+                for characteristic in viewpoint.children.values()
+            ]))
+
+            tasks = []
+            for char_pref_combination in characteristics_preference_combinations:
+                filename = self._construct_file_name(
+                    selected_quality_model=selected_quality_model,
+                    selected_viewpoint=selected_viewpoint,
+                    characteristic_tuple=char_pref_combination
+                )
+
+                await self._shared_view_model.set_preference(
+                    selected_quality_model=selected_quality_model,
+                    selected_viewpoint=selected_viewpoint,
+                    filename=filename,
+                    characteristic_tuple=char_pref_combination,
+                    preference=None
+                )
+
+            for sub_char_pref_combination in sub_characteristics_preference_combinations:
+                filename = self._construct_file_name(
+                    selected_quality_model=selected_quality_model,
+                    selected_viewpoint=selected_viewpoint,
+                    characteristic_tuple=sub_char_pref_combination
+                )
+
+                await self._shared_view_model.set_preference(
+                    selected_quality_model=selected_quality_model,
+                    selected_viewpoint=selected_viewpoint,
+                    filename=filename,
+                    characteristic_tuple=sub_char_pref_combination,
+                    preference=None
+                )
+
+            await self._pref_state_subject.set_state(
+                state=Refetch()
+            )
+
+        except Exception as e:
+            await self._pref_state_subject.set_state(
+                state=Error(
+                    message=str(e)
+                )
+            )
 
     def characteristics(self, selected_quality_model: str, selected_viewpoint: str) -> dict[str, 'Characteristic']:
         return self._shared_view_model.characteristics(selected_quality_model, selected_viewpoint)
@@ -150,9 +211,20 @@ class ViewpointPreferencesViewModel:
             viewpoint_ahp_comparison.add_children(characteristic_ahp_comparisons)
 
             return viewpoint_ahp_comparison.report(show=True)
+
         except Exception as e:
-            self._pref_state_subject.set_state(
+            await  self._pref_state_subject.set_state(
                 state=Error(
                     message=str(e)
                 )
             )
+
+    def _construct_file_name(
+            self,
+            selected_quality_model: str,
+            selected_viewpoint: str,
+            characteristic_tuple: tuple['CompositeComponent', 'CompositeComponent']
+    ) -> str:
+        parent = characteristic_tuple[0].parent
+        post_fix = f"-{parent.name}" if isinstance(parent, Characteristic) else ""
+        return f"{selected_quality_model}-{selected_viewpoint}{post_fix}".replace(" ", "_")

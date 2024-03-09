@@ -1,6 +1,8 @@
 import aioconsole
 import validators
 
+from presentation.core.AHPReportState import AHPReportState
+from presentation.core.AHPReportStateSubject import AHPReportStateSubject
 from presentation.core.Screen import Screen
 from presentation.util.Constants import VIEWPOINT_PREFERENCES_EVALUATE_OR_RESET_INPUT, ERROR_INVALID_INPUT, \
     VIEWPOINT_WANT_TO_SET_PREFERENCES, EVALUATION_SCREEN, CONSISTENCY_RATIO_NOT_ACCEPTABLE
@@ -8,6 +10,7 @@ from presentation.util.Observer import Observer
 from presentation.util.Util import print_items_with_last, print_ahp_ratings, accepted_ahp_values
 from presentation.viewpoint_preferences.ComponentPreferencesState import ComponentsState, UrlInput, Loading, Error, \
     NavigateBack, SetPreferences, Refetch
+from presentation.viewpoint_preferences.ViewpointPreferencesStateSubject import ViewpointPreferencesStateSubject
 
 
 class ViewpointPreferencesScreen(Screen, Observer):
@@ -30,11 +33,13 @@ class ViewpointPreferencesScreen(Screen, Observer):
 
     def observe_subjects(self):
         self._view_model.pref_state_subject.attach(self)
+        self._view_model.ahp_report_state_subject.attach(self)
 
     def dispose_observers(self):
         self._view_model.pref_state_subject.detach(self)
+        self._view_model.ahp_report_state_subject.detach(self)
 
-    async def update(self, subject: 'ViewpointPreferencesStateSubject'):
+    async def update(self, subject: ViewpointPreferencesStateSubject | AHPReportStateSubject):
         state = subject.state
         if isinstance(state, ComponentsState):
             is_viewpoint_valid = state.viewpoint.is_valid_preference_matrix
@@ -46,13 +51,10 @@ class ViewpointPreferencesScreen(Screen, Observer):
             is_all_valid = is_viewpoint_valid and is_characteristics_valid
 
             if is_all_valid:
-                ahp_report = await self._view_model.create_ahp_hierarchy(
+                await self._view_model.create_ahp_hierarchy(
                     viewpoint=state.viewpoint,
                     characteristics=state.characteristics
                 )
-                if ahp_report["elements"]["consistency_ratio"] > 0.1:
-                    print(CONSISTENCY_RATIO_NOT_ACCEPTABLE)
-                await self.evaluate_reset_or_go_back(state, ahp_report)
             else:
                 await self.set_pref_or_go_back()
 
@@ -90,13 +92,17 @@ class ViewpointPreferencesScreen(Screen, Observer):
                             selected_quality_model=self._selected_quality_model,
                             viewpoint=state.viewpoint,
                             characteristics=state.characteristics,
-                            repository_urls=urls,
-                            ahp_report=state.ahp_report
+                            repository_urls=urls
                         )
                         break
                 except ValueError:
                     print(ERROR_INVALID_INPUT)
                     print("Please enter a valid value.")
+        elif isinstance(state, AHPReportState):
+            ahp_report = state.report
+            if ahp_report["elements"]["consistency_ratio"] > 0.1:
+                print(CONSISTENCY_RATIO_NOT_ACCEPTABLE)
+            await self.evaluate_reset_or_go_back(state)
         elif isinstance(state, Loading):
             print("Loading...")
         elif isinstance(state, Error):
@@ -118,7 +124,7 @@ class ViewpointPreferencesScreen(Screen, Observer):
             else:
                 print(ERROR_INVALID_INPUT)
 
-    async def evaluate_reset_or_go_back(self, state: 'ComponentsState', ahp_report: dict):
+    async def evaluate_reset_or_go_back(self, state: 'ComponentsState'):
         while True:
             items = [
                 "Evaluate",
@@ -132,8 +138,7 @@ class ViewpointPreferencesScreen(Screen, Observer):
                 await self._view_model.pref_state_subject.set_state(
                     state=UrlInput(
                         viewpoint=state.viewpoint,
-                        characteristics=state.characteristics,
-                        ahp_report=ahp_report
+                        characteristics=state.characteristics
                     )
                 )
                 break

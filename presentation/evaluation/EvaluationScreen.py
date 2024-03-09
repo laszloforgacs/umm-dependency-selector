@@ -2,8 +2,11 @@ import asyncio
 
 from domain.model.Characteristic import Characteristic
 from domain.model.Viewpoint import Viewpoint
+from presentation.core.AHPReportState import AHPReportState
+from presentation.core.AHPReportStateSubject import AHPReportStateSubject
 from presentation.core.Screen import Screen
 from presentation.evaluation.EvaluationScreenState import AHPReport, Loading, Error
+from presentation.evaluation.EvaluationStateSubject import EvaluationStateSubject
 from presentation.util.Observer import Observer
 
 
@@ -15,8 +18,7 @@ class EvaluationScreen(Screen, Observer):
             selected_quality_model: str,
             viewpoint: Viewpoint,
             characteristics: list[Characteristic],
-            repository_urls: list[str],
-            ahp_report: dict
+            repository_urls: list[str]
     ):
         self._navigator = navigator
         self._view_model = view_model
@@ -24,28 +26,27 @@ class EvaluationScreen(Screen, Observer):
         self._viewpoint = viewpoint
         self._characteristics = characteristics
         self._repository_urls = repository_urls
-        self._ahp_report = ahp_report
 
     async def on_created(self):
         self.observe_subjects()
-        await self._view_model.evaluation_state_subject.set_state(
-            state=AHPReport(
-                report=self._ahp_report
-            )
-        )
+        await self._view_model.ahp_report_state_subject.notify()
 
     def on_destroy(self):
         self.dispose_observers()
 
     def observe_subjects(self):
         self._view_model.evaluation_state_subject.attach(self)
+        self._view_model.ahp_report_state_subject.attach(self)
 
     def dispose_observers(self):
         self._view_model.evaluation_state_subject.detach(self)
+        self._view_model.ahp_report_state_subject.detach(self)
 
-    async def update(self, subject: 'EvaluationStateSubject'):
+    async def update(self, subject: EvaluationStateSubject | AHPReportStateSubject):
         state = subject.state
-        if isinstance(state, AHPReport):
+        if isinstance(state, AHPReportState):
+            print(state.report)
+        elif isinstance(state, AHPReport):
             print(state.report)
         elif isinstance(state, Loading):
             print("Loading...")

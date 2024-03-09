@@ -1,14 +1,15 @@
-import asyncio
 import itertools
 
 from ahpy import ahpy
 
 from domain.model.Characteristic import Characteristic
 from domain.model.Viewpoint import Viewpoint
+from presentation.core.AHPReportState import AHPReportState
+from presentation.core.AHPReportStateSubject import AHPReportStateSubject
 from presentation.util.Constants import PREFERENCES_NOT_ENOUGH_CHARACTERISTICS_OR_SUB_CHARACTERISTICS
 from presentation.util.Util import convert_values_to_numerical
 from presentation.viewpoint_preferences.ComponentPreferencesState import Loading, ComponentsState, Error, \
-    SetPreferences, NavigateBack, Refetch
+    SetPreferences, Refetch
 from presentation.viewpoint_preferences.ViewpointPreferencesStateSubject import ViewpointPreferencesStateSubject
 
 
@@ -23,6 +24,10 @@ class ViewpointPreferencesViewModel:
     @property
     def pref_state_subject(self) -> 'ViewpointPreferencesStateSubject':
         return self._pref_state_subject
+
+    @property
+    def ahp_report_state_subject(self) -> AHPReportStateSubject:
+        return self._shared_view_model.ahp_report_state_subject
 
     @property
     def characteristics_preference_combinations(self) -> list[tuple[str, str]]:
@@ -182,7 +187,7 @@ class ViewpointPreferencesViewModel:
     def characteristics(self, selected_quality_model: str, selected_viewpoint: str) -> dict[str, 'Characteristic']:
         return self._shared_view_model.characteristics(selected_quality_model, selected_viewpoint)
 
-    async def create_ahp_hierarchy(self, viewpoint: Viewpoint, characteristics: list[Characteristic]) -> dict:
+    async def create_ahp_hierarchy(self, viewpoint: Viewpoint, characteristics: list[Characteristic]):
         try:
             await self._pref_state_subject.set_state(
                 state=Loading()
@@ -209,8 +214,14 @@ class ViewpointPreferencesViewModel:
             ]
 
             viewpoint_ahp_comparison.add_children(characteristic_ahp_comparisons)
-
-            return viewpoint_ahp_comparison.report(show=True)
+            report = viewpoint_ahp_comparison.report(show=True)
+            await self._shared_view_model.ahp_report_state_subject.set_state(
+                state=AHPReportState(
+                    report=report,
+                    viewpoint=viewpoint,
+                    characteristics=characteristics
+                )
+            )
 
         except Exception as e:
             await  self._pref_state_subject.set_state(

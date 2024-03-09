@@ -56,8 +56,7 @@ class Dependencies:
             selected_quality_model: str,
             viewpoint: 'Viewpoint',
             characteristics: list['Characteristic'],
-            repository_urls: list[str],
-            ahp_report: dict
+            repository_urls: list[str]
     ):
         return lambda: EvaluationScreen(
             navigator=self.navigator,
@@ -67,6 +66,5 @@ class Dependencies:
             selected_quality_model=selected_quality_model,
             viewpoint=viewpoint,
             characteristics=characteristics,
-            repository_urls=repository_urls,
-            ahp_report=ahp_report
+            repository_urls=repository_urls
         )

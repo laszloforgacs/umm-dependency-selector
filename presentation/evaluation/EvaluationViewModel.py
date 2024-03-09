@@ -1,3 +1,4 @@
+from presentation.core.AHPReportStateSubject import AHPReportStateSubject
 from presentation.evaluation.EvaluationStateSubject import EvaluationStateSubject
 
 
@@ -10,3 +11,7 @@ class EvaluationViewModel:
     @property
     def evaluation_state_subject(self) -> 'EvaluationStateSubject':
         return self._evaluation_state_subject
+
+    @property
+    def ahp_report_state_subject(self) -> AHPReportStateSubject:
+        return self._shared_view_model.ahp_report_state_subject

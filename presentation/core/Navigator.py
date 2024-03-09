@@ -35,8 +35,7 @@ class Navigator:
                     selected_quality_model=kwargs['selected_quality_model'],
                     viewpoint=kwargs['viewpoint'],
                     characteristics=kwargs['characteristics'],
-                    repository_urls=kwargs['repository_urls'],
-                    ahp_report=kwargs['ahp_report']
+                    repository_urls=kwargs['repository_urls']
                 )
             )
 

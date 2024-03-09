@@ -46,13 +46,11 @@ class Refetch(ComponentPreferencesState):
 class UrlInput(ComponentPreferencesState):
     viewpoint: 'Viewpoint'
     characteristics: list['Characteristic']
-    ahp_report: dict
 
     def copy(self, **kwargs):
         return UrlInput(
             viewpoint=kwargs.get('viewpoint', self.viewpoint),
-            characteristics=kwargs.get('characteristics', self.characteristics),
-            ahp_report=kwargs.get('ahp_report', self.ahp_report)
+            characteristics=kwargs.get('characteristics', self.characteristics)
         )
 
 

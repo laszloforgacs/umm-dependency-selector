@@ -34,6 +34,15 @@ class SetPreferences(ComponentPreferencesState):
         )
 
 
+class SetOSSAspectPreferences(ComponentPreferencesState):
+    oss_aspect_combination: tuple['OSSAspect', 'OSSAspect']
+
+    def copy(self, **kwargs):
+        return SetOSSAspectPreferences(
+            oss_aspect_combination=kwargs.get('oss_aspect_combination', self.oss_aspect_combination)
+        )
+
+
 @dataclass
 class Refetch(ComponentPreferencesState):
     pass
@@ -78,4 +87,4 @@ class NavigateBack(ComponentPreferencesState):
         return NavigateBack()
 
 
-ComponentPrefState = ComponentsState | SetPreferences | Refetch | UrlInput | Error | Loading | NavigateBack
+ComponentPrefState = ComponentsState | SetPreferences | SetOSSAspectPreferences | Refetch | UrlInput | Error | Loading | NavigateBack

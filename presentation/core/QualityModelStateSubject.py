@@ -49,3 +49,13 @@ class QualityModelStateSubject(Subject):
                 if quality_model.name == selected_quality_model:
                     quality_model.children.get(selected_viewpoint, {}).children.get(component.parent.name,
                                                                                     {}).preference_matrix = pref_matrix
+
+    def set_oss_aspect_preference(
+            self,
+            selected_quality_model: str,
+            selected_viewpoint: str,
+            pref_matrix: PrefMatrix
+    ):
+        for quality_model in self._state.quality_model_list:
+            if quality_model.name == selected_quality_model:
+                quality_model.children.get(selected_viewpoint, {}).oss_aspect_preference_matrix = pref_matrix

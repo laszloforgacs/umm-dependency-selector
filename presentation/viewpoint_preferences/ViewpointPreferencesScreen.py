@@ -9,7 +9,7 @@ from presentation.util.Constants import VIEWPOINT_PREFERENCES_EVALUATE_OR_RESET_
 from presentation.util.Observer import Observer
 from presentation.util.Util import print_items_with_last, print_ahp_ratings, accepted_ahp_values
 from presentation.viewpoint_preferences.ComponentPreferencesState import ComponentsState, UrlInput, Loading, Error, \
-    NavigateBack, SetPreferences, Refetch
+    NavigateBack, SetPreferences, Refetch, SetOSSAspectPreferences
 from presentation.viewpoint_preferences.ViewpointPreferencesStateSubject import ViewpointPreferencesStateSubject
 
 
@@ -69,11 +69,25 @@ class ViewpointPreferencesScreen(Screen, Observer):
                 characteristic_tuple=preference_combination,
                 preference=preference_value
             )
+
+        elif isinstance(state, SetOSSAspectPreferences):
+            preference_combination = state.oss_aspect_combination
+            print(f"Setting preferences for {preference_combination[0]} and {preference_combination[1]} OSS Aspects")
+            print_ahp_ratings((preference_combination[0], preference_combination[1]))
+            preference_value = await self._handle_ahp_input()
+            await self._view_model.set_oss_aspect_preference(
+                selected_quality_model=self._selected_quality_model,
+                selected_viewpoint=self._selected_viewpoint,
+                oss_aspect_combination=preference_combination,
+                preference=preference_value
+            )
+
         elif isinstance(state, Refetch):
             await self._view_model.fetch_viewpoint(
                 selected_quality_model=self._selected_quality_model,
                 selected_viewpoint=self._selected_viewpoint
             )
+
         elif isinstance(state, UrlInput):
             while True:
                 try:
@@ -98,17 +112,22 @@ class ViewpointPreferencesScreen(Screen, Observer):
                 except ValueError:
                     print(ERROR_INVALID_INPUT)
                     print("Please enter a valid value.")
+
         elif isinstance(state, AHPReportState):
             ahp_report = state.report
             if ahp_report["elements"]["consistency_ratio"] > 0.1:
                 print(CONSISTENCY_RATIO_NOT_ACCEPTABLE)
             await self.evaluate_reset_or_go_back(state)
+
         elif isinstance(state, Loading):
             print("Loading...")
+
         elif isinstance(state, Error):
             print("Error: " + state.message)
+
         elif isinstance(state, NavigateBack):
             await self._navigator.navigate_up()
+
         else:
             print("Unknown state")
 

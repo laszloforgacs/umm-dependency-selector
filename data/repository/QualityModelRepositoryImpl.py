@@ -131,6 +131,10 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 quality_model=test_quality_model.name,
                 viewpoint=viewpoint
             )
+            viewpoint.oss_aspect_preference_matrix = await self._init_oss_aspect_pref_matrix(
+                quality_model=test_quality_model.name,
+                viewpoint=viewpoint
+            )
 
             for characteristic in viewpoint.children.values():
                 characteristic.preference_matrix = await self._init_characteristic_pref_matrix(
@@ -139,7 +143,7 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                     characteristic=characteristic
                 )
 
-        #await asyncio.gather(*tasks)
+        # await asyncio.gather(*tasks)
         await asyncio.sleep(5)
         return Success(
             [
@@ -150,12 +154,13 @@ class QualityModelRepositoryImpl(QualityModelRepository):
     async def set_preference(
             self,
             filename: str,
-            characteristic_tuple: tuple['CompositeComponent', 'CompositeComponent'],
+            key: str,
+            matrix_key: str,
             preference: str
     ) -> PrefMatrix:
         path = os.path.join(QM_FOLDER, filename + JSON_EXTENSION)
         data = {
-            "preference_matrix": {}
+            matrix_key: {}
         }
 
         if os.path.exists(path):
@@ -164,56 +169,93 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 if content:
                     data = json.loads(content)
 
-        key = f"{characteristic_tuple[0].name}, {characteristic_tuple[1].name}"
-        data["preference_matrix"][key] = preference
+        data[matrix_key][key] = preference
 
         async with aiofiles.open(path, "w") as file:
             json_string = json.dumps(data, indent=4)
             await file.write(json_string)
-            return convert_string_keys_to_tuple(data.get("preference_matrix", {}))
+            return convert_string_keys_to_tuple(data.get(matrix_key, {}))
 
     async def _init_viewpoint_pref_matrix(
             self,
             quality_model: str,
-            viewpoint: Viewpoint
+            viewpoint: 'Viewpoint'
     ) -> PrefMatrix:
         path = os.path.join(QM_FOLDER, f"{quality_model}-{viewpoint.name}.json").replace(" ", "_")
 
         return await self._read_write_pref_matrix(
             path=path,
-            preference_matrix=viewpoint.preference_matrix
+            preference_matrix=viewpoint.preference_matrix,
+            key="preference_matrix"
         )
 
     async def _init_characteristic_pref_matrix(
             self,
             quality_model: str,
             viewpoint: str,
-            characteristic: Characteristic
+            characteristic: 'Characteristic'
     ) -> PrefMatrix:
         path = os.path.join(QM_FOLDER, f"{quality_model}-{viewpoint}-{characteristic.name}.json").replace(" ", "_")
 
         return await self._read_write_pref_matrix(
             path=path,
-            preference_matrix=characteristic.preference_matrix
+            preference_matrix=characteristic.preference_matrix,
+            key="preference_matrix"
+        )
+
+    async def _init_oss_aspect_pref_matrix(
+            self,
+            quality_model: str,
+            viewpoint: 'Viewpoint'
+    ) -> PrefMatrix:
+        path = os.path.join(QM_FOLDER, f"{quality_model}-{viewpoint.name}.json").replace(" ", "_")
+
+        return await self._read_write_pref_matrix(
+            path=path,
+            preference_matrix=viewpoint.oss_aspect_preference_matrix,
+            key="oss_aspect_preference_matrix"
         )
 
     async def _read_write_pref_matrix(
             self,
             path: str,
-            preference_matrix: PrefMatrix
+            preference_matrix: PrefMatrix,
+            key: str
     ):
         if not os.path.exists(path):
-            async with aiofiles.open(path, "w") as file:
-                data = {
-                    "preference_matrix": convert_tuple_keys_to_string(preference_matrix)
-                }
+            await self._write_pref_matrix(
+                path=path,
+                data={key: convert_tuple_keys_to_string(preference_matrix)}
+            )
+            return preference_matrix
 
-                json_string = json.dumps(data, indent=4)
-                await file.write(json_string)
-                return preference_matrix
-        else:
-            async with aiofiles.open(path, "r") as file:
-                content = await file.read()
-                if content:
-                    data = json.loads(content)
-                    return convert_string_keys_to_tuple(data["preference_matrix"])
+        async with aiofiles.open(path, "r") as file:
+            content = await file.read()
+
+        if not content:
+            await self._write_pref_matrix(
+                path=path,
+                data={key: convert_tuple_keys_to_string(preference_matrix)}
+            )
+            return preference_matrix
+
+        data = json.loads(content)
+        if key not in data:
+            data[key] = convert_tuple_keys_to_string(preference_matrix)
+            await self._write_pref_matrix(
+                path=path,
+                data=data
+            )
+            return preference_matrix
+
+        pref_matrix_data = data[key]
+        return convert_string_keys_to_tuple(pref_matrix_data)
+
+    async def _write_pref_matrix(
+            self,
+            path: str,
+            data: dict
+    ):
+        async with aiofiles.open(path, "w") as file:
+            json_string = json.dumps(data, indent=4)
+            await file.write(json_string)

@@ -3,13 +3,14 @@ import itertools
 from ahpy import ahpy
 
 from domain.model.Characteristic import Characteristic
+from domain.model.MeasureableConcept import OSSAspect
 from domain.model.Viewpoint import Viewpoint
 from presentation.core.AHPReportState import AHPReportState
 from presentation.core.AHPReportStateSubject import AHPReportStateSubject
 from presentation.util.Constants import PREFERENCES_NOT_ENOUGH_CHARACTERISTICS_OR_SUB_CHARACTERISTICS
 from presentation.util.Util import convert_values_to_numerical
 from presentation.viewpoint_preferences.ComponentPreferencesState import Loading, ComponentsState, Error, \
-    SetPreferences, Refetch
+    SetPreferences, Refetch, SetOSSAspectPreferences
 from presentation.viewpoint_preferences.ViewpointPreferencesStateSubject import ViewpointPreferencesStateSubject
 
 
@@ -17,6 +18,7 @@ class ViewpointPreferencesViewModel:
     _pref_state_subject: 'ViewpointPreferencesStateSubject' = ViewpointPreferencesStateSubject()
     _characteristics_preference_combinations: list[tuple['CompositeComponent', 'CompositeComponent']] = []
     _sub_characteristics_preference_combinations: list[tuple['CompositeComponent', 'CompositeComponent']] = []
+    _oss_aspect_preference_combinations: list[OSSAspect] = []
 
     def __init__(self, shared_view_model: 'SharedViewModel'):
         self._shared_view_model = shared_view_model
@@ -60,6 +62,14 @@ class ViewpointPreferencesViewModel:
                 list(itertools.combinations(characteristic.children.values(), 2))
                 for characteristic in viewpoint.children.values()
             ]))
+
+            self._oss_aspect_preference_combinations = list(
+                itertools.combinations(
+                    [aspect.name for aspect in OSSAspect],
+                    2
+                )
+            )
+
             await self._pref_state_subject.set_state(
                 state=ComponentsState(
                     viewpoint=viewpoint,
@@ -93,6 +103,12 @@ class ViewpointPreferencesViewModel:
                     preference_combination=self._sub_characteristics_preference_combinations.pop(0)
                 )
             )
+        elif len(self._oss_aspect_preference_combinations) > 0:
+            await self._pref_state_subject.set_state(
+                state=SetOSSAspectPreferences(
+                    oss_aspect_combination=self._oss_aspect_preference_combinations.pop(0)
+                )
+            )
         else:
             print(PREFERENCES_NOT_ENOUGH_CHARACTERISTICS_OR_SUB_CHARACTERISTICS)
             await self._pref_state_subject.set_state(
@@ -106,7 +122,7 @@ class ViewpointPreferencesViewModel:
             characteristic_tuple: tuple['CompositeComponent', 'CompositeComponent'],
             preference: str
     ):
-        filename = self._construct_file_name(
+        filename = self._construct_file_name_for_components(
             selected_quality_model=selected_quality_model,
             selected_viewpoint=selected_viewpoint,
             characteristic_tuple=characteristic_tuple
@@ -116,6 +132,22 @@ class ViewpointPreferencesViewModel:
             selected_viewpoint=selected_viewpoint,
             filename=filename,
             characteristic_tuple=characteristic_tuple,
+            preference=preference
+        )
+
+        await self.prepare_preference_combinations()
+
+    async def set_oss_aspect_preference(
+            self,
+            selected_quality_model: str,
+            selected_viewpoint: str,
+            oss_aspect_combination: tuple[OSSAspect, OSSAspect],
+            preference: str
+    ):
+        filename = f"{selected_quality_model}-{selected_viewpoint}"
+        await self._shared_view_model.set_oss_aspect_preference(
+            filename=filename,
+            oss_aspect_combination=oss_aspect_combination,
             preference=preference
         )
 
@@ -144,7 +176,7 @@ class ViewpointPreferencesViewModel:
 
             tasks = []
             for char_pref_combination in characteristics_preference_combinations:
-                filename = self._construct_file_name(
+                filename = self._construct_file_name_for_components(
                     selected_quality_model=selected_quality_model,
                     selected_viewpoint=selected_viewpoint,
                     characteristic_tuple=char_pref_combination
@@ -159,7 +191,7 @@ class ViewpointPreferencesViewModel:
                 )
 
             for sub_char_pref_combination in sub_characteristics_preference_combinations:
-                filename = self._construct_file_name(
+                filename = self._construct_file_name_for_components(
                     selected_quality_model=selected_quality_model,
                     selected_viewpoint=selected_viewpoint,
                     characteristic_tuple=sub_char_pref_combination
@@ -230,7 +262,7 @@ class ViewpointPreferencesViewModel:
                 )
             )
 
-    def _construct_file_name(
+    def _construct_file_name_for_components(
             self,
             selected_quality_model: str,
             selected_viewpoint: str,

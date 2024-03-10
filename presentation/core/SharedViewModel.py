@@ -1,8 +1,3 @@
-import asyncio
-from typing import Optional
-
-from domain.model.QualityModel import QualityModel
-from domain.model.Result import Result, Success
 from domain.repository.QualityModelRepository import QualityModelRepository
 from presentation.core.AHPReportStateSubject import AHPReportStateSubject
 from presentation.core.QualityModelStateSubject import QualityModelStateSubject
@@ -63,18 +58,38 @@ class SharedViewModel():
             filename: str,
             characteristic_tuple: tuple['CompositeComponent', 'CompositeComponent'],
             preference: str
-    ) -> PrefMatrix:
+    ):
         new_pref_matrix = await self._quality_model_repository.set_preference(
             filename=filename,
-            characteristic_tuple=characteristic_tuple,
+            key=f"{characteristic_tuple[0].name}, {characteristic_tuple[1].name}",
+            matrix_key="preference_matrix",
             preference=preference
         )
 
         self._quality_model_state_subject.set_preference(
             selected_quality_model=selected_quality_model,
             selected_viewpoint=selected_viewpoint,
-            component = characteristic_tuple[0],
-            pref_matrix = new_pref_matrix
+            component=characteristic_tuple[0],
+            pref_matrix=new_pref_matrix
         )
 
-        return new_pref_matrix
+    async def set_oss_aspect_preference(
+            self,
+            selected_quality_model: str,
+            selected_viewpoint: str,
+            filename: str,
+            oss_aspect_combination: tuple['OSSAspect', 'OSSAspect'],
+            preference: str
+    ):
+        new_oss_aspect_pref_matrix = await self._quality_model_repository.set_preference(
+            filename=filename,
+            key=f"{oss_aspect_combination[0]}, {oss_aspect_combination[1]}",
+            matrix_key="oss_aspect_preference_matrix",
+            preference=preference
+        )
+
+        self._quality_model_state_subject.set_oss_aspect_preference(
+            selected_quality_model=selected_quality_model,
+            selected_viewpoint=selected_viewpoint,
+            pref_matrix=new_oss_aspect_pref_matrix
+        )

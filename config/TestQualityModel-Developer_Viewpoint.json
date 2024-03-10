@@ -6,5 +6,8 @@
         "Maintainability2, Maintainability3": "2",
         "Maintainability2, Maintainability4": "5",
         "Maintainability3, Maintainability4": "7"
+    },
+    "oss_aspect_preference_matrix": {
+        "COMMUNITY, CODE": "1/2"
     }
 }

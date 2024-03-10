@@ -144,8 +144,10 @@ class ViewpointPreferencesViewModel:
             oss_aspect_combination: tuple[OSSAspect, OSSAspect],
             preference: str
     ):
-        filename = f"{selected_quality_model}-{selected_viewpoint}"
+        filename = f"{selected_quality_model}-{selected_viewpoint}".replace(" ", "_")
         await self._shared_view_model.set_oss_aspect_preference(
+            selected_quality_model=selected_quality_model,
+            selected_viewpoint=selected_viewpoint,
             filename=filename,
             oss_aspect_combination=oss_aspect_combination,
             preference=preference

@@ -33,9 +33,9 @@ class SetPreferences(ComponentPreferencesState):
             preference_combination=kwargs.get('preference_combination', self.preference_combination)
         )
 
-
+@dataclass
 class SetOSSAspectPreferences(ComponentPreferencesState):
-    oss_aspect_combination: tuple['OSSAspect', 'OSSAspect']
+    oss_aspect_combination: tuple[str, str]
 
     def copy(self, **kwargs):
         return SetOSSAspectPreferences(

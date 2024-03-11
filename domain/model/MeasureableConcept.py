@@ -31,6 +31,8 @@ class MeasurableConcept(CompositeComponent, Generic[T], metaclass=ABCGenericMeta
         self._relevant_oss_aspect = relevant_oss_aspect
         self._information_need = information_need
         self._quality_requirement = quality_requirement
+        self._normalize_visitor = None
+        self._aggregate_visitor = None
 
     @property
     def impact(self) -> Impact:
@@ -52,18 +54,20 @@ class MeasurableConcept(CompositeComponent, Generic[T], metaclass=ABCGenericMeta
     def quality_requirement(self) -> str:
         return self._quality_requirement
 
-    def measure(self) -> T:
+    def measure(self, repository: str) -> T:
         measurements = [
-            child.measure() for child in self.children.values()
+            child.measure(repository) for child in self.children.values()
         ]
         normalized = self.normalize(measurements)
         aggregated = self.aggregate(normalized)
         return aggregated
 
-    @abstractmethod
     def normalize(self, measurements: list[T]) -> list[T]:
-        pass
+        return self._normalize_visitor.normalize(measurements)
 
-    @abstractmethod
     def aggregate(self, normalized_measures: list[T]) -> T:
-        pass
+        return self._aggregate_visitor.aggregate(normalized_measures)
+
+    def accept_visitors(self, normalize_visitor: 'NormalizeVisitor', aggregate_visitor: 'AggregateVisitor'):
+        self._normalize_visitor = normalize_visitor
+        self._aggregate_visitor = aggregate_visitor

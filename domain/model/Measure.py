@@ -39,7 +39,7 @@ class Measure(Generic[T], metaclass=ABCGenericMeta):
         pass
 
     @abstractmethod
-    def measure(self) -> T:
+    def measure(self, repository: str) -> T:
         pass
 
 
@@ -49,6 +49,7 @@ class BaseMeasure(Measure, LeafComponent, Generic[T], metaclass=ABCGenericMeta):
         self._unit = unit
         self._scale = scale
         self._measurement_method = measurement_method
+        self._visitor = None
 
     @property
     def name(self) -> str:
@@ -65,6 +66,12 @@ class BaseMeasure(Measure, LeafComponent, Generic[T], metaclass=ABCGenericMeta):
     @property
     def measurement_method(self) -> MeasurementMethod:
         return self._measurement_method
+
+    def measure(self, repository: str) -> T:
+        return self._visitor.measure(self, repository)
+
+    def accept_visitor(self, visitor: 'BaseMeasureVisitor'):
+        self._visitor = visitor
 
 
 class DerivedMeasure(Measure, CompositeComponent, Generic[T], metaclass=ABCGenericMeta):
@@ -77,6 +84,8 @@ class DerivedMeasure(Measure, CompositeComponent, Generic[T], metaclass=ABCGener
         for child in children.values():
             child.parent = self
         self._children = children
+        self._normalize_visitor = None
+        self._aggregate_visitor = None
 
     @property
     def name(self) -> str:
@@ -94,18 +103,20 @@ class DerivedMeasure(Measure, CompositeComponent, Generic[T], metaclass=ABCGener
     def measurement_method(self) -> MeasurementMethod:
         return self._measurement_method
 
-    def measure(self) -> T:
+    def measure(self, repository: str) -> T:
         measurements = [
-            child.measure() for child in self.children.values()
+            child.measure(repository) for child in self.children.values()
         ]
         normalized = self.normalize(measurements)
         aggregated = self.aggregate(normalized)
         return aggregated
 
-    @abstractmethod
     def normalize(self, measurements: list[T]) -> list[T]:
-        pass
+        return self._normalize_visitor.normalize(measurements)
 
-    @abstractmethod
     def aggregate(self, normalized_measures: list[T]) -> T:
-        pass
+        return self._aggregate_visitor.aggregate(normalized_measures)
+
+    def accept_visitors(self, normalize_visitor: 'NormalizeVisitor', aggregate_visitor: 'AggregateVisitor'):
+        self._normalize_visitor = normalize_visitor
+        self._aggregate_visitor = aggregate_visitor

@@ -1,5 +1,4 @@
 from domain.model.Characteristic import Characteristic
-from domain.model.Result import Result, Success
 from domain.model.SubCharacteristic import SubCharacteristic
 from presentation.viewpoint_preferences.ComponentPreferencesState import PrefMatrix
 

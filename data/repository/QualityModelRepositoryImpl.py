@@ -7,9 +7,11 @@ import aiofiles
 
 from domain.model.Characteristic import Characteristic
 from domain.model.QualityModel import QualityModel
-from domain.model.Result import Result, Success
+from domain.model.Result import Result, Success, Failure
 from domain.model.Viewpoint import Viewpoint
 from domain.repository.QualityModelRepository import QualityModelRepository
+from presentation.core.visitors.VisitorFactory import MeasureVisitorFactory, DerivedMeasureVisitorFactory, \
+    MeasurableConceptVisitorFactory
 from presentation.util.Util import convert_tuple_keys_to_string, convert_string_keys_to_tuple
 from presentation.viewpoint_preferences.ComponentPreferencesState import PrefMatrix
 from testing.characteristic.Maintainability import Maintainability, Maintainability2, Maintainability3, Maintainability4
@@ -29,135 +31,157 @@ JSON_EXTENSION: Final = ".json"
 
 
 class QualityModelRepositoryImpl(QualityModelRepository):
-    def __init__(self):
-        pass
+    def __init__(
+            self,
+            base_measure_visitor_factory: MeasureVisitorFactory,
+            derived_measure_visitor_factory: DerivedMeasureVisitorFactory,
+            measurable_concept_visitor_factory: MeasurableConceptVisitorFactory
+    ):
+        self._base_measure_visitor_factory = base_measure_visitor_factory
+        self._derived_measure_visitor_factory = derived_measure_visitor_factory
+        self._measurable_concept_visitor_factory = measurable_concept_visitor_factory
 
     async def fetch_quality_models(self) -> Result[list[QualityModel]]:
-        linesOfCode = LinesOfCode()
-        numberOfComplexFunctions = NumberOfComplexFunctions()
-        cyclomaticComplexity = CyclomaticComplexity()
-        cyclomaticComplexity.add_component(linesOfCode)
-        cyclomaticComplexity.add_component(numberOfComplexFunctions)
-        numberOfStatements = NumberOfStatements()
-        complexityOfSourceCode = ComplexityOfSourceCode()
-        complexityOfSourceCode.add_component(cyclomaticComplexity)
-        complexityOfSourceCode.add_component(numberOfStatements)
-
-        analyzability = Analyzability(children={
-            complexityOfSourceCode.name: complexityOfSourceCode
-        })
-
-        analyzability2 = Analyzability2(children={
-            complexityOfSourceCode.name: complexityOfSourceCode
-        })
-        analyzability3 = Analyzability3(children={
-            complexityOfSourceCode.name: complexityOfSourceCode
-        })
-        analyzability4 = Analyzability4(children={
-            complexityOfSourceCode.name: complexityOfSourceCode
-        })
-        analyzability5 = Analyzability5(children={
-            complexityOfSourceCode.name: complexityOfSourceCode
-        })
-        analyzability6 = Analyzability6(children={
-            complexityOfSourceCode.name: complexityOfSourceCode
-        })
-        analyzability7 = Analyzability7(children={
-            complexityOfSourceCode.name: complexityOfSourceCode
-        })
-        analyzability8 = Analyzability8(children={
-            complexityOfSourceCode.name: complexityOfSourceCode
-        })
-        analyzability9 = Analyzability9(children={
-            complexityOfSourceCode.name: complexityOfSourceCode
-        })
-        analyzability10 = Analyzability10(children={
-            complexityOfSourceCode.name: complexityOfSourceCode
-        })
-        analyzability11 = Analyzability11(children={
-            complexityOfSourceCode.name: complexityOfSourceCode
-        })
-        analyzability12 = Analyzability12(children={
-            complexityOfSourceCode.name: complexityOfSourceCode
-        })
-        analyzability13 = Analyzability13(children={
-            complexityOfSourceCode.name: complexityOfSourceCode
-        })
-        analyzability14 = Analyzability14(children={
-            complexityOfSourceCode.name: complexityOfSourceCode
-        })
-        analyzability15 = Analyzability15(children={
-            complexityOfSourceCode.name: complexityOfSourceCode
-        })
-        analyzability16 = Analyzability16(children={
-            complexityOfSourceCode.name: complexityOfSourceCode
-        })
-
-        maintainability = Maintainability(children={
-            analyzability.name: analyzability,
-            analyzability2.name: analyzability2,
-            analyzability3.name: analyzability3,
-            analyzability4.name: analyzability4
-        })
-
-        maintainability2 = Maintainability2(children={
-            analyzability5.name: analyzability5,
-            analyzability6.name: analyzability6,
-            analyzability7.name: analyzability7,
-            analyzability8.name: analyzability8
-        })
-
-        maintainability3 = Maintainability3(children={
-            analyzability9.name: analyzability9,
-            analyzability10.name: analyzability10,
-            analyzability11.name: analyzability11,
-            analyzability12.name: analyzability12
-        })
-
-        maintainability4 = Maintainability4(children={
-            analyzability13.name: analyzability13,
-            analyzability14.name: analyzability14,
-            analyzability15.name: analyzability15,
-            analyzability16.name: analyzability16
-        })
-
-        developer_viewpoint = DeveloperViewpoint(children={
-            maintainability.name: maintainability,
-            maintainability2.name: maintainability2,
-            maintainability3.name: maintainability3,
-            maintainability4.name: maintainability4
-        })
-
-        test_quality_model = TestQualityModel(
-            children={
-                developer_viewpoint.name: developer_viewpoint
-            }
-
-        )
-
-        for viewpoint in test_quality_model.children.values():
-            viewpoint.preference_matrix = await self._init_viewpoint_pref_matrix(
-                quality_model=test_quality_model.name,
-                viewpoint=viewpoint
+        try:
+            linesOfCode = self._base_measure_visitor_factory.instantiate_with_visitor(LinesOfCode)
+            numberOfComplexFunctions = self._base_measure_visitor_factory.instantiate_with_visitor(
+                NumberOfComplexFunctions
             )
-            viewpoint.oss_aspect_preference_matrix = await self._init_oss_aspect_pref_matrix(
-                quality_model=test_quality_model.name,
-                viewpoint=viewpoint
+            cyclomaticComplexity = self._derived_measure_visitor_factory.instantiate_with_visitor(
+                CyclomaticComplexity,
+                children={
+                    linesOfCode.name: linesOfCode,
+                    numberOfComplexFunctions.name: numberOfComplexFunctions
+                }
+            )
+            numberOfStatements = self._base_measure_visitor_factory.instantiate_with_visitor(NumberOfStatements)
+            complexityOfSourceCode = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                ComplexityOfSourceCode,
+                children={
+                    linesOfCode.name: linesOfCode,
+                    numberOfComplexFunctions.name: numberOfComplexFunctions
+                }
             )
 
-            for characteristic in viewpoint.children.values():
-                characteristic.preference_matrix = await self._init_characteristic_pref_matrix(
+            analyzability = Analyzability(children={
+                complexityOfSourceCode.name: complexityOfSourceCode
+            })
+
+            analyzability2 = Analyzability2(children={
+                complexityOfSourceCode.name: complexityOfSourceCode
+            })
+            analyzability3 = Analyzability3(children={
+                complexityOfSourceCode.name: complexityOfSourceCode
+            })
+            analyzability4 = Analyzability4(children={
+                complexityOfSourceCode.name: complexityOfSourceCode
+            })
+            analyzability5 = Analyzability5(children={
+                complexityOfSourceCode.name: complexityOfSourceCode
+            })
+            analyzability6 = Analyzability6(children={
+                complexityOfSourceCode.name: complexityOfSourceCode
+            })
+            analyzability7 = Analyzability7(children={
+                complexityOfSourceCode.name: complexityOfSourceCode
+            })
+            analyzability8 = Analyzability8(children={
+                complexityOfSourceCode.name: complexityOfSourceCode
+            })
+            analyzability9 = Analyzability9(children={
+                complexityOfSourceCode.name: complexityOfSourceCode
+            })
+            analyzability10 = Analyzability10(children={
+                complexityOfSourceCode.name: complexityOfSourceCode
+            })
+            analyzability11 = Analyzability11(children={
+                complexityOfSourceCode.name: complexityOfSourceCode
+            })
+            analyzability12 = Analyzability12(children={
+                complexityOfSourceCode.name: complexityOfSourceCode
+            })
+            analyzability13 = Analyzability13(children={
+                complexityOfSourceCode.name: complexityOfSourceCode
+            })
+            analyzability14 = Analyzability14(children={
+                complexityOfSourceCode.name: complexityOfSourceCode
+            })
+            analyzability15 = Analyzability15(children={
+                complexityOfSourceCode.name: complexityOfSourceCode
+            })
+            analyzability16 = Analyzability16(children={
+                complexityOfSourceCode.name: complexityOfSourceCode
+            })
+
+            maintainability = Maintainability(children={
+                analyzability.name: analyzability,
+                analyzability2.name: analyzability2,
+                analyzability3.name: analyzability3,
+                analyzability4.name: analyzability4
+            })
+
+            maintainability2 = Maintainability2(children={
+                analyzability5.name: analyzability5,
+                analyzability6.name: analyzability6,
+                analyzability7.name: analyzability7,
+                analyzability8.name: analyzability8
+            })
+
+            maintainability3 = Maintainability3(children={
+                analyzability9.name: analyzability9,
+                analyzability10.name: analyzability10,
+                analyzability11.name: analyzability11,
+                analyzability12.name: analyzability12
+            })
+
+            maintainability4 = Maintainability4(children={
+                analyzability13.name: analyzability13,
+                analyzability14.name: analyzability14,
+                analyzability15.name: analyzability15,
+                analyzability16.name: analyzability16
+            })
+
+            developer_viewpoint = DeveloperViewpoint(children={
+                maintainability.name: maintainability,
+                maintainability2.name: maintainability2,
+                maintainability3.name: maintainability3,
+                maintainability4.name: maintainability4
+            })
+
+            test_quality_model = TestQualityModel(
+                children={
+                    developer_viewpoint.name: developer_viewpoint
+                }
+
+            )
+
+            for viewpoint in test_quality_model.children.values():
+                viewpoint.preference_matrix = await self._init_viewpoint_pref_matrix(
                     quality_model=test_quality_model.name,
-                    viewpoint=viewpoint.name,
-                    characteristic=characteristic
+                    viewpoint=viewpoint
+                )
+                viewpoint.oss_aspect_preference_matrix = await self._init_oss_aspect_pref_matrix(
+                    quality_model=test_quality_model.name,
+                    viewpoint=viewpoint
                 )
 
-        await asyncio.sleep(5)
-        return Success(
-            [
-                test_quality_model
-            ]
-        )
+                for characteristic in viewpoint.children.values():
+                    characteristic.preference_matrix = await self._init_characteristic_pref_matrix(
+                        quality_model=test_quality_model.name,
+                        viewpoint=viewpoint.name,
+                        characteristic=characteristic
+                    )
+
+            await asyncio.sleep(5)
+            return Success(
+                [
+                    test_quality_model
+                ]
+            )
+        except Exception as e:
+            return Failure(
+                error_message=str(e)
+            )
 
     async def set_preference(
             self,

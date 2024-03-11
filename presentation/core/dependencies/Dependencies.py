@@ -3,6 +3,8 @@ from data.repository.SourceRepositoryImpl import SourceRepositoryImpl
 from presentation.core.navigation.NavigationController import NavigationController
 from presentation.core.navigation.Navigator import Navigator
 from presentation.core.SharedViewModel import SharedViewModel
+from presentation.core.visitors.VisitorFactory import MeasurableConceptVisitorFactory, DerivedMeasureVisitorFactory, \
+    MeasureVisitorFactory
 from presentation.evaluation.EvaluationScreen import EvaluationScreen
 from presentation.evaluation.EvaluationViewModel import EvaluationViewModel
 from presentation.quality_model_list.QualityModelListScreen import QualityModelListScreen
@@ -16,11 +18,18 @@ from presentation.viewpoint_preferences.ViewpointPreferencesViewModel import Vie
 class Dependencies:
     def __init__(self):
         self.navigation_controller = NavigationController()
+        self.base_measure_visitor_factory = MeasureVisitorFactory()
+        self.derived_measure_visitor_factory = DerivedMeasureVisitorFactory()
+        self.measurable_concept_visitor_factory = MeasurableConceptVisitorFactory()
         self.navigator = Navigator(
             navigation_controller=self.navigation_controller,
             dependencies=self
         )
-        self.quality_model_repository = QualityModelRepositoryImpl()
+        self.quality_model_repository = QualityModelRepositoryImpl(
+            base_measure_visitor_factory=self.base_measure_visitor_factory,
+            derived_measure_visitor_factory=self.derived_measure_visitor_factory,
+            measurable_concept_visitor_factory=self.measurable_concept_visitor_factory
+        )
         self.source_repository = SourceRepositoryImpl()
         self.shared_view_model = SharedViewModel(
             quality_model_repository=self.quality_model_repository,

@@ -12,6 +12,7 @@ ahpy = "^2.0"
 aioconsole = "^0.7.0"
 aiofiles = "^23.2.1"
 validators = "^0.22.0"
+scikit-criteria = "^0.8.7"
 
 
 [build-system]

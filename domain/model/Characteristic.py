@@ -2,6 +2,7 @@ import itertools
 import math
 from abc import abstractmethod, ABCMeta
 
+from domain.model.MeasureableConcept import OSSAspect
 from domain.model.Result import Result
 from domain.model.SubCharacteristic import SubCharacteristic
 from domain.model.components.Component import CompositeComponent
@@ -25,6 +26,7 @@ class Characteristic(CompositeComponent, metaclass=ABCMeta):
         else:
             self._preference_matrix = preference_matrix
         self._weight = 0
+        self._all_possible_aspects: list[str] = [aspect.name for aspect in OSSAspect]
 
     @property
     def weight(self) -> float:
@@ -37,6 +39,15 @@ class Characteristic(CompositeComponent, metaclass=ABCMeta):
     @preference_matrix.setter
     def preference_matrix(self, preference_matrix: PrefMatrix):
         self._preference_matrix = preference_matrix
+
+    def relevant_oss_aspects(self) -> set[str]:
+        aspects_found = set()
+        for child in self.children.values():
+            aspects_found.update(child.relevant_oss_aspects())
+
+            if aspects_found.issuperset(self._all_possible_aspects):
+                return aspects_found
+        return aspects_found
 
     @property
     def is_valid_preference_matrix(self) -> bool:

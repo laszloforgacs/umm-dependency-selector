@@ -5,14 +5,14 @@ from domain.model.Viewpoint import Viewpoint
 
 @dataclass
 class AHPReportState:
-    report: dict
+    comparisons: list[str, dict]
     viewpoint: 'Viewpoint'
     characteristics: list['Characteristic']
 
     def copy(self, **kwargs):
         return AHPReportState(
             report=kwargs.get(
-                'report', self.report,
+                'comparisons', self.comparisons,
                 'viewpoint', self.viewpoint,
                 'characteristics', self.characteristics
             )

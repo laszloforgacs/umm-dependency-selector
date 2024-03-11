@@ -4,8 +4,8 @@ from domain.model.Result import Result, Success
 
 class ComplexityOfSourceCode(MeasurableConcept):
     def __init__(self):
-        super().__init__("Complexity of source code", {}, Impact.NEGATIVE, "Source code", OSSAspect.CODE,
-                         "Calculation of source code complexity", "Affects Maintainability negatively")
+        super().__init__("Complexity of source code", {}, Impact.NEGATIVE, "Source code",
+                         "Calculation of source code complexity", "Affects Maintainability negatively", OSSAspect.CODE)
 
     def run(self) -> Result:
         measurements = [result.value for result in self.measure()]

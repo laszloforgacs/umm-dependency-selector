@@ -114,8 +114,13 @@ class ViewpointPreferencesScreen(Screen, Observer):
                     print("Please enter a valid value.")
 
         elif isinstance(state, AHPReportState):
-            ahp_report = state.report
-            if ahp_report["elements"]["consistency_ratio"] > 0.1:
+            comparisons = state.comparisons
+            under_consistency_threshold = [
+                comparison for comparison in comparisons.values() if comparison.consistency_ratio > 0.1
+            ]
+            if len(under_consistency_threshold) > 0:
+                for comparison in under_consistency_threshold:
+                    print(f"Consistency Ratio for {comparison.name} is {comparison.consistency_ratio}.")
                 print(CONSISTENCY_RATIO_NOT_ACCEPTABLE)
             await self.evaluate_reset_or_go_back(state)
 

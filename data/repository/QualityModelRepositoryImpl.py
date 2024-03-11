@@ -57,25 +57,56 @@ class QualityModelRepositoryImpl(QualityModelRepository):
         codeComplexity = complexityOfSourceCode.run().value
         # print(codeComplexity)
 
-        analyzability = Analyzability()
-        analyzability.add_component(complexityOfSourceCode)
+        analyzability = Analyzability(children={
+            complexityOfSourceCode.name: complexityOfSourceCode
+        })
         # print(analyzability.run().value)
 
-        analyzability2 = Analyzability2()
-        analyzability3 = Analyzability3()
-        analyzability4 = Analyzability4()
-        analyzability5 = Analyzability5()
-        analyzability6 = Analyzability6()
-        analyzability7 = Analyzability7()
-        analyzability8 = Analyzability8()
-        analyzability9 = Analyzability9()
-        analyzability10 = Analyzability10()
-        analyzability11 = Analyzability11()
-        analyzability12 = Analyzability12()
-        analyzability13 = Analyzability13()
-        analyzability14 = Analyzability14()
-        analyzability15 = Analyzability15()
-        analyzability16 = Analyzability16()
+        analyzability2 = Analyzability2(children={
+            complexityOfSourceCode.name: complexityOfSourceCode
+        })
+        analyzability3 = Analyzability3(children={
+            complexityOfSourceCode.name: complexityOfSourceCode
+        })
+        analyzability4 = Analyzability4(children={
+            complexityOfSourceCode.name: complexityOfSourceCode
+        })
+        analyzability5 = Analyzability5(children={
+            complexityOfSourceCode.name: complexityOfSourceCode
+        })
+        analyzability6 = Analyzability6(children={
+            complexityOfSourceCode.name: complexityOfSourceCode
+        })
+        analyzability7 = Analyzability7(children={
+            complexityOfSourceCode.name: complexityOfSourceCode
+        })
+        analyzability8 = Analyzability8(children={
+            complexityOfSourceCode.name: complexityOfSourceCode
+        })
+        analyzability9 = Analyzability9(children={
+            complexityOfSourceCode.name: complexityOfSourceCode
+        })
+        analyzability10 = Analyzability10(children={
+            complexityOfSourceCode.name: complexityOfSourceCode
+        })
+        analyzability11 = Analyzability11(children={
+            complexityOfSourceCode.name: complexityOfSourceCode
+        })
+        analyzability12 = Analyzability12(children={
+            complexityOfSourceCode.name: complexityOfSourceCode
+        })
+        analyzability13 = Analyzability13(children={
+            complexityOfSourceCode.name: complexityOfSourceCode
+        })
+        analyzability14 = Analyzability14(children={
+            complexityOfSourceCode.name: complexityOfSourceCode
+        })
+        analyzability15 = Analyzability15(children={
+            complexityOfSourceCode.name: complexityOfSourceCode
+        })
+        analyzability16 = Analyzability16(children={
+            complexityOfSourceCode.name: complexityOfSourceCode
+        })
 
         maintainability = Maintainability(children={
             analyzability.name: analyzability,

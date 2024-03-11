@@ -227,31 +227,56 @@ class ViewpointPreferencesViewModel:
                 state=Loading()
             )
 
+            oss_aspects = [aspect.name for aspect in OSSAspect]
+            comparisons = []
+
             viewpoint.preference_matrix = convert_values_to_numerical(viewpoint.preference_matrix)
+            viewpoint.oss_aspect_preference_matrix = convert_values_to_numerical(viewpoint.oss_aspect_preference_matrix)
 
             for characteristic in characteristics:
                 characteristic.preference_matrix = convert_values_to_numerical(characteristic.preference_matrix)
 
+            characteristic_comparisons_by_oss_aspect = {}
+            for aspect in oss_aspects:
+                for characteristic in characteristics:
+                    if aspect in characteristic.relevant_oss_aspects():
+                        comparisons = characteristic_comparisons_by_oss_aspect.get(aspect, [])
+                        comparisons.append(
+                            ahpy.Compare(
+                                name=characteristic.name,
+                                comparisons=characteristic.preference_matrix,
+                                precision=3
+                            )
+                        )
+                        characteristic_comparisons_by_oss_aspect[aspect] = comparisons
+
+            oss_aspect_comparisons = []
+            for aspect, characteristic_comparisons in characteristic_comparisons_by_oss_aspect.items():
+                comparison = ahpy.Compare(
+                    name=aspect,
+                    comparisons=viewpoint.preference_matrix,
+                    precision=3
+                )
+                comparison.add_children(characteristic_comparisons)
+                oss_aspect_comparisons.append(comparison)
+
+            comparisons += oss_aspect_comparisons
+
             viewpoint_ahp_comparison = ahpy.Compare(
                 name=viewpoint.name,
-                comparisons=viewpoint.preference_matrix,
+                comparisons=viewpoint.oss_aspect_preference_matrix,
                 precision=3
             )
 
-            characteristic_ahp_comparisons = [
-                ahpy.Compare(
-                    name=characteristic.name,
-                    comparisons=characteristic.preference_matrix,
-                    precision=3
-                )
-                for characteristic in characteristics
-            ]
+            viewpoint_ahp_comparison.add_children(oss_aspect_comparisons)
+            comparisons.append(viewpoint_ahp_comparison)
 
-            viewpoint_ahp_comparison.add_children(characteristic_ahp_comparisons)
-            report = viewpoint_ahp_comparison.report(show=True)
             await self._shared_view_model.ahp_report_state_subject.set_state(
                 state=AHPReportState(
-                    report=report,
+                    comparisons={
+                        comparison.name: comparison
+                        for comparison in comparisons
+                    },
                     viewpoint=viewpoint,
                     characteristics=characteristics
                 )

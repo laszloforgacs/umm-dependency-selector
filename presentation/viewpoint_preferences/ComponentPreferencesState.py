@@ -53,11 +53,13 @@ class Refetch(ComponentPreferencesState):
 
 @dataclass
 class UrlInput(ComponentPreferencesState):
+    comparisons: list[str, dict]
     viewpoint: 'Viewpoint'
     characteristics: list['Characteristic']
 
     def copy(self, **kwargs):
         return UrlInput(
+            comparisons=kwargs.get('comparisons', self.comparisons),
             viewpoint=kwargs.get('viewpoint', self.viewpoint),
             characteristics=kwargs.get('characteristics', self.characteristics)
         )

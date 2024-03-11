@@ -1,15 +1,9 @@
-from domain.model.Result import Result, Success
-from domain.model.measurement.Measure import BaseMeasure, MeasurementMethod
+from domain.model.Measure import BaseMeasure, MeasurementMethod
 
 
-class NumberOfStatements(BaseMeasure):
+class NumberOfStatements(BaseMeasure[float]):
     def __init__(self):
         super().__init__("Number of statements", "statements", 1, MeasurementMethod.AUTOMATIC)
 
-    def run(self) -> Result:
-        return self.measure()
-
-    def measure(self) -> Result:
-        return Success(
-            value = 399
-        )
+    def measure(self) -> float:
+        return 399.0

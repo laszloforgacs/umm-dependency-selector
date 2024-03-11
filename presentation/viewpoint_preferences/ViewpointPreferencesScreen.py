@@ -106,7 +106,8 @@ class ViewpointPreferencesScreen(Screen, Observer):
                             selected_quality_model=self._selected_quality_model,
                             viewpoint=state.viewpoint,
                             characteristics=state.characteristics,
-                            repository_urls=urls
+                            repository_urls=urls,
+                            comparisons=state.comparisons
                         )
                         break
                 except ValueError:
@@ -161,6 +162,7 @@ class ViewpointPreferencesScreen(Screen, Observer):
             if user_input == "1":
                 await self._view_model.pref_state_subject.set_state(
                     state=UrlInput(
+                        comparisons=state.comparisons,
                         viewpoint=state.viewpoint,
                         characteristics=state.characteristics
                     )

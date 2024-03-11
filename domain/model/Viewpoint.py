@@ -1,11 +1,9 @@
 import itertools
-import math
-from abc import abstractmethod, ABCMeta
+from abc import ABCMeta
 
 from domain.model.Characteristic import Characteristic
 from domain.model.MeasureableConcept import OSSAspect
-from domain.model.Result import Result
-from domain.model.components.Component import CompositeComponent
+from domain.model.Component import CompositeComponent
 from presentation.viewpoint_preferences.ComponentPreferencesState import PrefMatrix
 
 
@@ -66,11 +64,8 @@ class Viewpoint(CompositeComponent, metaclass=ABCMeta):
                 return False
 
         for aspect_combination in itertools.combinations([aspect.name for aspect in OSSAspect], 2):
-            if aspect_combination not in self.oss_aspect_preference_matrix or self.oss_aspect_preference_matrix[aspect_combination] is None:
+            if aspect_combination not in self.oss_aspect_preference_matrix or self.oss_aspect_preference_matrix[
+                aspect_combination] is None:
                 return False
 
         return True
-
-    @abstractmethod
-    def run(self) -> Result:
-        pass

@@ -1,9 +1,12 @@
-from abc import ABCMeta, abstractmethod
+from abc import abstractmethod
 from enum import Enum
+from typing import Generic, TypeVar
 
-from domain.model.Result import Result
-from domain.model.components.Component import CompositeComponent
-from domain.model.measurement.Measure import Measure
+from domain.model.ABCGenericMeta import ABCGenericMeta
+from domain.model.Component import CompositeComponent
+from domain.model.Measure import Measure
+
+T = TypeVar('T')
 
 
 class Impact(Enum):
@@ -16,7 +19,7 @@ class OSSAspect(Enum):
     CODE = 2
 
 
-class MeasurableConcept(CompositeComponent, metaclass=ABCMeta):
+class MeasurableConcept(CompositeComponent, Generic[T], metaclass=ABCGenericMeta):
     def __init__(self, name: str, children: dict[str, Measure], impact: Impact, entity: str, information_need: str,
                  quality_requirement: str, relevant_oss_aspect: OSSAspect = OSSAspect.CODE):
         self._name = name
@@ -49,10 +52,18 @@ class MeasurableConcept(CompositeComponent, metaclass=ABCMeta):
     def quality_requirement(self) -> str:
         return self._quality_requirement
 
+    def measure(self) -> T:
+        measurements = [
+            child.measure() for child in self.children.values()
+        ]
+        normalized = self.normalize(measurements)
+        aggregated = self.aggregate(normalized)
+        return aggregated
+
     @abstractmethod
-    def run(self) -> Result:
+    def normalize(self, measurements: list[T]) -> list[T]:
         pass
 
     @abstractmethod
-    def measure(self) -> Result:
+    def aggregate(self, normalized_measures: list[T]) -> T:
         pass

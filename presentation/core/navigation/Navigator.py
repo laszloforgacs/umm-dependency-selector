@@ -1,4 +1,4 @@
-from presentation.core.NavigationController import NavigationController
+from presentation.core.navigation.NavigationController import NavigationController
 from presentation.util.Constants import QUALITY_MODEL_LIST_SCREEN, VIEWPOINT_LIST_SCREEN, VIEWPOINT_PREFERENCES_SCREEN, \
     EVALUATION_SCREEN
 
@@ -35,7 +35,8 @@ class Navigator:
                     selected_quality_model=kwargs['selected_quality_model'],
                     viewpoint=kwargs['viewpoint'],
                     characteristics=kwargs['characteristics'],
-                    repository_urls=kwargs['repository_urls']
+                    repository_urls=kwargs['repository_urls'],
+                    comparisons=kwargs['comparisons']
                 )
             )
 

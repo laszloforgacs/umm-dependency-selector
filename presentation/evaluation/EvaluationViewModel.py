@@ -1,4 +1,5 @@
 from presentation.core.AHPReportStateSubject import AHPReportStateSubject
+from presentation.core.navigation.SourceStateSubject import SourceStateSubject
 from presentation.evaluation.EvaluationStateSubject import EvaluationStateSubject
 
 
@@ -15,3 +16,23 @@ class EvaluationViewModel:
     @property
     def ahp_report_state_subject(self) -> AHPReportStateSubject:
         return self._shared_view_model.ahp_report_state_subject
+
+    @property
+    def source_state_subject(self) -> SourceStateSubject:
+        return self._shared_view_model.source_state_subject
+
+    async def fetch_repositories(self, urls: list[str]):
+        return await self._shared_view_model.fetch_repositories(urls)
+
+    async def create_topsis_matrix(
+            self,
+            repositories: list[str],
+            comparisons: list[str, dict],
+            viewpoint: 'Viewpoint',
+            characteristics: list['Characteristic']
+    ):
+        matrix = [
+            [] for _ in repositories
+        ]
+
+        print(matrix)

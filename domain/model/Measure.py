@@ -1,8 +1,11 @@
-from abc import ABC, ABCMeta, abstractmethod
+from abc import abstractmethod
 from enum import Enum
+from typing import Generic, TypeVar
 
-from domain.model.Result import Result
-from domain.model.components.Component import LeafComponent, CompositeComponent
+from domain.model.ABCGenericMeta import ABCGenericMeta
+from domain.model.Component import LeafComponent, CompositeComponent
+
+T = TypeVar('T')
 
 
 class MeasurementMethod(Enum):
@@ -10,7 +13,7 @@ class MeasurementMethod(Enum):
     MANUAL = 2
 
 
-class Measure(ABC):
+class Measure(Generic[T], metaclass=ABCGenericMeta):
     @abstractmethod
     def __init__(self):
         pass
@@ -35,8 +38,12 @@ class Measure(ABC):
     def measurement_method(self) -> MeasurementMethod:
         pass
 
+    @abstractmethod
+    def measure(self) -> T:
+        pass
 
-class BaseMeasure(Measure, LeafComponent, metaclass=ABCMeta):
+
+class BaseMeasure(Measure, LeafComponent, Generic[T], metaclass=ABCGenericMeta):
     def __init__(self, name: str, unit: str, scale: float, measurement_method: MeasurementMethod):
         self._name = name
         self._unit = unit
@@ -59,12 +66,8 @@ class BaseMeasure(Measure, LeafComponent, metaclass=ABCMeta):
     def measurement_method(self) -> MeasurementMethod:
         return self._measurement_method
 
-    @abstractmethod
-    def measure(self) -> Result:
-        pass
 
-
-class DerivedMeasure(Measure, CompositeComponent, metaclass=ABCMeta):
+class DerivedMeasure(Measure, CompositeComponent, Generic[T], metaclass=ABCGenericMeta):
     def __init__(self, name: str, unit: str, scale: float, measurement_method: MeasurementMethod,
                  children: dict[str, BaseMeasure]):
         self._name = name
@@ -91,6 +94,18 @@ class DerivedMeasure(Measure, CompositeComponent, metaclass=ABCMeta):
     def measurement_method(self) -> MeasurementMethod:
         return self._measurement_method
 
+    def measure(self) -> T:
+        measurements = [
+            child.measure() for child in self.children.values()
+        ]
+        normalized = self.normalize(measurements)
+        aggregated = self.aggregate(normalized)
+        return aggregated
+
     @abstractmethod
-    def measure(self) -> list[Result]:
+    def normalize(self, measurements: list[T]) -> list[T]:
+        pass
+
+    @abstractmethod
+    def aggregate(self, normalized_measures: list[T]) -> T:
         pass

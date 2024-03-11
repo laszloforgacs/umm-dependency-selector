@@ -1,10 +1,6 @@
 import asyncio
 
-from ahpy import ahpy
-
-from presentation.core.Dependencies import Dependencies
-from presentation.core.NavigationController import NavigationController
-from presentation.core.Navigator import Navigator
+from presentation.core.dependencies.Dependencies import Dependencies
 from presentation.util.Constants import QUALITY_MODEL_LIST_SCREEN
 
 

@@ -1,7 +1,6 @@
 import asyncio
 import json
 import os
-from copy import deepcopy
 from typing import Final
 
 import aiofiles
@@ -40,27 +39,13 @@ class QualityModelRepositoryImpl(QualityModelRepository):
         cyclomaticComplexity.add_component(linesOfCode)
         cyclomaticComplexity.add_component(numberOfComplexFunctions)
         numberOfStatements = NumberOfStatements()
-
-        resultCyclomaticComplexity = [
-            component.measure().value
-            for component in cyclomaticComplexity.children.values()
-        ]
-
-        resultNumberOfStatements = numberOfStatements.measure().value
-
-        # print(resultCyclomaticComplexity)
-        # print(resultNumberOfStatements)
-
         complexityOfSourceCode = ComplexityOfSourceCode()
         complexityOfSourceCode.add_component(cyclomaticComplexity)
         complexityOfSourceCode.add_component(numberOfStatements)
-        codeComplexity = complexityOfSourceCode.run().value
-        # print(codeComplexity)
 
         analyzability = Analyzability(children={
             complexityOfSourceCode.name: complexityOfSourceCode
         })
-        # print(analyzability.run().value)
 
         analyzability2 = Analyzability2(children={
             complexityOfSourceCode.name: complexityOfSourceCode
@@ -114,8 +99,6 @@ class QualityModelRepositoryImpl(QualityModelRepository):
             analyzability3.name: analyzability3,
             analyzability4.name: analyzability4
         })
-        # maintainability.add_component(analyzability)
-        # print(maintainability.run().value)
 
         maintainability2 = Maintainability2(children={
             analyzability5.name: analyzability5,
@@ -144,9 +127,6 @@ class QualityModelRepositoryImpl(QualityModelRepository):
             maintainability3.name: maintainability3,
             maintainability4.name: maintainability4
         })
-        # print(developer_viewpoint.run().value)
-        # print(developer_viewpoint.is_valid_preference_matrix)
-        # print(developer_viewpoint.preference_matrix)
 
         test_quality_model = TestQualityModel(
             children={
@@ -154,8 +134,6 @@ class QualityModelRepositoryImpl(QualityModelRepository):
             }
 
         )
-
-        tasks = []
 
         for viewpoint in test_quality_model.children.values():
             viewpoint.preference_matrix = await self._init_viewpoint_pref_matrix(
@@ -174,7 +152,6 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                     characteristic=characteristic
                 )
 
-        # await asyncio.gather(*tasks)
         await asyncio.sleep(5)
         return Success(
             [

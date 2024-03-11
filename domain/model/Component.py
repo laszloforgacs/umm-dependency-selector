@@ -38,18 +38,6 @@ class Component(ABC):
         """
         pass
 
-    def measure(self) -> list[Result]:
-        pass
-
-    def aggregate(self) -> list[Result]:
-        pass
-
-    def normalize(self) -> list[Result]:
-        pass
-
-    def run(self) -> Result:
-        pass
-
 
 class CompositeComponent(Component, metaclass=ABCMeta):
     @property
@@ -72,3 +60,6 @@ class LeafComponent(Component, metaclass=ABCMeta):
     @property
     def children(self) -> dict[str, 'Component'] | None:
         return None
+
+    def measure(self) -> Result:
+        pass

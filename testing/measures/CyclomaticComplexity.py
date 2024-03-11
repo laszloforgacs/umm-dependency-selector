@@ -1,28 +1,14 @@
-from domain.model.Result import Result, Success
-from domain.model.measurement.Measure import DerivedMeasure, MeasurementMethod
+from domain.model.Measure import DerivedMeasure, MeasurementMethod
 
 
-class CyclomaticComplexity(DerivedMeasure):
+class CyclomaticComplexity(DerivedMeasure[float]):
     def __init__(self):
         super().__init__("Cyclomatic Complexity", "unit", 1.0, MeasurementMethod.AUTOMATIC, {})
 
-    def run(self) -> Result:
-        measures = [result.value for result in self.measure()]
-        normalized = self.normalize(measures)
-        return Success(
-            value=self.aggregate(normalized)
-        )
-
-    def measure(self) -> list[Result]:
+    def normalize(self, measurements: list[float]) -> list[float]:
         return [
-            child.measure() for child in self.children.values()
+            measurement / sum(measurements) for measurement in measurements
         ]
 
-    def aggregate(self, normalizedResults: list[float]) -> float:
-        return sum(normalizedResults) / len(normalizedResults)
-
-    def normalize(self, measuredResults: list[float]) -> list[float]:
-        total = sum(measuredResults)
-        return [
-            result / total for result in measuredResults
-        ]
+    def aggregate(self, normalized_measures: list[float]) -> float:
+        return sum(normalized_measures) / len(normalized_measures)

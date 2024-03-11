@@ -1,7 +1,6 @@
-import asyncio
-from typing import Callable, Optional
+from typing import Optional
 
-from presentation.core.Navigator import Navigator
+from presentation.core.navigation.Navigator import Navigator
 from presentation.core.Screen import Screen
 from presentation.quality_model_list.QualityModelListStateObserver import QualityModelListStateObserver
 from presentation.quality_model_list.QualityModelListViewModel import QualityModelListViewModel

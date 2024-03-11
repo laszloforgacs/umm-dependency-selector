@@ -20,5 +20,9 @@ class Loading(EvaluationScreenState):
 class Error(EvaluationScreenState):
     message: str
 
+@dataclass
+class NavigateBack():
+    pass
 
-EvaluationState = AHPReport | Loading | Error
+
+EvaluationState = AHPReport | Loading | Error | NavigateBack

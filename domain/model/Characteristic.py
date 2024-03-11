@@ -1,15 +1,16 @@
 import itertools
-import math
-from abc import abstractmethod, ABCMeta
+from typing import Generic, TypeVar
 
+from domain.model.ABCGenericMeta import ABCGenericMeta
 from domain.model.MeasureableConcept import OSSAspect
-from domain.model.Result import Result
 from domain.model.SubCharacteristic import SubCharacteristic
-from domain.model.components.Component import CompositeComponent
+from domain.model.Component import CompositeComponent
 from presentation.viewpoint_preferences.ComponentPreferencesState import PrefMatrix
 
+T = TypeVar('T')
 
-class Characteristic(CompositeComponent, metaclass=ABCMeta):
+
+class Characteristic(CompositeComponent, Generic[T], metaclass=ABCGenericMeta):
     def __init__(self, name: str, children: dict[str, SubCharacteristic],
                  preference_matrix: PrefMatrix = {}):
         self._name = name
@@ -59,6 +60,7 @@ class Characteristic(CompositeComponent, metaclass=ABCMeta):
 
         return True
 
-    @abstractmethod
-    def run(self) -> Result:
-        pass
+    def measure(self) -> list[T]:
+        return [
+            child.measure() for child in self.children.values()
+        ]

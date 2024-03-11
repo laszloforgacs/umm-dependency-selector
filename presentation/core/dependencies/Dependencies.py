@@ -1,6 +1,7 @@
 from data.repository.QualityModelRepositoryImpl import QualityModelRepositoryImpl
-from presentation.core.NavigationController import NavigationController
-from presentation.core.Navigator import Navigator
+from data.repository.SourceRepositoryImpl import SourceRepositoryImpl
+from presentation.core.navigation.NavigationController import NavigationController
+from presentation.core.navigation.Navigator import Navigator
 from presentation.core.SharedViewModel import SharedViewModel
 from presentation.evaluation.EvaluationScreen import EvaluationScreen
 from presentation.evaluation.EvaluationViewModel import EvaluationViewModel
@@ -20,8 +21,10 @@ class Dependencies:
             dependencies=self
         )
         self.quality_model_repository = QualityModelRepositoryImpl()
+        self.source_repository = SourceRepositoryImpl()
         self.shared_view_model = SharedViewModel(
-            quality_model_repository=self.quality_model_repository
+            quality_model_repository=self.quality_model_repository,
+            source_repository=self.source_repository
         )
 
     def provide_quality_model_list_screen(self):
@@ -56,7 +59,8 @@ class Dependencies:
             selected_quality_model: str,
             viewpoint: 'Viewpoint',
             characteristics: list['Characteristic'],
-            repository_urls: list[str]
+            repository_urls: list[str],
+            comparisons: list[str, dict]
     ):
         return lambda: EvaluationScreen(
             navigator=self.navigator,
@@ -66,5 +70,6 @@ class Dependencies:
             selected_quality_model=selected_quality_model,
             viewpoint=viewpoint,
             characteristics=characteristics,
-            repository_urls=repository_urls
+            repository_urls=repository_urls,
+            comparisons=comparisons
         )

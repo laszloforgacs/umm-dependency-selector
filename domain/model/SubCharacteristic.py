@@ -1,12 +1,14 @@
-from abc import ABCMeta, abstractmethod
+from typing import Generic, TypeVar
 
+from domain.model.ABCGenericMeta import ABCGenericMeta
 from domain.model.MeasureableConcept import MeasurableConcept, OSSAspect
-from domain.model.Result import Result
-from domain.model.components.Component import CompositeComponent
+from domain.model.Component import CompositeComponent
+
+T = TypeVar('T')
 
 
-class SubCharacteristic(CompositeComponent, metaclass=ABCMeta):
-    def __init__(self, name: str, children: dict[str, MeasurableConcept]):
+class SubCharacteristic(CompositeComponent, Generic[T], metaclass=ABCGenericMeta):
+    def __init__(self, name: str, children: dict[str, MeasurableConcept[T]]):
         self._name = name
         for child in children.values():
             child.parent = self
@@ -27,6 +29,7 @@ class SubCharacteristic(CompositeComponent, metaclass=ABCMeta):
                 return aspects_found
         return aspects_found
 
-    @abstractmethod
-    def run(self) -> Result:
-        pass
+    def measure(self) -> list[T]:
+        return [
+            child.measure() for child in self.children.values()
+        ]

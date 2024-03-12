@@ -67,8 +67,8 @@ class BaseMeasure(Measure, LeafComponent, Generic[T], metaclass=ABCGenericMeta):
     def measurement_method(self) -> MeasurementMethod:
         return self._measurement_method
 
-    def measure(self, repository: str) -> T:
-        return self._visitor.measure(self, repository)
+    async def measure(self, repository: str) -> T:
+        return await self._visitor.measure(self, repository)
 
     def accept_visitor(self, visitor: 'BaseMeasureVisitor'):
         self._visitor = visitor
@@ -103,9 +103,9 @@ class DerivedMeasure(Measure, CompositeComponent, Generic[T], metaclass=ABCGener
     def measurement_method(self) -> MeasurementMethod:
         return self._measurement_method
 
-    def measure(self, repository: str) -> T:
+    async def measure(self, repository: str) -> T:
         measurements = [
-            child.measure(repository) for child in self.children.values()
+            await child.measure(repository) for child in self.children.values()
         ]
         normalized = self.normalize(measurements)
         aggregated = self.aggregate(normalized)

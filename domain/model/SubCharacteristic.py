@@ -29,7 +29,7 @@ class SubCharacteristic(CompositeComponent, Generic[T], metaclass=ABCGenericMeta
                 return aspects_found
         return aspects_found
 
-    def measure(self, repository: str) -> list[T]:
+    async def measure(self, repository: str) -> list[T]:
         return [
-            child.measure(repository) for child in self.children.values()
+            await child.measure(repository) for child in self.children.values()
         ]

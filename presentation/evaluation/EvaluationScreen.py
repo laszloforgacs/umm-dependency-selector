@@ -57,7 +57,7 @@ class EvaluationScreen(Screen, Observer):
                 characteristics=self._characteristics
             )
         elif isinstance(state, RepositoryLoading):
-            print("Fetching repositories...")
+            print("Fetching repositories... It might take a while.")
         elif isinstance(state, RepositoryError):
             print("Error fetching repositories: " + state.message)
         elif isinstance(state, AHPReportState):

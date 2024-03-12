@@ -60,7 +60,7 @@ class Characteristic(CompositeComponent, Generic[T], metaclass=ABCGenericMeta):
 
         return True
 
-    def measure(self, repository: str) -> list[T]:
+    async def measure(self, repository: str) -> list[T]:
         return [
-            child.measure(repository) for child in self.children.values()
+            await child.measure(repository) for child in self.children.values()
         ]

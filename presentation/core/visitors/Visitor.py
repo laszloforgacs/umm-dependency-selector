@@ -35,5 +35,5 @@ class BaseMeasureVisitor(Visitor[T]):
         pass
 
     @abstractmethod
-    def measure(self, measure: 'BaseMeasure', repository: str) -> T:
+    async def measure(self, measure: 'BaseMeasure', repository: str) -> T:
         pass

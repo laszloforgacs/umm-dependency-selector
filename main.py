@@ -12,11 +12,6 @@ async def main():
 
     tasks = [t for t in asyncio.all_tasks() if t is not asyncio.current_task()]
     await asyncio.gather(*tasks)
-    # preference_matrix_screen = PreferenceMatrixScreen(
-    #    view_model=PreferenceMatrixViewModel(shared_view_model=shared_view_model),
-    #    on_navigate_back=lambda: print("Navigate back")
-    # )
-    # preference_matrix_screen.on_created()
 
 
 if __name__ == "__main__":

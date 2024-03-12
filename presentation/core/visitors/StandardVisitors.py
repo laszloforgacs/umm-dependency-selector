@@ -1,3 +1,5 @@
+import asyncio
+
 from presentation.core.visitors.Visitor import NormalizeVisitor, AggregateVisitor, BaseMeasureVisitor
 
 
@@ -13,5 +15,6 @@ class AverageAggregateVisitor(AggregateVisitor[float]):
 
 
 class MockMeasureVisitor(BaseMeasureVisitor[float]):
-    def measure(self, measure: 'BaseMeasure', repository: str) -> float:
+    async def measure(self, measure: 'BaseMeasure', repository: str) -> float:
+        await asyncio.sleep(1)
         return 7438.0

@@ -1,3 +1,5 @@
+import itertools
+
 from presentation.core.AHPReportStateSubject import AHPReportStateSubject
 from presentation.core.navigation.SourceStateSubject import SourceStateSubject
 from presentation.evaluation.EvaluationStateSubject import EvaluationStateSubject
@@ -34,5 +36,12 @@ class EvaluationViewModel:
         matrix = [
             [] for _ in repositories
         ]
+
+        for i, repo in enumerate(repositories):
+            measures = [
+                await characteristic.measure(repo)
+                for characteristic in characteristics
+            ]
+            matrix[i] = list(itertools.chain.from_iterable(measures))
 
         print(matrix)

@@ -2,6 +2,7 @@ import itertools
 
 from presentation.core.AHPReportStateSubject import AHPReportStateSubject
 from presentation.core.navigation.SourceStateSubject import SourceStateSubject
+from presentation.evaluation.EvaluationScreenState import Error as EvaluationError
 from presentation.evaluation.EvaluationStateSubject import EvaluationStateSubject
 
 
@@ -33,15 +34,22 @@ class EvaluationViewModel:
             viewpoint: 'Viewpoint',
             characteristics: list['Characteristic']
     ):
-        matrix = [
-            [] for _ in repositories
-        ]
-
-        for i, repo in enumerate(repositories):
-            measures = [
-                await characteristic.measure(repo)
-                for characteristic in characteristics
+        try:
+            matrix = [
+                [] for _ in repositories
             ]
-            matrix[i] = list(itertools.chain.from_iterable(measures))
 
-        print(matrix)
+            for i, repo in enumerate(repositories):
+                measures = [
+                    await characteristic.measure(repo)
+                    for characteristic in characteristics
+                ]
+                matrix[i] = list(itertools.chain.from_iterable(measures))
+
+            print(matrix)
+        except Exception as e:
+            await self.evaluation_state_subject.set_state(
+                state=EvaluationError(
+                    message=str(e)
+                )
+            )

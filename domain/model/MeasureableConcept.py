@@ -21,7 +21,8 @@ class OSSAspect(Enum):
 
 class MeasurableConcept(CompositeComponent, Generic[T], metaclass=ABCGenericMeta):
     def __init__(self, name: str, children: dict[str, Measure], impact: Impact, entity: str, information_need: str,
-                 quality_requirement: str, relevant_oss_aspect: OSSAspect = OSSAspect.CODE):
+                 quality_requirement: str, relevant_oss_aspect: OSSAspect = OSSAspect.CODE, normalize_visitor=None,
+                 aggregate_visitor=None):
         self._name = name
         for child in children.values():
             child.parent = self
@@ -31,8 +32,8 @@ class MeasurableConcept(CompositeComponent, Generic[T], metaclass=ABCGenericMeta
         self._relevant_oss_aspect = relevant_oss_aspect
         self._information_need = information_need
         self._quality_requirement = quality_requirement
-        self._normalize_visitor = None
-        self._aggregate_visitor = None
+        self.normalize_visitor = normalize_visitor
+        self.aggregate_visitor = aggregate_visitor
 
     @property
     def impact(self) -> Impact:
@@ -56,18 +57,18 @@ class MeasurableConcept(CompositeComponent, Generic[T], metaclass=ABCGenericMeta
 
     async def measure(self, repository: str) -> T:
         measurements = [
-            (child, await child.measure(repository)) for child in self.children.values()
+            await child.measure(repository) for child in self.children.values()
         ]
         normalized = self.normalize(measurements)
         aggregated = self.aggregate(normalized)
         return aggregated
 
-    def normalize(self, measurements: list[tuple['Measure', T]]) -> list[T]:
-        return self._normalize_visitor.normalize(measurements)
+    def normalize(self, measurements: list[T]) -> list[T]:
+        return self.normalize_visitor.normalize(measurements)
 
-    def aggregate(self, normalized_measures: list[tuple['Measure', T]]) -> T:
-        return self._aggregate_visitor.aggregate(normalized_measures)
+    def aggregate(self, normalized_measures: list[T]) -> T:
+        return self.aggregate_visitor.aggregate(normalized_measures)
 
     def accept_visitors(self, normalize_visitor: 'NormalizeVisitor', aggregate_visitor: 'AggregateVisitor'):
-        self._normalize_visitor = normalize_visitor
-        self._aggregate_visitor = aggregate_visitor
+        self.normalize_visitor = normalize_visitor
+        self.aggregate_visitor = aggregate_visitor

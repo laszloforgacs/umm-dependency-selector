@@ -5,7 +5,7 @@ from domain.model.Viewpoint import Viewpoint
 
 @dataclass
 class AHPReportState:
-    comparisons: list[str, dict]
+    comparisons: dict[str, 'Compare']
     viewpoint: 'Viewpoint'
     characteristics: list['Characteristic']
 

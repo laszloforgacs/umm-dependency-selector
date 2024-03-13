@@ -29,6 +29,11 @@ class SubCharacteristic(CompositeComponent, Generic[T], metaclass=ABCGenericMeta
                 return aspects_found
         return aspects_found
 
+    def get_children_by_aspect(self, aspect: str) -> list[MeasurableConcept[T]]:
+        return [
+            child for child in self.children.values() if child.relevant_oss_aspect.name == aspect
+        ]
+
     async def measure(self, repository: str) -> list[T]:
         return [
             await child.measure(repository) for child in self.children.values()

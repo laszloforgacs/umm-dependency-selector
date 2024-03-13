@@ -94,22 +94,25 @@ class ViewpointPreferencesScreen(Screen, Observer):
                     url_input = await aioconsole.ainput("Enter a list of repository Urls separated by space: ")
                     urls = url_input.split(" ")
                     invalid_urls = []
-                    for url in urls:
-                        if not validators.url(url):
-                            invalid_urls.append(url)
-                    if len(invalid_urls) > 0:
-                        print(f"Invalid urls: {invalid_urls}")
-                        print("Please try again")
+                    if len(urls) < 2:
+                        print("Please enter at least two urls.")
                     else:
-                        await self._navigator.navigate_to(
-                            destination=EVALUATION_SCREEN,
-                            selected_quality_model=self._selected_quality_model,
-                            viewpoint=state.viewpoint,
-                            characteristics=state.characteristics,
-                            repository_urls=urls,
-                            comparisons=state.comparisons
-                        )
-                        break
+                        for url in urls:
+                            if not validators.url(url):
+                                invalid_urls.append(url)
+                        if len(invalid_urls) > 0:
+                            print(f"Invalid urls: {invalid_urls}")
+                            print("Please try again")
+                        else:
+                            await self._navigator.navigate_to(
+                                destination=EVALUATION_SCREEN,
+                                selected_quality_model=self._selected_quality_model,
+                                viewpoint=state.viewpoint,
+                                characteristics=state.characteristics,
+                                repository_urls=urls,
+                                comparisons=state.comparisons
+                            )
+                            break
                 except ValueError:
                     print(ERROR_INVALID_INPUT)
                     print("Please enter a valid value.")

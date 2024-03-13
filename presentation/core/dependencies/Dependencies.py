@@ -69,7 +69,7 @@ class Dependencies:
             viewpoint: 'Viewpoint',
             characteristics: list['Characteristic'],
             repository_urls: list[str],
-            comparisons: list[str, dict]
+            comparisons: dict[str, 'Compare']
     ):
         return lambda: EvaluationScreen(
             navigator=self.navigator,

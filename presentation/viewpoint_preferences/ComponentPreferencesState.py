@@ -53,7 +53,7 @@ class Refetch(ComponentPreferencesState):
 
 @dataclass
 class UrlInput(ComponentPreferencesState):
-    comparisons: list[str, dict]
+    comparisons: dict[str, 'Compare']
     viewpoint: 'Viewpoint'
     characteristics: list['Characteristic']
 

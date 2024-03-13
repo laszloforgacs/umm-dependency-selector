@@ -17,7 +17,7 @@ class NormalizeVisitor(Visitor[T]):
         pass
 
     @abstractmethod
-    def normalize(self, measurements: list[tuple['Measure', T]]) -> list[T]:
+    def normalize(self, measurements: list[T]) -> list[T]:
         pass
 
 
@@ -26,7 +26,7 @@ class AggregateVisitor(Visitor[T]):
         pass
 
     @abstractmethod
-    def aggregate(self, normalized_measures: list[tuple['Measure', T]]) -> T:
+    def aggregate(self, normalized_measures: list[T]) -> T:
         pass
 
 

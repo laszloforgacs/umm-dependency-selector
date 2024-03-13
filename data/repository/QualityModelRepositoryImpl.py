@@ -15,7 +15,7 @@ from presentation.core.visitors.VisitorFactory import MeasureVisitorFactory, Der
 from presentation.util.Util import convert_tuple_keys_to_string, convert_string_keys_to_tuple
 from presentation.viewpoint_preferences.ComponentPreferencesState import PrefMatrix
 from testing.characteristic.Maintainability import Maintainability, Maintainability2, Maintainability3, Maintainability4
-from testing.measurableconcepts.ComplexityOfSourceCode import ComplexityOfSourceCode
+from testing.measurableconcepts.ComplexityOfSourceCode import ComplexityOfSourceCode, ComplexityOfSourceCode2
 from testing.measures.CyclomaticComplexity import CyclomaticComplexity
 from testing.measures.LinesOfCode import LinesOfCode
 from testing.measures.NumberOfComplexFunctions import NumberOfComplexFunctions
@@ -58,59 +58,230 @@ class QualityModelRepositoryImpl(QualityModelRepository):
             complexityOfSourceCode = self._measurable_concept_visitor_factory.instantiate_with_visitor(
                 ComplexityOfSourceCode,
                 children={
-                    linesOfCode.name: linesOfCode,
-                    numberOfComplexFunctions.name: numberOfComplexFunctions
+                    cyclomaticComplexity.name: cyclomaticComplexity,
+                    numberOfStatements.name: numberOfStatements
                 }
             )
 
-            analyzability = Analyzability(children={
-                complexityOfSourceCode.name: complexityOfSourceCode
-            })
+            complexityOfSourceCode2 = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                ComplexityOfSourceCode2,
+                children={
+                    cyclomaticComplexity.name: cyclomaticComplexity.copy(
+                        children={
+                            linesOfCode.name: linesOfCode.copy(),
+                            numberOfComplexFunctions.name: numberOfComplexFunctions.copy()
+                        }
+                    ),
+                    numberOfStatements.name: numberOfStatements.copy()
+                }
+            )
+
+            analyzability = Analyzability(
+                children={
+                    complexityOfSourceCode.name: complexityOfSourceCode.copy(
+                        children={
+                            cyclomaticComplexity.name: cyclomaticComplexity.copy(
+                                children={
+                                    linesOfCode.name: linesOfCode.copy(),
+                                    numberOfComplexFunctions.name: numberOfComplexFunctions.copy()
+                                }
+                            ),
+                            numberOfStatements.name: numberOfStatements.copy()
+                        }
+                    )
+                }
+            )
 
             analyzability2 = Analyzability2(children={
-                complexityOfSourceCode.name: complexityOfSourceCode
+                complexityOfSourceCode.name: complexityOfSourceCode.copy(
+                    children={
+                        cyclomaticComplexity.name: cyclomaticComplexity.copy(
+                            children={
+                                linesOfCode.name: linesOfCode.copy(),
+                                numberOfComplexFunctions.name: numberOfComplexFunctions.copy()
+                            }
+                        ),
+                        numberOfStatements.name: numberOfStatements.copy()
+                    }
+                )
             })
             analyzability3 = Analyzability3(children={
-                complexityOfSourceCode.name: complexityOfSourceCode
+                complexityOfSourceCode.name: complexityOfSourceCode.copy(
+                    children={
+                        cyclomaticComplexity.name: cyclomaticComplexity.copy(
+                            children={
+                                linesOfCode.name: linesOfCode.copy(),
+                                numberOfComplexFunctions.name: numberOfComplexFunctions.copy()
+                            }
+                        ),
+                        numberOfStatements.name: numberOfStatements.copy()
+                    }
+                )
             })
             analyzability4 = Analyzability4(children={
-                complexityOfSourceCode.name: complexityOfSourceCode
+                complexityOfSourceCode.name: complexityOfSourceCode.copy(
+                    children={
+                        cyclomaticComplexity.name: cyclomaticComplexity.copy(
+                            children={
+                                linesOfCode.name: linesOfCode.copy(),
+                                numberOfComplexFunctions.name: numberOfComplexFunctions.copy()
+                            }
+                        ),
+                        numberOfStatements.name: numberOfStatements.copy()
+                    }
+                )
             })
             analyzability5 = Analyzability5(children={
-                complexityOfSourceCode.name: complexityOfSourceCode
+                complexityOfSourceCode.name: complexityOfSourceCode.copy(
+                    children={
+                        cyclomaticComplexity.name: cyclomaticComplexity.copy(
+                            children={
+                                linesOfCode.name: linesOfCode.copy(),
+                                numberOfComplexFunctions.name: numberOfComplexFunctions.copy()
+                            }
+                        ),
+                        numberOfStatements.name: numberOfStatements.copy()
+                    }
+                )
             })
             analyzability6 = Analyzability6(children={
-                complexityOfSourceCode.name: complexityOfSourceCode
+                complexityOfSourceCode.name: complexityOfSourceCode.copy(
+                    children={
+                        cyclomaticComplexity.name: cyclomaticComplexity.copy(
+                            children={
+                                linesOfCode.name: linesOfCode.copy(),
+                                numberOfComplexFunctions.name: numberOfComplexFunctions.copy()
+                            }
+                        ),
+                        numberOfStatements.name: numberOfStatements.copy()
+                    }
+                )
             })
             analyzability7 = Analyzability7(children={
-                complexityOfSourceCode.name: complexityOfSourceCode
+                complexityOfSourceCode.name: complexityOfSourceCode.copy(
+                    children={
+                        cyclomaticComplexity.name: cyclomaticComplexity.copy(
+                            children={
+                                linesOfCode.name: linesOfCode.copy(),
+                                numberOfComplexFunctions.name: numberOfComplexFunctions.copy()
+                            }
+                        ),
+                        numberOfStatements.name: numberOfStatements.copy()
+                    }
+                )
             })
             analyzability8 = Analyzability8(children={
-                complexityOfSourceCode.name: complexityOfSourceCode
+                complexityOfSourceCode.name: complexityOfSourceCode.copy(
+                    children={
+                        cyclomaticComplexity.name: cyclomaticComplexity.copy(
+                            children={
+                                linesOfCode.name: linesOfCode.copy(),
+                                numberOfComplexFunctions.name: numberOfComplexFunctions.copy()
+                            }
+                        ),
+                        numberOfStatements.name: numberOfStatements.copy()
+                    }
+                )
             })
             analyzability9 = Analyzability9(children={
-                complexityOfSourceCode.name: complexityOfSourceCode
+                complexityOfSourceCode.name: complexityOfSourceCode.copy(
+                    children={
+                        cyclomaticComplexity.name: cyclomaticComplexity.copy(
+                            children={
+                                linesOfCode.name: linesOfCode.copy(),
+                                numberOfComplexFunctions.name: numberOfComplexFunctions.copy()
+                            }
+                        ),
+                        numberOfStatements.name: numberOfStatements.copy()
+                    }
+                )
             })
             analyzability10 = Analyzability10(children={
-                complexityOfSourceCode.name: complexityOfSourceCode
+                complexityOfSourceCode.name: complexityOfSourceCode.copy(
+                    children={
+                        cyclomaticComplexity.name: cyclomaticComplexity.copy(
+                            children={
+                                linesOfCode.name: linesOfCode.copy(),
+                                numberOfComplexFunctions.name: numberOfComplexFunctions.copy()
+                            }
+                        ),
+                        numberOfStatements.name: numberOfStatements.copy()
+                    }
+                )
             })
             analyzability11 = Analyzability11(children={
-                complexityOfSourceCode.name: complexityOfSourceCode
+                complexityOfSourceCode.name: complexityOfSourceCode.copy(
+                    children={
+                        cyclomaticComplexity.name: cyclomaticComplexity,
+                        numberOfStatements.name: numberOfStatements.copy()
+                    }
+                )
             })
             analyzability12 = Analyzability12(children={
-                complexityOfSourceCode.name: complexityOfSourceCode
+                complexityOfSourceCode.name: complexityOfSourceCode.copy(
+                    children={
+                        cyclomaticComplexity.name: cyclomaticComplexity.copy(
+                            children={
+                                linesOfCode.name: linesOfCode.copy(),
+                                numberOfComplexFunctions.name: numberOfComplexFunctions.copy()
+                            }
+                        ),
+                        numberOfStatements.name: numberOfStatements.copy()
+                    }
+                )
             })
             analyzability13 = Analyzability13(children={
-                complexityOfSourceCode.name: complexityOfSourceCode
+                complexityOfSourceCode.name: complexityOfSourceCode.copy(
+                    children={
+                        cyclomaticComplexity.name: cyclomaticComplexity.copy(
+                            children={
+                                linesOfCode.name: linesOfCode.copy(),
+                                numberOfComplexFunctions.name: numberOfComplexFunctions.copy()
+                            }
+                        ),
+                        numberOfStatements.name: numberOfStatements.copy()
+                    }
+                )
             })
             analyzability14 = Analyzability14(children={
-                complexityOfSourceCode.name: complexityOfSourceCode
+                complexityOfSourceCode.name: complexityOfSourceCode.copy(
+                    children={
+                        cyclomaticComplexity.name: cyclomaticComplexity.copy(
+                            children={
+                                linesOfCode.name: linesOfCode.copy(),
+                                numberOfComplexFunctions.name: numberOfComplexFunctions.copy()
+                            }
+                        ),
+                        numberOfStatements.name: numberOfStatements.copy()
+                    }
+                )
             })
             analyzability15 = Analyzability15(children={
-                complexityOfSourceCode.name: complexityOfSourceCode
+                complexityOfSourceCode.name: complexityOfSourceCode.copy(
+                    children={
+                        cyclomaticComplexity.name: cyclomaticComplexity.copy(
+                            children={
+                                linesOfCode.name: linesOfCode.copy(),
+                                numberOfComplexFunctions.name: numberOfComplexFunctions.copy()
+                            }
+                        ),
+                        numberOfStatements.name: numberOfStatements.copy()
+                    }
+                )
             })
             analyzability16 = Analyzability16(children={
-                complexityOfSourceCode.name: complexityOfSourceCode
+                complexityOfSourceCode.name: complexityOfSourceCode.copy(
+                    children={
+                        cyclomaticComplexity.name: cyclomaticComplexity.copy(
+                            children={
+                                linesOfCode.name: linesOfCode.copy(),
+                                numberOfComplexFunctions.name: numberOfComplexFunctions.copy()
+                            }
+                        ),
+                        numberOfStatements.name: numberOfStatements.copy()
+                    }
+                ),
+                complexityOfSourceCode2.name: complexityOfSourceCode2
             })
 
             maintainability = Maintainability(children={
@@ -172,7 +343,7 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                         characteristic=characteristic
                     )
 
-            await asyncio.sleep(5)
+            await asyncio.sleep(1)
             return Success(
                 [
                     test_quality_model

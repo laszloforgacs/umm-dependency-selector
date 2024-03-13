@@ -20,7 +20,7 @@ class EvaluationScreen(Screen, Observer):
             viewpoint: Viewpoint,
             characteristics: list[Characteristic],
             repository_urls: list[str],
-            comparisons: list[str, dict]
+            comparisons: dict[str, 'Compare']
     ):
         self._navigator = navigator
         self._view_model = view_model

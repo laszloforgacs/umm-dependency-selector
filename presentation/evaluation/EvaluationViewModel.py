@@ -1,5 +1,12 @@
 import itertools
+from pprint import pprint
 
+import skcriteria
+from skcriteria.agg import similarity
+from skcriteria.pipeline import mkpipe
+from skcriteria.preprocessing import invert_objectives, scalers
+
+from domain.model.MeasureableConcept import OSSAspect, Impact
 from presentation.core.AHPReportStateSubject import AHPReportStateSubject
 from presentation.core.navigation.SourceStateSubject import SourceStateSubject
 from presentation.evaluation.EvaluationScreenState import Error as EvaluationError
@@ -30,23 +37,68 @@ class EvaluationViewModel:
     async def create_topsis_matrix(
             self,
             repositories: list[str],
-            comparisons: list[str, dict],
+            comparisons: dict[str, 'Compare'],
             viewpoint: 'Viewpoint',
             characteristics: list['Characteristic']
     ):
         try:
+            aspects = [aspect.name for aspect in OSSAspect]
+            top_comparison = comparisons[viewpoint.name]
             matrix = [
                 [] for _ in repositories
             ]
 
-            for i, repo in enumerate(repositories):
-                measures = [
-                    await characteristic.measure(repo)
-                    for characteristic in characteristics
-                ]
-                matrix[i] = list(itertools.chain.from_iterable(measures))
+            measurable_concepts = []
+            weights = []
+            impacts = []
+            criteria = []
 
-            print(matrix)
+            for characteristic in characteristics:
+                for child in characteristic.children.values():
+                    for aspect in aspects:
+                        mcs = list(itertools.chain.from_iterable([
+                            child.get_children_by_aspect(aspect)
+                        ]))
+                        measurable_concepts = measurable_concepts + mcs
+
+            for i, repo in enumerate(repositories):
+                for mc in measurable_concepts:
+                    result = await mc.measure(repo)
+                    matrix[i].append(result)
+
+            for mc in measurable_concepts:
+                if mc.impact == Impact.POSITIVE:
+                    impacts.append(max)
+                else:
+                    impacts.append(min)
+
+                weight = top_comparison.target_weights[mc.parent.name] * top_comparison.global_weights[
+                    mc.relevant_oss_aspect.name
+                ]
+                weights.append(weight)
+                criteria.append(f"{mc.name} - {mc.relevant_oss_aspect.name}")
+
+            dm = skcriteria.mkdm(
+                matrix=matrix,
+                objectives=impacts,
+                weights=weights,
+                alternatives=repositories,
+                criteria=criteria
+            )
+
+            pipe = mkpipe(
+                invert_objectives.NegateMinimize(),
+                scalers.VectorScaler(target="matrix"),
+                scalers.SumScaler(target="weights"),
+                similarity.TOPSIS()
+            )
+            #pprint(dm.matrix)
+            rankings = pipe.evaluate(dm)
+            pprint(rankings)
+            #print(dir(rankings))
+            #print(rankings.rank_)
+            #print(rankings.alternatives)
+            #print(rankings.values)
         except Exception as e:
             await self.evaluation_state_subject.set_state(
                 state=EvaluationError(

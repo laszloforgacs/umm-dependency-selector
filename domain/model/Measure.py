@@ -44,12 +44,12 @@ class Measure(Generic[T], metaclass=ABCGenericMeta):
 
 
 class BaseMeasure(Measure, LeafComponent, Generic[T], metaclass=ABCGenericMeta):
-    def __init__(self, name: str, unit: str, scale: float, measurement_method: MeasurementMethod):
+    def __init__(self, name: str, unit: str, scale: float, measurement_method: MeasurementMethod, visitor=None):
         self._name = name
         self._unit = unit
         self._scale = scale
         self._measurement_method = measurement_method
-        self._visitor = None
+        self.visitor = visitor
 
     @property
     def name(self) -> str:
@@ -68,15 +68,15 @@ class BaseMeasure(Measure, LeafComponent, Generic[T], metaclass=ABCGenericMeta):
         return self._measurement_method
 
     async def measure(self, repository: str) -> T:
-        return await self._visitor.measure(self, repository)
+        return await self.visitor.measure(self, repository)
 
     def accept_visitor(self, visitor: 'BaseMeasureVisitor'):
-        self._visitor = visitor
+        self.visitor = visitor
 
 
 class DerivedMeasure(Measure, CompositeComponent, Generic[T], metaclass=ABCGenericMeta):
     def __init__(self, name: str, unit: str, scale: float, measurement_method: MeasurementMethod,
-                 children: dict[str, BaseMeasure]):
+                 children: dict[str, BaseMeasure], normalize_visitor=None, aggregate_visitor=None):
         self._name = name
         self._unit = unit
         self._scale = scale
@@ -84,8 +84,8 @@ class DerivedMeasure(Measure, CompositeComponent, Generic[T], metaclass=ABCGener
         for child in children.values():
             child.parent = self
         self._children = children
-        self._normalize_visitor = None
-        self._aggregate_visitor = None
+        self.normalize_visitor = normalize_visitor
+        self.aggregate_visitor = aggregate_visitor
 
     @property
     def name(self) -> str:
@@ -105,18 +105,18 @@ class DerivedMeasure(Measure, CompositeComponent, Generic[T], metaclass=ABCGener
 
     async def measure(self, repository: str) -> T:
         measurements = [
-            (child, await child.measure(repository)) for child in self.children.values()
+            await child.measure(repository) for child in self.children.values()
         ]
         normalized = self.normalize(measurements)
         aggregated = self.aggregate(normalized)
         return aggregated
 
-    def normalize(self, measurements: list[tuple['Measure', T]]) -> list[T]:
-        return self._normalize_visitor.normalize(measurements)
+    def normalize(self, measurements: list[T]) -> list[T]:
+        return self.normalize_visitor.normalize(measurements)
 
-    def aggregate(self, normalized_measures: list[tuple['Measure', T]]) -> T:
-        return self._aggregate_visitor.aggregate(normalized_measures)
+    def aggregate(self, normalized_measures: list[T]) -> T:
+        return self.aggregate_visitor.aggregate(normalized_measures)
 
     def accept_visitors(self, normalize_visitor: 'NormalizeVisitor', aggregate_visitor: 'AggregateVisitor'):
-        self._normalize_visitor = normalize_visitor
-        self._aggregate_visitor = aggregate_visitor
+        self.normalize_visitor = normalize_visitor
+        self.aggregate_visitor = aggregate_visitor

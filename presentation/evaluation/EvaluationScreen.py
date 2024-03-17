@@ -36,6 +36,7 @@ class EvaluationScreen(Screen, Observer):
 
     def on_destroy(self):
         self.dispose_observers()
+        self._view_model.dispose()
 
     def observe_subjects(self):
         self._view_model.evaluation_state_subject.attach(self)

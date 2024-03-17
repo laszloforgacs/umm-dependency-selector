@@ -124,3 +124,6 @@ class SharedViewModel:
             selected_viewpoint=selected_viewpoint,
             pref_matrix=new_oss_aspect_pref_matrix
         )
+
+    def dispose(self):
+        self._source_repository.dispose()

@@ -1,3 +1,5 @@
+import os
+
 from data.repository.QualityModelRepositoryImpl import QualityModelRepositoryImpl
 from data.repository.SourceRepositoryImpl import SourceRepositoryImpl
 from presentation.core.navigation.NavigationController import NavigationController
@@ -30,7 +32,9 @@ class Dependencies:
             derived_measure_visitor_factory=self.derived_measure_visitor_factory,
             measurable_concept_visitor_factory=self.measurable_concept_visitor_factory
         )
-        self.source_repository = SourceRepositoryImpl()
+        self.source_repository = SourceRepositoryImpl(
+            github_token=os.getenv('UMM_DEPENDENCY_SELECTOR_GITHUB_TOKEN')
+        )
         self.shared_view_model = SharedViewModel(
             quality_model_repository=self.quality_model_repository,
             source_repository=self.source_repository

@@ -1,5 +1,7 @@
 from dataclasses import dataclass
 
+from github.Repository import Repository
+
 
 @dataclass
 class SourceState:
@@ -26,7 +28,7 @@ class Error(SourceState):
 
 @dataclass
 class Loaded(SourceState):
-    repositories: list[str]
+    repositories: list[Repository]
 
     def copy(self, **kwargs):
         return Loaded()

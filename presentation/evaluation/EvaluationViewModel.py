@@ -2,6 +2,7 @@ import itertools
 from pprint import pprint
 
 import skcriteria
+from github.Repository import Repository
 from skcriteria.agg import similarity
 from skcriteria.pipeline import mkpipe
 from skcriteria.preprocessing import invert_objectives, scalers
@@ -36,7 +37,7 @@ class EvaluationViewModel:
 
     async def create_topsis_matrix(
             self,
-            repositories: list[str],
+            repositories: list[Repository],
             comparisons: dict[str, 'Compare'],
             viewpoint: 'Viewpoint',
             characteristics: list['Characteristic']
@@ -82,7 +83,7 @@ class EvaluationViewModel:
                 matrix=matrix,
                 objectives=impacts,
                 weights=weights,
-                alternatives=repositories,
+                alternatives=[repo.full_name for repo in repositories],
                 criteria=criteria
             )
 
@@ -105,3 +106,6 @@ class EvaluationViewModel:
                     message=str(e)
                 )
             )
+
+    def dispose(self):
+        self._shared_view_model.dispose()

@@ -1,10 +1,13 @@
 import asyncio
 
+from dotenv import load_dotenv
+
 from presentation.core.dependencies.Dependencies import Dependencies
 from presentation.util.Constants import QUALITY_MODEL_LIST_SCREEN
 
 
 async def main():
+    load_dotenv()
     dependencies = Dependencies()
 
     asyncio.create_task(dependencies.shared_view_model.fetch_quality_models())

@@ -31,7 +31,9 @@ class Loaded(SourceState):
     repositories: list[Repository]
 
     def copy(self, **kwargs):
-        return Loaded()
+        return Loaded(
+            repositories=kwargs.get('repositories', self.repositories)
+        )
 
 
 RepositoryState = Loaded | Loading | Error

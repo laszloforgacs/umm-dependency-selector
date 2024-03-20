@@ -323,7 +323,6 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 children={
                     developer_viewpoint.name: developer_viewpoint
                 }
-
             )
 
             for viewpoint in test_quality_model.children.values():

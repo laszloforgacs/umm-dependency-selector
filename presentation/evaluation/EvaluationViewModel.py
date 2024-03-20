@@ -33,7 +33,7 @@ class EvaluationViewModel:
         return self._shared_view_model.source_state_subject
 
     async def fetch_repositories(self, urls: list[str]):
-        return await self._shared_view_model.fetch_repositories(urls)
+        await self._shared_view_model.fetch_repositories(urls)
 
     async def create_topsis_matrix(
             self,

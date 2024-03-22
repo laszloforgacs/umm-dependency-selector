@@ -34,6 +34,6 @@ class PreferenceMatrixScreen(Screen):
                     preferences_shown_to_user=self._view_model.preferences_shown
                 ))
 
-    def on_destroy(self):
+    async def on_destroy(self):
         self.dispose_observers()
         self._preference_matrix_screen_state_observer = None

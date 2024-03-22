@@ -8,7 +8,8 @@ WORKDIR /usr/src/app
 COPY . .
 
 # Install Poetry
-RUN pip install --upgrade pip && \
+RUN apt-get update && apt-get install -y git && \
+    pip install --upgrade pip && \
     pip install poetry==1.8.2
 
 # Configure Poetry:

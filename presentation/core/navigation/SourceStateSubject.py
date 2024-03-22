@@ -1,3 +1,5 @@
+import asyncio
+
 from presentation.core.SourceState import RepositoryState
 from presentation.util.Subject import Subject
 
@@ -18,8 +20,14 @@ class SourceStateSubject(Subject):
             self._observers.remove(observer)
 
     async def notify(self):
+        tasks = []
         for observer in self._observers:
-            await observer.update(self)
+            tasks.append(
+                asyncio.create_task(
+                    observer.update(self)
+                )
+            )
+        await asyncio.gather(*tasks)
 
     async def set_state(self, state: RepositoryState):
         self._state = state

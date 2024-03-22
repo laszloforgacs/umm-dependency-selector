@@ -35,9 +35,9 @@ class EvaluationScreen(Screen, Observer):
         self.observe_subjects()
         await self._view_model.fetch_repositories(self._repository_urls)
 
-    def on_destroy(self):
+    async def on_destroy(self):
         self.dispose_observers()
-        self._view_model.dispose()
+        await self._view_model.dispose()
 
     def observe_subjects(self):
         self._view_model.evaluation_state_subject.attach(self)

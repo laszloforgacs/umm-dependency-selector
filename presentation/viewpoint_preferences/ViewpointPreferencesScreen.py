@@ -28,7 +28,7 @@ class ViewpointPreferencesScreen(Screen, Observer):
             selected_viewpoint=self._selected_viewpoint
         )
 
-    def on_destroy(self):
+    async def on_destroy(self):
         self.dispose_observers()
 
     def observe_subjects(self):

@@ -30,7 +30,7 @@ class ViewpointListScreen(Screen, Observer):
         self._view_model.viewpoints_subject.detach(self)
         self._view_model.viewpoint_input_subject.detach(self)
 
-    def on_destroy(self):
+    async def on_destroy(self):
         self.dispose_observers()
 
     async def update(self, subject: 'Subject') -> None:

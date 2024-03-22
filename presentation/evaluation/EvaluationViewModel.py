@@ -108,5 +108,5 @@ class EvaluationViewModel:
                 )
             )
 
-    def dispose(self):
-        self._shared_view_model.dispose()
+    async def dispose(self):
+        await self._shared_view_model.dispose()

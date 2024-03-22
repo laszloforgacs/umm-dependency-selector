@@ -14,5 +14,5 @@ class Screen(ABC, Generic[T]):
         pass
 
     @abstractmethod
-    def on_destroy(self):
+    async def on_destroy(self):
         pass

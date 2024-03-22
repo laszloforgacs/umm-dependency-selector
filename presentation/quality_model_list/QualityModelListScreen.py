@@ -41,7 +41,7 @@ class QualityModelListScreen(Screen):
         if not self._is_created:
             self._is_created = True
 
-    def on_destroy(self):
+    async def on_destroy(self):
         self.dispose_observers()
 
     async def _handle_update(self, should_wait_for_user_input: bool):

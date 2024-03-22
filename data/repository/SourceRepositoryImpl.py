@@ -1,13 +1,16 @@
 import asyncio
+from pathlib import Path
 
 from github import Github
 from github.Auth import Token
 from github.Repository import Repository
 
+from git import Repo
+
 from domain.model.Result import Result, Success, Failure
 from domain.repository.SourceRepository import SourceRepository
 
-SOURCE_TEMP_DIR = "/source_temp"
+SOURCE_TEMP_DIR = "source_temp"
 
 
 class SourceRepositoryImpl(SourceRepository[Repository]):
@@ -51,28 +54,47 @@ class SourceRepositoryImpl(SourceRepository[Repository]):
         try:
             results = []
             for url in urls:
-                process = await asyncio.create_subprocess_exec(
-                    "git", "clone", url, destination,
-                    stdout=asyncio.subprocess.PIPE,
-                    stderr=asyncio.subprocess.PIPE
-                )
+                repo_name = url.split('/')[-1]
+                if repo_name.endswith(".git"):
+                    repo_name = repo_name[:-4]
+                repo_path = f"{destination}/{repo_name}"
 
-                stdout, stderr = await process.communicate()
-
-                if process.returncode == 0:
+                if Path(repo_path).exists():
                     results.append(True)
-                    print(f"Cloned {url} to {destination}")
+                    print(f"{url} is already cloned")
+                    continue
+
+                repo = Repo.clone_from(url=url, to_path=repo_path)
+                if repo:
+                    results.append(True)
+                    print(f"Cloned {url}")
                 else:
                     results.append(False)
-                    print(f"Failed to clone {url} to {destination}")
-                    print(stderr.decode().strip())
+                    print(f"Failed to clone {url}")
             return Success(
                 value=results
             )
         except Exception as e:
+            print(str(e))
             return Failure(
                 error_message=str(e)
             )
 
-    def dispose(self):
+    async def dispose(self):
         self._github.close()
+        await self._delete_temp_source_folders()
+
+    async def _delete_temp_source_folders(self):
+        process = await asyncio.create_subprocess_exec(
+            "rm", "-rf", SOURCE_TEMP_DIR,
+            stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.PIPE
+        )
+
+        stdout, stderr = await process.communicate()
+
+        if process.returncode == 0:
+            print(f"Deleted {SOURCE_TEMP_DIR}")
+        else:
+            print(f"Failed to delete {SOURCE_TEMP_DIR}")
+            print(stderr.decode().strip())

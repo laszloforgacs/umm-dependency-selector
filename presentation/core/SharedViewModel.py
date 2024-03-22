@@ -1,9 +1,10 @@
+from data.repository.SourceRepositoryImpl import SOURCE_TEMP_DIR
 from domain.model.Result import Success
 from domain.repository.QualityModelRepository import QualityModelRepository
 from domain.repository.SourceRepository import SourceRepository
 from presentation.core.AHPReportStateSubject import AHPReportStateSubject
 from presentation.core.QualityModelStateSubject import QualityModelStateSubject
-from presentation.core.SourceState import Loading, Loaded, Error
+from presentation.core.SourceState import Loading, Loaded, Error, CloningLoading, CloningError, CloningLoaded
 from presentation.core.navigation.SourceStateSubject import SourceStateSubject
 from presentation.util.ErrorState import ErrorState
 from presentation.viewpoint_preferences.ComponentPreferencesState import PrefMatrix
@@ -77,6 +78,24 @@ class SharedViewModel:
         else:
             await self._source_state_subject.set_state(
                 state=Error(
+                    message=result.message
+                )
+            )
+
+    async def clone_repositories(self, urls: list[str], destination: str = SOURCE_TEMP_DIR):
+        await self._source_state_subject.set_state(
+            state=CloningLoading()
+        )
+
+        result = await self._source_repository.clone_repositories(urls, destination)
+        is_all_cloned = all(result.value) if isinstance(result, Success) else False
+        if is_all_cloned:
+            await self._source_state_subject.set_state(
+                state=CloningLoaded()
+            )
+        else:
+            await self._source_state_subject.set_state(
+                state=CloningError(
                     message=result.message
                 )
             )

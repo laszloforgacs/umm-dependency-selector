@@ -582,3 +582,5 @@ pyrightconfig.json
 ./idea
 
 .idea/
+
+source_temp/

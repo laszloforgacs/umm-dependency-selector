@@ -1,5 +1,7 @@
 from typing import Generic, TypeVar
 
+from github.Repository import Repository
+
 from domain.model.ABCGenericMeta import ABCGenericMeta
 from domain.model.MeasureableConcept import MeasurableConcept, OSSAspect
 from domain.model.Component import CompositeComponent
@@ -34,7 +36,7 @@ class SubCharacteristic(CompositeComponent, Generic[T], metaclass=ABCGenericMeta
             child for child in self.children.values() if child.relevant_oss_aspect.name == aspect
         ]
 
-    async def measure(self, repository: str) -> list[T]:
+    async def measure(self, repository: Repository) -> list[T]:
         return [
             await child.measure(repository) for child in self.children.values()
         ]

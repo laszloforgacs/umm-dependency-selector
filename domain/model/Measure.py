@@ -2,6 +2,8 @@ from abc import abstractmethod
 from enum import Enum
 from typing import Generic, TypeVar
 
+from github.Repository import Repository
+
 from domain.model.ABCGenericMeta import ABCGenericMeta
 from domain.model.Component import LeafComponent, CompositeComponent
 
@@ -103,7 +105,7 @@ class DerivedMeasure(Measure, CompositeComponent, Generic[T], metaclass=ABCGener
     def measurement_method(self) -> MeasurementMethod:
         return self._measurement_method
 
-    async def measure(self, repository: str) -> T:
+    async def measure(self, repository: Repository) -> T:
         measurements = [
             await child.measure(repository) for child in self.children.values()
         ]

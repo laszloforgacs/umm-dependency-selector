@@ -2,6 +2,8 @@ from abc import abstractmethod
 from enum import Enum
 from typing import Generic, TypeVar
 
+from github.Repository import Repository
+
 from domain.model.ABCGenericMeta import ABCGenericMeta
 from domain.model.Component import CompositeComponent
 from domain.model.Measure import Measure
@@ -55,7 +57,7 @@ class MeasurableConcept(CompositeComponent, Generic[T], metaclass=ABCGenericMeta
     def quality_requirement(self) -> str:
         return self._quality_requirement
 
-    async def measure(self, repository: str) -> T:
+    async def measure(self, repository: Repository) -> T:
         measurements = [
             await child.measure(repository) for child in self.children.values()
         ]

@@ -1,6 +1,8 @@
 import itertools
 from typing import Generic, TypeVar
 
+from github.Repository import Repository
+
 from domain.model.ABCGenericMeta import ABCGenericMeta
 from domain.model.MeasureableConcept import OSSAspect
 from domain.model.SubCharacteristic import SubCharacteristic
@@ -60,7 +62,7 @@ class Characteristic(CompositeComponent, Generic[T], metaclass=ABCGenericMeta):
 
         return True
 
-    async def measure(self, repository: str) -> list[T]:
+    async def measure(self, repository: Repository) -> list[T]:
         return [
             await child.measure(repository) for child in self.children.values()
         ]

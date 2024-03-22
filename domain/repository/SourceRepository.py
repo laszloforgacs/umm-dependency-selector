@@ -18,5 +18,8 @@ class SourceRepository(Generic[T], metaclass=ABCGenericMeta):
     async def fetch_repository(self, url: str) -> Result[T]:
         pass
 
+    async def clone_repositories(self, urls: list[str], destination: str) -> Result[list[bool]]:
+        pass
+
     def dispose(self):
         pass

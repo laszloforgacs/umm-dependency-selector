@@ -3,7 +3,8 @@ from domain.model.Viewpoint import Viewpoint
 from presentation.core.AHPReportState import AHPReportState
 from presentation.core.AHPReportStateSubject import AHPReportStateSubject
 from presentation.core.Screen import Screen
-from presentation.core.SourceState import Loaded as RepositoryLoaded, Loading as RepositoryLoading, Error as RepositoryError
+from presentation.core.SourceState import Loaded as RepositoryLoaded, Loading as RepositoryLoading, \
+    Error as RepositoryError, CloningLoaded, CloningLoading, CloningError
 from presentation.core.navigation.SourceStateSubject import SourceStateSubject
 from presentation.evaluation.EvaluationScreenState import AHPReport, Loading as AHPReportLoading, \
     Error as AHPReportError, NavigateBack
@@ -58,9 +59,15 @@ class EvaluationScreen(Screen, Observer):
                 characteristics=self._characteristics
             )
         elif isinstance(state, RepositoryLoading):
-            print("Fetching repositories... It might take a while.")
+            print("Fetching repository metadata... It might take a while.")
         elif isinstance(state, RepositoryError):
             print("Error fetching repositories: " + state.message)
+        elif isinstance(state, CloningLoaded):
+            print("Successfully cloned repositories.")
+        elif isinstance(state, CloningLoading):
+            print("Cloning repositories...")
+        elif isinstance(state, CloningError):
+            print("Error cloning repositories: " + state.message)
         elif isinstance(state, AHPReportState):
             print(state.report)
         elif isinstance(state, AHPReport):

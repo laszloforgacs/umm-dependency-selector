@@ -1,7 +1,6 @@
 from abc import ABC, abstractmethod
 
-from presentation.core.visitors.StandardVisitors import MockMeasureVisitor, StandardNormalizeVisitor, \
-    AverageAggregateVisitor, NoOpNormalizeVisitor
+from testing.visitors.StandardVisitors import MockMeasureVisitor, AverageAggregateVisitor, NoOpNormalizeVisitor
 
 
 class MeasureCreationError(Exception):

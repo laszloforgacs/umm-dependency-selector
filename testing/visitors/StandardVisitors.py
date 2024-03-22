@@ -1,6 +1,8 @@
 import asyncio
 import random
 
+from github.Repository import Repository
+
 from presentation.core.visitors.Visitor import NormalizeVisitor, AggregateVisitor, BaseMeasureVisitor, T
 
 
@@ -21,7 +23,7 @@ class AverageAggregateVisitor(AggregateVisitor[float]):
 
 
 class MockMeasureVisitor(BaseMeasureVisitor[float]):
-    async def measure(self, measure: 'BaseMeasure', repository: str) -> float:
+    async def measure(self, measure: 'BaseMeasure', repository: Repository) -> float:
         random_top = random.uniform(10.0, 1000.0)
         rand = random.uniform(0.0, random_top)
         print(f"{repository.full_name}: {measure.name} is {rand}")

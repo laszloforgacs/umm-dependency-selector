@@ -10,7 +10,7 @@ from domain.model.QualityModel import QualityModel
 from domain.model.Result import Result, Success, Failure
 from domain.model.Viewpoint import Viewpoint
 from domain.repository.QualityModelRepository import QualityModelRepository
-from presentation.core.visitors.VisitorFactory import MeasureVisitorFactory, DerivedMeasureVisitorFactory, \
+from testing.visitors.VisitorFactory import MeasureVisitorFactory, DerivedMeasureVisitorFactory, \
     MeasurableConceptVisitorFactory
 from presentation.util.Util import convert_tuple_keys_to_string, convert_string_keys_to_tuple
 from presentation.viewpoint_preferences.ComponentPreferencesState import PrefMatrix

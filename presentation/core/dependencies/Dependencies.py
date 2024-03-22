@@ -5,7 +5,7 @@ from data.repository.SourceRepositoryImpl import SourceRepositoryImpl
 from presentation.core.navigation.NavigationController import NavigationController
 from presentation.core.navigation.Navigator import Navigator
 from presentation.core.SharedViewModel import SharedViewModel
-from presentation.core.visitors.VisitorFactory import MeasurableConceptVisitorFactory, DerivedMeasureVisitorFactory, \
+from testing.visitors.VisitorFactory import MeasurableConceptVisitorFactory, DerivedMeasureVisitorFactory, \
     MeasureVisitorFactory
 from presentation.evaluation.EvaluationScreen import EvaluationScreen
 from presentation.evaluation.EvaluationViewModel import EvaluationViewModel

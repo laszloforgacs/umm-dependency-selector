@@ -1,6 +1,8 @@
 from abc import ABC, abstractmethod
 from typing import TypeVar, Generic
 
+from github.Repository import Repository
+
 from domain.model.ABCGenericMeta import ABCGenericMeta
 
 T = TypeVar('T')
@@ -35,5 +37,5 @@ class BaseMeasureVisitor(Visitor[T]):
         pass
 
     @abstractmethod
-    async def measure(self, measure: 'BaseMeasure', repository: str) -> T:
+    async def measure(self, measure: 'BaseMeasure', repository: Repository) -> T:
         pass

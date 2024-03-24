@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+from testing.visitors.LizardCyclomaticComplexityVisitor import LizardCyclomaticComplexityVisitor
 from testing.visitors.StandardVisitors import MockMeasureVisitor, AverageAggregateVisitor, NoOpNormalizeVisitor
 
 
@@ -24,7 +25,8 @@ class MeasureVisitorFactory(VisitorFactory):
             # Add more mappings as needed
             "LinesOfCode": MockMeasureVisitor,
             "NumberOfComplexFunctions": MockMeasureVisitor,
-            "NumberOfStatements": MockMeasureVisitor
+            "NumberOfStatements": MockMeasureVisitor,
+            "CyclomaticComplexityBaseMeasure": LizardCyclomaticComplexityVisitor
         }
 
     def instantiate_with_visitor(self, measure_type, **kwargs):

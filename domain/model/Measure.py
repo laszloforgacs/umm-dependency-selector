@@ -41,7 +41,7 @@ class Measure(Generic[T], metaclass=ABCGenericMeta):
         pass
 
     @abstractmethod
-    def measure(self, repository: str) -> T:
+    def measure(self, repository: Repository) -> T:
         pass
 
 

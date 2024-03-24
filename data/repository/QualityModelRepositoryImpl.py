@@ -10,6 +10,7 @@ from domain.model.QualityModel import QualityModel
 from domain.model.Result import Result, Success, Failure
 from domain.model.Viewpoint import Viewpoint
 from domain.repository.QualityModelRepository import QualityModelRepository
+from testing.measures.CyclomaticComplexityBaseMeasure import CyclomaticComplexityBaseMeasure
 from testing.visitors.VisitorFactory import MeasureVisitorFactory, DerivedMeasureVisitorFactory, \
     MeasurableConceptVisitorFactory
 from presentation.util.Util import convert_tuple_keys_to_string, convert_string_keys_to_tuple
@@ -54,6 +55,9 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                     numberOfComplexFunctions.name: numberOfComplexFunctions
                 }
             )
+            lizardCyclomaticComplexity = self._base_measure_visitor_factory.instantiate_with_visitor(
+                CyclomaticComplexityBaseMeasure
+            )
             numberOfStatements = self._base_measure_visitor_factory.instantiate_with_visitor(NumberOfStatements)
             complexityOfSourceCode = self._measurable_concept_visitor_factory.instantiate_with_visitor(
                 ComplexityOfSourceCode,
@@ -86,7 +90,8 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                                     numberOfComplexFunctions.name: numberOfComplexFunctions.copy()
                                 }
                             ),
-                            numberOfStatements.name: numberOfStatements.copy()
+                            numberOfStatements.name: numberOfStatements.copy(),
+                            lizardCyclomaticComplexity.name: lizardCyclomaticComplexity
                         }
                     )
                 }

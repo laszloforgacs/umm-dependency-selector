@@ -15,6 +15,7 @@ scikit-criteria = "^0.8.7"
 pygithub = "^2.2.0"
 python-dotenv = "^1.0.1"
 gitpython = "^3.1.42"
+lizard = "^1.17.10"
 
 
 [build-system]

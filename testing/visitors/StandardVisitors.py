@@ -1,8 +1,6 @@
 import asyncio
 import random
-
 from github.Repository import Repository
-
 from presentation.core.visitors.Visitor import NormalizeVisitor, AggregateVisitor, BaseMeasureVisitor, T
 
 

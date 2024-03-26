@@ -9,6 +9,7 @@ from domain.model.Component import CompositeComponent
 from domain.model.Measure import Measure
 
 T = TypeVar('T')
+U = TypeVar('U')
 
 
 class Impact(Enum):
@@ -59,7 +60,7 @@ class MeasurableConcept(CompositeComponent, Generic[T], metaclass=ABCGenericMeta
 
     async def measure(self, repository: Repository) -> T:
         measurements = [
-            await child.measure(repository) for child in self.children.values()
+            (child, await child.measure(repository)) for child in self.children.values()
         ]
         normalized = self.normalize(measurements)
         aggregated = self.aggregate(normalized)
@@ -68,7 +69,7 @@ class MeasurableConcept(CompositeComponent, Generic[T], metaclass=ABCGenericMeta
     def normalize(self, measurements: list[T]) -> list[T]:
         return self.normalize_visitor.normalize(measurements)
 
-    def aggregate(self, normalized_measures: list[T]) -> T:
+    def aggregate(self, normalized_measures: list[T]) -> U:
         return self.aggregate_visitor.aggregate(normalized_measures)
 
     def accept_visitors(self, normalize_visitor: 'NormalizeVisitor', aggregate_visitor: 'AggregateVisitor'):

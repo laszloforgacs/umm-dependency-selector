@@ -1,6 +1,9 @@
 from abc import ABC, abstractmethod
 
+from testing.visitors.ClocNumberOfCommentsVisitor import ClocNumberOfCommentsVisitor
+from testing.visitors.CruzCodeQualityDerivedMeasureAggregator import CruzCodeQualityDerivedMeasureAggregator
 from testing.visitors.LizardCyclomaticComplexityVisitor import LizardCyclomaticComplexityVisitor
+from testing.visitors.LizardLinesOfCodeVisitor import LizardLinesOfCodeVisitor
 from testing.visitors.StandardVisitors import MockMeasureVisitor, AverageAggregateVisitor, NoOpNormalizeVisitor
 
 
@@ -23,10 +26,11 @@ class MeasureVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
-            "LinesOfCode": MockMeasureVisitor,
+            "CruzNumberOfCommentsBaseMeasure": ClocNumberOfCommentsVisitor,
+            "LinesOfCode": LizardLinesOfCodeVisitor,
             "NumberOfComplexFunctions": MockMeasureVisitor,
             "NumberOfStatements": MockMeasureVisitor,
-            "CyclomaticComplexityBaseMeasure": LizardCyclomaticComplexityVisitor
+            "CruzCyclomaticComplexityBaseMeasure": LizardCyclomaticComplexityVisitor
         }
 
     def instantiate_with_visitor(self, measure_type, **kwargs):
@@ -49,7 +53,8 @@ class DerivedMeasureVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
-            "CyclomaticComplexity": (NoOpNormalizeVisitor, AverageAggregateVisitor)
+            "CyclomaticComplexity": (NoOpNormalizeVisitor, AverageAggregateVisitor),
+            "CruzCodeQualityDerivedMeasure": (NoOpNormalizeVisitor, CruzCodeQualityDerivedMeasureAggregator)
         }
 
     def instantiate_with_visitor(self, derived_measure_type, **kwargs):

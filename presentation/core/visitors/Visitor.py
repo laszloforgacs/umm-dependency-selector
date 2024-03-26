@@ -6,6 +6,7 @@ from github.Repository import Repository
 from domain.model.ABCGenericMeta import ABCGenericMeta
 
 T = TypeVar('T')
+U = TypeVar('U')
 
 
 class Visitor(Generic[T], metaclass=ABCGenericMeta):
@@ -28,7 +29,7 @@ class AggregateVisitor(Visitor[T]):
         pass
 
     @abstractmethod
-    def aggregate(self, normalized_measures: list[T]) -> T:
+    def aggregate(self, normalized_measures: list[T]) -> U:
         pass
 
 

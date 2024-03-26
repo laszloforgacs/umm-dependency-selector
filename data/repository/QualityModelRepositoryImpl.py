@@ -10,7 +10,9 @@ from domain.model.QualityModel import QualityModel
 from domain.model.Result import Result, Success, Failure
 from domain.model.Viewpoint import Viewpoint
 from domain.repository.QualityModelRepository import QualityModelRepository
-from testing.measures.CyclomaticComplexityBaseMeasure import CyclomaticComplexityBaseMeasure
+from testing.measures.CruzCodeQualityDerivedMeasure import CruzCodeQualityDerivedMeasure
+from testing.measures.CruzCyclomaticComplexityBaseMeasure import CruzCyclomaticComplexityBaseMeasure
+from testing.measures.CruzNumberOfCommentsBaseMeasure import CruzNumberOfCommentsBaseMeasure
 from testing.visitors.VisitorFactory import MeasureVisitorFactory, DerivedMeasureVisitorFactory, \
     MeasurableConceptVisitorFactory
 from presentation.util.Util import convert_tuple_keys_to_string, convert_string_keys_to_tuple
@@ -56,7 +58,7 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
             lizardCyclomaticComplexity = self._base_measure_visitor_factory.instantiate_with_visitor(
-                CyclomaticComplexityBaseMeasure
+                CruzCyclomaticComplexityBaseMeasure
             )
             numberOfStatements = self._base_measure_visitor_factory.instantiate_with_visitor(NumberOfStatements)
             complexityOfSourceCode = self._measurable_concept_visitor_factory.instantiate_with_visitor(
@@ -80,6 +82,17 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            cruz_number_of_comments = self._base_measure_visitor_factory.instantiate_with_visitor(
+                CruzNumberOfCommentsBaseMeasure
+            )
+            cruz_code_quality_derived_measure = self._derived_measure_visitor_factory.instantiate_with_visitor(
+                CruzCodeQualityDerivedMeasure,
+                children={
+                    linesOfCode.name: linesOfCode.copy(),
+                    cruz_number_of_comments.name: cruz_number_of_comments
+                }
+            )
+
             analyzability = Analyzability(
                 children={
                     complexityOfSourceCode.name: complexityOfSourceCode.copy(
@@ -91,7 +104,8 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                                 }
                             ),
                             numberOfStatements.name: numberOfStatements.copy(),
-                            lizardCyclomaticComplexity.name: lizardCyclomaticComplexity
+                            lizardCyclomaticComplexity.name: lizardCyclomaticComplexity,
+                            cruz_code_quality_derived_measure.name: cruz_code_quality_derived_measure
                         }
                     )
                 }

@@ -1,13 +1,13 @@
 import asyncio
-import os.path
+import os
 
 from github.Repository import Repository
 
 from data.repository.SourceRepositoryImpl import SOURCE_TEMP_DIR
-from presentation.core.visitors.Visitor import BaseMeasureVisitor
+from presentation.core.visitors.Visitor import Visitor
 
 
-class LizardCyclomaticComplexityVisitor(BaseMeasureVisitor[float]):
+class LizardLinesOfCodeVisitor(Visitor[float]):
     def __init__(self):
         pass
 
@@ -50,10 +50,10 @@ class LizardCyclomaticComplexityVisitor(BaseMeasureVisitor[float]):
                 "fun_rt": fun_rt,
                 "nloc_rt": nloc_rt
             }
-            cyclomatic_complexity = float(analysis["avg_ccn"])
-            print(f"{repository.full_name}: {measure.name} is {cyclomatic_complexity}")
+            lines_of_code = float(analysis["total_nloc"])
+            print(f"{repository.full_name}: {measure.name} is {lines_of_code}")
 
-            return cyclomatic_complexity
+            return lines_of_code
 
         except Exception as e:
             raise Exception(str(e))

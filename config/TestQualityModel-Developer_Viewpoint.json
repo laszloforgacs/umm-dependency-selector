@@ -3,11 +3,15 @@
         "Maintainability, Maintainability2": "1",
         "Maintainability, Maintainability3": "2",
         "Maintainability, Maintainability4": "3",
-        "Maintainability2, Maintainability3": "4",
-        "Maintainability2, Maintainability4": "2",
-        "Maintainability3, Maintainability4": "1"
+        "Maintainability2, Maintainability3": "5",
+        "Maintainability2, Maintainability4": "1",
+        "Maintainability3, Maintainability4": "3",
+        "Maintainability, Cost": "4",
+        "Maintainability2, Cost": "2",
+        "Maintainability3, Cost": "1/2",
+        "Maintainability4, Cost": "1/5"
     },
     "oss_aspect_preference_matrix": {
-        "COMMUNITY, CODE": "4"
+        "COMMUNITY, CODE": "1/2"
     }
 }

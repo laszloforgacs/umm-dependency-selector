@@ -10,7 +10,6 @@ class AbsenceOfLicenseFees(MeasurableConcept[float]):
             "Software license",
             "Calculation of the absence of fees",
             "Absence of fees affects cost positively",
-            OSSAspect.COMMUNITY,
             normalize_visitor,
             aggregate_visitor
         )

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 from domain.model.MeasureableConcept import MeasurableConcept, Impact, OSSAspect
+=======
+from domain.model.MeasureableConcept import MeasurableConcept, Impact
+>>>>>>> 60a1aa6853d16b0e7f10b0c1c4107c1ec2f1cbed
 
 
 class AbsenceOfLicenseFees(MeasurableConcept[float]):

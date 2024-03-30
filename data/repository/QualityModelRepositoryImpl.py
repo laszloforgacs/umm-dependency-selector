@@ -10,9 +10,14 @@ from domain.model.QualityModel import QualityModel
 from domain.model.Result import Result, Success, Failure
 from domain.model.Viewpoint import Viewpoint
 from domain.repository.QualityModelRepository import QualityModelRepository
+from testing.characteristic.Cost import Cost
+from testing.characteristic.InteroperabilityCompatibility import InteroperabilityCompatibility
+from testing.measurableconcepts.AbsenceOfLicenseFees import AbsenceOfLicenseFees
 from testing.measures.CruzCodeQualityDerivedMeasure import CruzCodeQualityDerivedMeasure
 from testing.measures.CruzCyclomaticComplexityBaseMeasure import CruzCyclomaticComplexityBaseMeasure
 from testing.measures.CruzNumberOfCommentsBaseMeasure import CruzNumberOfCommentsBaseMeasure
+from testing.measures.License import License
+from testing.subcharacteristic.ReturnOnInvestment import ReturnOnInvestment
 from testing.visitors.VisitorFactory import MeasureVisitorFactory, DerivedMeasureVisitorFactory, \
     MeasurableConceptVisitorFactory
 from presentation.util.Util import convert_tuple_keys_to_string, convert_string_keys_to_tuple
@@ -303,6 +308,28 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 complexityOfSourceCode2.name: complexityOfSourceCode2
             })
 
+            license_measure = self._base_measure_visitor_factory.instantiate_with_visitor(
+                License
+            )
+
+            absence_of_license_fees = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                AbsenceOfLicenseFees,
+                children={
+                    license_measure.name: license_measure
+                }
+            )
+            return_on_investment = ReturnOnInvestment(
+                children={
+                    absence_of_license_fees.name: absence_of_license_fees
+                }
+            )
+            interoperability_compatibility = InteroperabilityCompatibility()
+            cost = Cost(
+                children={
+                    return_on_investment.name: return_on_investment
+                }
+            )
+
             maintainability = Maintainability(children={
                 analyzability.name: analyzability,
                 analyzability2.name: analyzability2,
@@ -335,7 +362,8 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 maintainability.name: maintainability,
                 maintainability2.name: maintainability2,
                 maintainability3.name: maintainability3,
-                maintainability4.name: maintainability4
+                maintainability4.name: maintainability4,
+                cost.name: cost
             })
 
             test_quality_model = TestQualityModel(

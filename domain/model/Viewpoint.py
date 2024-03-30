@@ -68,4 +68,8 @@ class Viewpoint(CompositeComponent, metaclass=ABCMeta):
                 aspect_combination] is None:
                 return False
 
+        for child in self.children.values():
+            if not child.is_valid_preference_matrix:
+                return False
+
         return True

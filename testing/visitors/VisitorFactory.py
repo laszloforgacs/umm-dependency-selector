@@ -5,6 +5,7 @@ from testing.visitors.CruzCodeQualityDerivedMeasureAggregator import CruzCodeQua
 from testing.visitors.LizardCyclomaticComplexityVisitor import LizardCyclomaticComplexityVisitor
 from testing.visitors.LizardLinesOfCodeVisitor import LizardLinesOfCodeVisitor
 from testing.visitors.StandardVisitors import MockMeasureVisitor, AverageAggregateVisitor, NoOpNormalizeVisitor
+from testing.visitors.license.OSSAQMLicenseVisitor import OSSAQMLicenseVisitor
 
 
 class MeasureCreationError(Exception):
@@ -26,6 +27,7 @@ class MeasureVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "License": OSSAQMLicenseVisitor,
             "CruzNumberOfCommentsBaseMeasure": ClocNumberOfCommentsVisitor,
             "LinesOfCode": LizardLinesOfCodeVisitor,
             "NumberOfComplexFunctions": MockMeasureVisitor,
@@ -79,6 +81,7 @@ class MeasurableConceptVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "AbsenceOfLicenseFees": (NoOpNormalizeVisitor, AverageAggregateVisitor),
             "ComplexityOfSourceCode": (NoOpNormalizeVisitor, AverageAggregateVisitor),
             "ComplexityOfSourceCode2": (NoOpNormalizeVisitor, AverageAggregateVisitor)
         }

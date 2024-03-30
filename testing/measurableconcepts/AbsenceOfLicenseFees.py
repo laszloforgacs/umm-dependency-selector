@@ -1,4 +1,4 @@
-from domain.model.MeasureableConcept import MeasurableConcept, Impact
+from domain.model.MeasureableConcept import MeasurableConcept, Impact, OSSAspect
 
 
 class AbsenceOfLicenseFees(MeasurableConcept[float]):
@@ -10,6 +10,7 @@ class AbsenceOfLicenseFees(MeasurableConcept[float]):
             "Software license",
             "Calculation of the absence of fees",
             "Absence of fees affects cost positively",
+            OSSAspect.COMMUNITY,
             normalize_visitor,
             aggregate_visitor
         )

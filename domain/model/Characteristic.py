@@ -26,6 +26,11 @@ class Characteristic(CompositeComponent, Generic[T], metaclass=ABCGenericMeta):
                 (sub_characteristic1, sub_characteristic2): None
                 for sub_characteristic1, sub_characteristic2 in preferences
             }
+        elif len(children) == 1:
+            sub_characteristic = list(children.values())[0]
+            self._preference_matrix = {
+                (sub_characteristic.name, sub_characteristic.name): 1
+            }
         else:
             self._preference_matrix = preference_matrix
         self._weight = 0

@@ -9,6 +9,7 @@ COPY . .
 
 # Install Poetry
 RUN apt-get update && apt-get install -y git && \
+    apt install cloc=2.00 && \
     pip install --upgrade pip && \
     pip install poetry==1.8.2
 

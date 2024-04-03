@@ -13,11 +13,14 @@ from domain.repository.QualityModelRepository import QualityModelRepository
 from testing.characteristic.Cost import Cost
 from testing.characteristic.InteroperabilityCompatibility import InteroperabilityCompatibility
 from testing.measurableconcepts.AbsenceOfLicenseFees import AbsenceOfLicenseFees
+from testing.measurableconcepts.risk.DelBiancoVulnerabilitiesMC import DelBiancoVulnerabilitiesMC
 from testing.measures.CruzCodeQualityDerivedMeasure import CruzCodeQualityDerivedMeasure
 from testing.measures.CruzCyclomaticComplexityBaseMeasure import CruzCyclomaticComplexityBaseMeasure
 from testing.measures.CruzNumberOfCommentsBaseMeasure import CruzNumberOfCommentsBaseMeasure
 from testing.measures.License import License
+from testing.measures.risk.DelBiancoRiskMeasure import DelBiancoRiskMeasure
 from testing.subcharacteristic.ReturnOnInvestment import ReturnOnInvestment
+from testing.subcharacteristic.risk.DelBiancoRiskAnalysis import DelBiancoRiskAnalysis
 from testing.visitors.VisitorFactory import MeasureVisitorFactory, DerivedMeasureVisitorFactory, \
     MeasurableConceptVisitorFactory
 from presentation.util.Util import convert_tuple_keys_to_string, convert_string_keys_to_tuple
@@ -311,6 +314,9 @@ class QualityModelRepositoryImpl(QualityModelRepository):
             license_measure = self._base_measure_visitor_factory.instantiate_with_visitor(
                 License
             )
+            delbianco_risk_measure = self._base_measure_visitor_factory.instantiate_with_visitor(
+                DelBiancoRiskMeasure
+            )
 
             absence_of_license_fees = self._measurable_concept_visitor_factory.instantiate_with_visitor(
                 AbsenceOfLicenseFees,
@@ -323,10 +329,23 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                     absence_of_license_fees.name: absence_of_license_fees
                 }
             )
+            delbianco_vulnerabilities_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                DelBiancoVulnerabilitiesMC,
+                children={
+                    delbianco_risk_measure.name: delbianco_risk_measure
+                }
+            )
+            delbianco_risk_analysis = DelBiancoRiskAnalysis(
+                children={
+                    delbianco_vulnerabilities_mc.name: delbianco_vulnerabilities_mc
+                }
+            )
+
             interoperability_compatibility = InteroperabilityCompatibility()
             cost = Cost(
                 children={
-                    return_on_investment.name: return_on_investment
+                    return_on_investment.name: return_on_investment,
+                    #delbianco_risk_analysis.name: delbianco_risk_analysis
                 }
             )
 

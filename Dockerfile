@@ -10,6 +10,10 @@ COPY . .
 # Install Poetry
 RUN apt-get update && apt-get install -y git && \
     apt install cloc=2.00 && \
+    #url https://static.snyk.io/cli/latest/snyk-linux -o snyk && \
+    #chmod +x ./snyk && \
+    #mv ./snyk /usr/local/bin/ && \
+    #snyk auth $SNYK_TOKEN && \
     pip install --upgrade pip && \
     pip install poetry==1.8.2
 

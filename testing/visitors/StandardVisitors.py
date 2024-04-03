@@ -23,6 +23,12 @@ class AverageAggregateVisitor(AggregateVisitor[tuple[Measure, float]]):
         return total / len(normalized_measures)
 
 
+class AddAggregateVisitor(AggregateVisitor[tuple[Measure, int | float]]):
+    def aggregate(self, normalized_measures: list[tuple[Measure, int | float]]) -> float:
+        total = sum(measurement_value for _, measurement_value in normalized_measures)
+        return total
+
+
 class MockMeasureVisitor(BaseMeasureVisitor[float]):
     async def measure(self, measure: 'BaseMeasure', repository: Repository) -> float:
         random_top = random.uniform(10.0, 1000.0)

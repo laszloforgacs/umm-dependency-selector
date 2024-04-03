@@ -1,11 +1,14 @@
 from abc import ABC, abstractmethod
 
-from testing.visitors.ClocNumberOfCommentsVisitor import ClocNumberOfCommentsVisitor
-from testing.visitors.CruzCodeQualityDerivedMeasureAggregator import CruzCodeQualityDerivedMeasureAggregator
-from testing.visitors.LizardCyclomaticComplexityVisitor import LizardCyclomaticComplexityVisitor
-from testing.visitors.LizardLinesOfCodeVisitor import LizardLinesOfCodeVisitor
-from testing.visitors.StandardVisitors import MockMeasureVisitor, AverageAggregateVisitor, NoOpNormalizeVisitor
+from testing.visitors.StandardVisitors import MockMeasureVisitor, AverageAggregateVisitor, NoOpNormalizeVisitor, \
+    AddAggregateVisitor
+from testing.visitors.codecomplexity.ClocNumberOfCommentsVisitor import ClocNumberOfCommentsVisitor
+from testing.visitors.codecomplexity.CruzCodeQualityDerivedMeasureAggregator import \
+    CruzCodeQualityDerivedMeasureAggregator
+from testing.visitors.codecomplexity.LizardCyclomaticComplexityVisitor import LizardCyclomaticComplexityVisitor
+from testing.visitors.codecomplexity.LizardLinesOfCodeVisitor import LizardLinesOfCodeVisitor
 from testing.visitors.license.OSSAQMLicenseVisitor import OSSAQMLicenseVisitor
+from testing.visitors.risk.DelBiancoSnykRiskMeasureVisitor import DelBiancoSnykRiskMeasureVisitor
 
 
 class MeasureCreationError(Exception):
@@ -27,6 +30,7 @@ class MeasureVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "DelBiancoRiskMeasure": DelBiancoSnykRiskMeasureVisitor,
             "License": OSSAQMLicenseVisitor,
             "CruzNumberOfCommentsBaseMeasure": ClocNumberOfCommentsVisitor,
             "LinesOfCode": LizardLinesOfCodeVisitor,
@@ -81,6 +85,7 @@ class MeasurableConceptVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "DelBiancoVulnerabilitiesMC": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "AbsenceOfLicenseFees": (NoOpNormalizeVisitor, AverageAggregateVisitor),
             "ComplexityOfSourceCode": (NoOpNormalizeVisitor, AverageAggregateVisitor),
             "ComplexityOfSourceCode2": (NoOpNormalizeVisitor, AverageAggregateVisitor)

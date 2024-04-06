@@ -13,13 +13,16 @@ from domain.repository.QualityModelRepository import QualityModelRepository
 from testing.characteristic.Cost import Cost
 from testing.characteristic.InteroperabilityCompatibility import InteroperabilityCompatibility
 from testing.measurableconcepts.AbsenceOfLicenseFees import AbsenceOfLicenseFees
+from testing.measurableconcepts.communitycapability.NumberOfContributors import NumberOfContributors
 from testing.measurableconcepts.risk.DelBiancoVulnerabilitiesMC import DelBiancoVulnerabilitiesMC
 from testing.measures.CruzCodeQualityDerivedMeasure import CruzCodeQualityDerivedMeasure
 from testing.measures.CruzCyclomaticComplexityBaseMeasure import CruzCyclomaticComplexityBaseMeasure
 from testing.measures.CruzNumberOfCommentsBaseMeasure import CruzNumberOfCommentsBaseMeasure
 from testing.measures.License import License
+from testing.measures.communitycapability.ContributorCount import ContributorCount
 from testing.measures.risk.DelBiancoRiskMeasure import DelBiancoRiskMeasure
 from testing.subcharacteristic.ReturnOnInvestment import ReturnOnInvestment
+from testing.subcharacteristic.communitycapability.LuomaCommunityCapability import LuomaCommunityCapability
 from testing.subcharacteristic.risk.DelBiancoRiskAnalysis import DelBiancoRiskAnalysis
 from testing.visitors.VisitorFactory import MeasureVisitorFactory, DerivedMeasureVisitorFactory, \
     MeasurableConceptVisitorFactory
@@ -317,6 +320,9 @@ class QualityModelRepositoryImpl(QualityModelRepository):
             delbianco_risk_measure = self._base_measure_visitor_factory.instantiate_with_visitor(
                 DelBiancoRiskMeasure
             )
+            community_count_measure = self._base_measure_visitor_factory.instantiate_with_visitor(
+                ContributorCount
+            )
 
             absence_of_license_fees = self._measurable_concept_visitor_factory.instantiate_with_visitor(
                 AbsenceOfLicenseFees,
@@ -341,11 +347,25 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            number_of_contributors_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                NumberOfContributors,
+                children={
+                    community_count_measure.name: community_count_measure
+                }
+            )
+
+            community_capability = LuomaCommunityCapability(
+                children={
+                    number_of_contributors_mc.name: number_of_contributors_mc
+                }
+            )
+
             interoperability_compatibility = InteroperabilityCompatibility()
             cost = Cost(
                 children={
                     return_on_investment.name: return_on_investment,
                     #delbianco_risk_analysis.name: delbianco_risk_analysis
+                    community_capability.name: community_capability,
                 }
             )
 

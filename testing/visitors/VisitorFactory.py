@@ -7,6 +7,7 @@ from testing.visitors.codecomplexity.CruzCodeQualityDerivedMeasureAggregator imp
     CruzCodeQualityDerivedMeasureAggregator
 from testing.visitors.codecomplexity.LizardCyclomaticComplexityVisitor import LizardCyclomaticComplexityVisitor
 from testing.visitors.codecomplexity.LizardLinesOfCodeVisitor import LizardLinesOfCodeVisitor
+from testing.visitors.communitycapability.PyGithubCommunityCountVisitor import PyGithubCommunityCountVisitor
 from testing.visitors.license.OSSAQMLicenseVisitor import OSSAQMLicenseVisitor
 from testing.visitors.risk.DelBiancoSnykRiskMeasureVisitor import DelBiancoSnykRiskMeasureVisitor
 
@@ -30,6 +31,7 @@ class MeasureVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "ContributorCount": PyGithubCommunityCountVisitor,
             "DelBiancoRiskMeasure": DelBiancoSnykRiskMeasureVisitor,
             "License": OSSAQMLicenseVisitor,
             "CruzNumberOfCommentsBaseMeasure": ClocNumberOfCommentsVisitor,

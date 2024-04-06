@@ -6,7 +6,7 @@ authors = ["lfor <laszlo.forgacs798@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = ">=3.11,<3.13"
 ahpy = "^2.0"
 aioconsole = "^0.7.0"
 aiofiles = "^23.2.1"
@@ -17,6 +17,7 @@ python-dotenv = "^1.0.1"
 gitpython = "^3.1.42"
 lizard = "^1.17.10"
 scancode-toolkit = "^32.1.0"
+truckfactor = "^0.3.1"
 
 
 [build-system]

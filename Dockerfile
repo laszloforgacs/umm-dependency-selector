@@ -9,7 +9,7 @@ COPY . .
 
 # Install Poetry
 RUN apt-get update && apt-get install -y git && \
-    apt install cloc=2.00 && \
+    apt install -y cloc && \
     #url https://static.snyk.io/cli/latest/snyk-linux -o snyk && \
     #chmod +x ./snyk && \
     #mv ./snyk /usr/local/bin/ && \

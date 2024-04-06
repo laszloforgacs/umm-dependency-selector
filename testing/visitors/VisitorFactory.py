@@ -8,6 +8,7 @@ from testing.visitors.codecomplexity.CruzCodeQualityDerivedMeasureAggregator imp
 from testing.visitors.codecomplexity.LizardCyclomaticComplexityVisitor import LizardCyclomaticComplexityVisitor
 from testing.visitors.codecomplexity.LizardLinesOfCodeVisitor import LizardLinesOfCodeVisitor
 from testing.visitors.communitycapability.PyGithubCommunityCountVisitor import PyGithubCommunityCountVisitor
+from testing.visitors.communitycapability.TruckFactorVisitor import TruckFactorVisitor
 from testing.visitors.license.OSSAQMLicenseVisitor import OSSAQMLicenseVisitor
 from testing.visitors.risk.DelBiancoSnykRiskMeasureVisitor import DelBiancoSnykRiskMeasureVisitor
 
@@ -31,6 +32,7 @@ class MeasureVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "TruckFactor": TruckFactorVisitor,
             "ContributorCount": PyGithubCommunityCountVisitor,
             "DelBiancoRiskMeasure": DelBiancoSnykRiskMeasureVisitor,
             "License": OSSAQMLicenseVisitor,
@@ -87,6 +89,7 @@ class MeasurableConceptVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "TruckFactorMC": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "NumberOfContributors": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "DelBiancoVulnerabilitiesMC": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "AbsenceOfLicenseFees": (NoOpNormalizeVisitor, AverageAggregateVisitor),

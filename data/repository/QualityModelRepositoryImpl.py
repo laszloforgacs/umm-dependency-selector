@@ -14,12 +14,14 @@ from testing.characteristic.Cost import Cost
 from testing.characteristic.InteroperabilityCompatibility import InteroperabilityCompatibility
 from testing.measurableconcepts.AbsenceOfLicenseFees import AbsenceOfLicenseFees
 from testing.measurableconcepts.communitycapability.NumberOfContributors import NumberOfContributors
+from testing.measurableconcepts.communitycapability.TruckFactorMC import TruckFactorMC
 from testing.measurableconcepts.risk.DelBiancoVulnerabilitiesMC import DelBiancoVulnerabilitiesMC
 from testing.measures.CruzCodeQualityDerivedMeasure import CruzCodeQualityDerivedMeasure
 from testing.measures.CruzCyclomaticComplexityBaseMeasure import CruzCyclomaticComplexityBaseMeasure
 from testing.measures.CruzNumberOfCommentsBaseMeasure import CruzNumberOfCommentsBaseMeasure
 from testing.measures.License import License
 from testing.measures.communitycapability.ContributorCount import ContributorCount
+from testing.measures.communitycapability.TruckFactor import TruckFactor
 from testing.measures.risk.DelBiancoRiskMeasure import DelBiancoRiskMeasure
 from testing.subcharacteristic.ReturnOnInvestment import ReturnOnInvestment
 from testing.subcharacteristic.communitycapability.LuomaCommunityCapability import LuomaCommunityCapability
@@ -323,6 +325,9 @@ class QualityModelRepositoryImpl(QualityModelRepository):
             community_count_measure = self._base_measure_visitor_factory.instantiate_with_visitor(
                 ContributorCount
             )
+            truck_factor_measure = self._base_measure_visitor_factory.instantiate_with_visitor(
+                TruckFactor
+            )
 
             absence_of_license_fees = self._measurable_concept_visitor_factory.instantiate_with_visitor(
                 AbsenceOfLicenseFees,
@@ -354,9 +359,17 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            truck_factor_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                TruckFactorMC,
+                children={
+                    truck_factor_measure.name: truck_factor_measure
+                }
+            )
+
             community_capability = LuomaCommunityCapability(
                 children={
-                    number_of_contributors_mc.name: number_of_contributors_mc
+                    number_of_contributors_mc.name: number_of_contributors_mc,
+                    truck_factor_mc.name: truck_factor_mc
                 }
             )
 

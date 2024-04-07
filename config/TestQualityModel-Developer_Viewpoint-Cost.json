@@ -1,6 +1,5 @@
 {
     "preference_matrix": {
-        "ReturnOnInvestment, ReturnOnInvestment": 1,
-        "ReturnOnInvestment, LuomaCommunityCapability": "1"
+        "ReturnOnInvestment, LuomaCommunityCapability": "1/3"
     }
 }

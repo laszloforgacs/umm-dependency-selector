@@ -13,6 +13,7 @@ from domain.repository.QualityModelRepository import QualityModelRepository
 from testing.characteristic.Cost import Cost
 from testing.characteristic.InteroperabilityCompatibility import InteroperabilityCompatibility
 from testing.measurableconcepts.AbsenceOfLicenseFees import AbsenceOfLicenseFees
+from testing.measurableconcepts.communitycapability.IssueThroughputMC import IssueThroughputMC
 from testing.measurableconcepts.communitycapability.NumberOfContributors import NumberOfContributors
 from testing.measurableconcepts.communitycapability.TruckFactorMC import TruckFactorMC
 from testing.measurableconcepts.risk.DelBiancoVulnerabilitiesMC import DelBiancoVulnerabilitiesMC
@@ -20,7 +21,10 @@ from testing.measures.CruzCodeQualityDerivedMeasure import CruzCodeQualityDerive
 from testing.measures.CruzCyclomaticComplexityBaseMeasure import CruzCyclomaticComplexityBaseMeasure
 from testing.measures.CruzNumberOfCommentsBaseMeasure import CruzNumberOfCommentsBaseMeasure
 from testing.measures.License import License
+from testing.measures.communitycapability.ClosedIssuesCount import ClosedIssuesCount
 from testing.measures.communitycapability.ContributorCount import ContributorCount
+from testing.measures.communitycapability.IssueThroughput import IssueThroughput
+from testing.measures.communitycapability.TotalIssuesCount import TotalIssuesCount
 from testing.measures.communitycapability.TruckFactor import TruckFactor
 from testing.measures.risk.DelBiancoRiskMeasure import DelBiancoRiskMeasure
 from testing.subcharacteristic.ReturnOnInvestment import ReturnOnInvestment
@@ -328,6 +332,19 @@ class QualityModelRepositoryImpl(QualityModelRepository):
             truck_factor_measure = self._base_measure_visitor_factory.instantiate_with_visitor(
                 TruckFactor
             )
+            closed_issue_count = self._base_measure_visitor_factory.instantiate_with_visitor(
+                ClosedIssuesCount
+            )
+            total_issue_count = self._base_measure_visitor_factory.instantiate_with_visitor(
+                TotalIssuesCount
+            )
+            issue_throughput = self._derived_measure_visitor_factory.instantiate_with_visitor(
+                IssueThroughput,
+                children={
+                    closed_issue_count.name: closed_issue_count,
+                    total_issue_count.name: total_issue_count
+                }
+            )
 
             absence_of_license_fees = self._measurable_concept_visitor_factory.instantiate_with_visitor(
                 AbsenceOfLicenseFees,
@@ -366,10 +383,18 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            issue_throughput_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                IssueThroughputMC,
+                children={
+                    issue_throughput.name: issue_throughput
+                }
+            )
+
             community_capability = LuomaCommunityCapability(
                 children={
                     number_of_contributors_mc.name: number_of_contributors_mc,
-                    truck_factor_mc.name: truck_factor_mc
+                    truck_factor_mc.name: truck_factor_mc,
+                    issue_throughput_mc.name: issue_throughput_mc
                 }
             )
 

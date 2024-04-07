@@ -104,7 +104,7 @@ class EvaluationViewModel:
         except Exception as e:
             await self.evaluation_state_subject.set_state(
                 state=EvaluationError(
-                    message=str(e)
+                    message=str(e) + self.__class__.__name__
                 )
             )
 

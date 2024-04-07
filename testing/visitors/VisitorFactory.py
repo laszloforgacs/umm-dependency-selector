@@ -1,5 +1,8 @@
 from abc import ABC, abstractmethod
 
+from testing.subcharacteristic.communitycapability.AugurClosedIssuesCountVisitor import AugurClosedIssuesCountVisitor
+from testing.subcharacteristic.communitycapability.AugurIssueThroughputVisitor import AugurIssueThroughputVisitor
+from testing.subcharacteristic.communitycapability.AugurTotalIssuesCountVisitor import AugurTotalIssuesCountVisitor
 from testing.visitors.StandardVisitors import MockMeasureVisitor, AverageAggregateVisitor, NoOpNormalizeVisitor, \
     AddAggregateVisitor
 from testing.visitors.codecomplexity.ClocNumberOfCommentsVisitor import ClocNumberOfCommentsVisitor
@@ -32,6 +35,8 @@ class MeasureVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "TotalIssuesCount": AugurTotalIssuesCountVisitor,
+            "ClosedIssuesCount": AugurClosedIssuesCountVisitor,
             "TruckFactor": TruckFactorVisitor,
             "ContributorCount": PyGithubCommunityCountVisitor,
             "DelBiancoRiskMeasure": DelBiancoSnykRiskMeasureVisitor,
@@ -63,6 +68,7 @@ class DerivedMeasureVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "IssueThroughput": (NoOpNormalizeVisitor, AugurIssueThroughputVisitor),
             "CyclomaticComplexity": (NoOpNormalizeVisitor, AverageAggregateVisitor),
             "CruzCodeQualityDerivedMeasure": (NoOpNormalizeVisitor, CruzCodeQualityDerivedMeasureAggregator)
         }
@@ -89,6 +95,7 @@ class MeasurableConceptVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "IssueThroughputMC": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "TruckFactorMC": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "NumberOfContributors": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "DelBiancoVulnerabilitiesMC": (NoOpNormalizeVisitor, AddAggregateVisitor),

@@ -16,6 +16,7 @@ from testing.measurableconcepts.AbsenceOfLicenseFees import AbsenceOfLicenseFees
 from testing.measurableconcepts.communitycapability.DurationToCloseIssuesMC import DurationToCloseIssuesMC
 from testing.measurableconcepts.communitycapability.IssueThroughputMC import IssueThroughputMC
 from testing.measurableconcepts.communitycapability.NumberOfContributors import NumberOfContributors
+from testing.measurableconcepts.communitycapability.TimeToRespondToIssues import TimeToRespondToIssues
 from testing.measurableconcepts.communitycapability.TruckFactorMC import TruckFactorMC
 from testing.measurableconcepts.risk.DelBiancoVulnerabilitiesMC import DelBiancoVulnerabilitiesMC
 from testing.measures.CruzCodeQualityDerivedMeasure import CruzCodeQualityDerivedMeasure
@@ -25,6 +26,7 @@ from testing.measures.License import License
 from testing.measures.communitycapability.ClosedIssueResolutionDuration import ClosedIssueResolutionDuration
 from testing.measures.communitycapability.ClosedIssuesCount import ClosedIssuesCount
 from testing.measures.communitycapability.ContributorCount import ContributorCount
+from testing.measures.communitycapability.IssueResponseTime import IssueResponseTime
 from testing.measures.communitycapability.IssueThroughput import IssueThroughput
 from testing.measures.communitycapability.TotalIssuesCount import TotalIssuesCount
 from testing.measures.communitycapability.TruckFactor import TruckFactor
@@ -350,6 +352,9 @@ class QualityModelRepositoryImpl(QualityModelRepository):
             closed_issue_resolution_duration = self._base_measure_visitor_factory.instantiate_with_visitor(
                 ClosedIssueResolutionDuration
             )
+            issue_respoonse_time = self._base_measure_visitor_factory.instantiate_with_visitor(
+                IssueResponseTime
+            )
 
             absence_of_license_fees = self._measurable_concept_visitor_factory.instantiate_with_visitor(
                 AbsenceOfLicenseFees,
@@ -402,12 +407,20 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            time_to_respond_to_issues = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                TimeToRespondToIssues,
+                children={
+                    issue_respoonse_time.name: issue_respoonse_time
+                }
+            )
+
             community_capability = LuomaCommunityCapability(
                 children={
                     number_of_contributors_mc.name: number_of_contributors_mc,
                     truck_factor_mc.name: truck_factor_mc,
                     issue_throughput_mc.name: issue_throughput_mc,
-                    duration_to_close_issues_mc.name: duration_to_close_issues_mc
+                    duration_to_close_issues_mc.name: duration_to_close_issues_mc,
+                    time_to_respond_to_issues.name: time_to_respond_to_issues
                 }
             )
 

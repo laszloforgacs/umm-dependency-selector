@@ -7,6 +7,7 @@ from testing.visitors.StandardVisitors import MockMeasureVisitor, AverageAggrega
     AddAggregateVisitor
 from testing.visitors.codecomplexity.AugurClosedIssueResolutionDurationVisitor import \
     AugurClosedIssueResolutionDurationVisitor
+from testing.visitors.codecomplexity.AugurIssueResponseTimeVisitor import AugurIssueResponseTimeVisitor
 from testing.visitors.codecomplexity.ClocNumberOfCommentsVisitor import ClocNumberOfCommentsVisitor
 from testing.visitors.codecomplexity.CruzCodeQualityDerivedMeasureAggregator import \
     CruzCodeQualityDerivedMeasureAggregator
@@ -37,6 +38,7 @@ class MeasureVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "IssueResponseTime": AugurIssueResponseTimeVisitor,
             "ClosedIssueResolutionDuration": AugurClosedIssueResolutionDurationVisitor,
             "TotalIssuesCount": AugurTotalIssuesCountVisitor,
             "ClosedIssuesCount": AugurClosedIssuesCountVisitor,
@@ -98,6 +100,7 @@ class MeasurableConceptVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "TimeToRespondToIssues": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "DurationToCloseIssuesMC": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "IssueThroughputMC": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "TruckFactorMC": (NoOpNormalizeVisitor, AddAggregateVisitor),

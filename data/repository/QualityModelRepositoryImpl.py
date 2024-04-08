@@ -345,6 +345,9 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                     total_issue_count.name: total_issue_count
                 }
             )
+            closed_issue_resolution_duration = self._base_measure_visitor_factory.instantiate_with_visitor(
+                ClosedIssueResolutionDuration
+            )
 
             absence_of_license_fees = self._measurable_concept_visitor_factory.instantiate_with_visitor(
                 AbsenceOfLicenseFees,
@@ -390,11 +393,19 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            duration_to_close_issues_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                DurationToCloseIssuesMC,
+                children={
+                    closed_issue_resolution_duration.name: closed_issue_resolution_duration
+                }
+            )
+
             community_capability = LuomaCommunityCapability(
                 children={
                     number_of_contributors_mc.name: number_of_contributors_mc,
                     truck_factor_mc.name: truck_factor_mc,
-                    issue_throughput_mc.name: issue_throughput_mc
+                    issue_throughput_mc.name: issue_throughput_mc,
+                    duration_to_close_issues_mc.name: duration_to_close_issues_mc
                 }
             )
 

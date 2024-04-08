@@ -11,11 +11,12 @@ class AugurIssueResponseTimeVisitor(Visitor[float]):
             time_differences = []
             for issue in issues:
                 comments = issue.get_comments()
-                first_comment = next(comments, None)
+                if comments.totalCount > 0:
+                    first_comment = comments[0]
 
-                if first_comment and issue.created_at:
-                    time_difference = first_comment.created_at - issue.created_at
-                    time_differences.append(time_difference)
+                    if first_comment and issue.created_at:
+                        time_difference = first_comment.created_at - issue.created_at
+                        time_differences.append(time_difference)
 
             if not time_differences:
                 # returning 30 days in seconds as an appropriately high value.

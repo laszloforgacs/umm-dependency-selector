@@ -13,6 +13,7 @@ from domain.repository.QualityModelRepository import QualityModelRepository
 from testing.characteristic.Cost import Cost
 from testing.characteristic.InteroperabilityCompatibility import InteroperabilityCompatibility
 from testing.measurableconcepts.AbsenceOfLicenseFees import AbsenceOfLicenseFees
+from testing.measurableconcepts.communitycapability.DurationToCloseIssuesMC import DurationToCloseIssuesMC
 from testing.measurableconcepts.communitycapability.IssueThroughputMC import IssueThroughputMC
 from testing.measurableconcepts.communitycapability.NumberOfContributors import NumberOfContributors
 from testing.measurableconcepts.communitycapability.TruckFactorMC import TruckFactorMC
@@ -21,6 +22,7 @@ from testing.measures.CruzCodeQualityDerivedMeasure import CruzCodeQualityDerive
 from testing.measures.CruzCyclomaticComplexityBaseMeasure import CruzCyclomaticComplexityBaseMeasure
 from testing.measures.CruzNumberOfCommentsBaseMeasure import CruzNumberOfCommentsBaseMeasure
 from testing.measures.License import License
+from testing.measures.communitycapability.ClosedIssueResolutionDuration import ClosedIssueResolutionDuration
 from testing.measures.communitycapability.ClosedIssuesCount import ClosedIssuesCount
 from testing.measures.communitycapability.ContributorCount import ContributorCount
 from testing.measures.communitycapability.IssueThroughput import IssueThroughput

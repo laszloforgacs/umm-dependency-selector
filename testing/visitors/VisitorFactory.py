@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+from testing.measures.numberofreleases.ReleaseCountVisitor import ReleaseCountVisitor
 from testing.subcharacteristic.communitycapability.AugurClosedIssuesCountVisitor import AugurClosedIssuesCountVisitor
 from testing.subcharacteristic.communitycapability.AugurIssueThroughputVisitor import AugurIssueThroughputVisitor
 from testing.subcharacteristic.communitycapability.AugurTotalIssuesCountVisitor import AugurTotalIssuesCountVisitor
@@ -38,6 +39,7 @@ class MeasureVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "ReleaseCount": ReleaseCountVisitor,
             "IssueResponseTime": AugurIssueResponseTimeVisitor,
             "ClosedIssueResolutionDuration": AugurClosedIssueResolutionDurationVisitor,
             "TotalIssuesCount": AugurTotalIssuesCountVisitor,

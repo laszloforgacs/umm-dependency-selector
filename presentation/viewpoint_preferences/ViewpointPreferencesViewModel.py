@@ -288,7 +288,7 @@ class ViewpointPreferencesViewModel:
         except Exception as e:
             await  self._pref_state_subject.set_state(
                 state=Error(
-                    message=str(e)
+                    message=str(e) + self.__class__.__name__
                 )
             )
 

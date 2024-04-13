@@ -61,6 +61,7 @@ class MeasureVisitorFactory(VisitorFactory):
             visitor_type = self.visitor_mappings.get(measure_type.__name__)
             if visitor_type:
                 measure.accept_visitor(visitor_type())
+            print(f"Created measure {measure.name} with visitor {visitor_type.__name__}")
             return measure
         except KeyError as e:
             raise MeasureCreationError(f"Visitor mapping not found for {measure_type.__name__}.") from e
@@ -87,6 +88,8 @@ class DerivedMeasureVisitorFactory(VisitorFactory):
             if visitors:
                 normalize_visitor, aggregate_visitor = visitors
                 derived_measure.accept_visitors(normalize_visitor(), aggregate_visitor())
+
+            print(f"Created derived measure {derived_measure.name} with visitors {normalize_visitor.__name__} and {aggregate_visitor.__name__}")
             return derived_measure
         except KeyError as e:
             raise MeasureCreationError(f"Visitor mapping not found for {derived_measure_type.__name__}.") from e
@@ -114,18 +117,20 @@ class MeasurableConceptVisitorFactory(VisitorFactory):
             "ComplexityOfSourceCode2": (NoOpNormalizeVisitor, AverageAggregateVisitor)
         }
 
-    def instantiate_with_visitor(self, derived_measure_type, **kwargs):
+    def instantiate_with_visitor(self, measurable_concept_type, **kwargs):
         try:
-            derived_measure = derived_measure_type(**kwargs)
-            visitors = self.visitor_mappings.get(derived_measure_type.__name__)
+            measurable_concept = measurable_concept_type(**kwargs)
+            visitors = self.visitor_mappings.get(measurable_concept_type.__name__)
             if visitors:
                 normalize_visitor, aggregate_visitor = visitors
-                derived_measure.accept_visitors(normalize_visitor(), aggregate_visitor())
-            return derived_measure
+                measurable_concept.accept_visitors(normalize_visitor(), aggregate_visitor())
+
+            print(f"Created measurable concept {measurable_concept.name} with visitors {normalize_visitor.__name__} and {aggregate_visitor.__name__}")
+            return measurable_concept
         except KeyError as e:
-            raise MeasureCreationError(f"Visitor mapping not found for {derived_measure_type.__name__}.") from e
+            raise MeasureCreationError(f"Visitor mapping not found for {measurable_concept_type.__name__}.") from e
         except TypeError as e:
             raise MeasureCreationError(
-                f"Failed to instantiate {derived_measure_type.__name__} with provided arguments.") from e
+                f"Failed to instantiate {measurable_concept_type.__name__} with provided arguments.") from e
         except Exception as e:
             raise MeasureCreationError(f"Unexpected error occurred while creating measure with visitor.") from e

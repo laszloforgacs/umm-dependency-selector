@@ -12,6 +12,7 @@ from domain.model.Viewpoint import Viewpoint
 from domain.repository.QualityModelRepository import QualityModelRepository
 from testing.characteristic.Cost import Cost
 from testing.characteristic.InteroperabilityCompatibility import InteroperabilityCompatibility
+from testing.characteristic.Reliability import Reliability
 from testing.measurableconcepts.AbsenceOfLicenseFees import AbsenceOfLicenseFees
 from testing.measurableconcepts.communitycapability.DurationToCloseIssuesMC import DurationToCloseIssuesMC
 from testing.measurableconcepts.communitycapability.IssueThroughputMC import IssueThroughputMC
@@ -430,6 +431,26 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                     return_on_investment.name: return_on_investment,
                     #delbianco_risk_analysis.name: delbianco_risk_analysis
                     community_capability.name: community_capability,
+                }
+            )
+
+            release_count = self._base_measure_visitor_factory.instantiate_with_visitor(
+                ReleaseCount
+            )
+            number_of_releases = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                NumberOfReleases,
+                children={
+                    release_count.name: release_count
+                }
+            )
+            regular_updates = RegularUpdates(
+                children={
+                    number_of_releases.name: number_of_releases
+                }
+            )
+            reliability = Reliability(
+                children={
+                    regular_updates.name: regular_updates
                 }
             )
 

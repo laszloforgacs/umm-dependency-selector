@@ -1,9 +1,9 @@
-from domain.model.Measure import BaseMeasure
+from domain.model.Measure import BaseMeasure, MeasurementMethod
 
 
 class ReleaseCount(BaseMeasure[int]):
     def __init__(self, visitor=None):
-        super().__init__("Number of Releases", "release", 1, visitor)
+        super().__init__("ReleaseCount", "release", 1, MeasurementMethod.AUTOMATIC, visitor)
 
     def __copy__(self):
         return ReleaseCount(

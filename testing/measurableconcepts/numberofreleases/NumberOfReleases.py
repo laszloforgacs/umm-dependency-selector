@@ -1,4 +1,4 @@
-from domain.model.MeasureableConcept import MeasurableConcept, Impact
+from domain.model.MeasureableConcept import MeasurableConcept, Impact, OSSAspect
 
 
 class NumberOfReleases(MeasurableConcept[float]):
@@ -10,6 +10,7 @@ class NumberOfReleases(MeasurableConcept[float]):
             "Release",
             "Calculation of the number of releases",
             "Number of releases affects reliability positively",
+            OSSAspect.CODE,
             normalize_visitor,
             aggregate_visitor
         )

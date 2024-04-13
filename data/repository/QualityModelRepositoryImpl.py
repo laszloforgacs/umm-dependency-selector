@@ -19,6 +19,7 @@ from testing.measurableconcepts.communitycapability.IssueThroughputMC import Iss
 from testing.measurableconcepts.communitycapability.NumberOfContributors import NumberOfContributors
 from testing.measurableconcepts.communitycapability.TimeToRespondToIssues import TimeToRespondToIssues
 from testing.measurableconcepts.communitycapability.TruckFactorMC import TruckFactorMC
+from testing.measurableconcepts.numberofreleases.NumberOfReleases import NumberOfReleases
 from testing.measurableconcepts.risk.DelBiancoVulnerabilitiesMC import DelBiancoVulnerabilitiesMC
 from testing.measures.CruzCodeQualityDerivedMeasure import CruzCodeQualityDerivedMeasure
 from testing.measures.CruzCyclomaticComplexityBaseMeasure import CruzCyclomaticComplexityBaseMeasure
@@ -31,9 +32,11 @@ from testing.measures.communitycapability.IssueResponseTime import IssueResponse
 from testing.measures.communitycapability.IssueThroughput import IssueThroughput
 from testing.measures.communitycapability.TotalIssuesCount import TotalIssuesCount
 from testing.measures.communitycapability.TruckFactor import TruckFactor
+from testing.measures.numberofreleases.ReleaseCount import ReleaseCount
 from testing.measures.risk.DelBiancoRiskMeasure import DelBiancoRiskMeasure
 from testing.subcharacteristic.ReturnOnInvestment import ReturnOnInvestment
 from testing.subcharacteristic.communitycapability.LuomaCommunityCapability import LuomaCommunityCapability
+from testing.subcharacteristic.regularupdates.RegularUpdates import RegularUpdates
 from testing.subcharacteristic.risk.DelBiancoRiskAnalysis import DelBiancoRiskAnalysis
 from testing.visitors.VisitorFactory import MeasureVisitorFactory, DerivedMeasureVisitorFactory, \
     MeasurableConceptVisitorFactory
@@ -485,9 +488,10 @@ class QualityModelRepositoryImpl(QualityModelRepository):
             developer_viewpoint = DeveloperViewpoint(children={
                 maintainability.name: maintainability,
                 maintainability2.name: maintainability2,
-                maintainability3.name: maintainability3,
-                maintainability4.name: maintainability4,
-                cost.name: cost
+                #maintainability3.name: maintainability3,
+                #maintainability4.name: maintainability4,
+                cost.name: cost,
+                reliability.name: reliability
             })
 
             test_quality_model = TestQualityModel(

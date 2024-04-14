@@ -1,8 +1,11 @@
 {
     "preference_matrix": {
-        "Maintainability, Cost": "1/2",
-        "Maintainability, Reliability": "1",
-        "Cost, Reliability": "2"
+        "Maintainability, Cost": "4",
+        "Maintainability, Reliability": "9",
+        "Maintainability, Support and Service": "7",
+        "Cost, Reliability": "1/2",
+        "Cost, Support and Service": "1/2",
+        "Reliability, Support and Service": "8"
     },
     "oss_aspect_preference_matrix": {
         "COMMUNITY, CODE": "1/2"

@@ -13,6 +13,7 @@ from domain.repository.QualityModelRepository import QualityModelRepository
 from testing.characteristic.Cost import Cost
 from testing.characteristic.InteroperabilityCompatibility import InteroperabilityCompatibility
 from testing.characteristic.Reliability import Reliability
+from testing.characteristic.SupportAndService import SupportAndService
 from testing.measurableconcepts.AbsenceOfLicenseFees import AbsenceOfLicenseFees
 from testing.measurableconcepts.communitycapability.DurationToCloseIssuesMC import DurationToCloseIssuesMC
 from testing.measurableconcepts.communitycapability.IssueThroughputMC import IssueThroughputMC
@@ -454,6 +455,26 @@ class QualityModelRepositoryImpl(QualityModelRepository):
             reliability = Reliability(
                 children={
                     regular_updates.name: regular_updates
+                }
+            )
+
+            open_feature_request_count = self._base_measure_visitor_factory.instantiate_with_visitor(
+                OpenFeatureRequestCount
+            )
+            number_of_open_feature_requests_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                NumberOfOpenFeatureRequests,
+                children={
+                    open_feature_request_count.name: open_feature_request_count
+                }
+            )
+            open_feature_requests = CruzOpenFeatureRequests(
+                children={
+                    number_of_open_feature_requests_mc.name: number_of_open_feature_requests_mc
+                }
+            )
+            support_and_service = SupportAndService(
+                children={
+                    open_feature_requests.name: open_feature_requests
                 }
             )
 

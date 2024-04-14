@@ -20,7 +20,6 @@ class ReleaseCountVisitor(Visitor[int]):
             for release in releases:
                 release_date = release.created_at
                 if start_date <= release_date <= end_date:
-                    print(f"Release date: {release_date}")
                     release_count += 1
                 else:
                     break

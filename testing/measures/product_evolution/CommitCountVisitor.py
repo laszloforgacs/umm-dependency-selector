@@ -17,9 +17,11 @@ class CommitCountVisitor(Visitor[float]):
             commits = repository.get_commits(since=start_date, until=end_date)
             weeks = 52
             if commits.totalCount == 0:
+                print(f"{repository.full_name}: {measure.name} is 1")
                 return 1
 
             commits_per_week = commits.totalCount / weeks
+            print(f"{repository.full_name}: {measure.name} is {commits_per_week}")
             return commits_per_week
         except Exception as e:
             raise Exception(str(e) + self.__class__.__name__)

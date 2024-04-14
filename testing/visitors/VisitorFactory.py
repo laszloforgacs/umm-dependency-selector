@@ -3,6 +3,7 @@ from abc import ABC, abstractmethod
 from testing.measures.number_of_open_feature_request.OpenFeatureRequestCountVisitor import \
     OpenFeatureRequestCountVisitor
 from testing.measures.numberofreleases.ReleaseCountVisitor import ReleaseCountVisitor
+from testing.measures.product_evolution.CommitCountVisitor import CommitCountVisitor
 from testing.subcharacteristic.communitycapability.AugurClosedIssuesCountVisitor import AugurClosedIssuesCountVisitor
 from testing.subcharacteristic.communitycapability.AugurIssueThroughputVisitor import AugurIssueThroughputVisitor
 from testing.subcharacteristic.communitycapability.AugurTotalIssuesCountVisitor import AugurTotalIssuesCountVisitor
@@ -41,6 +42,7 @@ class MeasureVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "CommitCount": CommitCountVisitor,
             "OpenFeatureRequestCount": OpenFeatureRequestCountVisitor,
             "ReleaseCount": ReleaseCountVisitor,
             "IssueResponseTime": AugurIssueResponseTimeVisitor,
@@ -108,6 +110,7 @@ class MeasurableConceptVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "CommitFrequency": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "NumberOfOpenFeatureRequests": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "NumberOfReleases": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "TimeToRespondToIssues": (NoOpNormalizeVisitor, AddAggregateVisitor),

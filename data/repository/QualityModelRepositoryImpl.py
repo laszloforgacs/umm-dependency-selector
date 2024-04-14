@@ -20,7 +20,10 @@ from testing.measurableconcepts.communitycapability.IssueThroughputMC import Iss
 from testing.measurableconcepts.communitycapability.NumberOfContributors import NumberOfContributors
 from testing.measurableconcepts.communitycapability.TimeToRespondToIssues import TimeToRespondToIssues
 from testing.measurableconcepts.communitycapability.TruckFactorMC import TruckFactorMC
+from testing.measurableconcepts.numberofopenfeaturerequests.NumberOfOpenFeatureRequests import \
+    NumberOfOpenFeatureRequests
 from testing.measurableconcepts.numberofreleases.NumberOfReleases import NumberOfReleases
+from testing.measurableconcepts.product_evolution.CommitFrequency import CommitFrequency
 from testing.measurableconcepts.risk.DelBiancoVulnerabilitiesMC import DelBiancoVulnerabilitiesMC
 from testing.measures.CruzCodeQualityDerivedMeasure import CruzCodeQualityDerivedMeasure
 from testing.measures.CruzCyclomaticComplexityBaseMeasure import CruzCyclomaticComplexityBaseMeasure
@@ -33,10 +36,14 @@ from testing.measures.communitycapability.IssueResponseTime import IssueResponse
 from testing.measures.communitycapability.IssueThroughput import IssueThroughput
 from testing.measures.communitycapability.TotalIssuesCount import TotalIssuesCount
 from testing.measures.communitycapability.TruckFactor import TruckFactor
+from testing.measures.number_of_open_feature_request.OpenFeatureRequestCount import OpenFeatureRequestCount
 from testing.measures.numberofreleases.ReleaseCount import ReleaseCount
+from testing.measures.product_evolution.CommitCount import CommitCount
 from testing.measures.risk.DelBiancoRiskMeasure import DelBiancoRiskMeasure
 from testing.subcharacteristic.ReturnOnInvestment import ReturnOnInvestment
 from testing.subcharacteristic.communitycapability.LuomaCommunityCapability import LuomaCommunityCapability
+from testing.subcharacteristic.openfeaturerequests.CruzOpenFeatureRequests import CruzOpenFeatureRequests
+from testing.subcharacteristic.product_evolution.ProductEvolution import ProductEvolution
 from testing.subcharacteristic.regularupdates.RegularUpdates import RegularUpdates
 from testing.subcharacteristic.risk.DelBiancoRiskAnalysis import DelBiancoRiskAnalysis
 from testing.visitors.VisitorFactory import MeasureVisitorFactory, DerivedMeasureVisitorFactory, \
@@ -461,20 +468,40 @@ class QualityModelRepositoryImpl(QualityModelRepository):
             open_feature_request_count = self._base_measure_visitor_factory.instantiate_with_visitor(
                 OpenFeatureRequestCount
             )
+
+            commit_count = self._base_measure_visitor_factory.instantiate_with_visitor(
+                CommitCount
+            )
+
             number_of_open_feature_requests_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
                 NumberOfOpenFeatureRequests,
                 children={
                     open_feature_request_count.name: open_feature_request_count
                 }
             )
+
+            commit_frequency_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                CommitFrequency,
+                children={
+                    commit_count.name: commit_count
+                }
+            )
+
             open_feature_requests = CruzOpenFeatureRequests(
                 children={
                     number_of_open_feature_requests_mc.name: number_of_open_feature_requests_mc
                 }
             )
+
+            product_evolution = ProductEvolution(
+                children={
+                    commit_frequency_mc.name: commit_frequency_mc
+                }
+            )
             support_and_service = SupportAndService(
                 children={
-                    open_feature_requests.name: open_feature_requests
+                    open_feature_requests.name: open_feature_requests,
+                    product_evolution.name: product_evolution
                 }
             )
 
@@ -512,7 +539,8 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 #maintainability3.name: maintainability3,
                 #maintainability4.name: maintainability4,
                 cost.name: cost,
-                reliability.name: reliability
+                reliability.name: reliability,
+                support_and_service.name: support_and_service
             })
 
             test_quality_model = TestQualityModel(

@@ -25,7 +25,7 @@ from testing.measurableconcepts.numberofopenfeaturerequests.NumberOfOpenFeatureR
 from testing.measurableconcepts.numberofreleases.NumberOfReleases import NumberOfReleases
 from testing.measurableconcepts.product_evolution.CommitFrequency import CommitFrequency
 from testing.measurableconcepts.risk.DelBiancoVulnerabilitiesMC import DelBiancoVulnerabilitiesMC
-from testing.measurableconcepts.updated_since.UpdatedSince import UpdatedSince
+from testing.measurableconcepts.product_evolution.updated_since.UpdatedSince import UpdatedSince
 from testing.measures.CruzCodeQualityDerivedMeasure import CruzCodeQualityDerivedMeasure
 from testing.measures.CruzCyclomaticComplexityBaseMeasure import CruzCyclomaticComplexityBaseMeasure
 from testing.measures.CruzNumberOfCommentsBaseMeasure import CruzNumberOfCommentsBaseMeasure
@@ -40,6 +40,7 @@ from testing.measures.communitycapability.TruckFactor import TruckFactor
 from testing.measures.number_of_open_feature_request.OpenFeatureRequestCount import OpenFeatureRequestCount
 from testing.measures.numberofreleases.ReleaseCount import ReleaseCount
 from testing.measures.product_evolution.CommitCount import CommitCount
+from testing.measures.product_evolution.updated_since.TimeSinceLastCommit import TimeSinceLastCommit
 from testing.measures.risk.DelBiancoRiskMeasure import DelBiancoRiskMeasure
 from testing.subcharacteristic.ReturnOnInvestment import ReturnOnInvestment
 from testing.subcharacteristic.communitycapability.LuomaCommunityCapability import LuomaCommunityCapability
@@ -488,10 +489,13 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            time_since_last_commit = self._base_measure_visitor_factory.instantiate_with_visitor(
+                TimeSinceLastCommit
+            )
             updated_since_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
                 UpdatedSince,
                 children={
-                    
+                    time_since_last_commit.name: time_since_last_commit
                 }
             )
 
@@ -503,7 +507,8 @@ class QualityModelRepositoryImpl(QualityModelRepository):
 
             product_evolution = ProductEvolution(
                 children={
-                    commit_frequency_mc.name: commit_frequency_mc
+                    commit_frequency_mc.name: commit_frequency_mc,
+                    updated_since_mc.name: updated_since_mc
                 }
             )
             support_and_service = SupportAndService(

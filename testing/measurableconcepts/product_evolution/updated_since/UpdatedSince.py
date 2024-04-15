@@ -13,10 +13,10 @@ class UpdatedSince(MeasurableConcept[float]):
         super().__init__(
             "Updated since",
             children,
-            Impact.POSITIVE,
+            Impact.NEGATIVE,
             "Commit history",
             "Calculation of the time since the last commit",
-            "Regular updates affect product evolution positively",
+            "Non-regular updates affect product evolution negatively",
             OSSAspect.CODE,
             normalize_visitor,
             aggregate_visitor

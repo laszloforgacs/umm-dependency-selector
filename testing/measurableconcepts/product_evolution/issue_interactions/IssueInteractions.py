@@ -1,7 +1,7 @@
 from domain.model.MeasureableConcept import MeasurableConcept, Impact, OSSAspect
 
 
-class IssueUpdates(MeasurableConcept[int]):
+class IssueInteractions(MeasurableConcept[int]):
     def __init__(
             self,
             children,
@@ -9,12 +9,12 @@ class IssueUpdates(MeasurableConcept[int]):
             aggregate_visitor=None
     ):
         super().__init__(
-            "Issue updates",
+            "Issue interactions",
             children,
             Impact.POSITIVE,
             "Issue history",
             "Calculating the level of interaction with issues",
-            "Regular updates affect product evolution positively",
+            "Regular interactions affect product evolution positively",
             OSSAspect.COMMUNITY,
             normalize_visitor,
             aggregate_visitor

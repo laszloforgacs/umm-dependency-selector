@@ -25,6 +25,7 @@ from testing.measurableconcepts.numberofopenfeaturerequests.NumberOfOpenFeatureR
 from testing.measurableconcepts.numberofreleases.NumberOfReleases import NumberOfReleases
 from testing.measurableconcepts.product_evolution.CommitFrequency import CommitFrequency
 from testing.measurableconcepts.risk.DelBiancoVulnerabilitiesMC import DelBiancoVulnerabilitiesMC
+from testing.measurableconcepts.updated_since.UpdatedSince import UpdatedSince
 from testing.measures.CruzCodeQualityDerivedMeasure import CruzCodeQualityDerivedMeasure
 from testing.measures.CruzCyclomaticComplexityBaseMeasure import CruzCyclomaticComplexityBaseMeasure
 from testing.measures.CruzNumberOfCommentsBaseMeasure import CruzNumberOfCommentsBaseMeasure
@@ -484,6 +485,13 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 CommitFrequency,
                 children={
                     commit_count.name: commit_count
+                }
+            )
+
+            updated_since_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                UpdatedSince,
+                children={
+                    
                 }
             )
 

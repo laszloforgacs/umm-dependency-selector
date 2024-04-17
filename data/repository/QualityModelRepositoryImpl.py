@@ -25,6 +25,7 @@ from testing.measurableconcepts.numberofopenfeaturerequests.NumberOfOpenFeatureR
 from testing.measurableconcepts.numberofreleases.NumberOfReleases import NumberOfReleases
 from testing.measurableconcepts.product_evolution.CommitFrequency import CommitFrequency
 from testing.measurableconcepts.product_evolution.IssueInteractions import IssueInteractions
+from testing.measurableconcepts.product_evolution.Staleness import Staleness
 from testing.measurableconcepts.risk.DelBiancoVulnerabilitiesMC import DelBiancoVulnerabilitiesMC
 from testing.measurableconcepts.product_evolution.UpdatedSince import UpdatedSince
 from testing.measures.CruzCodeQualityDerivedMeasure import CruzCodeQualityDerivedMeasure
@@ -42,6 +43,7 @@ from testing.measures.number_of_open_feature_request.OpenFeatureRequestCount imp
 from testing.measures.numberofreleases.ReleaseCount import ReleaseCount
 from testing.measures.product_evolution.CommitCount import CommitCount
 from testing.measures.product_evolution.issue_interactions.UpdatedIssuesCount import UpdatedIssuesCount
+from testing.measures.product_evolution.staleness.OpenIssueAge import OpenIssueAge
 from testing.measures.product_evolution.updated_since.TimeSinceLastCommit import TimeSinceLastCommit
 from testing.measures.risk.DelBiancoRiskMeasure import DelBiancoRiskMeasure
 from testing.subcharacteristic.ReturnOnInvestment import ReturnOnInvestment
@@ -521,11 +523,23 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            open_issue_age = self._base_measure_visitor_factory.instantiate_with_visitor(
+                OpenIssueAge
+            )
+
+            staleness_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                Staleness,
+                children={
+                    open_issue_age.name: open_issue_age
+                }
+            )
+
             product_evolution = ProductEvolution(
                 children={
                     commit_frequency_mc.name: commit_frequency_mc,
                     updated_since_mc.name: updated_since_mc,
-                    issue_interactions_mc.name: issue_interactions_mc
+                    issue_interactions_mc.name: issue_interactions_mc,
+                    staleness_mc.name: staleness_mc
                 }
             )
             support_and_service = SupportAndService(

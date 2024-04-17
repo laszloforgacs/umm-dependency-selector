@@ -5,6 +5,7 @@ from testing.measures.number_of_open_feature_request.OpenFeatureRequestCountVisi
 from testing.measures.numberofreleases.ReleaseCountVisitor import ReleaseCountVisitor
 from testing.measures.product_evolution.CommitCountVisitor import CommitCountVisitor
 from testing.measures.product_evolution.issue_interactions.UpdatedIssuesCountVisitor import UpdatedIssuesCountVisitor
+from testing.measures.product_evolution.staleness.OpenIssueAgeVisitor import OpenIssueAgeVisitor
 from testing.measures.product_evolution.updated_since.TimeSinceLastCommitVIsitor import TimeSinceLastCommitVisitor
 from testing.subcharacteristic.communitycapability.AugurClosedIssuesCountVisitor import AugurClosedIssuesCountVisitor
 from testing.subcharacteristic.communitycapability.AugurIssueThroughputVisitor import AugurIssueThroughputVisitor
@@ -44,6 +45,7 @@ class MeasureVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "OpenIssueAge": OpenIssueAgeVisitor,
             "UpdatedIssuesCount": UpdatedIssuesCountVisitor,
             "TimeSinceLastCommit": TimeSinceLastCommitVisitor,
             "CommitCount": CommitCountVisitor,
@@ -114,6 +116,7 @@ class MeasurableConceptVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "Staleness": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "IssueInteractions": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "UpdatedSince": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "CommitFrequency": (NoOpNormalizeVisitor, AddAggregateVisitor),

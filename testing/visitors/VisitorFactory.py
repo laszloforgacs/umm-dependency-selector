@@ -4,7 +4,6 @@ from testing.measures.number_of_open_feature_request.OpenFeatureRequestCountVisi
     OpenFeatureRequestCountVisitor
 from testing.measures.numberofreleases.ReleaseCountVisitor import ReleaseCountVisitor
 from testing.measures.product_evolution.CommitCountVisitor import CommitCountVisitor
-from testing.measures.product_evolution.issue_interactions.ClosedIssuesCountVisitor import ClosedIssuesCountVisitor
 from testing.measures.product_evolution.issue_interactions.UpdatedIssuesCountVisitor import UpdatedIssuesCountVisitor
 from testing.measures.product_evolution.updated_since.TimeSinceLastCommitVIsitor import TimeSinceLastCommitVisitor
 from testing.subcharacteristic.communitycapability.AugurClosedIssuesCountVisitor import AugurClosedIssuesCountVisitor
@@ -45,8 +44,7 @@ class MeasureVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
-            "UpdatesIssuesCount": UpdatedIssuesCountVisitor,
-            "ClosedIssueCount": ClosedIssuesCountVisitor,
+            "UpdatedIssuesCount": UpdatedIssuesCountVisitor,
             "TimeSinceLastCommit": TimeSinceLastCommitVisitor,
             "CommitCount": CommitCountVisitor,
             "OpenFeatureRequestCount": OpenFeatureRequestCountVisitor,

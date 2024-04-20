@@ -4,6 +4,8 @@ from testing.measures.number_of_open_feature_request.OpenFeatureRequestCountVisi
     OpenFeatureRequestCountVisitor
 from testing.measures.numberofreleases.ReleaseCountVisitor import ReleaseCountVisitor
 from testing.measures.product_evolution.CommitCountVisitor import CommitCountVisitor
+from testing.measures.product_evolution.declined_changes.DeclinedIssueCountVisitor import DeclinedIssueCountVisitor
+from testing.measures.product_evolution.declined_changes.ReviewsDeclinedAggregator import ReviewsDeclinedAggregator
 from testing.measures.product_evolution.issue_interactions.UpdatedIssuesCountVisitor import UpdatedIssuesCountVisitor
 from testing.measures.product_evolution.staleness.OpenIssueAgeVisitor import OpenIssueAgeVisitor
 from testing.measures.product_evolution.updated_since.TimeSinceLastCommitVIsitor import TimeSinceLastCommitVisitor
@@ -45,6 +47,7 @@ class MeasureVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "DeclinedIssueCount": DeclinedIssueCountVisitor,
             "OpenIssueAge": OpenIssueAgeVisitor,
             "UpdatedIssuesCount": UpdatedIssuesCountVisitor,
             "TimeSinceLastCommit": TimeSinceLastCommitVisitor,
@@ -90,6 +93,7 @@ class DerivedMeasureVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "ReviewsDeclined": (NoOpNormalizeVisitor, ReviewsDeclinedAggregator),
             "IssueThroughput": (NoOpNormalizeVisitor, AugurIssueThroughputVisitor),
             "CyclomaticComplexity": (NoOpNormalizeVisitor, AverageAggregateVisitor),
             "CruzCodeQualityDerivedMeasure": (NoOpNormalizeVisitor, CruzCodeQualityDerivedMeasureAggregator)
@@ -132,6 +136,7 @@ class MeasurableConceptVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "DeclinedChanges": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "Staleness": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "IssueInteractions": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "UpdatedSince": (NoOpNormalizeVisitor, AddAggregateVisitor),

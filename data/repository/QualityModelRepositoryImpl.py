@@ -24,6 +24,7 @@ from testing.measurableconcepts.numberofopenfeaturerequests.NumberOfOpenFeatureR
     NumberOfOpenFeatureRequests
 from testing.measurableconcepts.numberofreleases.NumberOfReleases import NumberOfReleases
 from testing.measurableconcepts.product_evolution.CommitFrequency import CommitFrequency
+from testing.measurableconcepts.product_evolution.DeclinedChanges import DeclinedChanges
 from testing.measurableconcepts.product_evolution.IssueInteractions import IssueInteractions
 from testing.measurableconcepts.product_evolution.Staleness import Staleness
 from testing.measurableconcepts.risk.DelBiancoVulnerabilitiesMC import DelBiancoVulnerabilitiesMC
@@ -42,6 +43,8 @@ from testing.measures.communitycapability.TruckFactor import TruckFactor
 from testing.measures.number_of_open_feature_request.OpenFeatureRequestCount import OpenFeatureRequestCount
 from testing.measures.numberofreleases.ReleaseCount import ReleaseCount
 from testing.measures.product_evolution.CommitCount import CommitCount
+from testing.measures.product_evolution.declined_changes.DeclinedIssueCount import DeclinedIssueCount
+from testing.measures.product_evolution.declined_changes.ReviewsDeclined import ReviewsDeclined
 from testing.measures.product_evolution.issue_interactions.UpdatedIssuesCount import UpdatedIssuesCount
 from testing.measures.product_evolution.staleness.OpenIssueAge import OpenIssueAge
 from testing.measures.product_evolution.updated_since.TimeSinceLastCommit import TimeSinceLastCommit
@@ -361,7 +364,10 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 ClosedIssuesCount
             )
             total_issue_count = self._base_measure_visitor_factory.instantiate_with_visitor(
-                TotalIssuesCount
+                TotalIssuesCount,
+                visitor_kwargs={
+                    "github_rate_limiter": self._github_rate_limiter
+                }
             )
             issue_throughput = self._derived_measure_visitor_factory.instantiate_with_visitor(
                 IssueThroughput,
@@ -540,12 +546,40 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            declined_issue_count = self._base_measure_visitor_factory.instantiate_with_visitor(
+                DeclinedIssueCount,
+                visitor_kwargs={
+                    "github_rate_limiter": self._github_rate_limiter
+                }
+            )
+
+            reviews_declined = self._derived_measure_visitor_factory.instantiate_with_visitor(
+                ReviewsDeclined,
+                children={
+                    declined_issue_count.name: declined_issue_count,
+                    total_issue_count.name: self._base_measure_visitor_factory.instantiate_with_visitor(
+                        TotalIssuesCount,
+                        visitor_kwargs={
+                            "github_rate_limiter": self._github_rate_limiter
+                        }
+                    )
+                }
+            )
+
+            declined_changes_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                DeclinedChanges,
+                children={
+                    reviews_declined.name: reviews_declined
+                }
+            )
+
             product_evolution = ProductEvolution(
                 children={
                     commit_frequency_mc.name: commit_frequency_mc,
                     updated_since_mc.name: updated_since_mc,
                     issue_interactions_mc.name: issue_interactions_mc,
-                    staleness_mc.name: staleness_mc
+                    staleness_mc.name: staleness_mc,
+                    declined_changes_mc.name: declined_changes_mc
                 }
             )
             support_and_service = SupportAndService(

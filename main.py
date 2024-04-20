@@ -15,6 +15,7 @@ async def main():
 
     tasks = [t for t in asyncio.all_tasks() if t is not asyncio.current_task()]
     await asyncio.gather(*tasks)
+    dependencies.dispose()
 
 
 if __name__ == "__main__":

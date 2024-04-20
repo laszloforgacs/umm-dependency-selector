@@ -66,12 +66,15 @@ class MeasureVisitorFactory(VisitorFactory):
             "CruzCyclomaticComplexityBaseMeasure": LizardCyclomaticComplexityVisitor
         }
 
-    def instantiate_with_visitor(self, measure_type, **kwargs):
+    def instantiate_with_visitor(self, measure_type, visitor_kwargs=None, **measure_kwargs):
         try:
-            measure = measure_type(**kwargs)
+            measure = measure_type(**measure_kwargs)
             visitor_type = self.visitor_mappings.get(measure_type.__name__)
             if visitor_type:
-                measure.accept_visitor(visitor_type())
+                if visitor_kwargs is None:
+                    visitor_kwargs = {}
+                visitor = visitor_type(**visitor_kwargs)
+                measure.accept_visitor(visitor)
             print(f"Created measure {measure.name} with visitor {visitor_type.__name__}")
             return measure
         except KeyError as e:
@@ -92,13 +95,26 @@ class DerivedMeasureVisitorFactory(VisitorFactory):
             "CruzCodeQualityDerivedMeasure": (NoOpNormalizeVisitor, CruzCodeQualityDerivedMeasureAggregator)
         }
 
-    def instantiate_with_visitor(self, derived_measure_type, **kwargs):
+    def instantiate_with_visitor(
+            self,
+            derived_measure_type,
+            normalize_visitor_kwargs=None,
+            aggregate_visitor_kwargs=None,
+            **measure_kwargs
+    ):
         try:
-            derived_measure = derived_measure_type(**kwargs)
+            derived_measure = derived_measure_type(**measure_kwargs)
             visitors = self.visitor_mappings.get(derived_measure_type.__name__)
             if visitors:
                 normalize_visitor, aggregate_visitor = visitors
-                derived_measure.accept_visitors(normalize_visitor(), aggregate_visitor())
+                if normalize_visitor_kwargs is None:
+                    normalize_visitor_kwargs = {}
+                if aggregate_visitor_kwargs is None:
+                    aggregate_visitor_kwargs = {}
+                derived_measure.accept_visitors(
+                    normalize_visitor(**normalize_visitor_kwargs),
+                    aggregate_visitor(**aggregate_visitor_kwargs)
+                )
 
             print(f"Created derived measure {derived_measure.name} with visitors {normalize_visitor.__name__} and {aggregate_visitor.__name__}")
             return derived_measure
@@ -133,13 +149,26 @@ class MeasurableConceptVisitorFactory(VisitorFactory):
             "ComplexityOfSourceCode2": (NoOpNormalizeVisitor, AverageAggregateVisitor)
         }
 
-    def instantiate_with_visitor(self, measurable_concept_type, **kwargs):
+    def instantiate_with_visitor(
+            self,
+            measurable_concept_type,
+            normalize_visitor_kwargs=None,
+            aggregate_visitor_kwargs=None,
+            **measure_kwargs
+    ):
         try:
-            measurable_concept = measurable_concept_type(**kwargs)
+            measurable_concept = measurable_concept_type(**measure_kwargs)
             visitors = self.visitor_mappings.get(measurable_concept_type.__name__)
             if visitors:
                 normalize_visitor, aggregate_visitor = visitors
-                measurable_concept.accept_visitors(normalize_visitor(), aggregate_visitor())
+                if normalize_visitor_kwargs is None:
+                    normalize_visitor_kwargs = {}
+                if aggregate_visitor_kwargs is None:
+                    aggregate_visitor_kwargs = {}
+                measurable_concept.accept_visitors(
+                    normalize_visitor(**normalize_visitor_kwargs),
+                    aggregate_visitor(**aggregate_visitor_kwargs)
+                )
 
             print(f"Created measurable concept {measurable_concept.name} with visitors {normalize_visitor.__name__} and {aggregate_visitor.__name__}")
             return measurable_concept

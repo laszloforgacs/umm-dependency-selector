@@ -1,5 +1,8 @@
 import os
 
+from github import Github
+from github.Auth import Token
+
 from data.repository.QualityModelRepositoryImpl import QualityModelRepositoryImpl
 from data.repository.SourceRepositoryImpl import SourceRepositoryImpl
 from presentation.core.navigation.NavigationController import NavigationController
@@ -15,10 +18,14 @@ from presentation.viewpoint_list.ViewpointListScreen import ViewpointListScreen
 from presentation.viewpoint_list.ViewpointListViewModel import ViewpointListViewModel
 from presentation.viewpoint_preferences.ViewpointPreferencesScreen import ViewpointPreferencesScreen
 from presentation.viewpoint_preferences.ViewpointPreferencesViewModel import ViewpointPreferencesViewModel
+from util.GithubRateLimiter import GithubRateLimiter
 
 
 class Dependencies:
     def __init__(self):
+        auth = Token(os.getenv('UMM_DEPENDENCY_SELECTOR_GITHUB_TOKEN'))
+        github = Github(auth=auth, per_page=100)
+        self._github_rate_limiter = GithubRateLimiter(github=github)
         self.navigation_controller = NavigationController()
         self.base_measure_visitor_factory = MeasureVisitorFactory()
         self.derived_measure_visitor_factory = DerivedMeasureVisitorFactory()
@@ -28,12 +35,13 @@ class Dependencies:
             dependencies=self
         )
         self.quality_model_repository = QualityModelRepositoryImpl(
+            github_rate_limiter=self._github_rate_limiter,
             base_measure_visitor_factory=self.base_measure_visitor_factory,
             derived_measure_visitor_factory=self.derived_measure_visitor_factory,
             measurable_concept_visitor_factory=self.measurable_concept_visitor_factory
         )
         self.source_repository = SourceRepositoryImpl(
-            github_token=os.getenv('UMM_DEPENDENCY_SELECTOR_GITHUB_TOKEN')
+            github_rate_limiter=self._github_rate_limiter
         )
         self.shared_view_model = SharedViewModel(
             quality_model_repository=self.quality_model_repository,
@@ -86,3 +94,6 @@ class Dependencies:
             repository_urls=repository_urls,
             comparisons=comparisons
         )
+
+    def dispose(self):
+        self._github_rate_limiter.github_client.close()

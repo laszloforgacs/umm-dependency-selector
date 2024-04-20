@@ -67,6 +67,7 @@ from testing.subcharacteristic.Analyzability import Analyzability, Analyzability
     Analyzability5, Analyzability6, Analyzability7, Analyzability8, Analyzability9, Analyzability10, Analyzability11, \
     Analyzability12, Analyzability13, Analyzability14, Analyzability15, Analyzability16
 from testing.viewpoints.DeveloperViewpoint import DeveloperViewpoint
+from util.GithubRateLimiter import GithubRateLimiter
 
 QM_FOLDER: Final = "config"
 JSON_EXTENSION: Final = ".json"
@@ -75,10 +76,12 @@ JSON_EXTENSION: Final = ".json"
 class QualityModelRepositoryImpl(QualityModelRepository):
     def __init__(
             self,
+            github_rate_limiter: GithubRateLimiter,
             base_measure_visitor_factory: MeasureVisitorFactory,
             derived_measure_visitor_factory: DerivedMeasureVisitorFactory,
             measurable_concept_visitor_factory: MeasurableConceptVisitorFactory
     ):
+        self._github_rate_limiter = github_rate_limiter
         self._base_measure_visitor_factory = base_measure_visitor_factory
         self._derived_measure_visitor_factory = derived_measure_visitor_factory
         self._measurable_concept_visitor_factory = measurable_concept_visitor_factory
@@ -524,7 +527,10 @@ class QualityModelRepositoryImpl(QualityModelRepository):
             )
 
             open_issue_age = self._base_measure_visitor_factory.instantiate_with_visitor(
-                OpenIssueAge
+                OpenIssueAge,
+                visitor_kwargs={
+                    "github_rate_limiter": self._github_rate_limiter
+                }
             )
 
             staleness_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
@@ -552,36 +558,36 @@ class QualityModelRepositoryImpl(QualityModelRepository):
             maintainability = Maintainability(children={
                 analyzability.name: analyzability,
                 analyzability2.name: analyzability2,
-                analyzability3.name: analyzability3,
-                analyzability4.name: analyzability4
+                # analyzability3.name: analyzability3,
+                # analyzability4.name: analyzability4
             })
 
             maintainability2 = Maintainability2(children={
                 analyzability5.name: analyzability5,
                 analyzability6.name: analyzability6,
-                analyzability7.name: analyzability7,
-                analyzability8.name: analyzability8
+                # analyzability7.name: analyzability7,
+                # analyzability8.name: analyzability8
             })
 
             maintainability3 = Maintainability3(children={
                 analyzability9.name: analyzability9,
                 analyzability10.name: analyzability10,
-                analyzability11.name: analyzability11,
-                analyzability12.name: analyzability12
+                # analyzability11.name: analyzability11,
+                # analyzability12.name: analyzability12
             })
 
             maintainability4 = Maintainability4(children={
                 analyzability13.name: analyzability13,
                 analyzability14.name: analyzability14,
-                analyzability15.name: analyzability15,
-                analyzability16.name: analyzability16
+                # analyzability15.name: analyzability15,
+                # analyzability16.name: analyzability16
             })
 
             developer_viewpoint = DeveloperViewpoint(children={
                 maintainability.name: maintainability,
-                maintainability2.name: maintainability2,
-                #maintainability3.name: maintainability3,
-                #maintainability4.name: maintainability4,
+                # maintainability2.name: maintainability2,
+                # maintainability3.name: maintainability3,
+                # maintainability4.name: maintainability4,
                 cost.name: cost,
                 reliability.name: reliability,
                 support_and_service.name: support_and_service

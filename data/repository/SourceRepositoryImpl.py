@@ -1,22 +1,20 @@
 import asyncio
 from pathlib import Path
 
-from github import Github
-from github.Auth import Token
 from github.Repository import Repository
 
 from git import Repo
 
 from domain.model.Result import Result, Success, Failure
 from domain.repository.SourceRepository import SourceRepository
+from util.GithubRateLimiter import GithubRateLimiter
 
 SOURCE_TEMP_DIR = "source_temp"
 
 
 class SourceRepositoryImpl(SourceRepository[Repository]):
-    def __init__(self, github_token: str):
-        auth = Token(github_token)
-        self._github = Github(auth=auth)
+    def __init__(self, github_rate_limiter: GithubRateLimiter):
+        self._github_rate_limiter = github_rate_limiter
 
     async def fetch_repositories(self, urls: list[str]) -> Result[list[Repository]]:
         try:
@@ -26,7 +24,10 @@ class SourceRepositoryImpl(SourceRepository[Repository]):
             ]
 
             repositories = [
-                self._github.get_repo(url)
+                self._github_rate_limiter.execute(
+                    self._github_rate_limiter.github_client.get_repo,
+                    url
+                )
                 for url in repo_full_names
             ]
 
@@ -41,7 +42,10 @@ class SourceRepositoryImpl(SourceRepository[Repository]):
     async def fetch_repository(self, url: str) -> Result[Repository]:
         try:
             repo_full_name = "/".join(url.split('/')[-2:])
-            repo = self._github.get_repo(repo_full_name)
+            repo = self._github_rate_limiter.execute(
+                self._github_rate_limiter.github_client.get_repo,
+                repo_full_name
+            )
             return Success(
                 value=repo
             )
@@ -81,7 +85,6 @@ class SourceRepositoryImpl(SourceRepository[Repository]):
             )
 
     async def dispose(self):
-        self._github.close()
         await self._delete_temp_source_folders()
 
     async def _delete_temp_source_folders(self):

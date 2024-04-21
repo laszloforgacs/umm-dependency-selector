@@ -7,6 +7,8 @@ from testing.measures.product_evolution.CommitCountVisitor import CommitCountVis
 from testing.measures.product_evolution.declined_changes.DeclinedIssueCountVisitor import DeclinedIssueCountVisitor
 from testing.measures.product_evolution.declined_changes.ReviewsDeclinedAggregator import ReviewsDeclinedAggregator
 from testing.measures.product_evolution.issue_interactions.UpdatedIssuesCountVisitor import UpdatedIssuesCountVisitor
+from testing.measures.product_evolution.opened_pull_requests.OpenedPullRequestCountVisitor import \
+    OpenedPullRequestCountVisitor
 from testing.measures.product_evolution.staleness.OpenIssueAgeVisitor import OpenIssueAgeVisitor
 from testing.measures.product_evolution.updated_since.TimeSinceLastCommitVIsitor import TimeSinceLastCommitVisitor
 from testing.subcharacteristic.communitycapability.AugurClosedIssuesCountVisitor import AugurClosedIssuesCountVisitor
@@ -47,6 +49,7 @@ class MeasureVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "OpenedPullRequestCount": OpenedPullRequestCountVisitor,
             "DeclinedIssueCount": DeclinedIssueCountVisitor,
             "OpenIssueAge": OpenIssueAgeVisitor,
             "UpdatedIssuesCount": UpdatedIssuesCountVisitor,
@@ -120,7 +123,8 @@ class DerivedMeasureVisitorFactory(VisitorFactory):
                     aggregate_visitor(**aggregate_visitor_kwargs)
                 )
 
-            print(f"Created derived measure {derived_measure.name} with visitors {normalize_visitor.__name__} and {aggregate_visitor.__name__}")
+            print(
+                f"Created derived measure {derived_measure.name} with visitors {normalize_visitor.__name__} and {aggregate_visitor.__name__}")
             return derived_measure
         except KeyError as e:
             raise MeasureCreationError(f"Visitor mapping not found for {derived_measure_type.__name__}.") from e
@@ -136,6 +140,7 @@ class MeasurableConceptVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "OpenedPullRequests": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "DeclinedChanges": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "Staleness": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "IssueInteractions": (NoOpNormalizeVisitor, AddAggregateVisitor),
@@ -175,7 +180,8 @@ class MeasurableConceptVisitorFactory(VisitorFactory):
                     aggregate_visitor(**aggregate_visitor_kwargs)
                 )
 
-            print(f"Created measurable concept {measurable_concept.name} with visitors {normalize_visitor.__name__} and {aggregate_visitor.__name__}")
+            print(
+                f"Created measurable concept {measurable_concept.name} with visitors {normalize_visitor.__name__} and {aggregate_visitor.__name__}")
             return measurable_concept
         except KeyError as e:
             raise MeasureCreationError(f"Visitor mapping not found for {measurable_concept_type.__name__}.") from e

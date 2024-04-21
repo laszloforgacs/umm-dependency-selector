@@ -26,6 +26,7 @@ from testing.measurableconcepts.numberofreleases.NumberOfReleases import NumberO
 from testing.measurableconcepts.product_evolution.CommitFrequency import CommitFrequency
 from testing.measurableconcepts.product_evolution.DeclinedChanges import DeclinedChanges
 from testing.measurableconcepts.product_evolution.IssueInteractions import IssueInteractions
+from testing.measurableconcepts.product_evolution.OpenedPullRequests import OpenedPullRequests
 from testing.measurableconcepts.product_evolution.Staleness import Staleness
 from testing.measurableconcepts.risk.DelBiancoVulnerabilitiesMC import DelBiancoVulnerabilitiesMC
 from testing.measurableconcepts.product_evolution.UpdatedSince import UpdatedSince
@@ -46,6 +47,7 @@ from testing.measures.product_evolution.CommitCount import CommitCount
 from testing.measures.product_evolution.declined_changes.DeclinedIssueCount import DeclinedIssueCount
 from testing.measures.product_evolution.declined_changes.ReviewsDeclined import ReviewsDeclined
 from testing.measures.product_evolution.issue_interactions.UpdatedIssuesCount import UpdatedIssuesCount
+from testing.measures.product_evolution.opened_pull_requests.OpenedPullRequestCount import OpenedPullRequestCount
 from testing.measures.product_evolution.staleness.OpenIssueAge import OpenIssueAge
 from testing.measures.product_evolution.updated_since.TimeSinceLastCommit import TimeSinceLastCommit
 from testing.measures.risk.DelBiancoRiskMeasure import DelBiancoRiskMeasure
@@ -573,15 +575,31 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            opened_pull_request_count = self._base_measure_visitor_factory.instantiate_with_visitor(
+                OpenedPullRequestCount,
+                visitor_kwargs={
+                    "github_rate_limiter": self._github_rate_limiter
+                }
+            )
+
+            opened_pull_request_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                OpenedPullRequests,
+                children={
+                    opened_pull_request_count.name: opened_pull_request_count
+                }
+            )
+
             product_evolution = ProductEvolution(
                 children={
                     commit_frequency_mc.name: commit_frequency_mc,
                     updated_since_mc.name: updated_since_mc,
                     issue_interactions_mc.name: issue_interactions_mc,
                     staleness_mc.name: staleness_mc,
-                    declined_changes_mc.name: declined_changes_mc
+                    declined_changes_mc.name: declined_changes_mc,
+                    opened_pull_request_mc.name: opened_pull_request_mc
                 }
             )
+
             support_and_service = SupportAndService(
                 children={
                     open_feature_requests.name: open_feature_requests,

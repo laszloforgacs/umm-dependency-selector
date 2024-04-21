@@ -1,5 +1,7 @@
 from datetime import timezone, datetime
 
+from dateutil.relativedelta import relativedelta
+
 from presentation.core.visitors.Visitor import Visitor
 from util.GithubRateLimiter import GithubRateLimiter
 
@@ -16,7 +18,7 @@ class OpenedPullRequestCountVisitor(Visitor[int]):
     async def measure(self, measure: 'BaseMeasure', repository: 'Repository') -> int:
         try:
             end_date = datetime.now(timezone.utc)
-            start_date = end_date.replace(month=end_date.month - 6)
+            start_date = end_date - relativedelta(months=6)
             opened_pull_requests = self._github_rate_limiter.execute(
                 repository.get_pulls,
                 sort='created',
@@ -25,7 +27,7 @@ class OpenedPullRequestCountVisitor(Visitor[int]):
             opened_pull_request_count = 0
             for pull_request in opened_pull_requests:
                 if start_date <= pull_request.created_at <= end_date:
-                    opened_pull_requests += 1
+                    opened_pull_request_count += 1
                 else:
                     break
             print(f"{repository.full_name}: {measure.name} is {opened_pull_request_count}")

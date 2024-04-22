@@ -12,7 +12,7 @@ class DeclinedIssueCountVisitor(Visitor[int]):
                 repository.get_pulls,
                 state='closed'
             )
-            declined_count = sum(1 for issue in closed_issues if issue.merged_at is not None)
+            declined_count = sum(1 for issue in closed_issues if issue.merged_at is None)
             print(f"{repository.full_name}: {measure.name} is {declined_count}")
             return declined_count
         except Exception as e:

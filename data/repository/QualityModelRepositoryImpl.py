@@ -27,6 +27,7 @@ from testing.measurableconcepts.product_evolution.CommitFrequency import CommitF
 from testing.measurableconcepts.product_evolution.DeclinedChanges import DeclinedChanges
 from testing.measurableconcepts.product_evolution.IssueInteractions import IssueInteractions
 from testing.measurableconcepts.product_evolution.OpenedPullRequests import OpenedPullRequests
+from testing.measurableconcepts.product_evolution.ReviewsAccepted import ReviewsAccepted
 from testing.measurableconcepts.product_evolution.Staleness import Staleness
 from testing.measurableconcepts.risk.DelBiancoVulnerabilitiesMC import DelBiancoVulnerabilitiesMC
 from testing.measurableconcepts.product_evolution.UpdatedSince import UpdatedSince
@@ -48,6 +49,7 @@ from testing.measures.product_evolution.declined_changes.DeclinedIssueCount impo
 from testing.measures.product_evolution.declined_changes.ReviewsDeclined import ReviewsDeclined
 from testing.measures.product_evolution.issue_interactions.UpdatedIssuesCount import UpdatedIssuesCount
 from testing.measures.product_evolution.opened_pull_requests.OpenedPullRequestCount import OpenedPullRequestCount
+from testing.measures.product_evolution.reviews_accepted.ReviewsAcceptedRatio import ReviewsAcceptedRatio
 from testing.measures.product_evolution.staleness.OpenIssueAge import OpenIssueAge
 from testing.measures.product_evolution.updated_since.TimeSinceLastCommit import TimeSinceLastCommit
 from testing.measures.risk.DelBiancoRiskMeasure import DelBiancoRiskMeasure
@@ -589,6 +591,20 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            reviews_accepted_ratio = self._base_measure_visitor_factory.instantiate_with_visitor(
+                ReviewsAcceptedRatio,
+                visitor_kwargs={
+                    "github_rate_limiter": self._github_rate_limiter
+                }
+            )
+
+            reviews_accepted_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                ReviewsAccepted,
+                children={
+                    reviews_accepted_ratio.name: reviews_accepted_ratio
+                }
+            )
+
             product_evolution = ProductEvolution(
                 children={
                     commit_frequency_mc.name: commit_frequency_mc,
@@ -596,7 +612,8 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                     issue_interactions_mc.name: issue_interactions_mc,
                     staleness_mc.name: staleness_mc,
                     declined_changes_mc.name: declined_changes_mc,
-                    opened_pull_request_mc.name: opened_pull_request_mc
+                    opened_pull_request_mc.name: opened_pull_request_mc,
+                    reviews_accepted_mc.name: reviews_accepted_mc
                 }
             )
 

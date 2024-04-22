@@ -9,6 +9,7 @@ from testing.measures.product_evolution.declined_changes.ReviewsDeclinedAggregat
 from testing.measures.product_evolution.issue_interactions.UpdatedIssuesCountVisitor import UpdatedIssuesCountVisitor
 from testing.measures.product_evolution.opened_pull_requests.OpenedPullRequestCountVisitor import \
     OpenedPullRequestCountVisitor
+from testing.measures.product_evolution.reviews_accepted.ReviewsAcceptedRatioVisitor import ReviewsAcceptedRatioVisitor
 from testing.measures.product_evolution.staleness.OpenIssueAgeVisitor import OpenIssueAgeVisitor
 from testing.measures.product_evolution.updated_since.TimeSinceLastCommitVIsitor import TimeSinceLastCommitVisitor
 from testing.subcharacteristic.communitycapability.AugurClosedIssuesCountVisitor import AugurClosedIssuesCountVisitor
@@ -49,6 +50,7 @@ class MeasureVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "ReviewsAcceptedRatio": ReviewsAcceptedRatioVisitor,
             "OpenedPullRequestCount": OpenedPullRequestCountVisitor,
             "DeclinedIssueCount": DeclinedIssueCountVisitor,
             "OpenIssueAge": OpenIssueAgeVisitor,
@@ -140,6 +142,7 @@ class MeasurableConceptVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "ReviewsAccepted": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "OpenedPullRequests": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "DeclinedChanges": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "Staleness": (NoOpNormalizeVisitor, AddAggregateVisitor),

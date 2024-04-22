@@ -19,7 +19,8 @@ class ReviewsDeclinedAggregator(AggregateVisitor[tuple[Measure, int]]):
                 declined_issues += measure_value
 
         if total_issues == 0:
-            return 0.0
+            print(f"Declined issues: {declined_issues}, Total issues: {total_issues}, Ratio: {declined_issues}")
+            return declined_issues
 
         ratio = declined_issues / total_issues
         print(f"Declined issues: {declined_issues}, Total issues: {total_issues}, Ratio: {ratio}")

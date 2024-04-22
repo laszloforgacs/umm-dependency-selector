@@ -19,12 +19,13 @@ class OpenIssueAgeVisitor(Visitor[float]):
                 repository.get_issues,
                 state='open'
             )
-            total_age = 1
+            total_age_days = 0
+            total_avg_age = 0
             for issue in open_issues:
-                total_age += (date_now - issue.created_at).days
+                total_age_days += (date_now - issue.created_at).days
             if open_issues.totalCount > 0:
-                total_age = total_age / open_issues.totalCount
-            print(f"{repository.full_name}: {measure.name} is {total_age}")
-            return total_age
+                total_avg_age = total_age_days / open_issues.totalCount
+            print(f"{repository.full_name}: {measure.name} is {total_avg_age} {measure.unit}")
+            return total_avg_age
         except Exception as e:
             raise Exception(str(e) + self.__class__.__name__)

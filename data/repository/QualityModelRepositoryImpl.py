@@ -32,6 +32,7 @@ from testing.measurableconcepts.product_evolution.Staleness import Staleness
 from testing.measurableconcepts.risk.DelBiancoVulnerabilitiesMC import DelBiancoVulnerabilitiesMC
 from testing.measurableconcepts.product_evolution.UpdatedSince import UpdatedSince
 from testing.measurableconcepts.support_community.OpenParticipation import OpenParticipation
+from testing.measurableconcepts.support_community.PeerInfluence import PeerInfluence
 from testing.measures.CruzCodeQualityDerivedMeasure import CruzCodeQualityDerivedMeasure
 from testing.measures.CruzCyclomaticComplexityBaseMeasure import CruzCyclomaticComplexityBaseMeasure
 from testing.measures.CruzNumberOfCommentsBaseMeasure import CruzNumberOfCommentsBaseMeasure
@@ -46,6 +47,7 @@ from testing.measures.communitycapability.TruckFactor import TruckFactor
 from testing.measures.number_of_open_feature_request.OpenFeatureRequestCount import OpenFeatureRequestCount
 from testing.measures.numberofreleases.ReleaseCount import ReleaseCount
 from testing.measures.open_participation.NewContributors import NewContributors
+from testing.measures.peer_influence.RepoMessages import RepoMessages
 from testing.measures.product_evolution.CommitCount import CommitCount
 from testing.measures.product_evolution.declined_changes.DeclinedIssueCount import DeclinedIssueCount
 from testing.measures.product_evolution.declined_changes.ReviewsDeclined import ReviewsDeclined
@@ -634,9 +636,24 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            repo_messages = self._base_measure_visitor_factory.instantiate_with_visitor(
+                RepoMessages,
+                visitor_kwargs={
+                    "github_rate_limiter": self._github_rate_limiter
+                }
+            )
+
+            peer_influence = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                PeerInfluence,
+                children={
+                    repo_messages.name: repo_messages
+                }
+            )
+
             support_community = SupportCommunity(
                 children={
-                    open_participation.name: open_participation
+                    open_participation.name: open_participation,
+                    peer_influence.name: peer_influence
                 }
             )
 

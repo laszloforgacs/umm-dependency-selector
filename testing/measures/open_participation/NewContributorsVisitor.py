@@ -49,10 +49,14 @@ class NewContributorsVisitor(BaseMeasureVisitor[int]):
 
             for commenter in commenters:
                 first_contribution_date = None
-                events = self._github_rate_limiter.execute(
+                user = self._github_rate_limiter.execute(
                     self._github_rate_limiter.github_client.get_user,
                     login=commenter
                 )
+                events = self._github_rate_limiter.execute(
+                    user.get_events,
+                )
+
                 for event in events:
                     if event.created_at < start_date:
                         break

@@ -3,6 +3,7 @@ from abc import ABC, abstractmethod
 from testing.measures.number_of_open_feature_request.OpenFeatureRequestCountVisitor import \
     OpenFeatureRequestCountVisitor
 from testing.measures.numberofreleases.ReleaseCountVisitor import ReleaseCountVisitor
+from testing.measures.open_participation.NewContributorsVisitor import NewContributorsVisitor
 from testing.measures.product_evolution.CommitCountVisitor import CommitCountVisitor
 from testing.measures.product_evolution.declined_changes.DeclinedIssueCountVisitor import DeclinedIssueCountVisitor
 from testing.measures.product_evolution.declined_changes.ReviewsDeclinedAggregator import ReviewsDeclinedAggregator
@@ -50,6 +51,7 @@ class MeasureVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "NewContributors": NewContributorsVisitor,
             "ReviewsAcceptedRatio": ReviewsAcceptedRatioVisitor,
             "OpenedPullRequestCount": OpenedPullRequestCountVisitor,
             "DeclinedIssueCount": DeclinedIssueCountVisitor,
@@ -142,6 +144,7 @@ class MeasurableConceptVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "OpenParticipation": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "ReviewsAccepted": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "OpenedPullRequests": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "DeclinedChanges": (NoOpNormalizeVisitor, AddAggregateVisitor),

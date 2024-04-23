@@ -1,5 +1,7 @@
 {
     "preference_matrix": {
-        "CruzOpenFeatureRequests, ProductEvolution": "1/2"
+        "CruzOpenFeatureRequests, ProductEvolution": "1/3",
+        "CruzOpenFeatureRequests, Support Community": "1/2",
+        "ProductEvolution, Support Community": "1"
     }
 }

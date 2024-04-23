@@ -2,7 +2,7 @@ from domain.model.Measure import BaseMeasure, MeasurementMethod
 
 
 class NewContributors(BaseMeasure[int]):
-    def _init__(
+    def __init__(
             self,
             visitor=None
     ):

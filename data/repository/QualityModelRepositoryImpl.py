@@ -31,6 +31,7 @@ from testing.measurableconcepts.product_evolution.ReviewsAccepted import Reviews
 from testing.measurableconcepts.product_evolution.Staleness import Staleness
 from testing.measurableconcepts.risk.DelBiancoVulnerabilitiesMC import DelBiancoVulnerabilitiesMC
 from testing.measurableconcepts.product_evolution.UpdatedSince import UpdatedSince
+from testing.measurableconcepts.support_community.OpenParticipation import OpenParticipation
 from testing.measures.CruzCodeQualityDerivedMeasure import CruzCodeQualityDerivedMeasure
 from testing.measures.CruzCyclomaticComplexityBaseMeasure import CruzCyclomaticComplexityBaseMeasure
 from testing.measures.CruzNumberOfCommentsBaseMeasure import CruzNumberOfCommentsBaseMeasure
@@ -44,6 +45,7 @@ from testing.measures.communitycapability.TotalIssuesCount import TotalIssuesCou
 from testing.measures.communitycapability.TruckFactor import TruckFactor
 from testing.measures.number_of_open_feature_request.OpenFeatureRequestCount import OpenFeatureRequestCount
 from testing.measures.numberofreleases.ReleaseCount import ReleaseCount
+from testing.measures.open_participation.NewContributors import NewContributors
 from testing.measures.product_evolution.CommitCount import CommitCount
 from testing.measures.product_evolution.declined_changes.DeclinedIssueCount import DeclinedIssueCount
 from testing.measures.product_evolution.declined_changes.ReviewsDeclined import ReviewsDeclined
@@ -59,6 +61,7 @@ from testing.subcharacteristic.openfeaturerequests.CruzOpenFeatureRequests impor
 from testing.subcharacteristic.product_evolution.ProductEvolution import ProductEvolution
 from testing.subcharacteristic.regularupdates.RegularUpdates import RegularUpdates
 from testing.subcharacteristic.risk.DelBiancoRiskAnalysis import DelBiancoRiskAnalysis
+from testing.subcharacteristic.support_community.SupportCommunity import SupportCommunity
 from testing.visitors.VisitorFactory import MeasureVisitorFactory, DerivedMeasureVisitorFactory, \
     MeasurableConceptVisitorFactory
 from presentation.util.Util import convert_tuple_keys_to_string, convert_string_keys_to_tuple
@@ -617,10 +620,31 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            new_contributors = self._base_measure_visitor_factory.instantiate_with_visitor(
+                NewContributors,
+                visitor_kwargs={
+                    "github_rate_limiter": self._github_rate_limiter
+                }
+            )
+
+            open_participation = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                OpenParticipation,
+                children={
+                    new_contributors.name: new_contributors
+                }
+            )
+
+            support_community = SupportCommunity(
+                children={
+                    open_participation.name: open_participation
+                }
+            )
+
             support_and_service = SupportAndService(
                 children={
                     open_feature_requests.name: open_feature_requests,
-                    product_evolution.name: product_evolution
+                    product_evolution.name: product_evolution,
+                    support_community.name: support_community
                 }
             )
 

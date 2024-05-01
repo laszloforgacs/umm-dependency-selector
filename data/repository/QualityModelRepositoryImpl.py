@@ -17,6 +17,7 @@ from testing.characteristic.SupportAndService import SupportAndService
 from testing.measurableconcepts.AbsenceOfLicenseFees import AbsenceOfLicenseFees
 from testing.measurableconcepts.community_exists.CommunityInteractionMC import CommunityInteractionMC
 from testing.measurableconcepts.community_exists.NewContributorsMC import NewContributorsMC
+from testing.measurableconcepts.community_vitality.CommunityLifespan import CommunityLifespan
 from testing.measurableconcepts.communitycapability.DurationToCloseIssuesMC import DurationToCloseIssuesMC
 from testing.measurableconcepts.communitycapability.IssueThroughputMC import IssueThroughputMC
 from testing.measurableconcepts.communitycapability.NumberOfContributors import NumberOfContributors
@@ -41,6 +42,7 @@ from testing.measures.CruzCodeQualityDerivedMeasure import CruzCodeQualityDerive
 from testing.measures.CruzCyclomaticComplexityBaseMeasure import CruzCyclomaticComplexityBaseMeasure
 from testing.measures.CruzNumberOfCommentsBaseMeasure import CruzNumberOfCommentsBaseMeasure
 from testing.measures.License import License
+from testing.measures.community_vitality.RepositoryAgeMeasure import RepositoryAgeMeasure
 from testing.measures.communitycapability.ClosedIssueResolutionDuration import ClosedIssueResolutionDuration
 from testing.measures.communitycapability.ClosedIssuesCount import ClosedIssuesCount
 from testing.measures.communitycapability.ContributorCount import ContributorCount
@@ -63,6 +65,7 @@ from testing.measures.product_evolution.updated_since.TimeSinceLastCommit import
 from testing.measures.risk.DelBiancoRiskMeasure import DelBiancoRiskMeasure
 from testing.subcharacteristic.ReturnOnInvestment import ReturnOnInvestment
 from testing.subcharacteristic.community_exists.CommunityExists import CommunityExists
+from testing.subcharacteristic.community_vitality.CommunityVitality import CommunityVitality
 from testing.subcharacteristic.communitycapability.LuomaCommunityCapability import LuomaCommunityCapability
 from testing.subcharacteristic.complexity.Complexity import Complexity
 from testing.subcharacteristic.contact_within_reasonable_time.ContactWithinReasonableTime import \
@@ -793,6 +796,26 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            repository_age = self._base_measure_visitor_factory.instantiate_with_visitor(
+                RepositoryAgeMeasure,
+                visitor_kwargs={
+                    "github_rate_limiter": self._github_rate_limiter
+                }
+            )
+
+            community_lifespan_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                CommunityLifespan,
+                children={
+                    repository_age.name: repository_age
+                }
+            )
+
+            community_vitality = CommunityVitality(
+                children={
+                    community_lifespan_mc.name: community_lifespan_mc
+                }
+            )
+
             support_and_service = SupportAndService(
                 children={
                     open_feature_requests.name: open_feature_requests,
@@ -801,7 +824,8 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                     short_term_support.name: short_term_support,
                     community_exists.name: community_exists,
                     contact_within_reasonable_time.name: contact_within_reasonable_time,
-                    complexity.name: complexity
+                    complexity.name: complexity,
+                    community_vitality.name: community_vitality
                 }
             )
 

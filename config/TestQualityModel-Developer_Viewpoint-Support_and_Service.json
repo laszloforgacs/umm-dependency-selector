@@ -1,19 +1,25 @@
 {
     "preference_matrix": {
-        "CruzOpenFeatureRequests, ProductEvolution": "1/3",
-        "CruzOpenFeatureRequests, Support Community": "1/2",
+        "CruzOpenFeatureRequests, ProductEvolution": "1/7",
+        "CruzOpenFeatureRequests, Support Community": "1/6",
         "ProductEvolution, Support Community": "1",
-        "CruzOpenFeatureRequests, Short-term Support": "1/4",
+        "CruzOpenFeatureRequests, Short-term Support": "1/6",
         "ProductEvolution, Short-term Support": "1",
         "Support Community, Short-term Support": "1",
-        "CruzOpenFeatureRequests, Community Exists": "1/7",
+        "CruzOpenFeatureRequests, Community Exists": "1/6",
         "ProductEvolution, Community Exists": "1",
         "Support Community, Community Exists": "1",
         "Short-term Support, Community Exists": "1",
-        "CruzOpenFeatureRequests, Contact within reasonable time": "1/5",
+        "CruzOpenFeatureRequests, Contact within reasonable time": "1/2",
         "ProductEvolution, Contact within reasonable time": "1",
         "Support Community, Contact within reasonable time": "1",
         "Short-term Support, Contact within reasonable time": "1",
-        "Community Exists, Contact within reasonable time": "1"
+        "Community Exists, Contact within reasonable time": "3",
+        "CruzOpenFeatureRequests, Complexity - by Mijinyawa et al.": "1/2",
+        "ProductEvolution, Complexity - by Mijinyawa et al.": "2",
+        "Support Community, Complexity - by Mijinyawa et al.": "2",
+        "Short-term Support, Complexity - by Mijinyawa et al.": "2",
+        "Community Exists, Complexity - by Mijinyawa et al.": "3",
+        "Contact within reasonable time, Complexity - by Mijinyawa et al.": "3"
     }
 }

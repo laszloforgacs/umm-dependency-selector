@@ -22,6 +22,7 @@ from testing.measurableconcepts.communitycapability.IssueThroughputMC import Iss
 from testing.measurableconcepts.communitycapability.NumberOfContributors import NumberOfContributors
 from testing.measurableconcepts.communitycapability.TimeToRespondToIssues import TimeToRespondToIssues
 from testing.measurableconcepts.communitycapability.TruckFactorMC import TruckFactorMC
+from testing.measurableconcepts.complexity.CyclomaticComplexityMC import CyclomaticComplexityMC
 from testing.measurableconcepts.contact_within_reasonable_time.AvgIssueResponseTimeMC import AvgIssueResponseTimeMC
 from testing.measurableconcepts.numberofopenfeaturerequests.NumberOfOpenFeatureRequests import \
     NumberOfOpenFeatureRequests
@@ -63,6 +64,7 @@ from testing.measures.risk.DelBiancoRiskMeasure import DelBiancoRiskMeasure
 from testing.subcharacteristic.ReturnOnInvestment import ReturnOnInvestment
 from testing.subcharacteristic.community_exists.CommunityExists import CommunityExists
 from testing.subcharacteristic.communitycapability.LuomaCommunityCapability import LuomaCommunityCapability
+from testing.subcharacteristic.complexity.Complexity import Complexity
 from testing.subcharacteristic.contact_within_reasonable_time.ContactWithinReasonableTime import \
     ContactWithinReasonableTime
 from testing.subcharacteristic.openfeaturerequests.CruzOpenFeatureRequests import CruzOpenFeatureRequests
@@ -118,7 +120,7 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                     numberOfComplexFunctions.name: numberOfComplexFunctions
                 }
             )
-            lizardCyclomaticComplexity = self._base_measure_visitor_factory.instantiate_with_visitor(
+            lizard_cyclomatic_complexity = self._base_measure_visitor_factory.instantiate_with_visitor(
                 CruzCyclomaticComplexityBaseMeasure
             )
             numberOfStatements = self._base_measure_visitor_factory.instantiate_with_visitor(NumberOfStatements)
@@ -165,7 +167,7 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                                 }
                             ),
                             numberOfStatements.name: numberOfStatements.copy(),
-                            lizardCyclomaticComplexity.name: lizardCyclomaticComplexity,
+                            lizard_cyclomatic_complexity.name: lizard_cyclomatic_complexity,
                             cruz_code_quality_derived_measure.name: cruz_code_quality_derived_measure
                         }
                     )
@@ -776,6 +778,21 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            cyclomatic_complexity_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                CyclomaticComplexityMC,
+                children={
+                    lizard_cyclomatic_complexity.name: self._base_measure_visitor_factory.instantiate_with_visitor(
+                        CruzCyclomaticComplexityBaseMeasure
+                    )
+                }
+            )
+
+            complexity = Complexity(
+                children={
+                    cyclomatic_complexity_mc.name: cyclomatic_complexity_mc
+                }
+            )
+
             support_and_service = SupportAndService(
                 children={
                     open_feature_requests.name: open_feature_requests,
@@ -783,7 +800,8 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                     support_community.name: support_community,
                     short_term_support.name: short_term_support,
                     community_exists.name: community_exists,
-                    contact_within_reasonable_time.name: contact_within_reasonable_time
+                    contact_within_reasonable_time.name: contact_within_reasonable_time,
+                    complexity.name: complexity
                 }
             )
 

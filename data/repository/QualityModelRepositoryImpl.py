@@ -15,6 +15,8 @@ from testing.characteristic.InteroperabilityCompatibility import Interoperabilit
 from testing.characteristic.Reliability import Reliability
 from testing.characteristic.SupportAndService import SupportAndService
 from testing.measurableconcepts.AbsenceOfLicenseFees import AbsenceOfLicenseFees
+from testing.measurableconcepts.community_exists.CommunityInteractionMC import CommunityInteractionMC
+from testing.measurableconcepts.community_exists.NewContributorsMC import NewContributorsMC
 from testing.measurableconcepts.communitycapability.DurationToCloseIssuesMC import DurationToCloseIssuesMC
 from testing.measurableconcepts.communitycapability.IssueThroughputMC import IssueThroughputMC
 from testing.measurableconcepts.communitycapability.NumberOfContributors import NumberOfContributors
@@ -58,6 +60,7 @@ from testing.measures.product_evolution.staleness.OpenIssueAge import OpenIssueA
 from testing.measures.product_evolution.updated_since.TimeSinceLastCommit import TimeSinceLastCommit
 from testing.measures.risk.DelBiancoRiskMeasure import DelBiancoRiskMeasure
 from testing.subcharacteristic.ReturnOnInvestment import ReturnOnInvestment
+from testing.subcharacteristic.community_exists.CommunityExists import CommunityExists
 from testing.subcharacteristic.communitycapability.LuomaCommunityCapability import LuomaCommunityCapability
 from testing.subcharacteristic.openfeaturerequests.CruzOpenFeatureRequests import CruzOpenFeatureRequests
 from testing.subcharacteristic.product_evolution.ProductEvolution import ProductEvolution
@@ -371,7 +374,10 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 TruckFactor
             )
             closed_issue_count = self._base_measure_visitor_factory.instantiate_with_visitor(
-                ClosedIssuesCount
+                ClosedIssuesCount,
+                visitor_kwargs={
+                    "github_rate_limiter": self._github_rate_limiter
+                }
             )
             total_issue_count = self._base_measure_visitor_factory.instantiate_with_visitor(
                 TotalIssuesCount,
@@ -537,7 +543,10 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 children={
                     updated_issues_count.name: updated_issues_count,
                     closed_issue_count.name: self._base_measure_visitor_factory.instantiate_with_visitor(
-                        ClosedIssuesCount
+                        ClosedIssuesCount,
+                        visitor_kwargs={
+                            "github_rate_limiter": self._github_rate_limiter
+                        }
                     )
                 }
             )
@@ -687,12 +696,66 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            new_contributors_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                NewContributorsMC,
+                children={
+                    new_contributors.name: self._base_measure_visitor_factory.instantiate_with_visitor(
+                        NewContributors,
+                        visitor_kwargs={
+                            "github_rate_limiter": self._github_rate_limiter
+                        }
+                    )
+                }
+            )
+
+            community_interaction_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                CommunityInteractionMC,
+                children={
+                    repo_messages.name: self._base_measure_visitor_factory.instantiate_with_visitor(
+                        RepoMessages,
+                        visitor_kwargs={
+                            "github_rate_limiter": self._github_rate_limiter
+                        }
+                    )
+                }
+            )
+
+            community_exists = CommunityExists(
+                children={
+                    new_contributors_mc.name: new_contributors_mc,
+                    community_interaction_mc.name: community_interaction_mc,
+                    issue_throughput_mc.name: self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                        IssueThroughputMC,
+                        children={
+                            issue_throughput.name: self._derived_measure_visitor_factory.instantiate_with_visitor(
+                                IssueThroughput,
+                                children={
+                                    closed_issue_count.name: self._base_measure_visitor_factory.instantiate_with_visitor(
+                                        ClosedIssuesCount,
+                                        visitor_kwargs={
+                                            "github_rate_limiter": self._github_rate_limiter
+                                        }
+                                    ),
+                                    total_issue_count.name: self._base_measure_visitor_factory.instantiate_with_visitor(
+                                        TotalIssuesCount,
+                                        visitor_kwargs={
+                                            "github_rate_limiter": self._github_rate_limiter
+                                        }
+                                    )
+                                }
+                            )
+                        }
+                    )
+                }
+            )
+
             support_and_service = SupportAndService(
                 children={
                     open_feature_requests.name: open_feature_requests,
                     product_evolution.name: product_evolution,
                     support_community.name: support_community,
-                    short_term_support.name: short_term_support
+                    short_term_support.name: short_term_support,
+                    community_exists.name: community_exists
                 }
             )
 

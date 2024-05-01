@@ -146,6 +146,8 @@ class MeasurableConceptVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "CommunityInteractionMC": (NoOpNormalizeVisitor, AddAggregateVisitor),
+            "NewContributorsMC": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "PeerInfluence": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "OpenParticipation": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "ReviewsAccepted": (NoOpNormalizeVisitor, AddAggregateVisitor),

@@ -1,9 +1,9 @@
 {
     "preference_matrix": {
         "Maintainability, Cost": "9",
-        "Maintainability, Reliability": "2",
+        "Maintainability, Reliability": "3",
         "Maintainability, Support and Service": "1/2",
-        "Cost, Reliability": "1/2",
+        "Cost, Reliability": "1/7",
         "Cost, Support and Service": "1/9",
         "Reliability, Support and Service": "1/3"
     },

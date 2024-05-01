@@ -1,17 +1,26 @@
 from presentation.core.visitors.Visitor import Visitor
+from util.GithubRateLimiter import GithubRateLimiter
+
+"""
+Comes from augur. Average time to respond to an issue in a repository.
+"""
 
 
-class AugurIssueResponseTimeVisitor(Visitor[float]):
-    def __init__(self):
-        pass
+class IssueResponseTimeVisitor(Visitor[float]):
+    def __init__(self, github_rate_limiter: GithubRateLimiter):
+        self._github_rate_limiter = github_rate_limiter
 
     async def measure(self, measure: 'BaseMeasure', repository: 'Repository') -> float:
         try:
             return 169.0
-            issues = repository.get_issues()
+            issues = self._github_rate_limiter.execute(
+                repository.get_issues
+            )
             time_differences = []
             for issue in issues:
-                comments = issue.get_comments()
+                comments = self._github_rate_limiter.execute(
+                    issue.get_comments
+                )
                 if comments.totalCount > 0:
                     first_comment = comments[0]
 

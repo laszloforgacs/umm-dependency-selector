@@ -22,6 +22,7 @@ from testing.measurableconcepts.communitycapability.IssueThroughputMC import Iss
 from testing.measurableconcepts.communitycapability.NumberOfContributors import NumberOfContributors
 from testing.measurableconcepts.communitycapability.TimeToRespondToIssues import TimeToRespondToIssues
 from testing.measurableconcepts.communitycapability.TruckFactorMC import TruckFactorMC
+from testing.measurableconcepts.contact_within_reasonable_time.AvgIssueResponseTimeMC import AvgIssueResponseTimeMC
 from testing.measurableconcepts.numberofopenfeaturerequests.NumberOfOpenFeatureRequests import \
     NumberOfOpenFeatureRequests
 from testing.measurableconcepts.numberofreleases.NumberOfReleases import NumberOfReleases
@@ -62,6 +63,8 @@ from testing.measures.risk.DelBiancoRiskMeasure import DelBiancoRiskMeasure
 from testing.subcharacteristic.ReturnOnInvestment import ReturnOnInvestment
 from testing.subcharacteristic.community_exists.CommunityExists import CommunityExists
 from testing.subcharacteristic.communitycapability.LuomaCommunityCapability import LuomaCommunityCapability
+from testing.subcharacteristic.contact_within_reasonable_time.ContactWithinReasonableTime import \
+    ContactWithinReasonableTime
 from testing.subcharacteristic.openfeaturerequests.CruzOpenFeatureRequests import CruzOpenFeatureRequests
 from testing.subcharacteristic.product_evolution.ProductEvolution import ProductEvolution
 from testing.subcharacteristic.regularupdates.RegularUpdates import RegularUpdates
@@ -396,7 +399,10 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 ClosedIssueResolutionDuration
             )
             issue_response_time = self._base_measure_visitor_factory.instantiate_with_visitor(
-                IssueResponseTime
+                IssueResponseTime,
+                visitor_kwargs={
+                    "github_rate_limiter": self._github_rate_limiter
+                }
             )
 
             absence_of_license_fees = self._measurable_concept_visitor_factory.instantiate_with_visitor(
@@ -673,7 +679,10 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                         TimeToRespondToIssues,
                         children={
                             issue_response_time.name: self._base_measure_visitor_factory.instantiate_with_visitor(
-                                IssueResponseTime
+                                IssueResponseTime,
+                                visitor_kwargs={
+                                    "github_rate_limiter": self._github_rate_limiter
+                                }
                             )
                         }
                     ),
@@ -749,13 +758,32 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            avg_issue_response_time_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                AvgIssueResponseTimeMC,
+                children={
+                    issue_response_time.name: self._base_measure_visitor_factory.instantiate_with_visitor(
+                        IssueResponseTime,
+                        visitor_kwargs={
+                            "github_rate_limiter": self._github_rate_limiter
+                        }
+                    )
+                }
+            )
+
+            contact_within_reasonable_time = ContactWithinReasonableTime(
+                children={
+                    avg_issue_response_time_mc.name: avg_issue_response_time_mc
+                }
+            )
+
             support_and_service = SupportAndService(
                 children={
                     open_feature_requests.name: open_feature_requests,
                     product_evolution.name: product_evolution,
                     support_community.name: support_community,
                     short_term_support.name: short_term_support,
-                    community_exists.name: community_exists
+                    community_exists.name: community_exists,
+                    contact_within_reasonable_time.name: contact_within_reasonable_time
                 }
             )
 

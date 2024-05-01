@@ -63,6 +63,7 @@ from testing.subcharacteristic.openfeaturerequests.CruzOpenFeatureRequests impor
 from testing.subcharacteristic.product_evolution.ProductEvolution import ProductEvolution
 from testing.subcharacteristic.regularupdates.RegularUpdates import RegularUpdates
 from testing.subcharacteristic.risk.DelBiancoRiskAnalysis import DelBiancoRiskAnalysis
+from testing.subcharacteristic.short_term_support.ShortTermSupport import ShortTermSupport
 from testing.subcharacteristic.support_community.SupportCommunity import SupportCommunity
 from testing.visitors.VisitorFactory import MeasureVisitorFactory, DerivedMeasureVisitorFactory, \
     MeasurableConceptVisitorFactory
@@ -388,7 +389,7 @@ class QualityModelRepositoryImpl(QualityModelRepository):
             closed_issue_resolution_duration = self._base_measure_visitor_factory.instantiate_with_visitor(
                 ClosedIssueResolutionDuration
             )
-            issue_respoonse_time = self._base_measure_visitor_factory.instantiate_with_visitor(
+            issue_response_time = self._base_measure_visitor_factory.instantiate_with_visitor(
                 IssueResponseTime
             )
 
@@ -446,7 +447,7 @@ class QualityModelRepositoryImpl(QualityModelRepository):
             time_to_respond_to_issues = self._measurable_concept_visitor_factory.instantiate_with_visitor(
                 TimeToRespondToIssues,
                 children={
-                    issue_respoonse_time.name: issue_respoonse_time
+                    issue_response_time.name: issue_response_time
                 }
             )
 
@@ -657,11 +658,41 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            short_term_support = ShortTermSupport(
+                children={
+                    time_to_respond_to_issues.name: self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                        TimeToRespondToIssues,
+                        children={
+                            issue_response_time.name: self._base_measure_visitor_factory.instantiate_with_visitor(
+                                IssueResponseTime
+                            )
+                        }
+                    ),
+                    number_of_contributors_mc.name: self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                        NumberOfContributors,
+                        children={
+                            community_count_measure.name: self._base_measure_visitor_factory.instantiate_with_visitor(
+                                ContributorCount
+                            )
+                        }
+                    ),
+                    number_of_releases.name: self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                        NumberOfReleases,
+                        children={
+                            release_count.name: self._base_measure_visitor_factory.instantiate_with_visitor(
+                                ReleaseCount
+                            )
+                        }
+                    )
+                }
+            )
+
             support_and_service = SupportAndService(
                 children={
                     open_feature_requests.name: open_feature_requests,
                     product_evolution.name: product_evolution,
-                    support_community.name: support_community
+                    support_community.name: support_community,
+                    short_term_support.name: short_term_support
                 }
             )
 

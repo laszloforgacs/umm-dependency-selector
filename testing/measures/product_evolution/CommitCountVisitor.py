@@ -6,6 +6,8 @@ from source_temp.PyGithub.github.Repository import Repository
 """
 criticality_score project, average commits per week in the last year
 """
+
+
 class CommitCountVisitor(Visitor[float]):
     def __init__(self):
         pass

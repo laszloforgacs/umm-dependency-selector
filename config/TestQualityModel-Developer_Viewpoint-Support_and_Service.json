@@ -1,7 +1,10 @@
 {
     "preference_matrix": {
-        "CruzOpenFeatureRequests, ProductEvolution": "1/3",
-        "CruzOpenFeatureRequests, Support Community": "1/2",
-        "ProductEvolution, Support Community": "1"
+        "CruzOpenFeatureRequests, ProductEvolution": "1/9",
+        "CruzOpenFeatureRequests, Support Community": "1/9",
+        "ProductEvolution, Support Community": "1",
+        "CruzOpenFeatureRequests, Short-term Support": "1/9",
+        "ProductEvolution, Short-term Support": "1",
+        "Support Community, Short-term Support": "1"
     }
 }

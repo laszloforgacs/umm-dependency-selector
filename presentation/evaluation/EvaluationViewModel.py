@@ -66,6 +66,7 @@ class EvaluationViewModel:
             for i, repo in enumerate(repositories):
                 for mc in measurable_concepts:
                     result = await mc.measure(repo)
+                    print(f"{repo.full_name}: {mc.name} Measurable Concept - {result}")
                     matrix[i].append(result)
 
             for mc in measurable_concepts:

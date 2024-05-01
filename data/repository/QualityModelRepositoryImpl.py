@@ -26,6 +26,7 @@ from testing.measurableconcepts.communitycapability.TimeToRespondToIssues import
 from testing.measurableconcepts.communitycapability.TruckFactorMC import TruckFactorMC
 from testing.measurableconcepts.complexity.CyclomaticComplexityMC import CyclomaticComplexityMC
 from testing.measurableconcepts.contact_within_reasonable_time.AvgIssueResponseTimeMC import AvgIssueResponseTimeMC
+from testing.measurableconcepts.maintainer_organization.MaintainerOrganizationMC import MaintainerOrganizationMC
 from testing.measurableconcepts.numberofopenfeaturerequests.NumberOfOpenFeatureRequests import \
     NumberOfOpenFeatureRequests
 from testing.measurableconcepts.numberofreleases.NumberOfReleases import NumberOfReleases
@@ -51,6 +52,7 @@ from testing.measures.communitycapability.IssueResponseTime import IssueResponse
 from testing.measures.communitycapability.IssueThroughput import IssueThroughput
 from testing.measures.communitycapability.TotalIssuesCount import TotalIssuesCount
 from testing.measures.communitycapability.TruckFactor import TruckFactor
+from testing.measures.maintainer_organization.OrgCountMeasure import OrgCountMeasure
 from testing.measures.number_of_open_feature_request.OpenFeatureRequestCount import OpenFeatureRequestCount
 from testing.measures.numberofreleases.ReleaseCount import ReleaseCount
 from testing.measures.open_participation.NewContributors import NewContributors
@@ -71,6 +73,7 @@ from testing.subcharacteristic.communitycapability.LuomaCommunityCapability impo
 from testing.subcharacteristic.complexity.Complexity import Complexity
 from testing.subcharacteristic.contact_within_reasonable_time.ContactWithinReasonableTime import \
     ContactWithinReasonableTime
+from testing.subcharacteristic.maintainer_organization.MaintainerOrganization import MaintainerOrganization
 from testing.subcharacteristic.openfeaturerequests.CruzOpenFeatureRequests import CruzOpenFeatureRequests
 from testing.subcharacteristic.product_evolution.ProductEvolution import ProductEvolution
 from testing.subcharacteristic.regularupdates.RegularUpdates import RegularUpdates
@@ -607,6 +610,26 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            org_count_measure = self._base_measure_visitor_factory.instantiate_with_visitor(
+                OrgCountMeasure,
+                visitor_kwargs={
+                    "github_rate_limiter": self._github_rate_limiter
+                }
+            )
+
+            maintainer_org_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                MaintainerOrganizationMC,
+                children={
+                    org_count_measure.name: org_count_measure
+                }
+            )
+
+            maintainer_org = MaintainerOrganization(
+                children={
+                    maintainer_org_mc.name: maintainer_org_mc
+                }
+            )
+
             support_and_service = SupportAndService(
                 children={
                     open_feature_requests.name: open_feature_requests,
@@ -616,7 +639,8 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                     community_exists.name: community_exists,
                     contact_within_reasonable_time.name: contact_within_reasonable_time,
                     complexity.name: complexity,
-                    community_vitality.name: community_vitality
+                    community_vitality.name: community_vitality,
+                    maintainer_org.name: maintainer_org
                 }
             )
 

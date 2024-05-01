@@ -1,8 +1,8 @@
 {
     "preference_matrix": {
         "Cost, Reliability": "1/7",
-        "Cost, Support and Service": "1/9",
-        "Reliability, Support and Service": "1/7"
+        "Cost, Support and Service": "1/8",
+        "Reliability, Support and Service": "1/8"
     },
     "oss_aspect_preference_matrix": {
         "COMMUNITY, CODE": "1/3"

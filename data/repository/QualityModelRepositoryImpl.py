@@ -11,6 +11,7 @@ from domain.model.Result import Result, Success, Failure
 from domain.model.Viewpoint import Viewpoint
 from domain.repository.QualityModelRepository import QualityModelRepository
 from testing.characteristic.Cost import Cost
+from testing.characteristic.CommunityAndAdoption import CommunityAndAdoption
 from testing.characteristic.InteroperabilityCompatibility import InteroperabilityCompatibility
 from testing.characteristic.Reliability import Reliability
 from testing.characteristic.SupportAndService import SupportAndService
@@ -619,12 +620,107 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            community_and_adoption = CommunityAndAdoption(
+                children={
+                    community_exists.name: CommunityExists(
+                        children={
+                            new_contributors_mc.name: new_contributors_mc,
+                            community_interaction_mc.name: community_interaction_mc,
+                            issue_throughput_mc.name: self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                                IssueThroughputMC,
+                                children={
+                                    issue_throughput.name: self._derived_measure_visitor_factory.instantiate_with_visitor(
+                                        IssueThroughput,
+                                        children={
+                                            closed_issue_count.name: self._base_measure_visitor_factory.instantiate_with_visitor(
+                                                ClosedIssuesCount,
+                                                visitor_kwargs={
+                                                    "github_rate_limiter": self._github_rate_limiter
+                                                }
+                                            ),
+                                            total_issue_count.name: self._base_measure_visitor_factory.instantiate_with_visitor(
+                                                TotalIssuesCount,
+                                                visitor_kwargs={
+                                                    "github_rate_limiter": self._github_rate_limiter
+                                                }
+                                            )
+                                        }
+                                    )
+                                }
+                            )
+                        }
+                    ),
+                    number_of_contributors_mc.name: self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                        NumberOfContributors,
+                        children={
+                            community_count_measure.name: community_count_measure
+                        }
+                    ),
+                    community_capability.name: LuomaCommunityCapability(
+                        children={
+                            number_of_contributors_mc.name: self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                                NumberOfContributors,
+                                children={
+                                    community_count_measure.name: self._base_measure_visitor_factory.instantiate_with_visitor(
+                                        ContributorCount
+                                    )
+                                }
+                            ),
+                            truck_factor_mc.name: self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                                TruckFactorMC,
+                                children={
+                                    truck_factor_measure.name: self._base_measure_visitor_factory.instantiate_with_visitor(
+                                        TruckFactor
+                                    )
+                                }
+                            ),
+                            issue_throughput_mc.name: self._derived_measure_visitor_factory.instantiate_with_visitor(
+                                IssueThroughput,
+                                children={
+                                    closed_issue_count.name: self._base_measure_visitor_factory.instantiate_with_visitor(
+                                        ClosedIssuesCount,
+                                        visitor_kwargs={
+                                            "github_rate_limiter": self._github_rate_limiter
+                                        }
+                                    ),
+                                    total_issue_count.name: self._base_measure_visitor_factory.instantiate_with_visitor(
+                                        TotalIssuesCount,
+                                        visitor_kwargs={
+                                            "github_rate_limiter": self._github_rate_limiter
+                                        }
+                                    )
+                                }
+                            ),
+                            duration_to_close_issues_mc.name: self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                                DurationToCloseIssuesMC,
+                                children={
+                                    closed_issue_resolution_duration.name: self._base_measure_visitor_factory.instantiate_with_visitor(
+                                        ClosedIssueResolutionDuration
+                                    )
+                                }
+                            ),
+                            time_to_respond_to_issues.name: self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                                TimeToRespondToIssues,
+                                children={
+                                    issue_response_time.name: self._base_measure_visitor_factory.instantiate_with_visitor(
+                                        IssueResponseTime,
+                                        visitor_kwargs={
+                                            "github_rate_limiter": self._github_rate_limiter
+                                        }
+                                    )
+                                }
+                            )
+                        }
+                    )
+                }
+            )
+
             maintainability = Maintainability(children={
 
             })
 
             developer_viewpoint = DeveloperViewpoint(children={
-                #maintainability.name: maintainability,
+                # maintainability.name: maintainability,
                 cost.name: cost,
                 reliability.name: reliability,
                 support_and_service.name: support_and_service

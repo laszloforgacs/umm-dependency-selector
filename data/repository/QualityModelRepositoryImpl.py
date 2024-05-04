@@ -58,6 +58,7 @@ from testing.measures.number_of_open_feature_request.OpenFeatureRequestCount imp
 from testing.measures.numberofreleases.ReleaseCount import ReleaseCount
 from testing.measures.open_participation.NewContributors import NewContributors
 from testing.measures.peer_influence.RepoMessages import RepoMessages
+from testing.measures.popularity.ForksCount import ForksCount
 from testing.measures.popularity.StarsCount import StarsCount
 from testing.measures.popularity.WatchersCount import WatchersCount
 from testing.measures.product_evolution.CommitCount import CommitCount
@@ -663,11 +664,19 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            forks_count = self._base_measure_visitor_factory.instantiate_with_visitor(
+                ForksCount,
+                visitor_kwargs={
+                    "github_rate_limiter": self._github_rate_limiter
+                }
+            )
+
             popularity_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
                 PopularityMC,
                 children={
                     watchers_count.name: watchers_count,
-                    stars_count.name: stars_count
+                    stars_count.name: stars_count,
+                    forks_count.name: forks_count
                 }
             )
 

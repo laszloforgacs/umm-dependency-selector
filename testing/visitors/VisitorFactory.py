@@ -7,6 +7,7 @@ from testing.measures.number_of_open_feature_request.OpenFeatureRequestCountVisi
 from testing.measures.numberofreleases.ReleaseCountVisitor import ReleaseCountVisitor
 from testing.measures.open_participation.NewContributorsVisitor import NewContributorsVisitor
 from testing.measures.peer_influence.RepoMessagesVisitor import RepoMessagesVisitor
+from testing.measures.popularity.AnnualCommitCountVisitor import AnnualCommitCountVisitor
 from testing.measures.popularity.ForksCountVisitor import ForksCountVisitor
 from testing.measures.popularity.StarsCountVisitor import StarsCountVisitor
 from testing.measures.popularity.WatchersCountVisitor import WatchersCountVisitor
@@ -57,6 +58,7 @@ class MeasureVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "AnnualCommitCount": AnnualCommitCountVisitor,
             "ForksCount": ForksCountVisitor,
             "StarsCount": StarsCountVisitor,
             "WatchersCount": WatchersCountVisitor,

@@ -7,7 +7,7 @@ class IssueThroughputMC(MeasurableConcept[float]):
             "Issue Throughput",
             children,
             Impact.POSITIVE,
-            "issue",
+            "issues",
             "Calculating the throughput of issues",
             "Affects Community Capability positively",
             OSSAspect.COMMUNITY,

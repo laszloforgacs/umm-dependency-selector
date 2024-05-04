@@ -4,4 +4,4 @@ from domain.model.SubCharacteristic import SubCharacteristic
 
 class RegularUpdates(SubCharacteristic[list[float]]):
     def __init__(self, children: dict[str, MeasurableConcept] = {}):
-        super().__init__("RegularUpdates", children)
+        super().__init__("Regular Updates", children)

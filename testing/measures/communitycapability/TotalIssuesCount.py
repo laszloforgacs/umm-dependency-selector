@@ -7,5 +7,6 @@ class TotalIssuesCount(BaseMeasure[int]):
             "Number of total issues",
             "issue",
             1,
-            MeasurementMethod.AUTOMATIC, visitor
+            MeasurementMethod.AUTOMATIC,
+            visitor
         )

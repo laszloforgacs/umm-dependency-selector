@@ -30,6 +30,7 @@ from testing.measurableconcepts.maintainer_organization.MaintainerOrganizationMC
 from testing.measurableconcepts.numberofopenfeaturerequests.NumberOfOpenFeatureRequests import \
     NumberOfOpenFeatureRequests
 from testing.measurableconcepts.numberofreleases.NumberOfReleases import NumberOfReleases
+from testing.measurableconcepts.popularity.PopularityMC import PopularityMC
 from testing.measurableconcepts.product_evolution.CommitFrequency import CommitFrequency
 from testing.measurableconcepts.product_evolution.DeclinedChanges import DeclinedChanges
 from testing.measurableconcepts.product_evolution.IssueInteractions import IssueInteractions
@@ -57,6 +58,8 @@ from testing.measures.number_of_open_feature_request.OpenFeatureRequestCount imp
 from testing.measures.numberofreleases.ReleaseCount import ReleaseCount
 from testing.measures.open_participation.NewContributors import NewContributors
 from testing.measures.peer_influence.RepoMessages import RepoMessages
+from testing.measures.popularity.StarsCount import StarsCount
+from testing.measures.popularity.WatchersCount import WatchersCount
 from testing.measures.product_evolution.CommitCount import CommitCount
 from testing.measures.product_evolution.declined_changes.DeclinedIssueCount import DeclinedIssueCount
 from testing.measures.product_evolution.declined_changes.ReviewsDeclined import ReviewsDeclined
@@ -74,7 +77,9 @@ from testing.subcharacteristic.complexity.Complexity import Complexity
 from testing.subcharacteristic.contact_within_reasonable_time.ContactWithinReasonableTime import \
     ContactWithinReasonableTime
 from testing.subcharacteristic.maintainer_organization.MaintainerOrganization import MaintainerOrganization
+from testing.subcharacteristic.number_of_contributors.NumberOfContributorsSubChar import NumberOfContributorsSubChar
 from testing.subcharacteristic.openfeaturerequests.CruzOpenFeatureRequests import CruzOpenFeatureRequests
+from testing.subcharacteristic.popularity.Popularity import Popularity
 from testing.subcharacteristic.product_evolution.ProductEvolution import ProductEvolution
 from testing.subcharacteristic.regularupdates.RegularUpdates import RegularUpdates
 from testing.subcharacteristic.risk.DelBiancoRiskAnalysis import DelBiancoRiskAnalysis
@@ -644,6 +649,47 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            watchers_count = self._base_measure_visitor_factory.instantiate_with_visitor(
+                WatchersCount,
+                visitor_kwargs={
+                    "github_rate_limiter": self._github_rate_limiter
+                }
+            )
+
+            stars_count = self._base_measure_visitor_factory.instantiate_with_visitor(
+                StarsCount,
+                visitor_kwargs={
+                    "github_rate_limiter": self._github_rate_limiter
+                }
+            )
+
+            popularity_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                PopularityMC,
+                children={
+                    watchers_count.name: watchers_count,
+                    stars_count.name: stars_count
+                }
+            )
+
+            popularity = Popularity(
+                children={
+                    popularity_mc.name: popularity_mc
+                }
+            )
+
+            number_of_contributors_subchar = NumberOfContributorsSubChar(
+                children={
+                    number_of_contributors_mc.name: self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                        NumberOfContributors,
+                        children={
+                            community_count_measure.name: self._base_measure_visitor_factory.instantiate_with_visitor(
+                                ContributorCount
+                            )
+                        }
+                    )
+                }
+            )
+
             community_and_adoption = CommunityAndAdoption(
                 children={
                     community_exists.name: CommunityExists(
@@ -674,12 +720,8 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                             )
                         }
                     ),
-                    number_of_contributors_mc.name: self._measurable_concept_visitor_factory.instantiate_with_visitor(
-                        NumberOfContributors,
-                        children={
-                            community_count_measure.name: community_count_measure
-                        }
-                    ),
+                    popularity.name: popularity,
+                    number_of_contributors_subchar.name: number_of_contributors_subchar,
                     community_capability.name: LuomaCommunityCapability(
                         children={
                             number_of_contributors_mc.name: self._measurable_concept_visitor_factory.instantiate_with_visitor(
@@ -698,8 +740,8 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                                     )
                                 }
                             ),
-                            issue_throughput_mc.name: self._derived_measure_visitor_factory.instantiate_with_visitor(
-                                IssueThroughput,
+                            issue_throughput_mc.name: self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                                IssueThroughputMC,
                                 children={
                                     closed_issue_count.name: self._base_measure_visitor_factory.instantiate_with_visitor(
                                         ClosedIssuesCount,
@@ -747,7 +789,8 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 # maintainability.name: maintainability,
                 cost.name: cost,
                 reliability.name: reliability,
-                support_and_service.name: support_and_service
+                support_and_service.name: support_and_service,
+                community_and_adoption.name: community_and_adoption
             })
 
             test_quality_model = TestQualityModel(

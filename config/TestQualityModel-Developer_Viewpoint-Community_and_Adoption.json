@@ -1,0 +1,10 @@
+{
+    "preference_matrix": {
+        "Community Exists, Popularity": "2",
+        "Community Exists, Number of Contributors sub-characteristic": "3",
+        "Community Exists, Community Capability": "1",
+        "Popularity, Number of Contributors sub-characteristic": "4",
+        "Popularity, Community Capability": "3",
+        "Number of Contributors sub-characteristic, Community Capability": "7"
+    }
+}

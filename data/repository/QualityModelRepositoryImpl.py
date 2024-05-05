@@ -680,13 +680,6 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
-            downloads_count = self._base_measure_visitor_factory.instantiate_with_visitor(
-                DownloadsCount,
-                visitor_kwargs={
-                    "github_rate_limiter": self._github_rate_limiter
-                }
-            )
-
             popularity_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
                 PopularityMC,
                 children={
@@ -696,8 +689,7 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                     community_count_measure.name: self._base_measure_visitor_factory.instantiate_with_visitor(
                         ContributorCount
                     ),
-                    annual_commit_count.name: annual_commit_count,
-                    downloads_count.name: downloads_count
+                    annual_commit_count.name: annual_commit_count
                 }
             )
 

@@ -735,6 +735,20 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            lines_changed_count = self._base_measure_visitor_factory.instantiate_with_visitor(
+                LinesChangedCount,
+                visitor_kwargs={
+                    "github_rate_limiter": self._github_rate_limiter
+                }
+            )
+
+            code_changes_lines_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                CodeChangesLines,
+                children={
+                    lines_changed_count.name: lines_changed_count
+                }
+            )
+
             community_and_adoption = CommunityAndAdoption(
                 children={
                     community_exists.name: CommunityExists(
@@ -821,7 +835,8 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                                     )
                                 }
                             ),
-                            code_changes_commits_mc.name: code_changes_commits_mc
+                            code_changes_commits_mc.name: code_changes_commits_mc,
+                            code_changes_lines_mc.name: code_changes_lines_mc
                         }
                     ),
                     contact_within_reasonable_time.name: ContactWithinReasonableTime(

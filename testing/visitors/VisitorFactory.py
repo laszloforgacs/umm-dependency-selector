@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 
 from testing.measures.community_vitality.RepositoryAgeMeasureVisitor import RepositoryAgeMeasureVisitor
+from testing.measures.communitycapability.LinesChangedCountVisitor import LinesChangedCountVisitor
 from testing.measures.maintainer_organization.OrgCountMeasureVisitor import OrgCountMeasureVisitor
 from testing.measures.number_of_open_feature_request.OpenFeatureRequestCountVisitor import \
     OpenFeatureRequestCountVisitor
@@ -59,6 +60,7 @@ class MeasureVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "LinesChangedCount": LinesChangedCountVisitor,
             "DownloadsCount": DownloadsCountVisitor,
             "AnnualCommitCount": AnnualCommitCountVisitor,
             "ForksCount": ForksCountVisitor,
@@ -160,6 +162,7 @@ class MeasurableConceptVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "CodeChangesLines": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "PopularityMC": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "MaintainerOrganizationMC": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "CommunityLifespan": (NoOpNormalizeVisitor, AddAggregateVisitor),

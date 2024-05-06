@@ -24,6 +24,7 @@ from testing.measurableconcepts.communitycapability.IssueThroughputMC import Iss
 from testing.measurableconcepts.communitycapability.NumberOfContributors import NumberOfContributors
 from testing.measurableconcepts.communitycapability.TimeToRespondToIssues import TimeToRespondToIssues
 from testing.measurableconcepts.communitycapability.TruckFactorMC import TruckFactorMC
+from testing.measurableconcepts.communitycapability.code_development_activity.CodeChangesLines import CodeChangesLines
 from testing.measurableconcepts.complexity.CyclomaticComplexityMC import CyclomaticComplexityMC
 from testing.measurableconcepts.contact_within_reasonable_time.AvgIssueResponseTimeMC import AvgIssueResponseTimeMC
 from testing.measurableconcepts.maintainer_organization.MaintainerOrganizationMC import MaintainerOrganizationMC
@@ -51,6 +52,7 @@ from testing.measures.communitycapability.ClosedIssuesCount import ClosedIssuesC
 from testing.measures.communitycapability.ContributorCount import ContributorCount
 from testing.measures.communitycapability.IssueResponseTime import IssueResponseTime
 from testing.measures.communitycapability.IssueThroughput import IssueThroughput
+from testing.measures.communitycapability.LinesChangedCount import LinesChangedCount
 from testing.measures.communitycapability.TotalIssuesCount import TotalIssuesCount
 from testing.measures.communitycapability.TruckFactor import TruckFactor
 from testing.measures.maintainer_organization.OrgCountMeasure import OrgCountMeasure
@@ -75,7 +77,7 @@ from testing.measures.risk.DelBiancoRiskMeasure import DelBiancoRiskMeasure
 from testing.subcharacteristic.ReturnOnInvestment import ReturnOnInvestment
 from testing.subcharacteristic.community_exists.CommunityExists import CommunityExists
 from testing.subcharacteristic.community_vitality.CommunityVitality import CommunityVitality
-from testing.subcharacteristic.communitycapability.LuomaCommunityCapability import LuomaCommunityCapability
+from testing.subcharacteristic.communitycapability.CommunityCapability import CommunityCapability
 from testing.subcharacteristic.complexity.Complexity import Complexity
 from testing.subcharacteristic.contact_within_reasonable_time.ContactWithinReasonableTime import \
     ContactWithinReasonableTime
@@ -270,7 +272,14 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
-            community_capability = LuomaCommunityCapability(
+            total_lines_changed_over_time = self._base_measure_visitor_factory.instantiate_with_visitor(
+                LinesChangedCount,
+                visitor_kwargs={
+                    "github_rate_limiter": self._github_rate_limiter
+                }
+            )
+
+            community_capability = CommunityCapability(
                 children={
                     number_of_contributors_mc.name: number_of_contributors_mc,
                     truck_factor_mc.name: truck_factor_mc,
@@ -712,6 +721,18 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            code_changes_lines_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                CodeChangesLines,
+                children={
+                    annual_commit_count.name: self._base_measure_visitor_factory.instantiate_with_visitor(
+                        AnnualCommitCount,
+                        visitor_kwargs={
+                            "github_rate_limiter": self._github_rate_limiter
+                        }
+                    )
+                }
+            )
+
             community_and_adoption = CommunityAndAdoption(
                 children={
                     community_exists.name: CommunityExists(
@@ -744,7 +765,7 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                     ),
                     popularity.name: popularity,
                     number_of_contributors_subchar.name: number_of_contributors_subchar,
-                    community_capability.name: LuomaCommunityCapability(
+                    community_capability.name: CommunityCapability(
                         children={
                             number_of_contributors_mc.name: self._measurable_concept_visitor_factory.instantiate_with_visitor(
                                 NumberOfContributors,
@@ -789,6 +810,22 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                             ),
                             time_to_respond_to_issues.name: self._measurable_concept_visitor_factory.instantiate_with_visitor(
                                 TimeToRespondToIssues,
+                                children={
+                                    issue_response_time.name: self._base_measure_visitor_factory.instantiate_with_visitor(
+                                        IssueResponseTime,
+                                        visitor_kwargs={
+                                            "github_rate_limiter": self._github_rate_limiter
+                                        }
+                                    )
+                                }
+                            ),
+                            code_changes_lines_mc.name: code_changes_lines_mc
+                        }
+                    ),
+                    contact_within_reasonable_time.name: ContactWithinReasonableTime(
+                        children={
+                            avg_issue_response_time_mc.name: self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                                AvgIssueResponseTimeMC,
                                 children={
                                     issue_response_time.name: self._base_measure_visitor_factory.instantiate_with_visitor(
                                         IssueResponseTime,

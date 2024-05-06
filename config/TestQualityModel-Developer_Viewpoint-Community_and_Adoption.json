@@ -1,10 +1,14 @@
 {
     "preference_matrix": {
-        "Community Exists, Popularity": "2",
-        "Community Exists, Number of Contributors sub-characteristic": "3",
+        "Community Exists, Popularity": "5",
+        "Community Exists, Number of Contributors sub-characteristic": "6",
         "Community Exists, Community Capability": "1",
+        "Community Exists, Contact within reasonable time": "3",
         "Popularity, Number of Contributors sub-characteristic": "4",
-        "Popularity, Community Capability": "3",
-        "Number of Contributors sub-characteristic, Community Capability": "7"
+        "Popularity, Community Capability": "5",
+        "Popularity, Contact within reasonable time": "6",
+        "Number of Contributors sub-characteristic, Community Capability": "7",
+        "Number of Contributors sub-characteristic, Contact within reasonable time": "5",
+        "Community Capability, Contact within reasonable time": "3"
     }
 }

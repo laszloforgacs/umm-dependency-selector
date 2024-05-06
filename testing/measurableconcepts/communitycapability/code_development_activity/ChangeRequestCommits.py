@@ -1,14 +1,14 @@
 from domain.model.MeasureableConcept import OSSAspect, Impact, MeasurableConcept
 
 
-class CodeChangesLines(MeasurableConcept[float]):
+class ChangeRequestCommits(MeasurableConcept[float]):
     def __init__(self, children, normalize_visitor=None, aggregate_visitor=None):
         super().__init__(
-            "Code Changes Lines",
+            "Change Request Commits",
             children,
             Impact.NEGATIVE,
-            "source code",
-            "Calculating the total number of lines changed in the source code",
+            "pull requests in version control",
+            "Calculating the average number of commits per pull request in the version control history",
             "Affects Community Capability negatively",
             OSSAspect.COMMUNITY,
             normalize_visitor,

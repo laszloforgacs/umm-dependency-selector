@@ -24,6 +24,10 @@ from testing.measurableconcepts.communitycapability.IssueThroughputMC import Iss
 from testing.measurableconcepts.communitycapability.NumberOfContributors import NumberOfContributors
 from testing.measurableconcepts.communitycapability.TimeToRespondToIssues import TimeToRespondToIssues
 from testing.measurableconcepts.communitycapability.TruckFactorMC import TruckFactorMC
+from testing.measurableconcepts.communitycapability.code_development_activity.ChangeRequestCommits import \
+    ChangeRequestCommits
+from testing.measurableconcepts.communitycapability.code_development_activity.ChangeRequestContributors import \
+    ChangeRequestContributors
 from testing.measurableconcepts.communitycapability.code_development_activity.CodeChangesCommits import \
     CodeChangesCommits
 from testing.measurableconcepts.communitycapability.code_development_activity.CodeChangesLines import CodeChangesLines
@@ -49,6 +53,8 @@ from testing.measures.CruzCyclomaticComplexityBaseMeasure import CruzCyclomaticC
 from testing.measures.CruzNumberOfCommentsBaseMeasure import CruzNumberOfCommentsBaseMeasure
 from testing.measures.License import License
 from testing.measures.community_vitality.RepositoryAgeMeasure import RepositoryAgeMeasure
+from testing.measures.communitycapability.AvgNumberOfCommitsPerPRs import AvgNumberOfCommitsPerPRs
+from testing.measures.communitycapability.AvgNumberOfContributorsPerPRs import AvgNumberOfContributorsPerPRs
 from testing.measures.communitycapability.ClosedIssueResolutionDuration import ClosedIssueResolutionDuration
 from testing.measures.communitycapability.ClosedIssuesCount import ClosedIssuesCount
 from testing.measures.communitycapability.ContributorCount import ContributorCount
@@ -749,6 +755,34 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            avg_commits_per_pr = self._base_measure_visitor_factory.instantiate_with_visitor(
+                AvgNumberOfCommitsPerPRs,
+                visitor_kwargs={
+                    "github_rate_limiter": self._github_rate_limiter
+                }
+            )
+
+            change_request_commits_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                ChangeRequestCommits,
+                children={
+                    avg_commits_per_pr.name: avg_commits_per_pr
+                }
+            )
+
+            avg_contributors_per_pr = self._base_measure_visitor_factory.instantiate_with_visitor(
+                AvgNumberOfContributorsPerPRs,
+                visitor_kwargs={
+                    "github_rate_limiter": self._github_rate_limiter
+                }
+            )
+
+            change_request_contributors_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                ChangeRequestContributors,
+                children={
+                    avg_contributors_per_pr.name: avg_contributors_per_pr
+                }
+            )
+
             community_and_adoption = CommunityAndAdoption(
                 children={
                     community_exists.name: CommunityExists(
@@ -836,7 +870,9 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                                 }
                             ),
                             code_changes_commits_mc.name: code_changes_commits_mc,
-                            code_changes_lines_mc.name: code_changes_lines_mc
+                            code_changes_lines_mc.name: code_changes_lines_mc,
+                            change_request_commits_mc.name: change_request_commits_mc,
+                            change_request_contributors_mc.name: change_request_contributors_mc
                         }
                     ),
                     contact_within_reasonable_time.name: ContactWithinReasonableTime(

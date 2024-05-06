@@ -24,6 +24,8 @@ from testing.measurableconcepts.communitycapability.IssueThroughputMC import Iss
 from testing.measurableconcepts.communitycapability.NumberOfContributors import NumberOfContributors
 from testing.measurableconcepts.communitycapability.TimeToRespondToIssues import TimeToRespondToIssues
 from testing.measurableconcepts.communitycapability.TruckFactorMC import TruckFactorMC
+from testing.measurableconcepts.communitycapability.code_development_activity.CodeChangesCommits import \
+    CodeChangesCommits
 from testing.measurableconcepts.communitycapability.code_development_activity.CodeChangesLines import CodeChangesLines
 from testing.measurableconcepts.complexity.CyclomaticComplexityMC import CyclomaticComplexityMC
 from testing.measurableconcepts.contact_within_reasonable_time.AvgIssueResponseTimeMC import AvgIssueResponseTimeMC
@@ -721,8 +723,8 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
-            code_changes_lines_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
-                CodeChangesLines,
+            code_changes_commits_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                CodeChangesCommits,
                 children={
                     annual_commit_count.name: self._base_measure_visitor_factory.instantiate_with_visitor(
                         AnnualCommitCount,
@@ -819,7 +821,7 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                                     )
                                 }
                             ),
-                            code_changes_lines_mc.name: code_changes_lines_mc
+                            code_changes_commits_mc.name: code_changes_commits_mc
                         }
                     ),
                     contact_within_reasonable_time.name: ContactWithinReasonableTime(

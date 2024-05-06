@@ -162,7 +162,7 @@ class MeasurableConceptVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
-            "CodeChangesLines": (NoOpNormalizeVisitor, AddAggregateVisitor),
+            "CodeChangesCommits": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "PopularityMC": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "MaintainerOrganizationMC": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "CommunityLifespan": (NoOpNormalizeVisitor, AddAggregateVisitor),

@@ -31,6 +31,8 @@ from testing.measurableconcepts.communitycapability.code_development_activity.Ch
 from testing.measurableconcepts.communitycapability.code_development_activity.CodeChangesCommits import \
     CodeChangesCommits
 from testing.measurableconcepts.communitycapability.code_development_activity.CodeChangesLines import CodeChangesLines
+from testing.measurableconcepts.communitycapability.code_development_efficiency.ChangeRequestsAcceptedCount import \
+    ChangeRequestsAcceptedCount
 from testing.measurableconcepts.complexity.CyclomaticComplexityMC import CyclomaticComplexityMC
 from testing.measurableconcepts.contact_within_reasonable_time.AvgIssueResponseTimeMC import AvgIssueResponseTimeMC
 from testing.measurableconcepts.maintainer_organization.MaintainerOrganizationMC import MaintainerOrganizationMC
@@ -792,6 +794,18 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            change_requests_accepted_count = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                ChangeRequestsAcceptedCount,
+                children={
+                    reviews_accepted_count.name: self._base_measure_visitor_factory.instantiate_with_visitor(
+                        ReviewsAcceptedCount,
+                        visitor_kwargs={
+                            "github_rate_limiter": self._github_rate_limiter
+                        }
+                    )
+                }
+            )
+
             community_and_adoption = CommunityAndAdoption(
                 children={
                     community_exists.name: CommunityExists(
@@ -882,23 +896,7 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                             code_changes_lines_mc.name: code_changes_lines_mc,
                             change_request_commits_mc.name: change_request_commits_mc,
                             change_request_contributors_mc.name: change_request_contributors_mc,
-                            reviews_accepted_mc.name: self._measurable_concept_visitor_factory.instantiate_with_visitor(
-                                ReviewsAccepted,
-                                children={
-                                    reviews_accepted_ratio.name: self._base_measure_visitor_factory.instantiate_with_visitor(
-                                        ReviewsAcceptedRatio,
-                                        visitor_kwargs={
-                                            "github_rate_limiter": self._github_rate_limiter
-                                        }
-                                    ),
-                                    reviews_accepted_count.name: self._base_measure_visitor_factory.instantiate_with_visitor(
-                                        ReviewsAcceptedCount,
-                                        visitor_kwargs={
-                                            "github_rate_limiter": self._github_rate_limiter
-                                        }
-                                    )
-                                }
-                            )
+                            change_requests_accepted_count.name: change_requests_accepted_count
                         }
                     ),
                     contact_within_reasonable_time.name: ContactWithinReasonableTime(

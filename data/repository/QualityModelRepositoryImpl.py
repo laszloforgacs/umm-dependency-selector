@@ -78,6 +78,7 @@ from testing.measures.product_evolution.declined_changes.DeclinedIssueCount impo
 from testing.measures.product_evolution.declined_changes.ReviewsDeclined import ReviewsDeclined
 from testing.measures.product_evolution.issue_interactions.UpdatedIssuesCount import UpdatedIssuesCount
 from testing.measures.product_evolution.opened_pull_requests.OpenedPullRequestCount import OpenedPullRequestCount
+from testing.measures.product_evolution.reviews_accepted.ReviewsAcceptedCount import ReviewsAcceptedCount
 from testing.measures.product_evolution.reviews_accepted.ReviewsAcceptedRatio import ReviewsAcceptedRatio
 from testing.measures.product_evolution.staleness.OpenIssueAge import OpenIssueAge
 from testing.measures.product_evolution.updated_since.TimeSinceLastCommit import TimeSinceLastCommit
@@ -443,10 +444,18 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            reviews_accepted_count = self._base_measure_visitor_factory.instantiate_with_visitor(
+                ReviewsAcceptedCount,
+                visitor_kwargs={
+                    "github_rate_limiter": self._github_rate_limiter
+                }
+            )
+
             reviews_accepted_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
                 ReviewsAccepted,
                 children={
-                    reviews_accepted_ratio.name: reviews_accepted_ratio
+                    reviews_accepted_ratio.name: reviews_accepted_ratio,
+                    reviews_accepted_count.name: reviews_accepted_count
                 }
             )
 
@@ -872,7 +881,24 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                             code_changes_commits_mc.name: code_changes_commits_mc,
                             code_changes_lines_mc.name: code_changes_lines_mc,
                             change_request_commits_mc.name: change_request_commits_mc,
-                            change_request_contributors_mc.name: change_request_contributors_mc
+                            change_request_contributors_mc.name: change_request_contributors_mc,
+                            reviews_accepted_mc.name: self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                                ReviewsAccepted,
+                                children={
+                                    reviews_accepted_ratio.name: self._base_measure_visitor_factory.instantiate_with_visitor(
+                                        ReviewsAcceptedRatio,
+                                        visitor_kwargs={
+                                            "github_rate_limiter": self._github_rate_limiter
+                                        }
+                                    ),
+                                    reviews_accepted_count.name: self._base_measure_visitor_factory.instantiate_with_visitor(
+                                        ReviewsAcceptedCount,
+                                        visitor_kwargs={
+                                            "github_rate_limiter": self._github_rate_limiter
+                                        }
+                                    )
+                                }
+                            )
                         }
                     ),
                     contact_within_reasonable_time.name: ContactWithinReasonableTime(

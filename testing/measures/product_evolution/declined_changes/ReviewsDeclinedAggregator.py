@@ -1,7 +1,7 @@
 from domain.model.Measure import Measure
 from presentation.core.visitors.Visitor import AggregateVisitor
 from testing.measures.communitycapability.TotalIssuesCount import TotalIssuesCount
-from testing.measures.product_evolution.declined_changes.DeclinedIssueCount import DeclinedIssueCount
+from testing.measures.product_evolution.declined_changes.ReviewsDeclinedCount import ReviewsDeclinedCount
 
 
 class ReviewsDeclinedAggregator(AggregateVisitor[tuple[Measure, int]]):
@@ -15,7 +15,7 @@ class ReviewsDeclinedAggregator(AggregateVisitor[tuple[Measure, int]]):
         for measure, measure_value in normalized_measures:
             if isinstance(measure, TotalIssuesCount):
                 total_issues += measure_value
-            if isinstance(measure, DeclinedIssueCount):
+            if isinstance(measure, ReviewsDeclinedCount):
                 declined_issues += measure_value
 
         if total_issues == 0:

@@ -2,7 +2,7 @@ from presentation.core.visitors.Visitor import Visitor
 from util.GithubRateLimiter import GithubRateLimiter
 
 
-class DeclinedIssueCountVisitor(Visitor[int]):
+class ReviewsDeclinedCountVisitor(Visitor[int]):
     def __init__(self, github_rate_limiter: GithubRateLimiter):
         self.__github_rate_limiter = github_rate_limiter
 

@@ -1,13 +1,13 @@
 from domain.model.Measure import BaseMeasure, MeasurementMethod
 
 
-class DeclinedIssueCount(BaseMeasure[int]):
+class ReviewsDeclinedCount(BaseMeasure[int]):
     def __init__(
             self,
             visitor=None
     ):
         super().__init__(
-            "Declined Issue Count",
+            "Reviews Declined Count",
             "issue",
             1,
             MeasurementMethod.AUTOMATIC,

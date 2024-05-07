@@ -33,6 +33,12 @@ from testing.measurableconcepts.communitycapability.code_development_activity.Co
 from testing.measurableconcepts.communitycapability.code_development_activity.CodeChangesLines import CodeChangesLines
 from testing.measurableconcepts.communitycapability.code_development_efficiency.ChangeRequestsAcceptedCount import \
     ChangeRequestsAcceptedCount
+from testing.measurableconcepts.communitycapability.code_development_efficiency.ChangeRequestsAcceptedRatio import \
+    ChangeRequestsAcceptedRatio
+from testing.measurableconcepts.communitycapability.code_development_efficiency.ChangeRequestsDeclinedCount import \
+    ChangeRequestsDeclinedCount
+from testing.measurableconcepts.communitycapability.code_development_efficiency.ChangeRequestsDeclinedRatio import \
+    ChangeRequestsDeclinedRatio
 from testing.measurableconcepts.complexity.CyclomaticComplexityMC import CyclomaticComplexityMC
 from testing.measurableconcepts.contact_within_reasonable_time.AvgIssueResponseTimeMC import AvgIssueResponseTimeMC
 from testing.measurableconcepts.maintainer_organization.MaintainerOrganizationMC import MaintainerOrganizationMC
@@ -76,8 +82,8 @@ from testing.measures.popularity.ForksCount import ForksCount
 from testing.measures.popularity.StarsCount import StarsCount
 from testing.measures.popularity.WatchersCount import WatchersCount
 from testing.measures.product_evolution.CommitCount import CommitCount
-from testing.measures.product_evolution.declined_changes.DeclinedIssueCount import DeclinedIssueCount
-from testing.measures.product_evolution.declined_changes.ReviewsDeclined import ReviewsDeclined
+from testing.measures.product_evolution.declined_changes.ReviewsDeclinedCount import ReviewsDeclinedCount
+from testing.measures.product_evolution.declined_changes.ReviewsDeclinedRatio import ReviewsDeclinedRatio
 from testing.measures.product_evolution.issue_interactions.UpdatedIssuesCount import UpdatedIssuesCount
 from testing.measures.product_evolution.opened_pull_requests.OpenedPullRequestCount import OpenedPullRequestCount
 from testing.measures.product_evolution.reviews_accepted.ReviewsAcceptedCount import ReviewsAcceptedCount
@@ -398,17 +404,17 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
-            declined_issue_count = self._base_measure_visitor_factory.instantiate_with_visitor(
-                DeclinedIssueCount,
+            reviews_declined_count = self._base_measure_visitor_factory.instantiate_with_visitor(
+                ReviewsDeclinedCount,
                 visitor_kwargs={
                     "github_rate_limiter": self._github_rate_limiter
                 }
             )
 
-            reviews_declined = self._derived_measure_visitor_factory.instantiate_with_visitor(
-                ReviewsDeclined,
+            reviews_declined_ratio = self._derived_measure_visitor_factory.instantiate_with_visitor(
+                ReviewsDeclinedRatio,
                 children={
-                    declined_issue_count.name: declined_issue_count,
+                    reviews_declined_count.name: reviews_declined_count,
                     total_issue_count.name: self._base_measure_visitor_factory.instantiate_with_visitor(
                         TotalIssuesCount,
                         visitor_kwargs={
@@ -421,7 +427,7 @@ class QualityModelRepositoryImpl(QualityModelRepository):
             declined_changes_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
                 DeclinedChanges,
                 children={
-                    reviews_declined.name: reviews_declined
+                    reviews_declined_ratio.name: reviews_declined_ratio
                 }
             )
 
@@ -806,6 +812,53 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            change_requests_accepted_ratio = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                ChangeRequestsAcceptedRatio,
+                children={
+                    reviews_accepted_ratio.name: self._base_measure_visitor_factory.instantiate_with_visitor(
+                        ReviewsAcceptedRatio,
+                        visitor_kwargs={
+                            "github_rate_limiter": self._github_rate_limiter
+                        }
+                    )
+                }
+            )
+
+            change_requests_declined_count = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                ChangeRequestsDeclinedCount,
+                children={
+                    reviews_declined_count.name: self._base_measure_visitor_factory.instantiate_with_visitor(
+                        ReviewsDeclinedCount,
+                        visitor_kwargs={
+                            "github_rate_limiter": self._github_rate_limiter
+                        }
+                    )
+                }
+            )
+
+            change_requests_declined_ratio = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                ChangeRequestsDeclinedRatio,
+                children={
+                    reviews_declined_ratio.name: self._derived_measure_visitor_factory.instantiate_with_visitor(
+                        ReviewsDeclinedRatio,
+                        children={
+                            reviews_declined_count.name: self._base_measure_visitor_factory.instantiate_with_visitor(
+                                ReviewsDeclinedCount,
+                                visitor_kwargs={
+                                    "github_rate_limiter": self._github_rate_limiter
+                                }
+                            ),
+                            total_issue_count.name: self._base_measure_visitor_factory.instantiate_with_visitor(
+                                TotalIssuesCount,
+                                visitor_kwargs={
+                                    "github_rate_limiter": self._github_rate_limiter
+                                }
+                            )
+                        }
+                    )
+                }
+            )
+
             community_and_adoption = CommunityAndAdoption(
                 children={
                     community_exists.name: CommunityExists(
@@ -896,7 +949,10 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                             code_changes_lines_mc.name: code_changes_lines_mc,
                             change_request_commits_mc.name: change_request_commits_mc,
                             change_request_contributors_mc.name: change_request_contributors_mc,
-                            change_requests_accepted_count.name: change_requests_accepted_count
+                            change_requests_accepted_count.name: change_requests_accepted_count,
+                            change_requests_accepted_ratio.name: change_requests_accepted_ratio,
+                            change_requests_declined_count.name: change_requests_declined_count,
+                            change_requests_declined_ratio.name: change_requests_declined_ratio
                         }
                     ),
                     contact_within_reasonable_time.name: ContactWithinReasonableTime(

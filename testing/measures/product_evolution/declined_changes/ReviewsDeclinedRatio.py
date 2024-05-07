@@ -3,7 +3,7 @@ from domain.model.Measure import DerivedMeasure, MeasurementMethod
 """
 augur measure: Time series of number of declined reviews / pull requests opened within a certain period.
 """
-class ReviewsDeclined(DerivedMeasure[float]):
+class ReviewsDeclinedRatio(DerivedMeasure[float]):
     def __init__(
             self,
             children,
@@ -11,7 +11,7 @@ class ReviewsDeclined(DerivedMeasure[float]):
             aggregate_visitor=None
     ):
         super().__init__(
-            "Reviews declined",
+            "Reviews Declined - Total PR Ratio",
             "ratio",
             1.0,
             MeasurementMethod.AUTOMATIC,

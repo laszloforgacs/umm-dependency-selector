@@ -17,7 +17,7 @@ from testing.measures.popularity.ForksCountVisitor import ForksCountVisitor
 from testing.measures.popularity.StarsCountVisitor import StarsCountVisitor
 from testing.measures.popularity.WatchersCountVisitor import WatchersCountVisitor
 from testing.measures.product_evolution.CommitCountVisitor import CommitCountVisitor
-from testing.measures.product_evolution.declined_changes.DeclinedIssueCountVisitor import DeclinedIssueCountVisitor
+from testing.measures.product_evolution.declined_changes.ReviewsDeclinedCountVisitor import ReviewsDeclinedCountVisitor
 from testing.measures.product_evolution.declined_changes.ReviewsDeclinedAggregator import ReviewsDeclinedAggregator
 from testing.measures.product_evolution.issue_interactions.UpdatedIssuesCountVisitor import UpdatedIssuesCountVisitor
 from testing.measures.product_evolution.opened_pull_requests.OpenedPullRequestCountVisitor import \
@@ -79,7 +79,7 @@ class MeasureVisitorFactory(VisitorFactory):
             "NewContributors": NewContributorsVisitor,
             "ReviewsAcceptedRatio": ReviewsAcceptedRatioVisitor,
             "OpenedPullRequestCount": OpenedPullRequestCountVisitor,
-            "DeclinedIssueCount": DeclinedIssueCountVisitor,
+            "ReviewsDeclinedCount": ReviewsDeclinedCountVisitor,
             "OpenIssueAge": OpenIssueAgeVisitor,
             "UpdatedIssuesCount": UpdatedIssuesCountVisitor,
             "TimeSinceLastCommit": TimeSinceLastCommitVisitor,
@@ -125,7 +125,7 @@ class DerivedMeasureVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
-            "ReviewsDeclined": (NoOpNormalizeVisitor, ReviewsDeclinedAggregator),
+            "ReviewsDeclinedRatio": (NoOpNormalizeVisitor, ReviewsDeclinedAggregator),
             "IssueThroughput": (NoOpNormalizeVisitor, AugurIssueThroughputVisitor),
             "CyclomaticComplexity": (NoOpNormalizeVisitor, AverageAggregateVisitor),
             "CruzCodeQualityDerivedMeasure": (NoOpNormalizeVisitor, CruzCodeQualityDerivedMeasureAggregator)
@@ -169,6 +169,9 @@ class MeasurableConceptVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "ChangeRequestsDeclinedRatio": (NoOpNormalizeVisitor, AddAggregateVisitor),
+            "ChangeRequestsDeclinedCount": (NoOpNormalizeVisitor, AddAggregateVisitor),
+            "ChangeRequestsAcceptedRatio": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "ChangeRequestsAcceptedCount": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "ChangeRequestContributors": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "ChangeRequestCommits": (NoOpNormalizeVisitor, AddAggregateVisitor),

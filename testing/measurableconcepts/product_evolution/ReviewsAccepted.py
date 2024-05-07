@@ -9,7 +9,7 @@ class ReviewsAccepted(MeasurableConcept[float]):
             aggregate_visitor=None
     ):
         super().__init__(
-            "Reviews accepted",
+            "Reviews Accepted",
             children,
             Impact.POSITIVE,
             "Pull request history",

@@ -2,6 +2,7 @@ from domain.model.Measure import DerivedMeasure, MeasurementMethod
 
 """
 CHAOSS measure: Ratio of reviews accepted to reviews declined
+CATEGORY 1
 """
 
 

@@ -1,16 +1,21 @@
 {
+    "class_name": "TestQualityModel",
     "name": "TestQualityModel",
     "viewpoints": [
         {
+            "class_name": "DeveloperViewpoint",
             "name": "Developer Viewpoint",
             "characteristics": [
                 {
+                    "class_name": "Cost",
                     "name": "Cost",
                     "sub_characteristics": [
                         {
+                            "class_name": "ReturnOnInvestment",
                             "name": "Return On Investment",
                             "measurable_concepts": [
                                 {
+                                    "class_name": "AbsenceOfLicenseFees",
                                     "name": "Absence of license fees",
                                     "value": 5.0,
                                     "impact": "POSITIVE",
@@ -20,6 +25,7 @@
                                     "quality_requirement": "Absence of fees affects cost positively",
                                     "measures": [
                                         {
+                                            "class_name": "License",
                                             "name": "License",
                                             "value": 5,
                                             "unit": "levels",
@@ -32,11 +38,13 @@
                             ]
                         },
                         {
+                            "class_name": "CommunityCapability",
                             "name": "Community Capability",
                             "measurable_concepts": [
                                 {
+                                    "class_name": "NumberOfContributors",
                                     "name": "Number of Contributors",
-                                    "value": 43,
+                                    "value": 131,
                                     "impact": "POSITIVE",
                                     "entity": "Contributors",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -44,8 +52,9 @@
                                     "quality_requirement": "Affects Community Capability positively",
                                     "measures": [
                                         {
+                                            "class_name": "ContributorCount",
                                             "name": "Contributor count",
-                                            "value": 43,
+                                            "value": 131,
                                             "unit": "person",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -54,6 +63,7 @@
                                     ]
                                 },
                                 {
+                                    "class_name": "TruckFactorMC",
                                     "name": "Truck Factor",
                                     "value": 1,
                                     "impact": "POSITIVE",
@@ -63,6 +73,7 @@
                                     "quality_requirement": "Affects Community Capability positively",
                                     "measures": [
                                         {
+                                            "class_name": "TruckFactor",
                                             "name": "Truck factor",
                                             "value": 1,
                                             "unit": "developer",
@@ -73,8 +84,9 @@
                                     ]
                                 },
                                 {
+                                    "class_name": "IssueThroughputMC",
                                     "name": "Issue Throughput",
-                                    "value": 90.0,
+                                    "value": 17.464646464646464,
                                     "impact": "POSITIVE",
                                     "entity": "issues",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -82,23 +94,26 @@
                                     "quality_requirement": "Affects Community Capability positively",
                                     "measures": [
                                         {
+                                            "class_name": "IssueThroughput",
                                             "name": "Issue Throughput",
-                                            "value": 90.0,
+                                            "value": 17.464646464646464,
                                             "unit": "issue",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
                                             "base_measures": [
                                                 {
+                                                    "class_name": "ClosedIssuesCount",
                                                     "name": "Number of closed issues",
-                                                    "value": 450,
+                                                    "value": 1729,
                                                     "unit": "issue",
                                                     "scale": 1,
                                                     "measurement_method": "AUTOMATIC",
                                                     "visitor": "AugurClosedIssuesCountVisitor"
                                                 },
                                                 {
+                                                    "class_name": "TotalIssuesCount",
                                                     "name": "Number of total issues",
-                                                    "value": 5,
+                                                    "value": 99,
                                                     "unit": "issue",
                                                     "scale": 1,
                                                     "measurement_method": "AUTOMATIC",
@@ -111,6 +126,7 @@
                                     ]
                                 },
                                 {
+                                    "class_name": "DurationToCloseIssuesMC",
                                     "name": "Duration to Close Issues",
                                     "value": 49.0,
                                     "impact": "NEGATIVE",
@@ -120,6 +136,7 @@
                                     "quality_requirement": "Affects Community Capability negatively",
                                     "measures": [
                                         {
+                                            "class_name": "ClosedIssueResolutionDuration",
                                             "name": "Closed Issue Resolution Duration",
                                             "value": 49.0,
                                             "unit": "issue",
@@ -130,6 +147,7 @@
                                     ]
                                 },
                                 {
+                                    "class_name": "TimeToRespondToIssues",
                                     "name": "Time to Respond to Issues",
                                     "value": 169.0,
                                     "impact": "NEGATIVE",
@@ -139,6 +157,7 @@
                                     "quality_requirement": "Affects Community Capability negatively",
                                     "measures": [
                                         {
+                                            "class_name": "IssueResponseTime",
                                             "name": "Issue Response Time",
                                             "value": 169.0,
                                             "unit": "issue",
@@ -153,14 +172,17 @@
                     ]
                 },
                 {
+                    "class_name": "Reliability",
                     "name": "Reliability",
                     "sub_characteristics": [
                         {
+                            "class_name": "RegularUpdates",
                             "name": "Regular Updates",
                             "measurable_concepts": [
                                 {
+                                    "class_name": "NumberOfReleases",
                                     "name": "Number of releases",
-                                    "value": 5,
+                                    "value": 14,
                                     "impact": "POSITIVE",
                                     "entity": "Release",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -168,8 +190,9 @@
                                     "quality_requirement": "Number of releases affects reliability positively",
                                     "measures": [
                                         {
+                                            "class_name": "ReleaseCount",
                                             "name": "ReleaseCount",
-                                            "value": 5,
+                                            "value": 14,
                                             "unit": "release",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -182,14 +205,17 @@
                     ]
                 },
                 {
+                    "class_name": "SupportAndService",
                     "name": "Support and Service",
                     "sub_characteristics": [
                         {
+                            "class_name": "CruzOpenFeatureRequests",
                             "name": "Currently open feature requests",
                             "measurable_concepts": [
                                 {
+                                    "class_name": "NumberOfOpenFeatureRequests",
                                     "name": "Number of open feature requests",
-                                    "value": 6,
+                                    "value": 13,
                                     "impact": "NEGATIVE",
                                     "entity": "Feature request",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -197,8 +223,9 @@
                                     "quality_requirement": "Number of open feature requests affects reliability negatively",
                                     "measures": [
                                         {
+                                            "class_name": "OpenFeatureRequestCount",
                                             "name": "OpenFeatureRequestCount",
-                                            "value": 6,
+                                            "value": 13,
                                             "unit": "open issue with feature request label",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -209,11 +236,13 @@
                             ]
                         },
                         {
+                            "class_name": "ProductEvolution",
                             "name": "Product Evolution",
                             "measurable_concepts": [
                                 {
+                                    "class_name": "CommitFrequency",
                                     "name": "Commit Frequency",
-                                    "value": 0.28846153846153844,
+                                    "value": 6.384615384615385,
                                     "impact": "POSITIVE",
                                     "entity": "Commit",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -221,8 +250,9 @@
                                     "quality_requirement": "Commit frequency affects reliability positively",
                                     "measures": [
                                         {
+                                            "class_name": "CommitCount",
                                             "name": "CommitCount",
-                                            "value": 0.28846153846153844,
+                                            "value": 6.384615384615385,
                                             "unit": "commit",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -231,8 +261,9 @@
                                     ]
                                 },
                                 {
+                                    "class_name": "UpdatedSince",
                                     "name": "Updated since",
-                                    "value": 1.2,
+                                    "value": 0.7333333333333333,
                                     "impact": "NEGATIVE",
                                     "entity": "Commit history",
                                     "relevant_oss_aspect": "CODE",
@@ -240,8 +271,9 @@
                                     "quality_requirement": "Non-regular updates affect product evolution negatively",
                                     "measures": [
                                         {
+                                            "class_name": "TimeSinceLastCommit",
                                             "name": "TimeSinceLastCommit",
-                                            "value": 1.2,
+                                            "value": 0.7333333333333333,
                                             "unit": "months",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -250,8 +282,9 @@
                                     ]
                                 },
                                 {
+                                    "class_name": "IssueInteractions",
                                     "name": "Issue interactions",
-                                    "value": 453,
+                                    "value": 1785,
                                     "impact": "POSITIVE",
                                     "entity": "Issue history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -259,16 +292,18 @@
                                     "quality_requirement": "Regular interactions affect product evolution positively",
                                     "measures": [
                                         {
+                                            "class_name": "UpdatedIssuesCount",
                                             "name": "UpdatedIssuesCount",
-                                            "value": 3,
+                                            "value": 56,
                                             "unit": "updated issue",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
                                             "visitor": "UpdatedIssuesCountVisitor"
                                         },
                                         {
+                                            "class_name": "ClosedIssuesCount",
                                             "name": "Number of closed issues",
-                                            "value": 450,
+                                            "value": 1729,
                                             "unit": "issue",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -277,8 +312,9 @@
                                     ]
                                 },
                                 {
+                                    "class_name": "Staleness",
                                     "name": "Issue Staleness",
-                                    "value": 275.6,
+                                    "value": 262.44444444444446,
                                     "impact": "NEGATIVE",
                                     "entity": "Repository issue tracker",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -286,8 +322,9 @@
                                     "quality_requirement": "Long open issue age affects product evolution negatively",
                                     "measures": [
                                         {
+                                            "class_name": "OpenIssueAge",
                                             "name": "Open Issue Age",
-                                            "value": 275.6,
+                                            "value": 262.44444444444446,
                                             "unit": "day(s)",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -296,8 +333,9 @@
                                     ]
                                 },
                                 {
+                                    "class_name": "DeclinedChanges",
                                     "name": "Declined changes",
-                                    "value": 5.2,
+                                    "value": 1.5858585858585859,
                                     "impact": "NEGATIVE",
                                     "entity": "Issue history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -305,23 +343,26 @@
                                     "quality_requirement": "Declined changes affect product evolution negatively",
                                     "measures": [
                                         {
+                                            "class_name": "ReviewsDeclinedRatio",
                                             "name": "Reviews Declined - Total PR Ratio",
-                                            "value": 5.2,
+                                            "value": 1.5858585858585859,
                                             "unit": "ratio",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
                                             "base_measures": [
                                                 {
+                                                    "class_name": "ReviewsDeclinedCount",
                                                     "name": "Reviews Declined Count",
-                                                    "value": 26,
+                                                    "value": 157,
                                                     "unit": "issue",
                                                     "scale": 1,
                                                     "measurement_method": "AUTOMATIC",
                                                     "visitor": "ReviewsDeclinedCountVisitor"
                                                 },
                                                 {
+                                                    "class_name": "TotalIssuesCount",
                                                     "name": "Number of total issues",
-                                                    "value": 5,
+                                                    "value": 99,
                                                     "unit": "issue",
                                                     "scale": 1,
                                                     "measurement_method": "AUTOMATIC",
@@ -334,8 +375,9 @@
                                     ]
                                 },
                                 {
+                                    "class_name": "OpenedPullRequests",
                                     "name": "Opened pull requests in a period",
-                                    "value": 0,
+                                    "value": 17,
                                     "impact": "POSITIVE",
                                     "entity": "Issue history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -343,8 +385,9 @@
                                     "quality_requirement": "Regular pull requests affect product evolution positively",
                                     "measures": [
                                         {
+                                            "class_name": "OpenedPullRequestCount",
                                             "name": "Number of opened pull requests",
-                                            "value": 0,
+                                            "value": 17,
                                             "unit": "pull request",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -353,25 +396,28 @@
                                     ]
                                 },
                                 {
+                                    "class_name": "ReviewsAccepted",
                                     "name": "Reviews Accepted",
-                                    "value": 92,
+                                    "value": 304.6470588235294,
                                     "impact": "POSITIVE",
-                                    "entity": "Pull request history",
+                                    "entity": "version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
                                     "information_need": "Ratio of accepted reviews to total reviews",
                                     "quality_requirement": "Regularly accepted reviews affect product evolution positively",
                                     "measures": [
                                         {
+                                            "class_name": "ReviewsAcceptedRatio",
                                             "name": "Reviews Accepted - Total PR Ratio",
-                                            "value": 0,
+                                            "value": 2.6470588235294117,
                                             "unit": "pull request",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
                                             "visitor": "ReviewsAcceptedRatioVisitor"
                                         },
                                         {
+                                            "class_name": "ReviewsAcceptedCount",
                                             "name": "Reviews Accepted Count",
-                                            "value": 92,
+                                            "value": 302,
                                             "unit": "pull request(s)",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -382,11 +428,13 @@
                             ]
                         },
                         {
+                            "class_name": "SupportCommunity",
                             "name": "Support Community",
                             "measurable_concepts": [
                                 {
+                                    "class_name": "OpenParticipation",
                                     "name": "Open Participation",
-                                    "value": 0,
+                                    "value": 4,
                                     "impact": "POSITIVE",
                                     "entity": "Issue tracker",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -394,8 +442,9 @@
                                     "quality_requirement": "Open participation affects a supportive community positively",
                                     "measures": [
                                         {
+                                            "class_name": "NewContributors",
                                             "name": "New Contributors",
-                                            "value": 0,
+                                            "value": 4,
                                             "unit": "contributor(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -404,8 +453,9 @@
                                     ]
                                 },
                                 {
+                                    "class_name": "PeerInfluence",
                                     "name": "Peer influence",
-                                    "value": 0,
+                                    "value": 15,
                                     "impact": "POSITIVE",
                                     "entity": "Issue tracker",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -413,8 +463,9 @@
                                     "quality_requirement": "Peer influence affects a supportive community positively",
                                     "measures": [
                                         {
+                                            "class_name": "RepoMessages",
                                             "name": "Repo Messages",
-                                            "value": 0,
+                                            "value": 15,
                                             "unit": "comment(s)",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -425,9 +476,11 @@
                             ]
                         },
                         {
+                            "class_name": "ShortTermSupport",
                             "name": "Short-term Support",
                             "measurable_concepts": [
                                 {
+                                    "class_name": "TimeToRespondToIssues",
                                     "name": "Time to Respond to Issues",
                                     "value": 169.0,
                                     "impact": "NEGATIVE",
@@ -437,6 +490,7 @@
                                     "quality_requirement": "Affects Community Capability negatively",
                                     "measures": [
                                         {
+                                            "class_name": "IssueResponseTime",
                                             "name": "Issue Response Time",
                                             "value": 169.0,
                                             "unit": "issue",
@@ -447,8 +501,9 @@
                                     ]
                                 },
                                 {
+                                    "class_name": "NumberOfContributors",
                                     "name": "Number of Contributors",
-                                    "value": 43,
+                                    "value": 131,
                                     "impact": "POSITIVE",
                                     "entity": "Contributors",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -456,8 +511,9 @@
                                     "quality_requirement": "Affects Community Capability positively",
                                     "measures": [
                                         {
+                                            "class_name": "ContributorCount",
                                             "name": "Contributor count",
-                                            "value": 43,
+                                            "value": 131,
                                             "unit": "person",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -466,8 +522,9 @@
                                     ]
                                 },
                                 {
+                                    "class_name": "NumberOfReleases",
                                     "name": "Number of releases",
-                                    "value": 5,
+                                    "value": 14,
                                     "impact": "POSITIVE",
                                     "entity": "Release",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -475,8 +532,9 @@
                                     "quality_requirement": "Number of releases affects reliability positively",
                                     "measures": [
                                         {
+                                            "class_name": "ReleaseCount",
                                             "name": "ReleaseCount",
-                                            "value": 5,
+                                            "value": 14,
                                             "unit": "release",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -487,11 +545,13 @@
                             ]
                         },
                         {
+                            "class_name": "CommunityExists",
                             "name": "Community Exists",
                             "measurable_concepts": [
                                 {
+                                    "class_name": "NewContributorsMC",
                                     "name": "Number of New Contributors",
-                                    "value": 0,
+                                    "value": 4,
                                     "impact": "POSITIVE",
                                     "entity": "project contributors",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -499,8 +559,9 @@
                                     "quality_requirement": "Affects 'Community Exists' positively",
                                     "measures": [
                                         {
+                                            "class_name": "NewContributors",
                                             "name": "New Contributors",
-                                            "value": 0,
+                                            "value": 4,
                                             "unit": "contributor(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -509,8 +570,9 @@
                                     ]
                                 },
                                 {
+                                    "class_name": "CommunityInteractionMC",
                                     "name": "Community Interaction",
-                                    "value": 0,
+                                    "value": 15,
                                     "impact": "POSITIVE",
                                     "entity": "project contributors",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -518,8 +580,9 @@
                                     "quality_requirement": "Affects 'Community Exists' positively",
                                     "measures": [
                                         {
+                                            "class_name": "RepoMessages",
                                             "name": "Repo Messages",
-                                            "value": 0,
+                                            "value": 15,
                                             "unit": "comment(s)",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -528,8 +591,9 @@
                                     ]
                                 },
                                 {
+                                    "class_name": "IssueThroughputMC",
                                     "name": "Issue Throughput",
-                                    "value": 90.0,
+                                    "value": 17.464646464646464,
                                     "impact": "POSITIVE",
                                     "entity": "issues",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -537,23 +601,26 @@
                                     "quality_requirement": "Affects Community Capability positively",
                                     "measures": [
                                         {
+                                            "class_name": "IssueThroughput",
                                             "name": "Issue Throughput",
-                                            "value": 90.0,
+                                            "value": 17.464646464646464,
                                             "unit": "issue",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
                                             "base_measures": [
                                                 {
+                                                    "class_name": "ClosedIssuesCount",
                                                     "name": "Number of closed issues",
-                                                    "value": 450,
+                                                    "value": 1729,
                                                     "unit": "issue",
                                                     "scale": 1,
                                                     "measurement_method": "AUTOMATIC",
                                                     "visitor": "AugurClosedIssuesCountVisitor"
                                                 },
                                                 {
+                                                    "class_name": "TotalIssuesCount",
                                                     "name": "Number of total issues",
-                                                    "value": 5,
+                                                    "value": 99,
                                                     "unit": "issue",
                                                     "scale": 1,
                                                     "measurement_method": "AUTOMATIC",
@@ -568,9 +635,11 @@
                             ]
                         },
                         {
+                            "class_name": "ContactWithinReasonableTime",
                             "name": "Contact within reasonable time",
                             "measurable_concepts": [
                                 {
+                                    "class_name": "AvgIssueResponseTimeMC",
                                     "name": "Average Issue Response Time",
                                     "value": 169.0,
                                     "impact": "POSITIVE",
@@ -580,6 +649,7 @@
                                     "quality_requirement": "Affects 'Contact within reasonable time' positively",
                                     "measures": [
                                         {
+                                            "class_name": "IssueResponseTime",
                                             "name": "Issue Response Time",
                                             "value": 169.0,
                                             "unit": "issue",
@@ -592,9 +662,11 @@
                             ]
                         },
                         {
+                            "class_name": "Complexity",
                             "name": "Complexity",
                             "measurable_concepts": [
                                 {
+                                    "class_name": "CyclomaticComplexityMC",
                                     "name": "Cyclomatic Complexity",
                                     "value": 123.0,
                                     "impact": "NEGATIVE",
@@ -604,6 +676,7 @@
                                     "quality_requirement": "Affects 'Complexity' negatively",
                                     "measures": [
                                         {
+                                            "class_name": "CruzCyclomaticComplexityBaseMeasure",
                                             "name": "Cruz Cyclomatic Complexity Base Measure",
                                             "value": 123.0,
                                             "unit": "",
@@ -616,11 +689,13 @@
                             ]
                         },
                         {
+                            "class_name": "CommunityVitality",
                             "name": "Community Vitality",
                             "measurable_concepts": [
                                 {
+                                    "class_name": "CommunityLifespan",
                                     "name": "Community Lifespan",
-                                    "value": 9,
+                                    "value": 6,
                                     "impact": "POSITIVE",
                                     "entity": "project repository",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -628,8 +703,9 @@
                                     "quality_requirement": "Affects 'Community Vitality' positively",
                                     "measures": [
                                         {
+                                            "class_name": "RepositoryAgeMeasure",
                                             "name": "Repository Age",
-                                            "value": 9,
+                                            "value": 6,
                                             "unit": "year(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -640,11 +716,13 @@
                             ]
                         },
                         {
+                            "class_name": "MaintainerOrganization",
                             "name": "Maintainer Organization",
                             "measurable_concepts": [
                                 {
+                                    "class_name": "MaintainerOrganizationMC",
                                     "name": "Maintainer Organization",
-                                    "value": 13,
+                                    "value": 54,
                                     "impact": "POSITIVE",
                                     "entity": "contributor list",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -652,8 +730,9 @@
                                     "quality_requirement": "Affects 'Community and Adoption' positively",
                                     "measures": [
                                         {
+                                            "class_name": "OrgCountMeasure",
                                             "name": "Organization Count",
-                                            "value": 13,
+                                            "value": 54,
                                             "unit": "organization(s)",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -666,14 +745,17 @@
                     ]
                 },
                 {
+                    "class_name": "CommunityAndAdoption",
                     "name": "Community and Adoption",
                     "sub_characteristics": [
                         {
+                            "class_name": "CommunityExists",
                             "name": "Community Exists",
                             "measurable_concepts": [
                                 {
+                                    "class_name": "NewContributorsMC",
                                     "name": "Number of New Contributors",
-                                    "value": 0,
+                                    "value": 4,
                                     "impact": "POSITIVE",
                                     "entity": "project contributors",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -681,8 +763,9 @@
                                     "quality_requirement": "Affects 'Community Exists' positively",
                                     "measures": [
                                         {
+                                            "class_name": "NewContributors",
                                             "name": "New Contributors",
-                                            "value": 0,
+                                            "value": 4,
                                             "unit": "contributor(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -691,8 +774,9 @@
                                     ]
                                 },
                                 {
+                                    "class_name": "CommunityInteractionMC",
                                     "name": "Community Interaction",
-                                    "value": 0,
+                                    "value": 15,
                                     "impact": "POSITIVE",
                                     "entity": "project contributors",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -700,8 +784,9 @@
                                     "quality_requirement": "Affects 'Community Exists' positively",
                                     "measures": [
                                         {
+                                            "class_name": "RepoMessages",
                                             "name": "Repo Messages",
-                                            "value": 0,
+                                            "value": 15,
                                             "unit": "comment(s)",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -710,8 +795,9 @@
                                     ]
                                 },
                                 {
+                                    "class_name": "IssueThroughputMC",
                                     "name": "Issue Throughput",
-                                    "value": 90.0,
+                                    "value": 17.464646464646464,
                                     "impact": "POSITIVE",
                                     "entity": "issues",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -719,23 +805,26 @@
                                     "quality_requirement": "Affects Community Capability positively",
                                     "measures": [
                                         {
+                                            "class_name": "IssueThroughput",
                                             "name": "Issue Throughput",
-                                            "value": 90.0,
+                                            "value": 17.464646464646464,
                                             "unit": "issue",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
                                             "base_measures": [
                                                 {
+                                                    "class_name": "ClosedIssuesCount",
                                                     "name": "Number of closed issues",
-                                                    "value": 450,
+                                                    "value": 1729,
                                                     "unit": "issue",
                                                     "scale": 1,
                                                     "measurement_method": "AUTOMATIC",
                                                     "visitor": "AugurClosedIssuesCountVisitor"
                                                 },
                                                 {
+                                                    "class_name": "TotalIssuesCount",
                                                     "name": "Number of total issues",
-                                                    "value": 5,
+                                                    "value": 99,
                                                     "unit": "issue",
                                                     "scale": 1,
                                                     "measurement_method": "AUTOMATIC",
@@ -750,11 +839,13 @@
                             ]
                         },
                         {
+                            "class_name": "Popularity",
                             "name": "Popularity",
                             "measurable_concepts": [
                                 {
+                                    "class_name": "PopularityMC",
                                     "name": "Popularity",
-                                    "value": 6516,
+                                    "value": 18463,
                                     "impact": "POSITIVE",
                                     "entity": "repository properties",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -762,40 +853,45 @@
                                     "quality_requirement": "Popularity affects 'Community and Adoption' positively",
                                     "measures": [
                                         {
+                                            "class_name": "WatchersCount",
                                             "name": "Watchers Count",
-                                            "value": 3143,
+                                            "value": 8657,
                                             "unit": "watcher(s)",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
                                             "visitor": "WatchersCountVisitor"
                                         },
                                         {
+                                            "class_name": "StarsCount",
                                             "name": "Stars Count",
-                                            "value": 3143,
+                                            "value": 8658,
                                             "unit": "star(s)",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
                                             "visitor": "StarsCountVisitor"
                                         },
                                         {
+                                            "class_name": "ForksCount",
                                             "name": "Forks Count",
-                                            "value": 172,
+                                            "value": 685,
                                             "unit": "fork(s)",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
                                             "visitor": "ForksCountVisitor"
                                         },
                                         {
+                                            "class_name": "ContributorCount",
                                             "name": "Contributor count",
-                                            "value": 43,
+                                            "value": 131,
                                             "unit": "person",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
                                             "visitor": "PyGithubCommunityCountVisitor"
                                         },
                                         {
+                                            "class_name": "AnnualCommitCount",
                                             "name": "Annual Commit Count",
-                                            "value": 15,
+                                            "value": 332,
                                             "unit": "commit",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -806,11 +902,13 @@
                             ]
                         },
                         {
+                            "class_name": "NumberOfContributorsSubChar",
                             "name": "Number of Contributors sub-characteristic",
                             "measurable_concepts": [
                                 {
+                                    "class_name": "NumberOfContributors",
                                     "name": "Number of Contributors",
-                                    "value": 43,
+                                    "value": 131,
                                     "impact": "POSITIVE",
                                     "entity": "Contributors",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -818,8 +916,9 @@
                                     "quality_requirement": "Affects Community Capability positively",
                                     "measures": [
                                         {
+                                            "class_name": "ContributorCount",
                                             "name": "Contributor count",
-                                            "value": 43,
+                                            "value": 131,
                                             "unit": "person",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -830,11 +929,13 @@
                             ]
                         },
                         {
+                            "class_name": "CommunityCapability",
                             "name": "Community Capability",
                             "measurable_concepts": [
                                 {
+                                    "class_name": "NumberOfContributors",
                                     "name": "Number of Contributors",
-                                    "value": 43,
+                                    "value": 131,
                                     "impact": "POSITIVE",
                                     "entity": "Contributors",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -842,8 +943,9 @@
                                     "quality_requirement": "Affects Community Capability positively",
                                     "measures": [
                                         {
+                                            "class_name": "ContributorCount",
                                             "name": "Contributor count",
-                                            "value": 43,
+                                            "value": 131,
                                             "unit": "person",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -852,6 +954,7 @@
                                     ]
                                 },
                                 {
+                                    "class_name": "TruckFactorMC",
                                     "name": "Truck Factor",
                                     "value": 1,
                                     "impact": "POSITIVE",
@@ -861,6 +964,7 @@
                                     "quality_requirement": "Affects Community Capability positively",
                                     "measures": [
                                         {
+                                            "class_name": "TruckFactor",
                                             "name": "Truck factor",
                                             "value": 1,
                                             "unit": "developer",
@@ -871,8 +975,9 @@
                                     ]
                                 },
                                 {
+                                    "class_name": "IssueThroughputMC",
                                     "name": "Issue Throughput",
-                                    "value": 455,
+                                    "value": 1828,
                                     "impact": "POSITIVE",
                                     "entity": "issues",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -880,16 +985,18 @@
                                     "quality_requirement": "Affects Community Capability positively",
                                     "measures": [
                                         {
+                                            "class_name": "ClosedIssuesCount",
                                             "name": "Number of closed issues",
-                                            "value": 450,
+                                            "value": 1729,
                                             "unit": "issue",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
                                             "visitor": "AugurClosedIssuesCountVisitor"
                                         },
                                         {
+                                            "class_name": "TotalIssuesCount",
                                             "name": "Number of total issues",
-                                            "value": 5,
+                                            "value": 99,
                                             "unit": "issue",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -898,6 +1005,7 @@
                                     ]
                                 },
                                 {
+                                    "class_name": "DurationToCloseIssuesMC",
                                     "name": "Duration to Close Issues",
                                     "value": 49.0,
                                     "impact": "NEGATIVE",
@@ -907,6 +1015,7 @@
                                     "quality_requirement": "Affects Community Capability negatively",
                                     "measures": [
                                         {
+                                            "class_name": "ClosedIssueResolutionDuration",
                                             "name": "Closed Issue Resolution Duration",
                                             "value": 49.0,
                                             "unit": "issue",
@@ -917,6 +1026,7 @@
                                     ]
                                 },
                                 {
+                                    "class_name": "TimeToRespondToIssues",
                                     "name": "Time to Respond to Issues",
                                     "value": 169.0,
                                     "impact": "NEGATIVE",
@@ -926,6 +1036,7 @@
                                     "quality_requirement": "Affects Community Capability negatively",
                                     "measures": [
                                         {
+                                            "class_name": "IssueResponseTime",
                                             "name": "Issue Response Time",
                                             "value": 169.0,
                                             "unit": "issue",
@@ -936,8 +1047,9 @@
                                     ]
                                 },
                                 {
+                                    "class_name": "CodeChangesCommits",
                                     "name": "Code Changes Commits",
-                                    "value": 15,
+                                    "value": 332,
                                     "impact": "POSITIVE",
                                     "entity": "version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -945,8 +1057,9 @@
                                     "quality_requirement": "Affects Community Capability positively",
                                     "measures": [
                                         {
+                                            "class_name": "AnnualCommitCount",
                                             "name": "Annual Commit Count",
-                                            "value": 15,
+                                            "value": 332,
                                             "unit": "commit",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -955,8 +1068,9 @@
                                     ]
                                 },
                                 {
+                                    "class_name": "CodeChangesLines",
                                     "name": "Code Changes Lines",
-                                    "value": 23,
+                                    "value": 26218,
                                     "impact": "NEGATIVE",
                                     "entity": "source code",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -964,8 +1078,9 @@
                                     "quality_requirement": "Affects Community Capability negatively",
                                     "measures": [
                                         {
+                                            "class_name": "LinesChangedCount",
                                             "name": "Total number of line changes",
-                                            "value": 23,
+                                            "value": 26218,
                                             "unit": "line",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -974,8 +1089,9 @@
                                     ]
                                 },
                                 {
+                                    "class_name": "ChangeRequestCommits",
                                     "name": "Change Request Commits",
-                                    "value": 50,
+                                    "value": 9.095238095238095,
                                     "impact": "NEGATIVE",
                                     "entity": "pull requests in version control",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -983,8 +1099,9 @@
                                     "quality_requirement": "Affects Community Capability negatively",
                                     "measures": [
                                         {
+                                            "class_name": "AvgNumberOfCommitsPerPRs",
                                             "name": "Avg number of commits per pull requests",
-                                            "value": 50,
+                                            "value": 9.095238095238095,
                                             "unit": "commit(s)",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -993,8 +1110,9 @@
                                     ]
                                 },
                                 {
+                                    "class_name": "ChangeRequestContributors",
                                     "name": "Change Request Contributors",
-                                    "value": 0,
+                                    "value": 2.0476190476190474,
                                     "impact": "POSITIVE",
                                     "entity": "pull requests in version control",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -1002,8 +1120,9 @@
                                     "quality_requirement": "Affects Community Capability positively",
                                     "measures": [
                                         {
+                                            "class_name": "AvgNumberOfContributorsPerPRs",
                                             "name": "Avg number of contributors per pull requests",
-                                            "value": 0,
+                                            "value": 2.0476190476190474,
                                             "unit": "contributor(s)",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -1012,8 +1131,9 @@
                                     ]
                                 },
                                 {
+                                    "class_name": "ChangeRequestsAcceptedCount",
                                     "name": "Number of Change Requests Accepted",
-                                    "value": 92,
+                                    "value": 302,
                                     "impact": "POSITIVE",
                                     "entity": "pull requests in version control",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -1021,8 +1141,9 @@
                                     "quality_requirement": "Affects Community Capability positively",
                                     "measures": [
                                         {
+                                            "class_name": "ReviewsAcceptedCount",
                                             "name": "Reviews Accepted Count",
-                                            "value": 92,
+                                            "value": 302,
                                             "unit": "pull request(s)",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -1031,8 +1152,9 @@
                                     ]
                                 },
                                 {
+                                    "class_name": "ChangeRequestsAcceptedRatio",
                                     "name": "Ratio of Change Requests Accepted",
-                                    "value": 0,
+                                    "value": 2.6470588235294117,
                                     "impact": "POSITIVE",
                                     "entity": "pull requests in version control",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -1040,8 +1162,9 @@
                                     "quality_requirement": "Affects Community Capability positively",
                                     "measures": [
                                         {
+                                            "class_name": "ReviewsAcceptedRatio",
                                             "name": "Reviews Accepted - Total PR Ratio",
-                                            "value": 0,
+                                            "value": 2.6470588235294117,
                                             "unit": "pull request",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -1050,8 +1173,9 @@
                                     ]
                                 },
                                 {
+                                    "class_name": "ChangeRequestsDeclinedCount",
                                     "name": "Number of Change Requests Declined",
-                                    "value": 26,
+                                    "value": 157,
                                     "impact": "NEGATIVE",
                                     "entity": "pull requests in version control",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -1059,8 +1183,9 @@
                                     "quality_requirement": "Affects Community Capability negatively",
                                     "measures": [
                                         {
+                                            "class_name": "ReviewsDeclinedCount",
                                             "name": "Reviews Declined Count",
-                                            "value": 26,
+                                            "value": 157,
                                             "unit": "issue",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -1069,8 +1194,9 @@
                                     ]
                                 },
                                 {
+                                    "class_name": "ChangeRequestsDeclinedRatio",
                                     "name": "Ratio of Change Requests Declined",
-                                    "value": 5.2,
+                                    "value": 1.5858585858585859,
                                     "impact": "NEGATIVE",
                                     "entity": "pull requests in version control",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -1078,23 +1204,26 @@
                                     "quality_requirement": "Affects Community Capability negatively",
                                     "measures": [
                                         {
+                                            "class_name": "ReviewsDeclinedRatio",
                                             "name": "Reviews Declined - Total PR Ratio",
-                                            "value": 5.2,
+                                            "value": 1.5858585858585859,
                                             "unit": "ratio",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
                                             "base_measures": [
                                                 {
+                                                    "class_name": "ReviewsDeclinedCount",
                                                     "name": "Reviews Declined Count",
-                                                    "value": 26,
+                                                    "value": 157,
                                                     "unit": "issue",
                                                     "scale": 1,
                                                     "measurement_method": "AUTOMATIC",
                                                     "visitor": "ReviewsDeclinedCountVisitor"
                                                 },
                                                 {
+                                                    "class_name": "TotalIssuesCount",
                                                     "name": "Number of total issues",
-                                                    "value": 5,
+                                                    "value": 99,
                                                     "unit": "issue",
                                                     "scale": 1,
                                                     "measurement_method": "AUTOMATIC",
@@ -1109,9 +1238,11 @@
                             ]
                         },
                         {
+                            "class_name": "ContactWithinReasonableTime",
                             "name": "Contact within reasonable time",
                             "measurable_concepts": [
                                 {
+                                    "class_name": "AvgIssueResponseTimeMC",
                                     "name": "Average Issue Response Time",
                                     "value": 169.0,
                                     "impact": "POSITIVE",
@@ -1121,6 +1252,7 @@
                                     "quality_requirement": "Affects 'Contact within reasonable time' positively",
                                     "measures": [
                                         {
+                                            "class_name": "IssueResponseTime",
                                             "name": "Issue Response Time",
                                             "value": 169.0,
                                             "unit": "issue",

@@ -95,6 +95,7 @@ class BaseMeasure(Measure, LeafComponent, Generic[T], metaclass=ABCGenericMeta):
 
     def serialize(self) -> dict:
         return {
+            "class_name": self.__class__.__name__,
             "name": self.name,
             "value": self.value,
             "unit": self.unit,
@@ -165,6 +166,7 @@ class DerivedMeasure(Measure, CompositeComponent, Generic[T], metaclass=ABCGener
 
     def serialize(self) -> dict:
         return {
+            "class_name": self.__class__.__name__,
             "name": self.name,
             "value": self.value,
             "unit": self.unit,

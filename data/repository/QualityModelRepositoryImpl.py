@@ -61,8 +61,8 @@ from testing.measures.CruzCyclomaticComplexityBaseMeasure import CruzCyclomaticC
 from testing.measures.CruzNumberOfCommentsBaseMeasure import CruzNumberOfCommentsBaseMeasure
 from testing.measures.License import License
 from testing.measures.community_vitality.RepositoryAgeMeasure import RepositoryAgeMeasure
-from testing.measures.communitycapability.AvgNumberOfCommitsPerPRs import AvgNumberOfCommitsPerPRs
-from testing.measures.communitycapability.AvgNumberOfContributorsPerPRs import AvgNumberOfContributorsPerPRs
+from testing.measures.communitycapability.change_request_commits.AvgNumberOfCommitsPerPRs import AvgNumberOfCommitsPerPRs
+from testing.measures.communitycapability.change_request_contributors.AvgNumberOfContributorsPerPRs import AvgNumberOfContributorsPerPRs
 from testing.measures.communitycapability.ClosedIssueResolutionDuration import ClosedIssueResolutionDuration
 from testing.measures.communitycapability.ClosedIssuesCount import ClosedIssuesCount
 from testing.measures.communitycapability.ContributorCount import ContributorCount
@@ -77,7 +77,6 @@ from testing.measures.numberofreleases.ReleaseCount import ReleaseCount
 from testing.measures.open_participation.NewContributors import NewContributors
 from testing.measures.peer_influence.RepoMessages import RepoMessages
 from testing.measures.popularity.AnnualCommitCount import AnnualCommitCount
-from testing.measures.popularity.DownloadsCount import DownloadsCount
 from testing.measures.popularity.ForksCount import ForksCount
 from testing.measures.popularity.StarsCount import StarsCount
 from testing.measures.popularity.WatchersCount import WatchersCount
@@ -111,16 +110,13 @@ from testing.visitors.VisitorFactory import MeasureVisitorFactory, DerivedMeasur
     MeasurableConceptVisitorFactory
 from presentation.util.Util import convert_tuple_keys_to_string, convert_string_keys_to_tuple
 from presentation.viewpoint_preferences.ComponentPreferencesState import PrefMatrix
-from testing.characteristic.Maintainability import Maintainability, Maintainability2, Maintainability3, Maintainability4
+from testing.characteristic.Maintainability import Maintainability
 from testing.measurableconcepts.ComplexityOfSourceCode import ComplexityOfSourceCode, ComplexityOfSourceCode2
 from testing.measures.CyclomaticComplexity import CyclomaticComplexity
 from testing.measures.LinesOfCode import LinesOfCode
 from testing.measures.NumberOfComplexFunctions import NumberOfComplexFunctions
 from testing.measures.NumberOfStatements import NumberOfStatements
 from testing.qualitymodels.TestQualityModel import TestQualityModel
-from testing.subcharacteristic.Analyzability import Analyzability, Analyzability2, Analyzability3, Analyzability4, \
-    Analyzability5, Analyzability6, Analyzability7, Analyzability8, Analyzability9, Analyzability10, Analyzability11, \
-    Analyzability12, Analyzability13, Analyzability14, Analyzability15, Analyzability16
 from testing.viewpoints.DeveloperViewpoint import DeveloperViewpoint
 from util.GithubRateLimiter import GithubRateLimiter
 

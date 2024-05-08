@@ -1,8 +1,10 @@
 from abc import ABC, abstractmethod
 
 from testing.measures.community_vitality.RepositoryAgeMeasureVisitor import RepositoryAgeMeasureVisitor
-from testing.measures.communitycapability.AvgNumberOfCommitsPerPRsVisitor import AvgNumberOfCommitsPerPRsVisitor
-from testing.measures.communitycapability.AvgNumberOfContributorsPerPRsVisitor import \
+from testing.measures.communitycapability.change_request_acceptance_ratio.ReviewsAcceptedToDeclinedRatioAggregator import \
+    ReviewsAcceptedToDeclinedRatioAggregator
+from testing.measures.communitycapability.change_request_commits.AvgNumberOfCommitsPerPRsVisitor import AvgNumberOfCommitsPerPRsVisitor
+from testing.measures.communitycapability.change_request_contributors.AvgNumberOfContributorsPerPRsVisitor import \
     AvgNumberOfContributorsPerPRsVisitor
 from testing.measures.communitycapability.LinesChangedCountVisitor import LinesChangedCountVisitor
 from testing.measures.maintainer_organization.OrgCountMeasureVisitor import OrgCountMeasureVisitor
@@ -125,6 +127,7 @@ class DerivedMeasureVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "ReviewsAcceptedToDeclinedRatio": (NoOpNormalizeVisitor, ReviewsAcceptedToDeclinedRatioAggregator),
             "ReviewsDeclinedRatio": (NoOpNormalizeVisitor, ReviewsDeclinedAggregator),
             "IssueThroughput": (NoOpNormalizeVisitor, AugurIssueThroughputVisitor),
             "CyclomaticComplexity": (NoOpNormalizeVisitor, AverageAggregateVisitor),

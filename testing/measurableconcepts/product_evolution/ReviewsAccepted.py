@@ -12,7 +12,7 @@ class ReviewsAccepted(MeasurableConcept[float]):
             "Reviews Accepted",
             children,
             Impact.POSITIVE,
-            "Pull request history",
+            "version control history",
             "Ratio of accepted reviews to total reviews",
             "Regularly accepted reviews affect product evolution positively",
             OSSAspect.COMMUNITY,

@@ -26,6 +26,10 @@ class Component(ABC):
     def children(self) -> dict[str, 'Component'] | None:
         pass
 
+    @abstractmethod
+    def serialize(self) -> dict:
+        pass
+
     def add_component(self, component: 'Component'):
         """
         add_component adds a component to the component map

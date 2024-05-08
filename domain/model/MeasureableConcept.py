@@ -37,6 +37,7 @@ class MeasurableConcept(CompositeComponent, Generic[T], metaclass=ABCGenericMeta
         self._quality_requirement = quality_requirement
         self.normalize_visitor = normalize_visitor
         self.aggregate_visitor = aggregate_visitor
+        self._value = None
 
     @property
     def impact(self) -> Impact:
@@ -64,6 +65,7 @@ class MeasurableConcept(CompositeComponent, Generic[T], metaclass=ABCGenericMeta
         ]
         normalized = self.normalize(measurements)
         aggregated = self.aggregate(normalized)
+        self._value = aggregated
         return aggregated
 
     def normalize(self, measurements: list[T]) -> list[T]:
@@ -75,3 +77,15 @@ class MeasurableConcept(CompositeComponent, Generic[T], metaclass=ABCGenericMeta
     def accept_visitors(self, normalize_visitor: 'NormalizeVisitor', aggregate_visitor: 'AggregateVisitor'):
         self.normalize_visitor = normalize_visitor
         self.aggregate_visitor = aggregate_visitor
+
+    def serialize(self) -> dict:
+        return {
+            "name": self.name,
+            "value": self._value,
+            "impact": self.impact.name,
+            "entity": self.entity,
+            "relevant_oss_aspect": self.relevant_oss_aspect.name,
+            "information_need": self.information_need,
+            "quality_requirement": self.quality_requirement,
+            "measures": [child.serialize() for child in self.children.values()]
+        }

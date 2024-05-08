@@ -71,3 +71,9 @@ class Characteristic(CompositeComponent, Generic[T], metaclass=ABCGenericMeta):
         return [
             await child.measure(repository) for child in self.children.values()
         ]
+
+    def serialize(self) -> dict:
+        return {
+            "name": self.name,
+            "sub_characteristics": [child.serialize() for child in self.children.values()]
+        }

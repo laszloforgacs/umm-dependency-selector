@@ -144,5 +144,8 @@ class SharedViewModel:
             pref_matrix=new_oss_aspect_pref_matrix
         )
 
+    async def write_measurement_result_tree_to_json(self, quality_model: 'QualityModel', viewpoint: 'Viewpoint', repository_name: str):
+        await self._quality_model_repository.write_measurement_result_tree_to_json(quality_model, viewpoint, repository_name)
+
     async def dispose(self):
         await self._source_repository.dispose()

@@ -125,6 +125,7 @@ from testing.viewpoints.DeveloperViewpoint import DeveloperViewpoint
 from util.GithubRateLimiter import GithubRateLimiter
 
 QM_FOLDER: Final = "config"
+RESULTS_FOLDER: Final = "results"
 JSON_EXTENSION: Final = ".json"
 
 
@@ -1043,6 +1044,15 @@ class QualityModelRepositoryImpl(QualityModelRepository):
             json_string = json.dumps(data, indent=4)
             await file.write(json_string)
             return convert_string_keys_to_tuple(data.get(matrix_key, {}))
+
+    async def write_measurement_result_tree_to_json(self, quality_model: 'QualityModel', viewpoint: 'Viewpoint', repository_name: str):
+        path = os.path.join(RESULTS_FOLDER, f"{repository_name}-{quality_model.name}-{viewpoint.name}.json").replace(" ", "_")
+        data = quality_model.serialize()
+
+        async with aiofiles.open(path, "w") as file:
+            json_string = json.dumps(data, indent=4)
+            await file.write(json_string)
+
 
     async def _init_viewpoint_pref_matrix(
             self,

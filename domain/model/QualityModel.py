@@ -10,3 +10,9 @@ class QualityModel(CompositeComponent, metaclass=ABCMeta):
         for child in children.values():
             child.parent = self
         self._children = children
+
+    def serialize(self) -> dict:
+        return {
+            "name": self.name,
+            "viewpoints": [child.serialize() for child in self.children.values()]
+        }

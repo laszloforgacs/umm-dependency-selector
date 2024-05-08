@@ -1,3 +1,4 @@
+import asyncio
 import itertools
 from pprint import pprint
 
@@ -95,19 +96,31 @@ class EvaluationViewModel:
                 scalers.SumScaler(target="weights"),
                 similarity.TOPSIS()
             )
-            #pprint(dm.matrix)
             rankings = pipe.evaluate(dm)
             pprint(rankings)
-            #print(dir(rankings))
-            #print(rankings.rank_)
-            #print(rankings.alternatives)
-            #print(rankings.values)
+
+            quality_model_list = self._shared_view_model.quality_model_state_subject.state.quality_model_list
+            filtered_quality_model_list = [qm for qm in quality_model_list if qm.name == viewpoint.parent.name]
+            if len(filtered_quality_model_list) == 0:
+                raise Exception("Unable to write measurement tree to JSON. Quality model not found.")
+            selected_quality_model = filtered_quality_model_list[0]
+            tasks = []
+            for repo in repositories:
+                tasks.append(
+                    asyncio.create_task(
+                        self._write_measurement_tree_to_json(selected_quality_model, viewpoint, repo.name)
+                    )
+                )
+            await asyncio.gather(*tasks)
         except Exception as e:
             await self.evaluation_state_subject.set_state(
                 state=EvaluationError(
                     message=str(e) + self.__class__.__name__
                 )
             )
+
+    async def _write_measurement_tree_to_json(self, quality_model: 'QualityModel', viewpoint: 'Viewpoint', repository_name: str):
+        await self._shared_view_model.write_measurement_result_tree_to_json(quality_model, viewpoint, repository_name)
 
     async def dispose(self):
         await self._shared_view_model.dispose()

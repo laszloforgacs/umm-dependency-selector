@@ -20,3 +20,6 @@ class QualityModelRepository(ABC):
             preference: str
     ):
         pass
+
+    async def write_measurement_result_tree_to_json(self, quality_model: 'QualityModel', viewpoint: 'Viewpoint', repository_name: str):
+        pass

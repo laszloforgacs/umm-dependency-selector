@@ -41,18 +41,25 @@ class Measure(Generic[T], metaclass=ABCGenericMeta):
     def measurement_method(self) -> MeasurementMethod:
         pass
 
+    @property
+    @abstractmethod
+    def value(self) -> T:
+        pass
+
     @abstractmethod
     def measure(self, repository: Repository) -> T:
         pass
 
 
 class BaseMeasure(Measure, LeafComponent, Generic[T], metaclass=ABCGenericMeta):
-    def __init__(self, name: str, unit: str, scale: float, measurement_method: MeasurementMethod, visitor=None):
+    def __init__(self, name: str, unit: str, scale: float,
+                 measurement_method: MeasurementMethod = MeasurementMethod.AUTOMATIC, visitor=None):
         self._name = name
         self._unit = unit
         self._scale = scale
         self._measurement_method = measurement_method
         self.visitor = visitor
+        self._value = None
 
     @property
     def name(self) -> str:
@@ -70,16 +77,37 @@ class BaseMeasure(Measure, LeafComponent, Generic[T], metaclass=ABCGenericMeta):
     def measurement_method(self) -> MeasurementMethod:
         return self._measurement_method
 
+    @property
+    def value(self) -> T:
+        return self._value
+
+    @value.setter
+    def value(self, value: T):
+        self._value = value
+
     async def measure(self, repository: str) -> T:
-        return await self.visitor.measure(self, repository)
+        result = await self.visitor.measure(self, repository)
+        self.value = result
+        return result
 
     def accept_visitor(self, visitor: 'BaseMeasureVisitor'):
         self.visitor = visitor
 
+    def serialize(self) -> dict:
+        return {
+            "name": self.name,
+            "value": self.value,
+            "unit": self.unit,
+            "scale": self.scale,
+            "measurement_method": self.measurement_method.name,
+            "visitor": self.visitor.__class__.__name__
+        }
+
 
 class DerivedMeasure(Measure, CompositeComponent, Generic[T], metaclass=ABCGenericMeta):
-    def __init__(self, name: str, unit: str, scale: float, measurement_method: MeasurementMethod,
-                 children: dict[str, BaseMeasure], normalize_visitor=None, aggregate_visitor=None):
+    def __init__(self, name: str, unit: str, scale: float,
+                 measurement_method: MeasurementMethod = MeasurementMethod.AUTOMATIC,
+                 children: dict[str, BaseMeasure] = {}, normalize_visitor=None, aggregate_visitor=None):
         self._name = name
         self._unit = unit
         self._scale = scale
@@ -89,6 +117,7 @@ class DerivedMeasure(Measure, CompositeComponent, Generic[T], metaclass=ABCGener
         self._children = children
         self.normalize_visitor = normalize_visitor
         self.aggregate_visitor = aggregate_visitor
+        self._value = None
 
     @property
     def name(self) -> str:
@@ -106,6 +135,14 @@ class DerivedMeasure(Measure, CompositeComponent, Generic[T], metaclass=ABCGener
     def measurement_method(self) -> MeasurementMethod:
         return self._measurement_method
 
+    @property
+    def value(self) -> T:
+        return self._value
+
+    @value.setter
+    def value(self, value: T):
+        self._value = value
+
     async def measure(self, repository: Repository) -> T:
         measurements = [
             (child, await child.measure(repository)) for child in self.children.values()
@@ -113,6 +150,7 @@ class DerivedMeasure(Measure, CompositeComponent, Generic[T], metaclass=ABCGener
         normalized = self.normalize(measurements)
         aggregated = self.aggregate(normalized)
         print(f"{repository.full_name}: {self.name} is {aggregated}")
+        self.value = aggregated
         return aggregated
 
     def normalize(self, measurements: list[T]) -> list[T]:
@@ -124,3 +162,15 @@ class DerivedMeasure(Measure, CompositeComponent, Generic[T], metaclass=ABCGener
     def accept_visitors(self, normalize_visitor: 'NormalizeVisitor', aggregate_visitor: 'AggregateVisitor'):
         self.normalize_visitor = normalize_visitor
         self.aggregate_visitor = aggregate_visitor
+
+    def serialize(self) -> dict:
+        return {
+            "name": self.name,
+            "value": self.value,
+            "unit": self.unit,
+            "scale": self.scale,
+            "measurement_method": self.measurement_method.name,
+            "base_measures": [child.serialize() for child in self.children.values()],
+            "normalize_visitor": self.normalize_visitor.__class__.__name__,
+            "aggregate_visitor": self.aggregate_visitor.__class__.__name__
+        }

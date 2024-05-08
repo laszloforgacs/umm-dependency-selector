@@ -1,0 +1,1140 @@
+{
+    "name": "TestQualityModel",
+    "viewpoints": [
+        {
+            "name": "Developer Viewpoint",
+            "characteristics": [
+                {
+                    "name": "Cost",
+                    "sub_characteristics": [
+                        {
+                            "name": "Return On Investment",
+                            "measurable_concepts": [
+                                {
+                                    "name": "Absence of license fees",
+                                    "value": 5.0,
+                                    "impact": "POSITIVE",
+                                    "entity": "Software license",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculation of the absence of fees",
+                                    "quality_requirement": "Absence of fees affects cost positively",
+                                    "measures": [
+                                        {
+                                            "name": "License",
+                                            "value": 5,
+                                            "unit": "levels",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "OSSAQMLicenseVisitor"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Community Capability",
+                            "measurable_concepts": [
+                                {
+                                    "name": "Number of Contributors",
+                                    "value": 43,
+                                    "impact": "POSITIVE",
+                                    "entity": "Contributors",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the number of contributors",
+                                    "quality_requirement": "Affects Community Capability positively",
+                                    "measures": [
+                                        {
+                                            "name": "Contributor count",
+                                            "value": 43,
+                                            "unit": "person",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "PyGithubCommunityCountVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Truck Factor",
+                                    "value": 1,
+                                    "impact": "POSITIVE",
+                                    "entity": "Developers",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the Truck Factor of a repository",
+                                    "quality_requirement": "Affects Community Capability positively",
+                                    "measures": [
+                                        {
+                                            "name": "Truck factor",
+                                            "value": 1,
+                                            "unit": "developer",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "TruckFactorVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Issue Throughput",
+                                    "value": 90.0,
+                                    "impact": "POSITIVE",
+                                    "entity": "issues",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the throughput of issues",
+                                    "quality_requirement": "Affects Community Capability positively",
+                                    "measures": [
+                                        {
+                                            "name": "Issue Throughput",
+                                            "value": 90.0,
+                                            "unit": "issue",
+                                            "scale": 1.0,
+                                            "measurement_method": "AUTOMATIC",
+                                            "base_measures": [
+                                                {
+                                                    "name": "Number of closed issues",
+                                                    "value": 450,
+                                                    "unit": "issue",
+                                                    "scale": 1,
+                                                    "measurement_method": "AUTOMATIC",
+                                                    "visitor": "AugurClosedIssuesCountVisitor"
+                                                },
+                                                {
+                                                    "name": "Number of total issues",
+                                                    "value": 5,
+                                                    "unit": "issue",
+                                                    "scale": 1,
+                                                    "measurement_method": "AUTOMATIC",
+                                                    "visitor": "AugurTotalIssuesCountVisitor"
+                                                }
+                                            ],
+                                            "normalize_visitor": "NoOpNormalizeVisitor",
+                                            "aggregate_visitor": "AugurIssueThroughputVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Duration to Close Issues",
+                                    "value": 49.0,
+                                    "impact": "NEGATIVE",
+                                    "entity": "issue",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the duration to close issues",
+                                    "quality_requirement": "Affects Community Capability negatively",
+                                    "measures": [
+                                        {
+                                            "name": "Closed Issue Resolution Duration",
+                                            "value": 49.0,
+                                            "unit": "issue",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "AugurClosedIssueResolutionDurationVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Time to Respond to Issues",
+                                    "value": 169.0,
+                                    "impact": "NEGATIVE",
+                                    "entity": "issue",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the first response time to issues",
+                                    "quality_requirement": "Affects Community Capability negatively",
+                                    "measures": [
+                                        {
+                                            "name": "Issue Response Time",
+                                            "value": 169.0,
+                                            "unit": "issue",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "IssueResponseTimeVisitor"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Reliability",
+                    "sub_characteristics": [
+                        {
+                            "name": "Regular Updates",
+                            "measurable_concepts": [
+                                {
+                                    "name": "Number of releases",
+                                    "value": 5,
+                                    "impact": "POSITIVE",
+                                    "entity": "Release",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculation of the number of releases",
+                                    "quality_requirement": "Number of releases affects reliability positively",
+                                    "measures": [
+                                        {
+                                            "name": "ReleaseCount",
+                                            "value": 5,
+                                            "unit": "release",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "ReleaseCountVisitor"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Support and Service",
+                    "sub_characteristics": [
+                        {
+                            "name": "Currently open feature requests",
+                            "measurable_concepts": [
+                                {
+                                    "name": "Number of open feature requests",
+                                    "value": 6,
+                                    "impact": "NEGATIVE",
+                                    "entity": "Feature request",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculation of the number of open feature requests",
+                                    "quality_requirement": "Number of open feature requests affects reliability negatively",
+                                    "measures": [
+                                        {
+                                            "name": "OpenFeatureRequestCount",
+                                            "value": 6,
+                                            "unit": "open issue with feature request label",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "OpenFeatureRequestCountVisitor"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Product Evolution",
+                            "measurable_concepts": [
+                                {
+                                    "name": "Commit Frequency",
+                                    "value": 0.28846153846153844,
+                                    "impact": "POSITIVE",
+                                    "entity": "Commit",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculation of the average commits in a specified date range",
+                                    "quality_requirement": "Commit frequency affects reliability positively",
+                                    "measures": [
+                                        {
+                                            "name": "CommitCount",
+                                            "value": 0.28846153846153844,
+                                            "unit": "commit",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "CommitCountVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Updated since",
+                                    "value": 1.2,
+                                    "impact": "NEGATIVE",
+                                    "entity": "Commit history",
+                                    "relevant_oss_aspect": "CODE",
+                                    "information_need": "Calculation of the time since the last commit",
+                                    "quality_requirement": "Non-regular updates affect product evolution negatively",
+                                    "measures": [
+                                        {
+                                            "name": "TimeSinceLastCommit",
+                                            "value": 1.2,
+                                            "unit": "months",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "TimeSinceLastCommitVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Issue interactions",
+                                    "value": 453,
+                                    "impact": "POSITIVE",
+                                    "entity": "Issue history",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the level of interaction with issues",
+                                    "quality_requirement": "Regular interactions affect product evolution positively",
+                                    "measures": [
+                                        {
+                                            "name": "UpdatedIssuesCount",
+                                            "value": 3,
+                                            "unit": "updated issue",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "UpdatedIssuesCountVisitor"
+                                        },
+                                        {
+                                            "name": "Number of closed issues",
+                                            "value": 450,
+                                            "unit": "issue",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "AugurClosedIssuesCountVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Issue Staleness",
+                                    "value": 275.6,
+                                    "impact": "NEGATIVE",
+                                    "entity": "Repository issue tracker",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculation of how long issues have been open for",
+                                    "quality_requirement": "Long open issue age affects product evolution negatively",
+                                    "measures": [
+                                        {
+                                            "name": "Open Issue Age",
+                                            "value": 275.6,
+                                            "unit": "day(s)",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "OpenIssueAgeVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Declined changes",
+                                    "value": 5.2,
+                                    "impact": "NEGATIVE",
+                                    "entity": "Issue history",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the ratio of declined changes to accepted PRs",
+                                    "quality_requirement": "Declined changes affect product evolution negatively",
+                                    "measures": [
+                                        {
+                                            "name": "Reviews Declined - Total PR Ratio",
+                                            "value": 5.2,
+                                            "unit": "ratio",
+                                            "scale": 1.0,
+                                            "measurement_method": "AUTOMATIC",
+                                            "base_measures": [
+                                                {
+                                                    "name": "Reviews Declined Count",
+                                                    "value": 26,
+                                                    "unit": "issue",
+                                                    "scale": 1,
+                                                    "measurement_method": "AUTOMATIC",
+                                                    "visitor": "ReviewsDeclinedCountVisitor"
+                                                },
+                                                {
+                                                    "name": "Number of total issues",
+                                                    "value": 5,
+                                                    "unit": "issue",
+                                                    "scale": 1,
+                                                    "measurement_method": "AUTOMATIC",
+                                                    "visitor": "AugurTotalIssuesCountVisitor"
+                                                }
+                                            ],
+                                            "normalize_visitor": "NoOpNormalizeVisitor",
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Opened pull requests in a period",
+                                    "value": 0,
+                                    "impact": "POSITIVE",
+                                    "entity": "Issue history",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the number of opened pull requests",
+                                    "quality_requirement": "Regular pull requests affect product evolution positively",
+                                    "measures": [
+                                        {
+                                            "name": "Number of opened pull requests",
+                                            "value": 0,
+                                            "unit": "pull request",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "OpenedPullRequestCountVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Reviews Accepted",
+                                    "value": 92,
+                                    "impact": "POSITIVE",
+                                    "entity": "Pull request history",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Ratio of accepted reviews to total reviews",
+                                    "quality_requirement": "Regularly accepted reviews affect product evolution positively",
+                                    "measures": [
+                                        {
+                                            "name": "Reviews Accepted - Total PR Ratio",
+                                            "value": 0,
+                                            "unit": "pull request",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "ReviewsAcceptedRatioVisitor"
+                                        },
+                                        {
+                                            "name": "Reviews Accepted Count",
+                                            "value": 92,
+                                            "unit": "pull request(s)",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "ReviewsAcceptedCountVisitor"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Support Community",
+                            "measurable_concepts": [
+                                {
+                                    "name": "Open Participation",
+                                    "value": 0,
+                                    "impact": "POSITIVE",
+                                    "entity": "Issue tracker",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the level of collaboration in the issue tracker",
+                                    "quality_requirement": "Open participation affects a supportive community positively",
+                                    "measures": [
+                                        {
+                                            "name": "New Contributors",
+                                            "value": 0,
+                                            "unit": "contributor(s)",
+                                            "scale": 1.0,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "NewContributorsVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Peer influence",
+                                    "value": 0,
+                                    "impact": "POSITIVE",
+                                    "entity": "Issue tracker",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the level of collaboration in the issue tracker",
+                                    "quality_requirement": "Peer influence affects a supportive community positively",
+                                    "measures": [
+                                        {
+                                            "name": "Repo Messages",
+                                            "value": 0,
+                                            "unit": "comment(s)",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "RepoMessagesVisitor"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Short-term Support",
+                            "measurable_concepts": [
+                                {
+                                    "name": "Time to Respond to Issues",
+                                    "value": 169.0,
+                                    "impact": "NEGATIVE",
+                                    "entity": "issue",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the first response time to issues",
+                                    "quality_requirement": "Affects Community Capability negatively",
+                                    "measures": [
+                                        {
+                                            "name": "Issue Response Time",
+                                            "value": 169.0,
+                                            "unit": "issue",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "IssueResponseTimeVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Number of Contributors",
+                                    "value": 43,
+                                    "impact": "POSITIVE",
+                                    "entity": "Contributors",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the number of contributors",
+                                    "quality_requirement": "Affects Community Capability positively",
+                                    "measures": [
+                                        {
+                                            "name": "Contributor count",
+                                            "value": 43,
+                                            "unit": "person",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "PyGithubCommunityCountVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Number of releases",
+                                    "value": 5,
+                                    "impact": "POSITIVE",
+                                    "entity": "Release",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculation of the number of releases",
+                                    "quality_requirement": "Number of releases affects reliability positively",
+                                    "measures": [
+                                        {
+                                            "name": "ReleaseCount",
+                                            "value": 5,
+                                            "unit": "release",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "ReleaseCountVisitor"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Community Exists",
+                            "measurable_concepts": [
+                                {
+                                    "name": "Number of New Contributors",
+                                    "value": 0,
+                                    "impact": "POSITIVE",
+                                    "entity": "project contributors",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the new contributors to the project",
+                                    "quality_requirement": "Affects 'Community Exists' positively",
+                                    "measures": [
+                                        {
+                                            "name": "New Contributors",
+                                            "value": 0,
+                                            "unit": "contributor(s)",
+                                            "scale": 1.0,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "NewContributorsVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Community Interaction",
+                                    "value": 0,
+                                    "impact": "POSITIVE",
+                                    "entity": "project contributors",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the community interaction of the project",
+                                    "quality_requirement": "Affects 'Community Exists' positively",
+                                    "measures": [
+                                        {
+                                            "name": "Repo Messages",
+                                            "value": 0,
+                                            "unit": "comment(s)",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "RepoMessagesVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Issue Throughput",
+                                    "value": 90.0,
+                                    "impact": "POSITIVE",
+                                    "entity": "issues",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the throughput of issues",
+                                    "quality_requirement": "Affects Community Capability positively",
+                                    "measures": [
+                                        {
+                                            "name": "Issue Throughput",
+                                            "value": 90.0,
+                                            "unit": "issue",
+                                            "scale": 1.0,
+                                            "measurement_method": "AUTOMATIC",
+                                            "base_measures": [
+                                                {
+                                                    "name": "Number of closed issues",
+                                                    "value": 450,
+                                                    "unit": "issue",
+                                                    "scale": 1,
+                                                    "measurement_method": "AUTOMATIC",
+                                                    "visitor": "AugurClosedIssuesCountVisitor"
+                                                },
+                                                {
+                                                    "name": "Number of total issues",
+                                                    "value": 5,
+                                                    "unit": "issue",
+                                                    "scale": 1,
+                                                    "measurement_method": "AUTOMATIC",
+                                                    "visitor": "AugurTotalIssuesCountVisitor"
+                                                }
+                                            ],
+                                            "normalize_visitor": "NoOpNormalizeVisitor",
+                                            "aggregate_visitor": "AugurIssueThroughputVisitor"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Contact within reasonable time",
+                            "measurable_concepts": [
+                                {
+                                    "name": "Average Issue Response Time",
+                                    "value": 169.0,
+                                    "impact": "POSITIVE",
+                                    "entity": "First comment on issues",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the average time to respond to issues",
+                                    "quality_requirement": "Affects 'Contact within reasonable time' positively",
+                                    "measures": [
+                                        {
+                                            "name": "Issue Response Time",
+                                            "value": 169.0,
+                                            "unit": "issue",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "IssueResponseTimeVisitor"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Complexity",
+                            "measurable_concepts": [
+                                {
+                                    "name": "Cyclomatic Complexity",
+                                    "value": 123.0,
+                                    "impact": "NEGATIVE",
+                                    "entity": "soure code",
+                                    "relevant_oss_aspect": "CODE",
+                                    "information_need": "Calculating the cyclomatic complexity of the project",
+                                    "quality_requirement": "Affects 'Complexity' negatively",
+                                    "measures": [
+                                        {
+                                            "name": "Cruz Cyclomatic Complexity Base Measure",
+                                            "value": 123.0,
+                                            "unit": "",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "LizardCyclomaticComplexityVisitor"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Community Vitality",
+                            "measurable_concepts": [
+                                {
+                                    "name": "Community Lifespan",
+                                    "value": 9,
+                                    "impact": "POSITIVE",
+                                    "entity": "project repository",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the community lifespan in a repository",
+                                    "quality_requirement": "Affects 'Community Vitality' positively",
+                                    "measures": [
+                                        {
+                                            "name": "Repository Age",
+                                            "value": 9,
+                                            "unit": "year(s)",
+                                            "scale": 1.0,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "RepositoryAgeMeasureVisitor"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Maintainer Organization",
+                            "measurable_concepts": [
+                                {
+                                    "name": "Maintainer Organization",
+                                    "value": 13,
+                                    "impact": "POSITIVE",
+                                    "entity": "contributor list",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculation of the number of maintianer organizations",
+                                    "quality_requirement": "Affects 'Community and Adoption' positively",
+                                    "measures": [
+                                        {
+                                            "name": "Organization Count",
+                                            "value": 13,
+                                            "unit": "organization(s)",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "OrgCountMeasureVisitor"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Community and Adoption",
+                    "sub_characteristics": [
+                        {
+                            "name": "Community Exists",
+                            "measurable_concepts": [
+                                {
+                                    "name": "Number of New Contributors",
+                                    "value": 0,
+                                    "impact": "POSITIVE",
+                                    "entity": "project contributors",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the new contributors to the project",
+                                    "quality_requirement": "Affects 'Community Exists' positively",
+                                    "measures": [
+                                        {
+                                            "name": "New Contributors",
+                                            "value": 0,
+                                            "unit": "contributor(s)",
+                                            "scale": 1.0,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "NewContributorsVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Community Interaction",
+                                    "value": 0,
+                                    "impact": "POSITIVE",
+                                    "entity": "project contributors",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the community interaction of the project",
+                                    "quality_requirement": "Affects 'Community Exists' positively",
+                                    "measures": [
+                                        {
+                                            "name": "Repo Messages",
+                                            "value": 0,
+                                            "unit": "comment(s)",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "RepoMessagesVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Issue Throughput",
+                                    "value": 90.0,
+                                    "impact": "POSITIVE",
+                                    "entity": "issues",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the throughput of issues",
+                                    "quality_requirement": "Affects Community Capability positively",
+                                    "measures": [
+                                        {
+                                            "name": "Issue Throughput",
+                                            "value": 90.0,
+                                            "unit": "issue",
+                                            "scale": 1.0,
+                                            "measurement_method": "AUTOMATIC",
+                                            "base_measures": [
+                                                {
+                                                    "name": "Number of closed issues",
+                                                    "value": 450,
+                                                    "unit": "issue",
+                                                    "scale": 1,
+                                                    "measurement_method": "AUTOMATIC",
+                                                    "visitor": "AugurClosedIssuesCountVisitor"
+                                                },
+                                                {
+                                                    "name": "Number of total issues",
+                                                    "value": 5,
+                                                    "unit": "issue",
+                                                    "scale": 1,
+                                                    "measurement_method": "AUTOMATIC",
+                                                    "visitor": "AugurTotalIssuesCountVisitor"
+                                                }
+                                            ],
+                                            "normalize_visitor": "NoOpNormalizeVisitor",
+                                            "aggregate_visitor": "AugurIssueThroughputVisitor"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Popularity",
+                            "measurable_concepts": [
+                                {
+                                    "name": "Popularity",
+                                    "value": 6516,
+                                    "impact": "POSITIVE",
+                                    "entity": "repository properties",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the popularity of a repository",
+                                    "quality_requirement": "Popularity affects 'Community and Adoption' positively",
+                                    "measures": [
+                                        {
+                                            "name": "Watchers Count",
+                                            "value": 3143,
+                                            "unit": "watcher(s)",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "WatchersCountVisitor"
+                                        },
+                                        {
+                                            "name": "Stars Count",
+                                            "value": 3143,
+                                            "unit": "star(s)",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "StarsCountVisitor"
+                                        },
+                                        {
+                                            "name": "Forks Count",
+                                            "value": 172,
+                                            "unit": "fork(s)",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "ForksCountVisitor"
+                                        },
+                                        {
+                                            "name": "Contributor count",
+                                            "value": 43,
+                                            "unit": "person",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "PyGithubCommunityCountVisitor"
+                                        },
+                                        {
+                                            "name": "Annual Commit Count",
+                                            "value": 15,
+                                            "unit": "commit",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "AnnualCommitCountVisitor"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Number of Contributors sub-characteristic",
+                            "measurable_concepts": [
+                                {
+                                    "name": "Number of Contributors",
+                                    "value": 43,
+                                    "impact": "POSITIVE",
+                                    "entity": "Contributors",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the number of contributors",
+                                    "quality_requirement": "Affects Community Capability positively",
+                                    "measures": [
+                                        {
+                                            "name": "Contributor count",
+                                            "value": 43,
+                                            "unit": "person",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "PyGithubCommunityCountVisitor"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Community Capability",
+                            "measurable_concepts": [
+                                {
+                                    "name": "Number of Contributors",
+                                    "value": 43,
+                                    "impact": "POSITIVE",
+                                    "entity": "Contributors",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the number of contributors",
+                                    "quality_requirement": "Affects Community Capability positively",
+                                    "measures": [
+                                        {
+                                            "name": "Contributor count",
+                                            "value": 43,
+                                            "unit": "person",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "PyGithubCommunityCountVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Truck Factor",
+                                    "value": 1,
+                                    "impact": "POSITIVE",
+                                    "entity": "Developers",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the Truck Factor of a repository",
+                                    "quality_requirement": "Affects Community Capability positively",
+                                    "measures": [
+                                        {
+                                            "name": "Truck factor",
+                                            "value": 1,
+                                            "unit": "developer",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "TruckFactorVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Issue Throughput",
+                                    "value": 455,
+                                    "impact": "POSITIVE",
+                                    "entity": "issues",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the throughput of issues",
+                                    "quality_requirement": "Affects Community Capability positively",
+                                    "measures": [
+                                        {
+                                            "name": "Number of closed issues",
+                                            "value": 450,
+                                            "unit": "issue",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "AugurClosedIssuesCountVisitor"
+                                        },
+                                        {
+                                            "name": "Number of total issues",
+                                            "value": 5,
+                                            "unit": "issue",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "AugurTotalIssuesCountVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Duration to Close Issues",
+                                    "value": 49.0,
+                                    "impact": "NEGATIVE",
+                                    "entity": "issue",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the duration to close issues",
+                                    "quality_requirement": "Affects Community Capability negatively",
+                                    "measures": [
+                                        {
+                                            "name": "Closed Issue Resolution Duration",
+                                            "value": 49.0,
+                                            "unit": "issue",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "AugurClosedIssueResolutionDurationVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Time to Respond to Issues",
+                                    "value": 169.0,
+                                    "impact": "NEGATIVE",
+                                    "entity": "issue",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the first response time to issues",
+                                    "quality_requirement": "Affects Community Capability negatively",
+                                    "measures": [
+                                        {
+                                            "name": "Issue Response Time",
+                                            "value": 169.0,
+                                            "unit": "issue",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "IssueResponseTimeVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Code Changes Commits",
+                                    "value": 15,
+                                    "impact": "POSITIVE",
+                                    "entity": "version control history",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the total number of commits in the version control history",
+                                    "quality_requirement": "Affects Community Capability positively",
+                                    "measures": [
+                                        {
+                                            "name": "Annual Commit Count",
+                                            "value": 15,
+                                            "unit": "commit",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "AnnualCommitCountVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Code Changes Lines",
+                                    "value": 23,
+                                    "impact": "NEGATIVE",
+                                    "entity": "source code",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the total number of lines changed in the source code",
+                                    "quality_requirement": "Affects Community Capability negatively",
+                                    "measures": [
+                                        {
+                                            "name": "Total number of line changes",
+                                            "value": 23,
+                                            "unit": "line",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "LinesChangedCountVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Change Request Commits",
+                                    "value": 50,
+                                    "impact": "NEGATIVE",
+                                    "entity": "pull requests in version control",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the average number of commits per pull request in the version control history",
+                                    "quality_requirement": "Affects Community Capability negatively",
+                                    "measures": [
+                                        {
+                                            "name": "Avg number of commits per pull requests",
+                                            "value": 50,
+                                            "unit": "commit(s)",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "AvgNumberOfCommitsPerPRsVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Change Request Contributors",
+                                    "value": 0,
+                                    "impact": "POSITIVE",
+                                    "entity": "pull requests in version control",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the average number of contributors per pull request in the version control history",
+                                    "quality_requirement": "Affects Community Capability positively",
+                                    "measures": [
+                                        {
+                                            "name": "Avg number of contributors per pull requests",
+                                            "value": 0,
+                                            "unit": "contributor(s)",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "AvgNumberOfContributorsPerPRsVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Number of Change Requests Accepted",
+                                    "value": 92,
+                                    "impact": "POSITIVE",
+                                    "entity": "pull requests in version control",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the number of pull requests that have been accepted in the version control history",
+                                    "quality_requirement": "Affects Community Capability positively",
+                                    "measures": [
+                                        {
+                                            "name": "Reviews Accepted Count",
+                                            "value": 92,
+                                            "unit": "pull request(s)",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "ReviewsAcceptedCountVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Ratio of Change Requests Accepted",
+                                    "value": 0,
+                                    "impact": "POSITIVE",
+                                    "entity": "pull requests in version control",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the accepted pull requests to total pull requests ratio in the version control history",
+                                    "quality_requirement": "Affects Community Capability positively",
+                                    "measures": [
+                                        {
+                                            "name": "Reviews Accepted - Total PR Ratio",
+                                            "value": 0,
+                                            "unit": "pull request",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "ReviewsAcceptedRatioVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Number of Change Requests Declined",
+                                    "value": 26,
+                                    "impact": "NEGATIVE",
+                                    "entity": "pull requests in version control",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the number of pull requests that have been declined in the version control history",
+                                    "quality_requirement": "Affects Community Capability negatively",
+                                    "measures": [
+                                        {
+                                            "name": "Reviews Declined Count",
+                                            "value": 26,
+                                            "unit": "issue",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "ReviewsDeclinedCountVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Ratio of Change Requests Declined",
+                                    "value": 5.2,
+                                    "impact": "NEGATIVE",
+                                    "entity": "pull requests in version control",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the declined pull requests to total pull requests ratio in the version control history",
+                                    "quality_requirement": "Affects Community Capability negatively",
+                                    "measures": [
+                                        {
+                                            "name": "Reviews Declined - Total PR Ratio",
+                                            "value": 5.2,
+                                            "unit": "ratio",
+                                            "scale": 1.0,
+                                            "measurement_method": "AUTOMATIC",
+                                            "base_measures": [
+                                                {
+                                                    "name": "Reviews Declined Count",
+                                                    "value": 26,
+                                                    "unit": "issue",
+                                                    "scale": 1,
+                                                    "measurement_method": "AUTOMATIC",
+                                                    "visitor": "ReviewsDeclinedCountVisitor"
+                                                },
+                                                {
+                                                    "name": "Number of total issues",
+                                                    "value": 5,
+                                                    "unit": "issue",
+                                                    "scale": 1,
+                                                    "measurement_method": "AUTOMATIC",
+                                                    "visitor": "AugurTotalIssuesCountVisitor"
+                                                }
+                                            ],
+                                            "normalize_visitor": "NoOpNormalizeVisitor",
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Contact within reasonable time",
+                            "measurable_concepts": [
+                                {
+                                    "name": "Average Issue Response Time",
+                                    "value": 169.0,
+                                    "impact": "POSITIVE",
+                                    "entity": "First comment on issues",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the average time to respond to issues",
+                                    "quality_requirement": "Affects 'Contact within reasonable time' positively",
+                                    "measures": [
+                                        {
+                                            "name": "Issue Response Time",
+                                            "value": 169.0,
+                                            "unit": "issue",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "IssueResponseTimeVisitor"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

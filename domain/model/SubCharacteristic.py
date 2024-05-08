@@ -40,3 +40,9 @@ class SubCharacteristic(CompositeComponent, Generic[T], metaclass=ABCGenericMeta
         return [
             await child.measure(repository) for child in self.children.values()
         ]
+
+    def serialize(self) -> dict:
+        return {
+            "name": self.name,
+            "measurable_concepts": [child.serialize() for child in self.children.values()]
+        }

@@ -65,8 +65,10 @@ from testing.measures.License import License
 from testing.measures.community_vitality.RepositoryAgeMeasure import RepositoryAgeMeasure
 from testing.measures.communitycapability.change_request_acceptance_ratio.ReviewsAcceptedToDeclinedRatio import \
     ReviewsAcceptedToDeclinedRatio
-from testing.measures.communitycapability.change_request_commits.AvgNumberOfCommitsPerPRs import AvgNumberOfCommitsPerPRs
-from testing.measures.communitycapability.change_request_contributors.AvgNumberOfContributorsPerPRs import AvgNumberOfContributorsPerPRs
+from testing.measures.communitycapability.change_request_commits.AvgNumberOfCommitsPerPRs import \
+    AvgNumberOfCommitsPerPRs
+from testing.measures.communitycapability.change_request_contributors.AvgNumberOfContributorsPerPRs import \
+    AvgNumberOfContributorsPerPRs
 from testing.measures.communitycapability.ClosedIssueResolutionDuration import ClosedIssueResolutionDuration
 from testing.measures.communitycapability.ClosedIssuesCount import ClosedIssuesCount
 from testing.measures.communitycapability.ContributorCount import ContributorCount
@@ -982,7 +984,13 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                             change_requests_accepted_ratio.name: change_requests_accepted_ratio,
                             change_requests_declined_count.name: change_requests_declined_count,
                             change_requests_declined_ratio.name: change_requests_declined_ratio,
-                            change_request_acceptance_ratio.name: change_request_acceptance_ratio
+                            change_request_acceptance_ratio.name: change_request_acceptance_ratio,
+                            opened_pull_request_mc.name: self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                                OpenedPullRequests,
+                                children={
+                                    opened_pull_request_count.name: opened_pull_request_count
+                                }
+                            )
                         }
                     ),
                     contact_within_reasonable_time.name: ContactWithinReasonableTime(
@@ -1074,14 +1082,15 @@ class QualityModelRepositoryImpl(QualityModelRepository):
             await file.write(json_string)
             return convert_string_keys_to_tuple(data.get(matrix_key, {}))
 
-    async def write_measurement_result_tree_to_json(self, quality_model: 'QualityModel', viewpoint: 'Viewpoint', repository_name: str):
-        path = os.path.join(RESULTS_FOLDER, f"{repository_name}-{quality_model.name}-{viewpoint.name}.json").replace(" ", "_")
+    async def write_measurement_result_tree_to_json(self, quality_model: 'QualityModel', viewpoint: 'Viewpoint',
+                                                    repository_name: str):
+        path = os.path.join(RESULTS_FOLDER, f"{repository_name}-{quality_model.name}-{viewpoint.name}.json").replace(
+            " ", "_")
         data = quality_model.serialize()
 
         async with aiofiles.open(path, "w") as file:
             json_string = json.dumps(data, indent=4)
             await file.write(json_string)
-
 
     async def _init_viewpoint_pref_matrix(
             self,

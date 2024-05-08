@@ -1,6 +1,11 @@
 from domain.model.MeasureableConcept import MeasurableConcept, Impact, OSSAspect
 
 
+"""
+Augur: Pull Requests News
+CHAOSS: Change Requests (count)
+Category 1
+"""
 class OpenedPullRequests(MeasurableConcept[int]):
     def __init__(
             self,
@@ -12,9 +17,9 @@ class OpenedPullRequests(MeasurableConcept[int]):
             "Opened pull requests in a period",
             children,
             Impact.POSITIVE,
-            "Issue history",
+            "version control history",
             "Calculating the number of opened pull requests",
-            "Regular pull requests affect product evolution positively",
+            "Pull requests affect product evolution positively, and are a proxy for activity",
             OSSAspect.COMMUNITY,
             normalize_visitor,
             aggregate_visitor

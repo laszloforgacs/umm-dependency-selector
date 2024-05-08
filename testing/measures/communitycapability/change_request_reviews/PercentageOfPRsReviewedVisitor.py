@@ -7,7 +7,7 @@ CHAOSS metric attributed to Change Request Reviews measurable concept.
 """
 
 
-class PercentageOfPRsReviewed(BaseMeasureVisitor[int]):
+class PercentageOfPRsReviewedVisitor(BaseMeasureVisitor[int]):
     def __init__(self, github_rate_limiter: GithubRateLimiter):
         super().__init__()
         self._github_rate_limiter = github_rate_limiter

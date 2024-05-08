@@ -41,6 +41,8 @@ from testing.measurableconcepts.communitycapability.code_development_efficiency.
     ChangeRequestsDeclinedCount
 from testing.measurableconcepts.communitycapability.code_development_efficiency.ChangeRequestsDeclinedRatio import \
     ChangeRequestsDeclinedRatio
+from testing.measurableconcepts.communitycapability.code_development_process_quality.ChangeRequestReviews import \
+    ChangeRequestReviews
 from testing.measurableconcepts.complexity.CyclomaticComplexityMC import CyclomaticComplexityMC
 from testing.measurableconcepts.contact_within_reasonable_time.AvgIssueResponseTimeMC import AvgIssueResponseTimeMC
 from testing.measurableconcepts.maintainer_organization.MaintainerOrganizationMC import MaintainerOrganizationMC
@@ -77,6 +79,7 @@ from testing.measures.communitycapability.IssueThroughput import IssueThroughput
 from testing.measures.communitycapability.LinesChangedCount import LinesChangedCount
 from testing.measures.communitycapability.TotalIssuesCount import TotalIssuesCount
 from testing.measures.communitycapability.TruckFactor import TruckFactor
+from testing.measures.communitycapability.change_request_reviews.PercentageOfPRsReviewed import PercentageOfPRsReviewed
 from testing.measures.maintainer_organization.OrgCountMeasure import OrgCountMeasure
 from testing.measures.number_of_open_feature_request.OpenFeatureRequestCount import OpenFeatureRequestCount
 from testing.measures.numberofreleases.ReleaseCount import ReleaseCount
@@ -890,6 +893,20 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            percentage_of_prs_reviewed = self._base_measure_visitor_factory.instantiate_with_visitor(
+                PercentageOfPRsReviewed,
+                visitor_kwargs={
+                    "github_rate_limiter": self._github_rate_limiter
+                }
+            )
+
+            change_request_reviews = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                ChangeRequestReviews,
+                children={
+                    percentage_of_prs_reviewed.name: percentage_of_prs_reviewed
+                }
+            )
+
             community_and_adoption = CommunityAndAdoption(
                 children={
                     community_exists.name: CommunityExists(
@@ -990,7 +1007,8 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                                 children={
                                     opened_pull_request_count.name: opened_pull_request_count
                                 }
-                            )
+                            ),
+                            change_request_reviews.name: change_request_reviews
                         }
                     ),
                     contact_within_reasonable_time.name: ContactWithinReasonableTime(

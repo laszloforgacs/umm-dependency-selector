@@ -21,5 +21,13 @@ class ReviewsAcceptedToDeclinedRatioAggregator(AggregateVisitor[tuple[Measure, f
                 if isinstance(measure, ReviewsDeclinedCount):
                     declined_reviews += measure_value
 
+            if declined_reviews == 0:
+                print(
+                    f"Reviews Accepted: {accepted_reviews}, Reviews Declined: {declined_reviews}, Ratio: {accepted_reviews}")
+                return accepted_reviews
+
+            ratio = accepted_reviews / declined_reviews
+            print(f"Reviews Accepted: {accepted_reviews}, Reviews Declined: {declined_reviews}, Ratio: {ratio}")
+            return ratio
         except Exception as e:
             raise Exception(str(e) + self.__class__.__name__)

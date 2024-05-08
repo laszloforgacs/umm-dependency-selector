@@ -31,6 +31,8 @@ from testing.measurableconcepts.communitycapability.code_development_activity.Ch
 from testing.measurableconcepts.communitycapability.code_development_activity.CodeChangesCommits import \
     CodeChangesCommits
 from testing.measurableconcepts.communitycapability.code_development_activity.CodeChangesLines import CodeChangesLines
+from testing.measurableconcepts.communitycapability.code_development_efficiency.ChangeRequestAcceptanceRatio import \
+    ChangeRequestAcceptanceRatio
 from testing.measurableconcepts.communitycapability.code_development_efficiency.ChangeRequestsAcceptedCount import \
     ChangeRequestsAcceptedCount
 from testing.measurableconcepts.communitycapability.code_development_efficiency.ChangeRequestsAcceptedRatio import \
@@ -61,6 +63,8 @@ from testing.measures.CruzCyclomaticComplexityBaseMeasure import CruzCyclomaticC
 from testing.measures.CruzNumberOfCommentsBaseMeasure import CruzNumberOfCommentsBaseMeasure
 from testing.measures.License import License
 from testing.measures.community_vitality.RepositoryAgeMeasure import RepositoryAgeMeasure
+from testing.measures.communitycapability.change_request_acceptance_ratio.ReviewsAcceptedToDeclinedRatio import \
+    ReviewsAcceptedToDeclinedRatio
 from testing.measures.communitycapability.change_request_commits.AvgNumberOfCommitsPerPRs import AvgNumberOfCommitsPerPRs
 from testing.measures.communitycapability.change_request_contributors.AvgNumberOfContributorsPerPRs import AvgNumberOfContributorsPerPRs
 from testing.measures.communitycapability.ClosedIssueResolutionDuration import ClosedIssueResolutionDuration
@@ -856,6 +860,34 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            reviews_accepted_to_declined_ratio = self._derived_measure_visitor_factory.instantiate_with_visitor(
+                ReviewsAcceptedToDeclinedRatio,
+                aggregate_visitor_kwargs={
+                    "github_rate_limiter": self._github_rate_limiter
+                },
+                children={
+                    reviews_accepted_count.name: self._base_measure_visitor_factory.instantiate_with_visitor(
+                        ReviewsAcceptedCount,
+                        visitor_kwargs={
+                            "github_rate_limiter": self._github_rate_limiter
+                        }
+                    ),
+                    reviews_declined_count.name: self._base_measure_visitor_factory.instantiate_with_visitor(
+                        ReviewsDeclinedCount,
+                        visitor_kwargs={
+                            "github_rate_limiter": self._github_rate_limiter
+                        }
+                    )
+                }
+            )
+
+            change_request_acceptance_ratio = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                ChangeRequestAcceptanceRatio,
+                children={
+                    reviews_accepted_to_declined_ratio.name: reviews_accepted_to_declined_ratio
+                }
+            )
+
             community_and_adoption = CommunityAndAdoption(
                 children={
                     community_exists.name: CommunityExists(
@@ -949,7 +981,8 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                             change_requests_accepted_count.name: change_requests_accepted_count,
                             change_requests_accepted_ratio.name: change_requests_accepted_ratio,
                             change_requests_declined_count.name: change_requests_declined_count,
-                            change_requests_declined_ratio.name: change_requests_declined_ratio
+                            change_requests_declined_ratio.name: change_requests_declined_ratio,
+                            change_request_acceptance_ratio.name: change_request_acceptance_ratio
                         }
                     ),
                     contact_within_reasonable_time.name: ContactWithinReasonableTime(

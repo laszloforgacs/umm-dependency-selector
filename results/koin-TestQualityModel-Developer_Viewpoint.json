@@ -314,7 +314,7 @@
                                 {
                                     "class_name": "Staleness",
                                     "name": "Issue Staleness",
-                                    "value": 262.44444444444446,
+                                    "value": 262.54545454545456,
                                     "impact": "NEGATIVE",
                                     "entity": "Repository issue tracker",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -324,7 +324,7 @@
                                         {
                                             "class_name": "OpenIssueAge",
                                             "name": "Open Issue Age",
-                                            "value": 262.44444444444446,
+                                            "value": 262.54545454545456,
                                             "unit": "day(s)",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -1232,6 +1232,48 @@
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
                                             "aggregate_visitor": "ReviewsDeclinedAggregator"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "class_name": "ChangeRequestAcceptanceRatio",
+                                    "name": "Change Request Acceptance Ratio",
+                                    "value": 1.9235668789808917,
+                                    "impact": "POSITIVE",
+                                    "entity": "version control history",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the ratio of accepted pull requests to declined pull requests",
+                                    "quality_requirement": "Affects Community Capability positively",
+                                    "measures": [
+                                        {
+                                            "class_name": "ReviewsAcceptedToDeclinedRatio",
+                                            "name": "Reviews Accepted to Reviews Declined Ratio",
+                                            "value": 1.9235668789808917,
+                                            "unit": "ratio",
+                                            "scale": 1.0,
+                                            "measurement_method": "AUTOMATIC",
+                                            "base_measures": [
+                                                {
+                                                    "class_name": "ReviewsAcceptedCount",
+                                                    "name": "Reviews Accepted Count",
+                                                    "value": 302,
+                                                    "unit": "pull request(s)",
+                                                    "scale": 1,
+                                                    "measurement_method": "AUTOMATIC",
+                                                    "visitor": "ReviewsAcceptedCountVisitor"
+                                                },
+                                                {
+                                                    "class_name": "ReviewsDeclinedCount",
+                                                    "name": "Reviews Declined Count",
+                                                    "value": 157,
+                                                    "unit": "issue",
+                                                    "scale": 1,
+                                                    "measurement_method": "AUTOMATIC",
+                                                    "visitor": "ReviewsDeclinedCountVisitor"
+                                                }
+                                            ],
+                                            "normalize_visitor": "NoOpNormalizeVisitor",
+                                            "aggregate_visitor": "ReviewsAcceptedToDeclinedRatioAggregator"
                                         }
                                     ]
                                 }

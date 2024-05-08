@@ -1,5 +1,11 @@
 from domain.model.MeasureableConcept import OSSAspect, Impact, MeasurableConcept
 
+"""
+Augur: Closed Issue Resolution Duration
+CHAOSS: Change Requests Duration
+Category 1
+"""
+
 
 class DurationToCloseIssuesMC(MeasurableConcept[float]):
     def __init__(self, children, normalize_visitor=None, aggregate_visitor=None):

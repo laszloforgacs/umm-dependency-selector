@@ -1,5 +1,9 @@
 from domain.model.MeasureableConcept import OSSAspect, Impact, MeasurableConcept
 
+"""
+CHAOSS Issue Response Time
+"""
+
 
 class TimeToRespondToIssues(MeasurableConcept[float]):
     def __init__(self, children, normalize_visitor=None, aggregate_visitor=None):

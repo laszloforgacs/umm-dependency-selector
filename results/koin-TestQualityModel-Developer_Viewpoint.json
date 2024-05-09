@@ -44,7 +44,7 @@
                                 {
                                     "class_name": "NumberOfContributors",
                                     "name": "Number of Contributors",
-                                    "value": 131,
+                                    "value": 43,
                                     "impact": "POSITIVE",
                                     "entity": "Contributors",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -54,7 +54,7 @@
                                         {
                                             "class_name": "ContributorCount",
                                             "name": "Contributor count",
-                                            "value": 131,
+                                            "value": 43,
                                             "unit": "person",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -86,7 +86,7 @@
                                 {
                                     "class_name": "IssueThroughputMC",
                                     "name": "Issue Throughput",
-                                    "value": 17.29,
+                                    "value": 90.0,
                                     "impact": "POSITIVE",
                                     "entity": "issues",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -96,7 +96,7 @@
                                         {
                                             "class_name": "IssueThroughput",
                                             "name": "Issue Throughput",
-                                            "value": 17.29,
+                                            "value": 90.0,
                                             "unit": "issue",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -104,7 +104,7 @@
                                                 {
                                                     "class_name": "ClosedIssuesCount",
                                                     "name": "Number of closed issues",
-                                                    "value": 1729,
+                                                    "value": 450,
                                                     "unit": "issue",
                                                     "scale": 1,
                                                     "measurement_method": "AUTOMATIC",
@@ -113,7 +113,7 @@
                                                 {
                                                     "class_name": "TotalIssuesCount",
                                                     "name": "Number of total issues",
-                                                    "value": 100,
+                                                    "value": 5,
                                                     "unit": "issue",
                                                     "scale": 1,
                                                     "measurement_method": "AUTOMATIC",
@@ -182,7 +182,7 @@
                                 {
                                     "class_name": "NumberOfReleases",
                                     "name": "Number of releases",
-                                    "value": 14,
+                                    "value": 5,
                                     "impact": "POSITIVE",
                                     "entity": "Release",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -192,7 +192,7 @@
                                         {
                                             "class_name": "ReleaseCount",
                                             "name": "ReleaseCount",
-                                            "value": 14,
+                                            "value": 5,
                                             "unit": "release",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -215,7 +215,7 @@
                                 {
                                     "class_name": "NumberOfOpenFeatureRequests",
                                     "name": "Number of open feature requests",
-                                    "value": 13,
+                                    "value": 6,
                                     "impact": "NEGATIVE",
                                     "entity": "Feature request",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -225,7 +225,7 @@
                                         {
                                             "class_name": "OpenFeatureRequestCount",
                                             "name": "OpenFeatureRequestCount",
-                                            "value": 13,
+                                            "value": 6,
                                             "unit": "open issue with feature request label",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -242,7 +242,7 @@
                                 {
                                     "class_name": "CommitFrequency",
                                     "name": "Commit Frequency",
-                                    "value": 6.384615384615385,
+                                    "value": 0.28846153846153844,
                                     "impact": "POSITIVE",
                                     "entity": "Commit",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -252,7 +252,7 @@
                                         {
                                             "class_name": "CommitCount",
                                             "name": "CommitCount",
-                                            "value": 6.384615384615385,
+                                            "value": 0.28846153846153844,
                                             "unit": "commit",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -263,7 +263,7 @@
                                 {
                                     "class_name": "UpdatedSince",
                                     "name": "Updated since",
-                                    "value": 0.7666666666666667,
+                                    "value": 1.2333333333333334,
                                     "impact": "NEGATIVE",
                                     "entity": "Commit history",
                                     "relevant_oss_aspect": "CODE",
@@ -273,7 +273,7 @@
                                         {
                                             "class_name": "TimeSinceLastCommit",
                                             "name": "TimeSinceLastCommit",
-                                            "value": 0.7666666666666667,
+                                            "value": 1.2333333333333334,
                                             "unit": "months",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -284,7 +284,7 @@
                                 {
                                     "class_name": "IssueInteractions",
                                     "name": "Issue interactions",
-                                    "value": 1786,
+                                    "value": 453,
                                     "impact": "POSITIVE",
                                     "entity": "Issue history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -294,7 +294,7 @@
                                         {
                                             "class_name": "UpdatedIssuesCount",
                                             "name": "UpdatedIssuesCount",
-                                            "value": 57,
+                                            "value": 3,
                                             "unit": "updated issue",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -303,7 +303,7 @@
                                         {
                                             "class_name": "ClosedIssuesCount",
                                             "name": "Number of closed issues",
-                                            "value": 1729,
+                                            "value": 450,
                                             "unit": "issue",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -314,7 +314,7 @@
                                 {
                                     "class_name": "Staleness",
                                     "name": "Issue Staleness",
-                                    "value": 260.57,
+                                    "value": 276.6,
                                     "impact": "NEGATIVE",
                                     "entity": "Repository issue tracker",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -324,7 +324,7 @@
                                         {
                                             "class_name": "OpenIssueAge",
                                             "name": "Open Issue Age",
-                                            "value": 260.57,
+                                            "value": 276.6,
                                             "unit": "day(s)",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -335,7 +335,7 @@
                                 {
                                     "class_name": "DeclinedChanges",
                                     "name": "Declined changes",
-                                    "value": 1.57,
+                                    "value": 5.2,
                                     "impact": "NEGATIVE",
                                     "entity": "Issue history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -345,7 +345,7 @@
                                         {
                                             "class_name": "ReviewsDeclinedRatio",
                                             "name": "Reviews Declined - Total PR Ratio",
-                                            "value": 1.57,
+                                            "value": 5.2,
                                             "unit": "ratio",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -353,7 +353,7 @@
                                                 {
                                                     "class_name": "ReviewsDeclinedCount",
                                                     "name": "Reviews Declined Count",
-                                                    "value": 157,
+                                                    "value": 26,
                                                     "unit": "issue",
                                                     "scale": 1,
                                                     "measurement_method": "AUTOMATIC",
@@ -362,7 +362,7 @@
                                                 {
                                                     "class_name": "TotalIssuesCount",
                                                     "name": "Number of total issues",
-                                                    "value": 100,
+                                                    "value": 5,
                                                     "unit": "issue",
                                                     "scale": 1,
                                                     "measurement_method": "AUTOMATIC",
@@ -377,7 +377,7 @@
                                 {
                                     "class_name": "OpenedPullRequests",
                                     "name": "Opened pull requests in a period",
-                                    "value": 17,
+                                    "value": 0,
                                     "impact": "POSITIVE",
                                     "entity": "version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -387,7 +387,7 @@
                                         {
                                             "class_name": "OpenedPullRequestCount",
                                             "name": "Number of opened pull requests",
-                                            "value": 17,
+                                            "value": 0,
                                             "unit": "pull request",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -398,7 +398,7 @@
                                 {
                                     "class_name": "ReviewsAccepted",
                                     "name": "Reviews Accepted",
-                                    "value": 304.52941176470586,
+                                    "value": 92,
                                     "impact": "POSITIVE",
                                     "entity": "version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -408,7 +408,7 @@
                                         {
                                             "class_name": "ReviewsAcceptedRatio",
                                             "name": "Reviews Accepted - Total PR Ratio",
-                                            "value": 2.5294117647058822,
+                                            "value": 0,
                                             "unit": "pull request",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -417,7 +417,7 @@
                                         {
                                             "class_name": "ReviewsAcceptedCount",
                                             "name": "Reviews Accepted Count",
-                                            "value": 302,
+                                            "value": 92,
                                             "unit": "pull request(s)",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -434,7 +434,7 @@
                                 {
                                     "class_name": "OpenParticipation",
                                     "name": "Open Participation",
-                                    "value": 4,
+                                    "value": 0,
                                     "impact": "POSITIVE",
                                     "entity": "Issue tracker",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -444,7 +444,7 @@
                                         {
                                             "class_name": "NewContributors",
                                             "name": "New Contributors",
-                                            "value": 4,
+                                            "value": 0,
                                             "unit": "contributor(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -455,7 +455,7 @@
                                 {
                                     "class_name": "PeerInfluence",
                                     "name": "Peer influence",
-                                    "value": 15,
+                                    "value": 0,
                                     "impact": "POSITIVE",
                                     "entity": "Issue tracker",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -465,7 +465,7 @@
                                         {
                                             "class_name": "RepoMessages",
                                             "name": "Repo Messages",
-                                            "value": 15,
+                                            "value": 0,
                                             "unit": "comment(s)",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -503,7 +503,7 @@
                                 {
                                     "class_name": "NumberOfContributors",
                                     "name": "Number of Contributors",
-                                    "value": 131,
+                                    "value": 43,
                                     "impact": "POSITIVE",
                                     "entity": "Contributors",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -513,7 +513,7 @@
                                         {
                                             "class_name": "ContributorCount",
                                             "name": "Contributor count",
-                                            "value": 131,
+                                            "value": 43,
                                             "unit": "person",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -524,7 +524,7 @@
                                 {
                                     "class_name": "NumberOfReleases",
                                     "name": "Number of releases",
-                                    "value": 14,
+                                    "value": 5,
                                     "impact": "POSITIVE",
                                     "entity": "Release",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -534,7 +534,7 @@
                                         {
                                             "class_name": "ReleaseCount",
                                             "name": "ReleaseCount",
-                                            "value": 14,
+                                            "value": 5,
                                             "unit": "release",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -551,7 +551,7 @@
                                 {
                                     "class_name": "NewContributorsMC",
                                     "name": "Number of New Contributors",
-                                    "value": 4,
+                                    "value": 0,
                                     "impact": "POSITIVE",
                                     "entity": "project contributors",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -561,7 +561,7 @@
                                         {
                                             "class_name": "NewContributors",
                                             "name": "New Contributors",
-                                            "value": 4,
+                                            "value": 0,
                                             "unit": "contributor(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -572,7 +572,7 @@
                                 {
                                     "class_name": "CommunityInteractionMC",
                                     "name": "Community Interaction",
-                                    "value": 15,
+                                    "value": 0,
                                     "impact": "POSITIVE",
                                     "entity": "project contributors",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -582,7 +582,7 @@
                                         {
                                             "class_name": "RepoMessages",
                                             "name": "Repo Messages",
-                                            "value": 15,
+                                            "value": 0,
                                             "unit": "comment(s)",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -593,7 +593,7 @@
                                 {
                                     "class_name": "IssueThroughputMC",
                                     "name": "Issue Throughput",
-                                    "value": 17.29,
+                                    "value": 90.0,
                                     "impact": "POSITIVE",
                                     "entity": "issues",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -603,7 +603,7 @@
                                         {
                                             "class_name": "IssueThroughput",
                                             "name": "Issue Throughput",
-                                            "value": 17.29,
+                                            "value": 90.0,
                                             "unit": "issue",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -611,7 +611,7 @@
                                                 {
                                                     "class_name": "ClosedIssuesCount",
                                                     "name": "Number of closed issues",
-                                                    "value": 1729,
+                                                    "value": 450,
                                                     "unit": "issue",
                                                     "scale": 1,
                                                     "measurement_method": "AUTOMATIC",
@@ -620,7 +620,7 @@
                                                 {
                                                     "class_name": "TotalIssuesCount",
                                                     "name": "Number of total issues",
-                                                    "value": 100,
+                                                    "value": 5,
                                                     "unit": "issue",
                                                     "scale": 1,
                                                     "measurement_method": "AUTOMATIC",
@@ -695,7 +695,7 @@
                                 {
                                     "class_name": "CommunityLifespan",
                                     "name": "Community Lifespan",
-                                    "value": 6,
+                                    "value": 9,
                                     "impact": "POSITIVE",
                                     "entity": "project repository",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -705,7 +705,7 @@
                                         {
                                             "class_name": "RepositoryAgeMeasure",
                                             "name": "Repository Age",
-                                            "value": 6,
+                                            "value": 9,
                                             "unit": "year(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -722,7 +722,7 @@
                                 {
                                     "class_name": "MaintainerOrganizationMC",
                                     "name": "Maintainer Organization",
-                                    "value": 54,
+                                    "value": 13,
                                     "impact": "POSITIVE",
                                     "entity": "contributor list",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -732,7 +732,7 @@
                                         {
                                             "class_name": "OrgCountMeasure",
                                             "name": "Organization Count",
-                                            "value": 54,
+                                            "value": 13,
                                             "unit": "organization(s)",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -755,7 +755,7 @@
                                 {
                                     "class_name": "NewContributorsMC",
                                     "name": "Number of New Contributors",
-                                    "value": 4,
+                                    "value": 0,
                                     "impact": "POSITIVE",
                                     "entity": "project contributors",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -765,7 +765,7 @@
                                         {
                                             "class_name": "NewContributors",
                                             "name": "New Contributors",
-                                            "value": 4,
+                                            "value": 0,
                                             "unit": "contributor(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -776,7 +776,7 @@
                                 {
                                     "class_name": "CommunityInteractionMC",
                                     "name": "Community Interaction",
-                                    "value": 15,
+                                    "value": 0,
                                     "impact": "POSITIVE",
                                     "entity": "project contributors",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -786,7 +786,7 @@
                                         {
                                             "class_name": "RepoMessages",
                                             "name": "Repo Messages",
-                                            "value": 15,
+                                            "value": 0,
                                             "unit": "comment(s)",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -797,7 +797,7 @@
                                 {
                                     "class_name": "IssueThroughputMC",
                                     "name": "Issue Throughput",
-                                    "value": 17.29,
+                                    "value": 90.0,
                                     "impact": "POSITIVE",
                                     "entity": "issues",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -807,7 +807,7 @@
                                         {
                                             "class_name": "IssueThroughput",
                                             "name": "Issue Throughput",
-                                            "value": 17.29,
+                                            "value": 90.0,
                                             "unit": "issue",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -815,7 +815,7 @@
                                                 {
                                                     "class_name": "ClosedIssuesCount",
                                                     "name": "Number of closed issues",
-                                                    "value": 1729,
+                                                    "value": 450,
                                                     "unit": "issue",
                                                     "scale": 1,
                                                     "measurement_method": "AUTOMATIC",
@@ -824,7 +824,7 @@
                                                 {
                                                     "class_name": "TotalIssuesCount",
                                                     "name": "Number of total issues",
-                                                    "value": 100,
+                                                    "value": 5,
                                                     "unit": "issue",
                                                     "scale": 1,
                                                     "measurement_method": "AUTOMATIC",
@@ -845,7 +845,7 @@
                                 {
                                     "class_name": "PopularityMC",
                                     "name": "Popularity",
-                                    "value": 18463,
+                                    "value": 6518,
                                     "impact": "POSITIVE",
                                     "entity": "repository properties",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -855,7 +855,7 @@
                                         {
                                             "class_name": "WatchersCount",
                                             "name": "Watchers Count",
-                                            "value": 8657,
+                                            "value": 3144,
                                             "unit": "watcher(s)",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -864,7 +864,7 @@
                                         {
                                             "class_name": "StarsCount",
                                             "name": "Stars Count",
-                                            "value": 8658,
+                                            "value": 3144,
                                             "unit": "star(s)",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -873,7 +873,7 @@
                                         {
                                             "class_name": "ForksCount",
                                             "name": "Forks Count",
-                                            "value": 685,
+                                            "value": 172,
                                             "unit": "fork(s)",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -882,7 +882,7 @@
                                         {
                                             "class_name": "ContributorCount",
                                             "name": "Contributor count",
-                                            "value": 131,
+                                            "value": 43,
                                             "unit": "person",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -891,7 +891,7 @@
                                         {
                                             "class_name": "AnnualCommitCount",
                                             "name": "Annual Commit Count",
-                                            "value": 332,
+                                            "value": 15,
                                             "unit": "commit",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -908,7 +908,7 @@
                                 {
                                     "class_name": "NumberOfContributors",
                                     "name": "Number of Contributors",
-                                    "value": 131,
+                                    "value": 43,
                                     "impact": "POSITIVE",
                                     "entity": "Contributors",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -918,7 +918,7 @@
                                         {
                                             "class_name": "ContributorCount",
                                             "name": "Contributor count",
-                                            "value": 131,
+                                            "value": 43,
                                             "unit": "person",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -935,7 +935,7 @@
                                 {
                                     "class_name": "NumberOfContributors",
                                     "name": "Number of Contributors",
-                                    "value": 131,
+                                    "value": 43,
                                     "impact": "POSITIVE",
                                     "entity": "Contributors",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -945,7 +945,7 @@
                                         {
                                             "class_name": "ContributorCount",
                                             "name": "Contributor count",
-                                            "value": 131,
+                                            "value": 43,
                                             "unit": "person",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -977,7 +977,7 @@
                                 {
                                     "class_name": "IssueThroughputMC",
                                     "name": "Issue Throughput",
-                                    "value": 1829,
+                                    "value": 455,
                                     "impact": "POSITIVE",
                                     "entity": "issues",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -987,7 +987,7 @@
                                         {
                                             "class_name": "ClosedIssuesCount",
                                             "name": "Number of closed issues",
-                                            "value": 1729,
+                                            "value": 450,
                                             "unit": "issue",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -996,7 +996,7 @@
                                         {
                                             "class_name": "TotalIssuesCount",
                                             "name": "Number of total issues",
-                                            "value": 100,
+                                            "value": 5,
                                             "unit": "issue",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -1049,7 +1049,7 @@
                                 {
                                     "class_name": "CodeChangesCommits",
                                     "name": "Code Changes Commits",
-                                    "value": 332,
+                                    "value": 15,
                                     "impact": "POSITIVE",
                                     "entity": "version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -1059,7 +1059,7 @@
                                         {
                                             "class_name": "AnnualCommitCount",
                                             "name": "Annual Commit Count",
-                                            "value": 332,
+                                            "value": 15,
                                             "unit": "commit",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -1070,7 +1070,7 @@
                                 {
                                     "class_name": "CodeChangesLines",
                                     "name": "Code Changes Lines",
-                                    "value": 26218,
+                                    "value": 23,
                                     "impact": "NEGATIVE",
                                     "entity": "source code",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -1080,7 +1080,7 @@
                                         {
                                             "class_name": "LinesChangedCount",
                                             "name": "Total number of line changes",
-                                            "value": 26218,
+                                            "value": 23,
                                             "unit": "line",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -1091,7 +1091,7 @@
                                 {
                                     "class_name": "ChangeRequestCommits",
                                     "name": "Change Request Commits",
-                                    "value": 9.095238095238095,
+                                    "value": 50,
                                     "impact": "NEGATIVE",
                                     "entity": "pull requests in version control",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -1101,7 +1101,7 @@
                                         {
                                             "class_name": "AvgNumberOfCommitsPerPRs",
                                             "name": "Avg number of commits per pull requests",
-                                            "value": 9.095238095238095,
+                                            "value": 50,
                                             "unit": "commit(s)",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -1112,7 +1112,7 @@
                                 {
                                     "class_name": "ChangeRequestContributors",
                                     "name": "Change Request Contributors",
-                                    "value": 2.0476190476190474,
+                                    "value": 0,
                                     "impact": "POSITIVE",
                                     "entity": "pull requests in version control",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -1122,7 +1122,7 @@
                                         {
                                             "class_name": "AvgNumberOfContributorsPerPRs",
                                             "name": "Avg number of contributors per pull requests",
-                                            "value": 2.0476190476190474,
+                                            "value": 0,
                                             "unit": "contributor(s)",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -1133,7 +1133,7 @@
                                 {
                                     "class_name": "ChangeRequestsAcceptedCount",
                                     "name": "Number of Change Requests Accepted",
-                                    "value": 302,
+                                    "value": 92,
                                     "impact": "POSITIVE",
                                     "entity": "pull requests in version control",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -1143,7 +1143,7 @@
                                         {
                                             "class_name": "ReviewsAcceptedCount",
                                             "name": "Reviews Accepted Count",
-                                            "value": 302,
+                                            "value": 92,
                                             "unit": "pull request(s)",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -1154,7 +1154,7 @@
                                 {
                                     "class_name": "ChangeRequestsAcceptedRatio",
                                     "name": "Ratio of Change Requests Accepted",
-                                    "value": 2.5294117647058822,
+                                    "value": 0,
                                     "impact": "POSITIVE",
                                     "entity": "pull requests in version control",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -1164,7 +1164,7 @@
                                         {
                                             "class_name": "ReviewsAcceptedRatio",
                                             "name": "Reviews Accepted - Total PR Ratio",
-                                            "value": 2.5294117647058822,
+                                            "value": 0,
                                             "unit": "pull request",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -1175,7 +1175,7 @@
                                 {
                                     "class_name": "ChangeRequestsDeclinedCount",
                                     "name": "Number of Change Requests Declined",
-                                    "value": 157,
+                                    "value": 26,
                                     "impact": "NEGATIVE",
                                     "entity": "pull requests in version control",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -1185,7 +1185,7 @@
                                         {
                                             "class_name": "ReviewsDeclinedCount",
                                             "name": "Reviews Declined Count",
-                                            "value": 157,
+                                            "value": 26,
                                             "unit": "issue",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -1196,7 +1196,7 @@
                                 {
                                     "class_name": "ChangeRequestsDeclinedRatio",
                                     "name": "Ratio of Change Requests Declined",
-                                    "value": 1.57,
+                                    "value": 5.2,
                                     "impact": "NEGATIVE",
                                     "entity": "pull requests in version control",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -1206,7 +1206,7 @@
                                         {
                                             "class_name": "ReviewsDeclinedRatio",
                                             "name": "Reviews Declined - Total PR Ratio",
-                                            "value": 1.57,
+                                            "value": 5.2,
                                             "unit": "ratio",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -1214,7 +1214,7 @@
                                                 {
                                                     "class_name": "ReviewsDeclinedCount",
                                                     "name": "Reviews Declined Count",
-                                                    "value": 157,
+                                                    "value": 26,
                                                     "unit": "issue",
                                                     "scale": 1,
                                                     "measurement_method": "AUTOMATIC",
@@ -1223,7 +1223,7 @@
                                                 {
                                                     "class_name": "TotalIssuesCount",
                                                     "name": "Number of total issues",
-                                                    "value": 100,
+                                                    "value": 5,
                                                     "unit": "issue",
                                                     "scale": 1,
                                                     "measurement_method": "AUTOMATIC",
@@ -1238,7 +1238,7 @@
                                 {
                                     "class_name": "ChangeRequestAcceptanceRatio",
                                     "name": "Change Request Acceptance Ratio",
-                                    "value": 1.9235668789808917,
+                                    "value": 3.5384615384615383,
                                     "impact": "POSITIVE",
                                     "entity": "version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -1248,7 +1248,7 @@
                                         {
                                             "class_name": "ReviewsAcceptedToDeclinedRatio",
                                             "name": "Reviews Accepted to Reviews Declined Ratio",
-                                            "value": 1.9235668789808917,
+                                            "value": 3.5384615384615383,
                                             "unit": "ratio",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -1256,7 +1256,7 @@
                                                 {
                                                     "class_name": "ReviewsAcceptedCount",
                                                     "name": "Reviews Accepted Count",
-                                                    "value": 302,
+                                                    "value": 92,
                                                     "unit": "pull request(s)",
                                                     "scale": 1,
                                                     "measurement_method": "AUTOMATIC",
@@ -1265,7 +1265,7 @@
                                                 {
                                                     "class_name": "ReviewsDeclinedCount",
                                                     "name": "Reviews Declined Count",
-                                                    "value": 157,
+                                                    "value": 26,
                                                     "unit": "issue",
                                                     "scale": 1,
                                                     "measurement_method": "AUTOMATIC",
@@ -1280,7 +1280,7 @@
                                 {
                                     "class_name": "OpenedPullRequests",
                                     "name": "Opened pull requests in a period",
-                                    "value": 17,
+                                    "value": 0,
                                     "impact": "POSITIVE",
                                     "entity": "version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -1290,7 +1290,7 @@
                                         {
                                             "class_name": "OpenedPullRequestCount",
                                             "name": "Number of opened pull requests",
-                                            "value": 17,
+                                            "value": 0,
                                             "unit": "pull request",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -1301,7 +1301,7 @@
                                 {
                                     "class_name": "ChangeRequestReviews",
                                     "name": "Change Request Reviews",
-                                    "value": 28.540305010893245,
+                                    "value": 11.016949152542372,
                                     "impact": "POSITIVE",
                                     "entity": "pull requests in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -1311,7 +1311,7 @@
                                         {
                                             "class_name": "PercentageOfPRsReviewed",
                                             "name": "Percentage of PRs reviewed",
-                                            "value": 28.540305010893245,
+                                            "value": 11.016949152542372,
                                             "unit": "%",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -1322,7 +1322,7 @@
                                 {
                                     "class_name": "IssuesNewCount",
                                     "name": "Issues New Count",
-                                    "value": 84,
+                                    "value": 5,
                                     "impact": "POSITIVE",
                                     "entity": "issues in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -1332,11 +1332,32 @@
                                         {
                                             "class_name": "NewIssuesCount",
                                             "name": "New Issues Count",
-                                            "value": 84,
+                                            "value": 5,
                                             "unit": "issue(s)",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
                                             "visitor": "NewIssuesCountVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "class_name": "IssuesNewRatio",
+                                    "name": "Issues New Ratio",
+                                    "value": 0.4,
+                                    "impact": "POSITIVE",
+                                    "entity": "issues in version control history",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the ratio of new issues to total issues in the version control history",
+                                    "quality_requirement": "New issues are a proxy for activity and affect product evolution/community capability positively",
+                                    "measures": [
+                                        {
+                                            "class_name": "NewIssuesRatio",
+                                            "name": "New Issues Ratio",
+                                            "value": 0.4,
+                                            "unit": "ratio",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "NewIssuesRatioVisitor"
                                         }
                                     ]
                                 }

@@ -43,6 +43,7 @@ from testing.measurableconcepts.communitycapability.code_development_efficiency.
     ChangeRequestsDeclinedRatio
 from testing.measurableconcepts.communitycapability.code_development_process_quality.ChangeRequestReviews import \
     ChangeRequestReviews
+from testing.measurableconcepts.communitycapability.issue_resolution.IssuesActiveCount import IssuesActiveCount
 from testing.measurableconcepts.communitycapability.issue_resolution.IssuesNewCount import IssuesNewCount
 from testing.measurableconcepts.communitycapability.issue_resolution.IssuesNewRatio import IssuesNewRatio
 from testing.measurableconcepts.complexity.CyclomaticComplexityMC import CyclomaticComplexityMC
@@ -942,6 +943,18 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            issues_active_count_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                IssuesActiveCount,
+                children={
+                    updated_issues_count.name: self._base_measure_visitor_factory.instantiate_with_visitor(
+                        UpdatedIssuesCount,
+                        visitor_kwargs={
+                            "github_rate_limiter": self._github_rate_limiter
+                        }
+                    )
+                }
+            )
+
             community_and_adoption = CommunityAndAdoption(
                 children={
                     community_exists.name: CommunityExists(
@@ -1045,7 +1058,8 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                             ),
                             change_request_reviews.name: change_request_reviews,
                             issues_new_count_mc.name: issues_new_count_mc,
-                            issues_new_ratio_mc.name: issues_new_ratio_mc
+                            issues_new_ratio_mc.name: issues_new_ratio_mc,
+                            issues_active_count_mc.name: issues_active_count_mc
                         }
                     ),
                     contact_within_reasonable_time.name: ContactWithinReasonableTime(

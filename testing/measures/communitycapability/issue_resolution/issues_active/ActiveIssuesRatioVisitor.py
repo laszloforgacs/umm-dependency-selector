@@ -11,11 +11,11 @@ CHAOSS metric attributed to Issue Resolution. Category 1 measure. Analysed in th
 """
 
 
-class NewIssuesRatioVisitor(BaseMeasureVisitor[float]):
+class ActiveIssuesRatioVisitor(BaseMeasureVisitor[int]):
     def __init__(self, github_rate_limiter: GithubRateLimiter):
         self._github_rate_limiter = github_rate_limiter
 
-    async def measure(self, measure: 'BaseMeasure', repository: Repository) -> float:
+    async def measure(self, measure: 'BaseMeasure', repository: Repository) -> int:
         try:
             today = datetime.now(timezone.utc)
             start_date = today - relativedelta(months=3)
@@ -25,26 +25,26 @@ class NewIssuesRatioVisitor(BaseMeasureVisitor[float]):
             )
             total_issues_count = total_issues.totalCount
 
-            new_issues_in_period = self._github_rate_limiter.execute(
+            updated_issues_in_period = self._github_rate_limiter.execute(
                 repository.get_issues,
                 since=start_date,
-                sort="created",
+                sort="updated",
                 direction="desc"
             )
-            filtered_new_issues_in_period = []
-            for issue in new_issues_in_period:
+            filtered_updated_issues_in_period = []
+            for issue in updated_issues_in_period:
                 if issue.created_at >= start_date:
-                    filtered_new_issues_in_period.append(issue)
+                    filtered_updated_issues_in_period.append(issue)
                 else:
                     break
 
-            new_issues_in_period_count = len(filtered_new_issues_in_period)
+            updated_issues_in_period_count = len(filtered_updated_issues_in_period)
 
             if total_issues_count == 0:
-                print(f"{repository.full_name}: {measure.name} is {new_issues_in_period_count} {measure.unit}")
-                return new_issues_in_period_count
+                print(f"{repository.full_name}: {measure.name} is {updated_issues_in_period_count} {measure.unit}")
+                return updated_issues_in_period_count
 
-            ratio = new_issues_in_period_count / total_issues_count
+            ratio = updated_issues_in_period_count / total_issues_count
             print(f"{repository.full_name}: {measure.name} is {ratio} {measure.unit}")
 
             return ratio

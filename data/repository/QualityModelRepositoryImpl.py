@@ -44,6 +44,7 @@ from testing.measurableconcepts.communitycapability.code_development_efficiency.
 from testing.measurableconcepts.communitycapability.code_development_process_quality.ChangeRequestReviews import \
     ChangeRequestReviews
 from testing.measurableconcepts.communitycapability.issue_resolution.IssuesActiveCount import IssuesActiveCount
+from testing.measurableconcepts.communitycapability.issue_resolution.IssuesActiveRatio import IssuesActiveRatio
 from testing.measurableconcepts.communitycapability.issue_resolution.IssuesNewCount import IssuesNewCount
 from testing.measurableconcepts.communitycapability.issue_resolution.IssuesNewRatio import IssuesNewRatio
 from testing.measurableconcepts.complexity.CyclomaticComplexityMC import CyclomaticComplexityMC
@@ -83,6 +84,7 @@ from testing.measures.communitycapability.LinesChangedCount import LinesChangedC
 from testing.measures.communitycapability.TotalIssuesCount import TotalIssuesCount
 from testing.measures.communitycapability.TruckFactor import TruckFactor
 from testing.measures.communitycapability.change_request_reviews.PercentageOfPRsReviewed import PercentageOfPRsReviewed
+from testing.measures.communitycapability.issue_resolution.issues_active.ActiveIssuesRatio import ActiveIssuesRatio
 from testing.measures.communitycapability.issue_resolution.issues_new.NewIssuesCount import NewIssuesCount
 from testing.measures.communitycapability.issue_resolution.issues_new.NewIssuesRatio import NewIssuesRatio
 from testing.measures.maintainer_organization.OrgCountMeasure import OrgCountMeasure
@@ -955,6 +957,20 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            active_issues_ratio = self._base_measure_visitor_factory.instantiate_with_visitor(
+                ActiveIssuesRatio,
+                visitor_kwargs={
+                    "github_rate_limiter": self._github_rate_limiter
+                }
+            )
+
+            issues_active_ratio_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                IssuesActiveRatio,
+                children={
+                    active_issues_ratio.name: active_issues_ratio
+                }
+            )
+
             community_and_adoption = CommunityAndAdoption(
                 children={
                     community_exists.name: CommunityExists(
@@ -1059,7 +1075,8 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                             change_request_reviews.name: change_request_reviews,
                             issues_new_count_mc.name: issues_new_count_mc,
                             issues_new_ratio_mc.name: issues_new_ratio_mc,
-                            issues_active_count_mc.name: issues_active_count_mc
+                            issues_active_count_mc.name: issues_active_count_mc,
+                            issues_active_ratio_mc.name: issues_active_ratio_mc
                         }
                     ),
                     contact_within_reasonable_time.name: ContactWithinReasonableTime(

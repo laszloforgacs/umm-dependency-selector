@@ -5,6 +5,6 @@ Belongs to Issue Resolution in CHAOSS. Category 1 measure
 """
 
 
-class ActiveIssuesCount(BaseMeasure[float]):
+class ActiveIssuesRatio(BaseMeasure[float]):
     def __init__(self, visitor=None):
-        super().__init__("Active Issues Count", "issue(s)", 1, MeasurementMethod.AUTOMATIC, visitor=visitor)
+        super().__init__("Active Issues Ratio", "ratio", 1, MeasurementMethod.AUTOMATIC, visitor=visitor)

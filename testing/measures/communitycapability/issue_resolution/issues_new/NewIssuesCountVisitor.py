@@ -25,8 +25,15 @@ class NewIssuesCountVisitor(BaseMeasureVisitor[int]):
                 direction="desc"
             )
 
-            new_issues = [issue for issue in issues if issue.created_at >= start_date]
+            new_issues = []
+            for issue in issues:
+                if issue.created_at >= start_date:
+                    new_issues.append(issue)
+                else:
+                    break
+
             new_issues_count = len(new_issues)
+
             print(f"{repository.full_name}: {measure.name} is {new_issues_count} {measure.unit}")
             return new_issues_count
         except Exception as e:

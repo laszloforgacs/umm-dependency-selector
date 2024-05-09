@@ -1118,6 +1118,17 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                                         }
                                     )
                                 }
+                            ),
+                            time_to_respond_to_issues.name: self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                                TimeToRespondToIssues,
+                                children={
+                                    issue_response_time.name: self._base_measure_visitor_factory.instantiate_with_visitor(
+                                        IssueResponseTime,
+                                        visitor_kwargs={
+                                            "github_rate_limiter": self._github_rate_limiter
+                                        }
+                                    )
+                                }
                             )
                         }
                     ),

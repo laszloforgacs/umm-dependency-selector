@@ -3,6 +3,8 @@ from util.GithubRateLimiter import GithubRateLimiter
 
 """
 Comes from augur. Average time to respond to an issue in a repository.
+Also a CHAOSS measure.
+CATEGORY 1
 """
 
 
@@ -31,8 +33,9 @@ class IssueResponseTimeVisitor(Visitor[float]):
 
             if not time_differences:
                 # returning 30 days in seconds as an appropriately high value.
-                print(f"{repository.full_name}: {measure.name} is {30 * 24 * 60 * 60}")
-                return 30 * 24 * 60 * 60
+                upper_threshold = 30 * 24 * 60 * 60
+                print(f"{repository.full_name}: {measure.name} is {upper_threshold}")
+                return upper_threshold
             else:
                 total_time_difference_seconds = sum(
                     [time_difference.total_seconds() for time_difference in time_differences])

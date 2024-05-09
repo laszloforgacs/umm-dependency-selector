@@ -284,7 +284,7 @@
                                 {
                                     "class_name": "IssueInteractions",
                                     "name": "Issue interactions",
-                                    "value": 453,
+                                    "value": 452,
                                     "impact": "POSITIVE",
                                     "entity": "Issue history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -294,7 +294,7 @@
                                         {
                                             "class_name": "UpdatedIssuesCount",
                                             "name": "UpdatedIssuesCount",
-                                            "value": 3,
+                                            "value": 2,
                                             "unit": "updated issue",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -1358,6 +1358,48 @@
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
                                             "visitor": "NewIssuesRatioVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "class_name": "IssuesActiveCount",
+                                    "name": "Issues Active Count",
+                                    "value": 2,
+                                    "impact": "POSITIVE",
+                                    "entity": "issues in version control history",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the number of active issues in the version control history",
+                                    "quality_requirement": "Active issues signal community activity and affect product evolution/community capability positively",
+                                    "measures": [
+                                        {
+                                            "class_name": "UpdatedIssuesCount",
+                                            "name": "UpdatedIssuesCount",
+                                            "value": 2,
+                                            "unit": "updated issue",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "UpdatedIssuesCountVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "class_name": "IssuesActiveRatio",
+                                    "name": "Issues Active Ratio",
+                                    "value": 0.4,
+                                    "impact": "POSITIVE",
+                                    "entity": "issues in version control history",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the ratio of active issues to the total number of issues in the version control history",
+                                    "quality_requirement": "Active issues signal community activity and affect product evolution/community capability positively",
+                                    "measures": [
+                                        {
+                                            "class_name": "ActiveIssuesRatio",
+                                            "name": "Active Issues Ratio",
+                                            "value": 0.4,
+                                            "unit": "ratio",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "ActiveIssuesRatioVisitor"
                                         }
                                     ]
                                 }

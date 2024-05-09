@@ -182,6 +182,7 @@ class MeasurableConceptVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "IssuesClosedCount": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "IssuesActiveRatio": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "IssuesActiveCount": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "IssuesNewRatio": (NoOpNormalizeVisitor, AddAggregateVisitor),

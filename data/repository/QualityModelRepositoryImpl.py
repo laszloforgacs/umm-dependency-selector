@@ -61,7 +61,7 @@ from testing.measurableconcepts.product_evolution.DeclinedChanges import Decline
 from testing.measurableconcepts.product_evolution.IssueInteractions import IssueInteractions
 from testing.measurableconcepts.product_evolution.OpenedPullRequests import OpenedPullRequests
 from testing.measurableconcepts.product_evolution.ReviewsAccepted import ReviewsAccepted
-from testing.measurableconcepts.product_evolution.Staleness import Staleness
+from testing.measurableconcepts.product_evolution.IssueAgeAverage import IssueAgeAverage
 from testing.measurableconcepts.risk.DelBiancoVulnerabilitiesMC import DelBiancoVulnerabilitiesMC
 from testing.measurableconcepts.product_evolution.UpdatedSince import UpdatedSince
 from testing.measurableconcepts.support_community.OpenParticipation import OpenParticipation
@@ -416,8 +416,8 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
-            staleness_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
-                Staleness,
+            issue_age_average_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                IssueAgeAverage,
                 children={
                     open_issue_age.name: open_issue_age
                 }
@@ -491,7 +491,7 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                     commit_frequency_mc.name: commit_frequency_mc,
                     updated_since_mc.name: updated_since_mc,
                     issue_interactions_mc.name: issue_interactions_mc,
-                    staleness_mc.name: staleness_mc,
+                    issue_age_average_mc.name: issue_age_average_mc,
                     declined_changes_mc.name: declined_changes_mc,
                     opened_pull_request_mc.name: opened_pull_request_mc,
                     reviews_accepted_mc.name: reviews_accepted_mc
@@ -1107,7 +1107,18 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                             issues_active_count_mc.name: issues_active_count_mc,
                             issues_active_ratio_mc.name: issues_active_ratio_mc,
                             issues_closed_count_mc.name: issues_closed_count_mc,
-                            issues_closed_ratio_mc.name: issues_closed_ratio_mc
+                            issues_closed_ratio_mc.name: issues_closed_ratio_mc,
+                            issue_age_average_mc.name: self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                                IssueAgeAverage,
+                                children={
+                                    open_issue_age.name: self._base_measure_visitor_factory.instantiate_with_visitor(
+                                        OpenIssueAge,
+                                        visitor_kwargs={
+                                            "github_rate_limiter": self._github_rate_limiter
+                                        }
+                                    )
+                                }
+                            )
                         }
                     ),
                     contact_within_reasonable_time.name: ContactWithinReasonableTime(

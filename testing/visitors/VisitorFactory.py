@@ -213,7 +213,7 @@ class MeasurableConceptVisitorFactory(VisitorFactory):
             "ReviewsAccepted": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "OpenedPullRequests": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "DeclinedChanges": (NoOpNormalizeVisitor, AddAggregateVisitor),
-            "Staleness": (NoOpNormalizeVisitor, AddAggregateVisitor),
+            "IssueAgeAverage": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "IssueInteractions": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "UpdatedSince": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "CommitFrequency": (NoOpNormalizeVisitor, AddAggregateVisitor),

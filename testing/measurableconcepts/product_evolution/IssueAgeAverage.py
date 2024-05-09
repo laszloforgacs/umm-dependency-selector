@@ -1,7 +1,7 @@
 from domain.model.MeasureableConcept import MeasurableConcept, Impact, OSSAspect
 
 
-class Staleness(MeasurableConcept[float]):
+class IssueAgeAverage(MeasurableConcept[float]):
     def __init__(
             self,
             children,
@@ -9,7 +9,7 @@ class Staleness(MeasurableConcept[float]):
             aggregate_visitor=None
     ):
         super().__init__(
-            "Issue Staleness",
+            "Issue Age Average",
             children,
             Impact.NEGATIVE,
             "Repository issue tracker",

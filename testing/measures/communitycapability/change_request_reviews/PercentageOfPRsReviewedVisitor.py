@@ -26,7 +26,9 @@ class PercentageOfPRsReviewedVisitor(BaseMeasureVisitor[int]):
 
             for pr in closed_prs:
                 reviews = self._github_rate_limiter.execute(pr.get_reviews)
-                is_human_reviewed = any(review.user.type == "User" for review in reviews)
+                is_human_reviewed = any(
+                    review.user is not None and review.user.type == "User" for review in reviews
+                )
                 if is_human_reviewed:
                     human_reviewed_prs += 1
 

@@ -1,5 +1,9 @@
 from domain.model.Measure import BaseMeasure, MeasurementMethod
 
+"""
+CHAOSS, Category 1
+"""
+
 
 class NewContributors(BaseMeasure[int]):
     def __init__(

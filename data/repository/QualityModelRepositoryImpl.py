@@ -19,7 +19,7 @@ from testing.measurableconcepts.AbsenceOfLicenseFees import AbsenceOfLicenseFees
 from testing.measurableconcepts.community_exists.CommunityInteractionMC import CommunityInteractionMC
 from testing.measurableconcepts.community_exists.NewContributorsMC import NewContributorsMC
 from testing.measurableconcepts.community_vitality.CommunityLifespan import CommunityLifespan
-from testing.measurableconcepts.communitycapability.DurationToCloseIssuesMC import DurationToCloseIssuesMC
+from testing.measurableconcepts.communitycapability.IssueResolutionDurationAverage import IssueResolutionDurationAverage
 from testing.measurableconcepts.communitycapability.IssueThroughputMC import IssueThroughputMC
 from testing.measurableconcepts.communitycapability.NumberOfContributors import NumberOfContributors
 from testing.measurableconcepts.communitycapability.TimeToRespondToIssues import TimeToRespondToIssues
@@ -41,6 +41,8 @@ from testing.measurableconcepts.communitycapability.code_development_efficiency.
     ChangeRequestsDeclinedCount
 from testing.measurableconcepts.communitycapability.code_development_efficiency.ChangeRequestsDeclinedRatio import \
     ChangeRequestsDeclinedRatio
+from testing.measurableconcepts.communitycapability.code_development_efficiency.ChangeRequestsDurationAverage import \
+    ChangeRequestsDurationAverage
 from testing.measurableconcepts.communitycapability.code_development_process_quality.ChangeRequestReviews import \
     ChangeRequestReviews
 from testing.measurableconcepts.communitycapability.issue_resolution.IssuesActiveCount import IssuesActiveCount
@@ -77,7 +79,7 @@ from testing.measures.communitycapability.change_request_commits.AvgNumberOfComm
     AvgNumberOfCommitsPerPRs
 from testing.measures.communitycapability.change_request_contributors.AvgNumberOfContributorsPerPRs import \
     AvgNumberOfContributorsPerPRs
-from testing.measures.communitycapability.ClosedIssueResolutionDuration import ClosedIssueResolutionDuration
+from testing.measures.communitycapability.DurationToResolveIssues import DurationToResolveIssues
 from testing.measures.communitycapability.ClosedIssuesCount import ClosedIssuesCount
 from testing.measures.communitycapability.ContributorCount import ContributorCount
 from testing.measures.communitycapability.IssueResponseTime import IssueResponseTime
@@ -86,6 +88,8 @@ from testing.measures.communitycapability.LinesChangedCount import LinesChangedC
 from testing.measures.communitycapability.TotalIssuesCount import TotalIssuesCount
 from testing.measures.communitycapability.TruckFactor import TruckFactor
 from testing.measures.communitycapability.change_request_reviews.PercentageOfPRsReviewed import PercentageOfPRsReviewed
+from testing.measures.communitycapability.change_requests_duration.DurationToResolvePullRequests import \
+    DurationToResolvePullRequests
 from testing.measures.communitycapability.issue_resolution.issues_active.ActiveIssuesRatio import ActiveIssuesRatio
 from testing.measures.communitycapability.issue_resolution.issues_closed.ClosedIssuesRatio import ClosedIssuesRatio
 from testing.measures.communitycapability.issue_resolution.issues_new.NewIssuesCount import NewIssuesCount
@@ -237,8 +241,11 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                     total_issue_count.name: total_issue_count
                 }
             )
-            closed_issue_resolution_duration = self._base_measure_visitor_factory.instantiate_with_visitor(
-                ClosedIssueResolutionDuration
+            duration_to_resolve_issues = self._base_measure_visitor_factory.instantiate_with_visitor(
+                DurationToResolveIssues,
+                visitor_kwargs={
+                    "github_rate_limiter": self._github_rate_limiter
+                }
             )
             issue_response_time = self._base_measure_visitor_factory.instantiate_with_visitor(
                 IssueResponseTime,
@@ -291,10 +298,10 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
-            duration_to_close_issues_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
-                DurationToCloseIssuesMC,
+            issue_resolution_duration_average_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                IssueResolutionDurationAverage,
                 children={
-                    closed_issue_resolution_duration.name: closed_issue_resolution_duration
+                    duration_to_resolve_issues.name: duration_to_resolve_issues
                 }
             )
 
@@ -317,7 +324,7 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                     number_of_contributors_mc.name: number_of_contributors_mc,
                     truck_factor_mc.name: truck_factor_mc,
                     issue_throughput_mc.name: issue_throughput_mc,
-                    duration_to_close_issues_mc.name: duration_to_close_issues_mc,
+                    issue_resolution_duration_average_mc.name: issue_resolution_duration_average_mc,
                     time_to_respond_to_issues.name: time_to_respond_to_issues
                 }
             )
@@ -1000,6 +1007,20 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            duration_to_resolve_pull_requests = self._base_measure_visitor_factory.instantiate_with_visitor(
+                DurationToResolvePullRequests,
+                visitor_kwargs={
+                    "github_rate_limiter": self._github_rate_limiter
+                }
+            )
+
+            change_requests_duration_average_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                ChangeRequestsDurationAverage,
+                children={
+                    duration_to_resolve_pull_requests.name: duration_to_resolve_pull_requests
+                }
+            )
+
             community_and_adoption = CommunityAndAdoption(
                 children={
                     community_exists.name: CommunityExists(
@@ -1067,11 +1088,14 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                                     )
                                 }
                             ),
-                            duration_to_close_issues_mc.name: self._measurable_concept_visitor_factory.instantiate_with_visitor(
-                                DurationToCloseIssuesMC,
+                            issue_resolution_duration_average_mc.name: self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                                IssueResolutionDurationAverage,
                                 children={
-                                    closed_issue_resolution_duration.name: self._base_measure_visitor_factory.instantiate_with_visitor(
-                                        ClosedIssueResolutionDuration
+                                    duration_to_resolve_issues.name: self._base_measure_visitor_factory.instantiate_with_visitor(
+                                        DurationToResolveIssues,
+                                        visitor_kwargs={
+                                            "github_rate_limiter": self._github_rate_limiter
+                                        }
                                     )
                                 }
                             ),
@@ -1124,6 +1148,18 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                                 children={
                                     issue_response_time.name: self._base_measure_visitor_factory.instantiate_with_visitor(
                                         IssueResponseTime,
+                                        visitor_kwargs={
+                                            "github_rate_limiter": self._github_rate_limiter
+                                        }
+                                    )
+                                }
+                            ),
+                            change_requests_duration_average_mc.name: change_requests_duration_average_mc,
+                            new_contributors_mc.name: self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                                NewContributorsMC,
+                                children={
+                                    new_contributors.name: self._base_measure_visitor_factory.instantiate_with_visitor(
+                                        NewContributors,
                                         visitor_kwargs={
                                             "github_rate_limiter": self._github_rate_limiter
                                         }

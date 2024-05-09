@@ -9,6 +9,8 @@ from testing.measures.communitycapability.change_request_contributors.AvgNumberO
 from testing.measures.communitycapability.LinesChangedCountVisitor import LinesChangedCountVisitor
 from testing.measures.communitycapability.change_request_reviews.PercentageOfPRsReviewedVisitor import \
     PercentageOfPRsReviewedVisitor
+from testing.measures.communitycapability.change_requests_duration.DurationToResolvePullRequestsVisitor import \
+    DurationToResolvePullRequestsVisitor
 from testing.measures.communitycapability.issue_resolution.issues_active.ActiveIssuesRatioVisitor import \
     ActiveIssuesRatioVisitor
 from testing.measures.communitycapability.issue_resolution.issues_closed.ClosedIssuesRatioVisitor import \
@@ -41,8 +43,8 @@ from testing.subcharacteristic.communitycapability.AugurIssueThroughputVisitor i
 from testing.subcharacteristic.communitycapability.AugurTotalIssuesCountVisitor import AugurTotalIssuesCountVisitor
 from testing.visitors.StandardVisitors import MockMeasureVisitor, AverageAggregateVisitor, NoOpNormalizeVisitor, \
     AddAggregateVisitor
-from testing.visitors.codecomplexity.AugurClosedIssueResolutionDurationVisitor import \
-    AugurClosedIssueResolutionDurationVisitor
+from testing.visitors.codecomplexity.DurationToResolveIssuesVisitor import \
+    DurationToResolveIssuesVisitor
 from testing.visitors.codecomplexity.IssueResponseTimeVisitor import IssueResponseTimeVisitor
 from testing.visitors.codecomplexity.ClocNumberOfCommentsVisitor import ClocNumberOfCommentsVisitor
 from testing.visitors.codecomplexity.CruzCodeQualityDerivedMeasureAggregator import \
@@ -74,6 +76,7 @@ class MeasureVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "DurationToResolvePullRequests": DurationToResolvePullRequestsVisitor,
             "ClosedIssuesRatio": ClosedIssuesRatioVisitor,
             "ActiveIssuesRatio": ActiveIssuesRatioVisitor,
             "NewIssuesRatio": NewIssuesRatioVisitor,
@@ -102,7 +105,7 @@ class MeasureVisitorFactory(VisitorFactory):
             "OpenFeatureRequestCount": OpenFeatureRequestCountVisitor,
             "ReleaseCount": ReleaseCountVisitor,
             "IssueResponseTime": IssueResponseTimeVisitor,
-            "ClosedIssueResolutionDuration": AugurClosedIssueResolutionDurationVisitor,
+            "DurationToResolveIssues": DurationToResolveIssuesVisitor,
             "TotalIssuesCount": AugurTotalIssuesCountVisitor,
             "ClosedIssuesCount": AugurClosedIssuesCountVisitor,
             "TruckFactor": TruckFactorVisitor,
@@ -185,6 +188,7 @@ class MeasurableConceptVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "ChangeRequestsDurationAverage": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "IssuesClosedRatio": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "IssuesClosedCount": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "IssuesActiveRatio": (NoOpNormalizeVisitor, AddAggregateVisitor),
@@ -220,7 +224,7 @@ class MeasurableConceptVisitorFactory(VisitorFactory):
             "NumberOfOpenFeatureRequests": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "NumberOfReleases": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "TimeToRespondToIssues": (NoOpNormalizeVisitor, AddAggregateVisitor),
-            "DurationToCloseIssuesMC": (NoOpNormalizeVisitor, AddAggregateVisitor),
+            "IssueResolutionDurationAverage": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "IssueThroughputMC": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "TruckFactorMC": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "NumberOfContributors": (NoOpNormalizeVisitor, AddAggregateVisitor),

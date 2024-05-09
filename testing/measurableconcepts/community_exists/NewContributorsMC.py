@@ -1,5 +1,11 @@
 from domain.model.MeasureableConcept import OSSAspect, Impact, MeasurableConcept
 
+"""
+from CHAOSS. New Contributors
+Category 1
+Belongs to Community Growth on CHAOSS
+"""
+
 
 class NewContributorsMC(MeasurableConcept[float]):
     def __init__(self, children, normalize_visitor=None, aggregate_visitor=None):

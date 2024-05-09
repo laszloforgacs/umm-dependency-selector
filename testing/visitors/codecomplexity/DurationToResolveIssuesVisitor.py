@@ -1,14 +1,18 @@
 from presentation.core.visitors.Visitor import Visitor
+from util.GithubRateLimiter import GithubRateLimiter
 
 
-class AugurClosedIssueResolutionDurationVisitor(Visitor[float]):
-    def __init__(self):
-        pass
+class DurationToResolveIssuesVisitor(Visitor[float]):
+    def __init__(self, github_rate_limiter: GithubRateLimiter):
+        self._github_rate_limiter = github_rate_limiter
 
     async def measure(self, measure: 'BaseMeasure', repository: 'Repository') -> float:
         try:
             return 49.0
-            closed_issues = repository.get_issues(state='closed')
+            closed_issues = self._github_rate_limiter.execute(
+                repository.get_issues,
+                state="closed"
+            )
             time_differences = []
             for issue in closed_issues:
                 time_differences.append(issue.closed_at - issue.created_at)

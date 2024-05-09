@@ -384,7 +384,10 @@ class QualityModelRepositoryImpl(QualityModelRepository):
             )
 
             updated_issues_count = self._base_measure_visitor_factory.instantiate_with_visitor(
-                UpdatedIssuesCount
+                UpdatedIssuesCount,
+                visitor_kwargs={
+                    "github_rate_limiter": self._github_rate_limiter
+                }
             )
 
             issue_interactions_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(

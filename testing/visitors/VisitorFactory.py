@@ -9,6 +9,7 @@ from testing.measures.communitycapability.change_request_contributors.AvgNumberO
 from testing.measures.communitycapability.LinesChangedCountVisitor import LinesChangedCountVisitor
 from testing.measures.communitycapability.change_request_reviews.PercentageOfPRsReviewedVisitor import \
     PercentageOfPRsReviewedVisitor
+from testing.measures.communitycapability.issue_resolution.issues_new.NewIssuesCountVisitor import NewIssuesCountVisitor
 from testing.measures.maintainer_organization.OrgCountMeasureVisitor import OrgCountMeasureVisitor
 from testing.measures.number_of_open_feature_request.OpenFeatureRequestCountVisitor import \
     OpenFeatureRequestCountVisitor
@@ -68,6 +69,7 @@ class MeasureVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "NewIssuesCount": NewIssuesCountVisitor,
             "PercentageOfPRsReviewed": PercentageOfPRsReviewedVisitor,
             "ReviewsAcceptedCount": ReviewsAcceptedCountVisitor,
             "AvgNumberOfContributorsPerPRs": AvgNumberOfContributorsPerPRsVisitor,
@@ -175,6 +177,7 @@ class MeasurableConceptVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "IssuesNewCount": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "ChangeRequestReviews": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "ChangeRequestAcceptanceRatio": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "ChangeRequestsDeclinedRatio": (NoOpNormalizeVisitor, AddAggregateVisitor),

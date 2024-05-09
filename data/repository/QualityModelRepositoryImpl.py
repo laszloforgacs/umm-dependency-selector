@@ -43,6 +43,7 @@ from testing.measurableconcepts.communitycapability.code_development_efficiency.
     ChangeRequestsDeclinedRatio
 from testing.measurableconcepts.communitycapability.code_development_process_quality.ChangeRequestReviews import \
     ChangeRequestReviews
+from testing.measurableconcepts.communitycapability.issue_resolution.IssuesNewCount import IssuesNewCount
 from testing.measurableconcepts.complexity.CyclomaticComplexityMC import CyclomaticComplexityMC
 from testing.measurableconcepts.contact_within_reasonable_time.AvgIssueResponseTimeMC import AvgIssueResponseTimeMC
 from testing.measurableconcepts.maintainer_organization.MaintainerOrganizationMC import MaintainerOrganizationMC
@@ -80,6 +81,7 @@ from testing.measures.communitycapability.LinesChangedCount import LinesChangedC
 from testing.measures.communitycapability.TotalIssuesCount import TotalIssuesCount
 from testing.measures.communitycapability.TruckFactor import TruckFactor
 from testing.measures.communitycapability.change_request_reviews.PercentageOfPRsReviewed import PercentageOfPRsReviewed
+from testing.measures.communitycapability.issue_resolution.issues_new.NewIssuesCount import NewIssuesCount
 from testing.measures.maintainer_organization.OrgCountMeasure import OrgCountMeasure
 from testing.measures.number_of_open_feature_request.OpenFeatureRequestCount import OpenFeatureRequestCount
 from testing.measures.numberofreleases.ReleaseCount import ReleaseCount
@@ -907,6 +909,20 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            new_issues_count = self._base_measure_visitor_factory.instantiate_with_visitor(
+                NewIssuesCount,
+                visitor_kwargs={
+                    "github_rate_limiter": self._github_rate_limiter
+                }
+            )
+
+            issues_new_count_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                IssuesNewCount,
+                children={
+                    new_issues_count.name: new_issues_count
+                }
+            )
+
             community_and_adoption = CommunityAndAdoption(
                 children={
                     community_exists.name: CommunityExists(
@@ -1008,7 +1024,8 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                                     opened_pull_request_count.name: opened_pull_request_count
                                 }
                             ),
-                            change_request_reviews.name: change_request_reviews
+                            change_request_reviews.name: change_request_reviews,
+                            issues_new_count_mc.name: issues_new_count_mc
                         }
                     ),
                     contact_within_reasonable_time.name: ContactWithinReasonableTime(

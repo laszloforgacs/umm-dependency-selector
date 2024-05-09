@@ -21,7 +21,8 @@ class ActiveIssuesRatioVisitor(BaseMeasureVisitor[int]):
             start_date = today - relativedelta(months=3)
 
             total_issues = self._github_rate_limiter.execute(
-                repository.get_issues
+                repository.get_issues,
+                state="all"
             )
             total_issues_count = total_issues.totalCount
 
@@ -29,7 +30,8 @@ class ActiveIssuesRatioVisitor(BaseMeasureVisitor[int]):
                 repository.get_issues,
                 since=start_date,
                 sort="updated",
-                direction="desc"
+                direction="desc",
+                state="all"
             )
             filtered_updated_issues_in_period = []
             for issue in updated_issues_in_period:

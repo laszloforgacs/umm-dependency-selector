@@ -9,7 +9,8 @@ class AugurTotalIssuesCountVisitor(Visitor[int]):
     async def measure(self, measure: 'BaseMeasure', repository: 'Repository') -> int:
         try:
             issues = self._github_rate_limiter.execute(
-                repository.get_issues
+                repository.get_issues,
+                state="all"
             )
             print(f"{repository.full_name}: {measure.name} is {issues.totalCount}")
             return issues.totalCount

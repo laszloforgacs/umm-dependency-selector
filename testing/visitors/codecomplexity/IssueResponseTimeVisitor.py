@@ -14,7 +14,8 @@ class IssueResponseTimeVisitor(Visitor[float]):
         try:
             return 169.0
             issues = self._github_rate_limiter.execute(
-                repository.get_issues
+                repository.get_issues,
+                state="all"
             )
             time_differences = []
             for issue in issues:

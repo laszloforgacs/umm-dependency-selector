@@ -20,7 +20,8 @@ class UpdatedIssuesCountVisitor(Visitor[int]):
             start_date = end_date - timedelta(days=90)
             updated_issues = self._github_rate_limiter.execute(
                 repository.get_issues,
-                since=start_date
+                since=start_date,
+                state="all"
             )
             print(f"{repository.full_name}: {measure.name} is {updated_issues.totalCount}")
             return updated_issues.totalCount

@@ -11,6 +11,8 @@ from testing.measures.communitycapability.change_request_reviews.PercentageOfPRs
     PercentageOfPRsReviewedVisitor
 from testing.measures.communitycapability.issue_resolution.issues_active.ActiveIssuesRatioVisitor import \
     ActiveIssuesRatioVisitor
+from testing.measures.communitycapability.issue_resolution.issues_closed.ClosedIssuesRatioVisitor import \
+    ClosedIssuesRatioVisitor
 from testing.measures.communitycapability.issue_resolution.issues_new.NewIssuesCountVisitor import NewIssuesCountVisitor
 from testing.measures.communitycapability.issue_resolution.issues_new.NewIssuesRatioVisitor import NewIssuesRatioVisitor
 from testing.measures.maintainer_organization.OrgCountMeasureVisitor import OrgCountMeasureVisitor
@@ -72,6 +74,7 @@ class MeasureVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "ClosedIssuesRatio": ClosedIssuesRatioVisitor,
             "ActiveIssuesRatio": ActiveIssuesRatioVisitor,
             "NewIssuesRatio": NewIssuesRatioVisitor,
             "NewIssuesCount": NewIssuesCountVisitor,
@@ -182,6 +185,7 @@ class MeasurableConceptVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "IssuesClosedRatio": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "IssuesClosedCount": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "IssuesActiveRatio": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "IssuesActiveCount": (NoOpNormalizeVisitor, AddAggregateVisitor),

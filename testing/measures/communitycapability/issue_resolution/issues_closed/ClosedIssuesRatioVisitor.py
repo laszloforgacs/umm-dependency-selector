@@ -11,11 +11,11 @@ CHAOSS metric attributed to Issue Resolution. Category 1 measure. Analysed in th
 """
 
 
-class ActiveIssuesRatioVisitor(BaseMeasureVisitor[int]):
+class ClosedIssuesRatioVisitor(BaseMeasureVisitor[float]):
     def __init__(self, github_rate_limiter: GithubRateLimiter):
         self._github_rate_limiter = github_rate_limiter
 
-    async def measure(self, measure: 'BaseMeasure', repository: Repository) -> int:
+    async def measure(self, measure: 'BaseMeasure', repository: Repository) -> float:
         try:
             today = datetime.now(timezone.utc)
             start_date = today - relativedelta(months=3)
@@ -26,18 +26,19 @@ class ActiveIssuesRatioVisitor(BaseMeasureVisitor[int]):
             )
             total_issues_count = total_issues.totalCount
 
-            updated_issues_in_period = self._github_rate_limiter.execute(
+            closed_issues_in_period = self._github_rate_limiter.execute(
                 repository.get_issues,
                 since=start_date,
-                state="all"
+                state="closed"
             )
-            updated_issues_in_period_count = updated_issues_in_period.totalCount
+
+            closed_issues_in_period_count = closed_issues_in_period.totalCount
 
             if total_issues_count == 0:
-                print(f"{repository.full_name}: {measure.name} is {updated_issues_in_period_count} {measure.unit}")
-                return updated_issues_in_period_count
+                print(f"{repository.full_name}: {measure.name} is {closed_issues_in_period_count} {measure.unit}")
+                return closed_issues_in_period_count
 
-            ratio = updated_issues_in_period_count / total_issues_count
+            ratio = closed_issues_in_period_count / total_issues_count
             print(f"{repository.full_name}: {measure.name} is {ratio} {measure.unit}")
 
             return ratio

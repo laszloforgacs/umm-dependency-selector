@@ -1,14 +1,13 @@
 import itertools
 from abc import ABCMeta
 
-from domain.model.Characteristic import Characteristic
 from domain.model.MeasureableConcept import OSSAspect
 from domain.model.Component import CompositeComponent
 from presentation.viewpoint_preferences.ComponentPreferencesState import PrefMatrix
 
 
 class Viewpoint(CompositeComponent, metaclass=ABCMeta):
-    def __init__(self, name: str, children: dict[str, Characteristic] = {},
+    def __init__(self, name: str, children: dict[str, 'Characteristic'] = {},
                  preference_matrix: PrefMatrix = {}, oss_aspect_preference_matrix: PrefMatrix = {}):
         self._name = name
         for child in children.values():
@@ -33,7 +32,7 @@ class Viewpoint(CompositeComponent, metaclass=ABCMeta):
             self._oss_aspect_preference_matrix = oss_aspect_preference_matrix
         self._weight = 0
 
-    def add_component(self, component: Characteristic):
+    def add_component(self, component: 'Characteristic'):
         self._children[component.name] = component
 
     @property

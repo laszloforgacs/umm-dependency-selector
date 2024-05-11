@@ -3,14 +3,14 @@ from typing import Generic, TypeVar
 from github.Repository import Repository
 
 from domain.model.ABCGenericMeta import ABCGenericMeta
-from domain.model.MeasureableConcept import MeasurableConcept, OSSAspect
+from domain.model.MeasureableConcept import OSSAspect
 from domain.model.Component import CompositeComponent
 
 T = TypeVar('T')
 
 
 class SubCharacteristic(CompositeComponent, Generic[T], metaclass=ABCGenericMeta):
-    def __init__(self, name: str, children: dict[str, MeasurableConcept[T]]):
+    def __init__(self, name: str, children: dict[str, 'MeasurableConcept']):
         self._name = name
         for child in children.values():
             child.parent = self
@@ -31,7 +31,7 @@ class SubCharacteristic(CompositeComponent, Generic[T], metaclass=ABCGenericMeta
                 return aspects_found
         return aspects_found
 
-    def get_children_by_aspect(self, aspect: str) -> list[MeasurableConcept[T]]:
+    def get_children_by_aspect(self, aspect: str) -> list['MeasurableConcept']:
         return [
             child for child in self.children.values() if child.relevant_oss_aspect.name == aspect
         ]

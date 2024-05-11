@@ -11,11 +11,17 @@ class OSSAQMLicenseVisitor(Visitor[int]):
 
     async def measure(self, measure: 'BaseMeasure', repository: Repository) -> int:
         try:
+            cached_result = await self.get_cached_result(measure, repository)
+            if cached_result is not None:
+                print(f"{repository.full_name}: {measure.name} is {repository.license}. Score: {score}")
+                return cached_result
+
             if repository.license is None:
                 print(f"{repository.full_name}: {measure.name} is None. Score: 1")
                 return 1
             score = self._get_score(repository.license.key)
             print(f"{repository.full_name}: {measure.name} is {repository.license}. Score: {score}")
+            await self.cache_result(measure, repository, score)
             return score
 
         except Exception as e:

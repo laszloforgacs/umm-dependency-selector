@@ -13,7 +13,7 @@ T = TypeVar('T')
 
 
 class Characteristic(CompositeComponent, Generic[T], metaclass=ABCGenericMeta):
-    def __init__(self, name: str, children: dict[str, SubCharacteristic],
+    def __init__(self, name: str, children: dict[str, 'SubCharacteristic'],
                  preference_matrix: PrefMatrix = {}):
         self._name = name
         for child in children.values():

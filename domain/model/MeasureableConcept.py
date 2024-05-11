@@ -1,4 +1,3 @@
-from abc import abstractmethod
 from enum import Enum
 from typing import Generic, TypeVar
 
@@ -6,7 +5,6 @@ from github.Repository import Repository
 
 from domain.model.ABCGenericMeta import ABCGenericMeta
 from domain.model.Component import CompositeComponent
-from domain.model.Measure import Measure
 
 T = TypeVar('T')
 U = TypeVar('U')
@@ -23,7 +21,7 @@ class OSSAspect(Enum):
 
 
 class MeasurableConcept(CompositeComponent, Generic[T], metaclass=ABCGenericMeta):
-    def __init__(self, name: str, children: dict[str, Measure], impact: Impact, entity: str, information_need: str,
+    def __init__(self, name: str, children: dict[str, 'Measure'], impact: Impact, entity: str, information_need: str,
                  quality_requirement: str, relevant_oss_aspect: OSSAspect = OSSAspect.CODE, normalize_visitor=None,
                  aggregate_visitor=None):
         self._name = name

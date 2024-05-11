@@ -6,6 +6,8 @@ from github.Repository import Repository
 
 from domain.model.ABCGenericMeta import ABCGenericMeta
 from domain.model.Component import LeafComponent, CompositeComponent
+from domain.model.QualityModel import QualityModel
+from domain.model.Viewpoint import Viewpoint
 
 T = TypeVar('T')
 U = TypeVar('U')
@@ -50,6 +52,23 @@ class Measure(Generic[T], metaclass=ABCGenericMeta):
     def measure(self, repository: Repository) -> T:
         pass
 
+    def get_viewpoint(self):
+        next_parent = self.parent
+        while next_parent:
+            if isinstance(next_parent, Viewpoint):
+                return next_parent
+            next_parent = next_parent.parent
+
+        return None
+
+    def get_quality_model(self):
+        next_parent = self.parent
+        while next_parent:
+            if isinstance(next_parent, QualityModel):
+                return next_parent
+            next_parent = next_parent.parent
+
+        return None
 
 class BaseMeasure(Measure, LeafComponent, Generic[T], metaclass=ABCGenericMeta):
     def __init__(self, name: str, unit: str, scale: float,

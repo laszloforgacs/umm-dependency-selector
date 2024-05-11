@@ -14,6 +14,11 @@ class OpenIssueAgeVisitor(Visitor[float]):
 
     async def measure(self, measure: 'BaseMeasure', repository: 'Repository') -> float:
         try:
+            cached_result = await self.get_cached_result(measure, repository)
+            if cached_result is not None:
+                print(f"{repository.full_name}: {measure.name} is {cached_result}")
+                return cached_result
+
             date_now = datetime.now(timezone.utc)
             open_issues = self._github_rate_limiter.execute(
                 repository.get_issues,
@@ -25,7 +30,10 @@ class OpenIssueAgeVisitor(Visitor[float]):
                 total_age_days += (date_now - issue.created_at).days
             if open_issues.totalCount > 0:
                 total_avg_age = total_age_days / open_issues.totalCount
+
             print(f"{repository.full_name}: {measure.name} is {total_avg_age} {measure.unit}")
+
+            await self.cache_result(measure, repository, total_avg_age)
             return total_avg_age
         except Exception as e:
             raise Exception(str(e) + self.__class__.__name__)

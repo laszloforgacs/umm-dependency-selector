@@ -12,11 +12,19 @@ class RepositoryAgeMeasureVisitor(BaseMeasureVisitor[int]):
 
     async def measure(self, measure: 'BaseMeasure', repository: Repository) -> int:
         try:
+            cached_result = await self.get_cached_result(measure, repository)
+            if cached_result is not None:
+                print(f"{repository.full_name}: {measure.name} is {cached_result}")
+                return cached_result
+
             today = datetime.now(timezone.utc)
             created_at = repository.created_at
             age = today - created_at
             years = age.days // 365
+
             print(f"{repository.full_name}: {measure.name} is {years} {measure.unit}")
+
+            await self.cache_result(measure, repository, years)
             return years
         except Exception as e:
             raise Exception(str(e) + self.__class__.__name__)

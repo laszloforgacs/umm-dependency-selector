@@ -20,6 +20,11 @@ class RepoMessagesVisitor(BaseMeasureVisitor[int]):
 
     async def measure(self, measure: 'BaseMeasure', repository: Repository) -> int:
         try:
+            cached_result = await self.get_cached_result(measure, repository)
+            if cached_result is not None:
+                print(f"{repository.full_name}: {measure.name} is {cached_result}")
+                return cached_result
+
             end_date = datetime.now(timezone.utc)
             start_date = end_date - relativedelta(months=3)
             total_comments = 0
@@ -30,7 +35,10 @@ class RepoMessagesVisitor(BaseMeasureVisitor[int]):
                 since=start_date
             )
             total_comments += pr_comments.totalCount
+
             print(f"{repository.full_name}: {measure.name} is {total_comments}")
+
+            await self.cache_result(measure, repository, total_comments)
             return total_comments
         except Exception as e:
             raise Exception(str(e) + self.__class__.__name__)

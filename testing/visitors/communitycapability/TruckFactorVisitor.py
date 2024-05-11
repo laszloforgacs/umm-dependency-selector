@@ -12,10 +12,17 @@ class TruckFactorVisitor(Visitor[int]):
 
     async def measure(self, measure: 'BaseMeasure', repository: 'Repository') -> int:
         try:
+            cached_result = await self.get_cached_result(measure, repository)
+            if cached_result is not None:
+                print(f"{repository.full_name}: {measure.name} is {cached_result}")
+                return cached_result
+
             base_path = os.getcwd()
             path_to_repository = f"{base_path}/{SOURCE_TEMP_DIR}/{repository.name}"
-            #tf, commit_shas, authors = main(path_to_repository)
-            #print(f"{repository.full_name}: {measure.name} is {tf}")
-            return 1
+            tf, commit_shas, authors = main(path_to_repository)
+            print(f"{repository.full_name}: {measure.name} is {tf}")
+
+            await self.cache_result(measure, repository, tf)
+            return tf
         except Exception as e:
             raise Exception(str(e))

@@ -13,6 +13,11 @@ class OrgCountMeasureVisitor(BaseMeasureVisitor[int]):
 
     async def measure(self, measure: 'BaseMeasure', repository: Repository) -> int:
         try:
+            cached_result = await self.get_cached_result(measure, repository)
+            if cached_result is not None:
+                print(f"{repository.full_name}: {measure.name} is {cached_result}")
+                return cached_result
+
             orgs = set()
             contributors = self._github_rate_limiter.execute(
                 repository.get_contributors
@@ -25,6 +30,8 @@ class OrgCountMeasureVisitor(BaseMeasureVisitor[int]):
                     )
 
             print(f"{repository.full_name}: {measure.name} is {len(orgs)} {measure.unit}")
+
+            await self.cache_result(measure, repository, len(orgs))
             return len(orgs)
         except Exception as e:
             raise Exception(str(e) + self.__class__.__name__)

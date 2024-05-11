@@ -8,6 +8,11 @@ class DurationToResolvePullRequestsVisitor(BaseMeasureVisitor[float]):
 
     async def measure(self, measure: 'BaseMeasure', repository: 'Repository') -> float:
         try:
+            cached_result = await self.get_cached_result(measure, repository)
+            if cached_result is not None:
+                print(f"{repository.full_name}: {measure.name} is {cached_result}")
+                return cached_result
+
             closed_prs = self._github_rate_limiter.execute(
                 repository.get_pulls,
                 state="closed"
@@ -24,7 +29,10 @@ class DurationToResolvePullRequestsVisitor(BaseMeasureVisitor[float]):
             time_difference_seconds = [time_difference.total_seconds() for time_difference in time_differences]
             average_time_difference_seconds = sum(time_difference_seconds) / len(time_differences)
             average_time_difference_days = average_time_difference_seconds / (24 * 60 * 60)
+
             print(f"{repository.full_name}: {measure.name} is {average_time_difference_days} days")
+
+            await self.cache_result(measure, repository, average_time_difference_days)
             return average_time_difference_days
         except Exception as e:
             raise Exception(str(e) + self.__class__.__name__)

@@ -19,6 +19,11 @@ class AvgNumberOfContributorsPerPRsVisitor(BaseMeasureVisitor[int]):
 
     async def measure(self, measure: 'BaseMeasure', repository: Repository) -> int:
         try:
+            cached_result = await self.get_cached_result(measure, repository)
+            if cached_result is not None:
+                print(f"{repository.full_name}: {measure.name} is {cached_result}")
+                return cached_result
+
             contributors_count = 0
             start_date = datetime.now(timezone.utc) - relativedelta(months=3)
             pull_requests = self._github_rate_limiter.execute(
@@ -50,6 +55,8 @@ class AvgNumberOfContributorsPerPRsVisitor(BaseMeasureVisitor[int]):
             avg_contributors = contributors_count / pull_requests.totalCount
 
             print(f"{repository.full_name}: {measure.name} is {avg_contributors} {measure.unit}")
+
+            await self.cache_result(measure, repository, avg_contributors)
             return avg_contributors
         except Exception as e:
             raise Exception(str(e) + self.__class__.__name__)

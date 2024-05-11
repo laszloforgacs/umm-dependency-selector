@@ -15,10 +15,18 @@ class AnnualCommitCountVisitor(BaseMeasureVisitor[int]):
 
     async def measure(self, measure: 'BaseMeasure', repository: Repository) -> int:
         try:
+            cached_result = await self.get_cached_result(measure, repository)
+            if cached_result is not None:
+                print(f"{repository.full_name}: {measure.name} is {cached_result}")
+                return cached_result
+
             end_date = datetime.now(timezone.utc)
             start_date = end_date.replace(year=end_date.year - 1)
             commits = repository.get_commits(since=start_date, until=end_date)
+
             print(f"{repository.full_name}: {measure.name} is {commits.totalCount}")
+
+            await self.cache_result(measure, repository, commits.totalCount)
             return commits.totalCount
         except Exception as e:
             raise Exception(str(e) + self.__class__.__name__)

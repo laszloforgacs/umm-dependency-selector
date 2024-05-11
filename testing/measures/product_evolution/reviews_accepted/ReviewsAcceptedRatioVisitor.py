@@ -16,6 +16,11 @@ class ReviewsAcceptedRatioVisitor(Visitor[float]):
 
     async def measure(self, measure: 'BaseMeasure', repository: 'Repository') -> float:
         try:
+            cached_result = await self.get_cached_result(measure, repository)
+            if cached_result is not None:
+                print(f"{repository.full_name}: {measure.name} is {cached_result}")
+                return cached_result
+
             end_date = datetime.now(timezone.utc)
             start_date = end_date - relativedelta(months=6)
             pull_requests = self._github_rate_limiter.execute(
@@ -33,7 +38,7 @@ class ReviewsAcceptedRatioVisitor(Visitor[float]):
                 direction='desc'
             )
             opened_pull_requests_within_date = [pull_request for pull_request in opened_pull_requests if
-                                               start_date <= pull_request.created_at <= end_date]
+                                                start_date <= pull_request.created_at <= end_date]
             total_opened_pull_requests = 0
             for _ in opened_pull_requests_within_date:
                 total_opened_pull_requests += 1
@@ -43,7 +48,10 @@ class ReviewsAcceptedRatioVisitor(Visitor[float]):
                 return accepted_count
 
             ratio = accepted_count / total_opened_pull_requests
+
             print(f"{repository.full_name}: {measure.name} is {ratio}")
+
+            await self.cache_result(measure, repository, ratio)
             return ratio
         except Exception as e:
             raise Exception(str(e) + self.__class__.__name__)

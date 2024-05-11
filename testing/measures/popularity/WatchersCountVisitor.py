@@ -15,10 +15,18 @@ class WatchersCountVisitor(BaseMeasureVisitor[int]):
 
     async def measure(self, measure: 'BaseMeasure', repository: Repository) -> int:
         try:
+            cached_result = await self.get_cached_result(measure, repository)
+            if cached_result is not None:
+                print(f"{repository.full_name}: {measure.name} is {cached_result}")
+                return cached_result
+
             watchers = self._github_rate_limiter.execute(
                 repository.get_watchers
             )
+
             print(f"{repository.full_name}: {measure.name} is {watchers.totalCount}")
+
+            await self.cache_result(measure, repository, watchers.totalCount)
             return watchers.totalCount
         except Exception as e:
             raise Exception(str(e) + self.__class__.__name__)

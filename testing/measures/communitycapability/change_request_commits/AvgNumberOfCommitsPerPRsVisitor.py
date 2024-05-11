@@ -19,6 +19,11 @@ class AvgNumberOfCommitsPerPRsVisitor(BaseMeasureVisitor[int]):
 
     async def measure(self, measure: 'BaseMeasure', repository: Repository) -> int:
         try:
+            cached_result = await self.get_cached_result(measure, repository)
+            if cached_result is not None:
+                print(f"{repository.full_name}: {measure.name} is {cached_result}")
+                return cached_result
+
             default_upper_threshold = 50
             total_commits = 0
             start_date = datetime.now(timezone.utc) - relativedelta(months=3)
@@ -42,6 +47,8 @@ class AvgNumberOfCommitsPerPRsVisitor(BaseMeasureVisitor[int]):
             avg_commits = total_commits / pull_requests.totalCount
 
             print(f"{repository.full_name}: {measure.name} is {avg_commits} {measure.unit}")
+
+            await self.cache_result(measure, repository, avg_commits)
             return avg_commits
         except Exception as e:
             raise Exception(str(e) + self.__class__.__name__)

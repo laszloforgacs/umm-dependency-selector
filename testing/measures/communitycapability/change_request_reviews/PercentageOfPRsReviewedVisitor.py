@@ -14,6 +14,11 @@ class PercentageOfPRsReviewedVisitor(BaseMeasureVisitor[int]):
 
     async def measure(self, measure: 'BaseMeasure', repository: Repository) -> int:
         try:
+            cached_result = await self.get_cached_result(measure, repository)
+            if cached_result is not None:
+                print(f"{repository.full_name}: {measure.name} is {cached_result}")
+                return cached_result
+
             human_reviewed_prs = 0
             closed_prs = self._github_rate_limiter.execute(
                 repository.get_pulls,
@@ -33,7 +38,10 @@ class PercentageOfPRsReviewedVisitor(BaseMeasureVisitor[int]):
                     human_reviewed_prs += 1
 
             percentage = human_reviewed_prs / closed_prs.totalCount * 100
+
             print(f"{repository.full_name}: {measure.name} is {percentage}{measure.unit}")
+
+            await self.cache_result(measure, repository, percentage)
             return percentage
         except Exception as e:
             raise Exception(str(e) + self.__class__.__name__)

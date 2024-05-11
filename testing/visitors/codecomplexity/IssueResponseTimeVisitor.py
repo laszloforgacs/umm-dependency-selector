@@ -14,7 +14,11 @@ class IssueResponseTimeVisitor(Visitor[float]):
 
     async def measure(self, measure: 'BaseMeasure', repository: 'Repository') -> float:
         try:
-            return 169.0
+            cached_result = await self.get_cached_result(measure, repository)
+            if cached_result is not None:
+                print(f"{repository.full_name}: {measure.name} is {cached_result}")
+                return cached_result
+
             issues = self._github_rate_limiter.execute(
                 repository.get_issues,
                 state="all"
@@ -41,6 +45,8 @@ class IssueResponseTimeVisitor(Visitor[float]):
                     [time_difference.total_seconds() for time_difference in time_differences])
                 average_time_difference_seconds = total_time_difference_seconds / len(time_differences)
                 print(f"{repository.full_name}: {measure.name} is {average_time_difference_seconds}")
+
+                await self.cache_result(measure, repository, average_time_difference_seconds)
                 return average_time_difference_seconds
         except Exception as e:
             raise Exception(str(e) + self.__class__.__name__)

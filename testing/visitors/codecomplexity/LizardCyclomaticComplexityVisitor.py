@@ -13,7 +13,11 @@ class LizardCyclomaticComplexityVisitor(BaseMeasureVisitor[float]):
 
     async def measure(self, measure: 'BaseMeasure', repository: Repository) -> float:
         try:
-            return 123.0
+            cached_result = await self.get_cached_result(measure, repository)
+            if cached_result is not None:
+                print(f"{repository.full_name}: {measure.name} is {cached_result}")
+                return cached_result
+
             base_path = os.getcwd()
             path_to_repository = f"{base_path}/{SOURCE_TEMP_DIR}/{repository.name}"
             process = await asyncio.create_subprocess_shell(
@@ -52,8 +56,10 @@ class LizardCyclomaticComplexityVisitor(BaseMeasureVisitor[float]):
                 "nloc_rt": nloc_rt
             }
             cyclomatic_complexity = float(analysis["avg_ccn"])
+
             print(f"{repository.full_name}: {measure.name} is {cyclomatic_complexity}")
 
+            await self.cache_result(measure, repository, cyclomatic_complexity)
             return cyclomatic_complexity
 
         except Exception as e:

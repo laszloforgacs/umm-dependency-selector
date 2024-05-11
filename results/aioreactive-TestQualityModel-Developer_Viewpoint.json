@@ -128,7 +128,7 @@
                                 {
                                     "class_name": "IssueResolutionDurationAverage",
                                     "name": "Average Duration to Resolve Issues",
-                                    "value": 49.0,
+                                    "value": 7776000,
                                     "impact": "NEGATIVE",
                                     "entity": "issues in issue tracker",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -138,7 +138,7 @@
                                         {
                                             "class_name": "DurationToResolveIssues",
                                             "name": "Closed Issue Resolution Duration",
-                                            "value": 49.0,
+                                            "value": 7776000,
                                             "unit": "issue(s)",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -149,7 +149,7 @@
                                 {
                                     "class_name": "TimeToRespondToIssues",
                                     "name": "Time to Respond to Issues",
-                                    "value": 169.0,
+                                    "value": 2592000,
                                     "impact": "NEGATIVE",
                                     "entity": "issue",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -159,7 +159,7 @@
                                         {
                                             "class_name": "IssueResponseTime",
                                             "name": "Issue Response Time",
-                                            "value": 169.0,
+                                            "value": 2592000,
                                             "unit": "issue",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -182,7 +182,7 @@
                                 {
                                     "class_name": "NumberOfReleases",
                                     "name": "Number of releases",
-                                    "value": 1,
+                                    "value": 0,
                                     "impact": "POSITIVE",
                                     "entity": "Release",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -192,7 +192,7 @@
                                         {
                                             "class_name": "ReleaseCount",
                                             "name": "ReleaseCount",
-                                            "value": 1,
+                                            "value": 0,
                                             "unit": "release",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -215,7 +215,7 @@
                                 {
                                     "class_name": "NumberOfOpenFeatureRequests",
                                     "name": "Number of open feature requests",
-                                    "value": 3,
+                                    "value": 2,
                                     "impact": "NEGATIVE",
                                     "entity": "Feature request",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -225,7 +225,7 @@
                                         {
                                             "class_name": "OpenFeatureRequestCount",
                                             "name": "OpenFeatureRequestCount",
-                                            "value": 3,
+                                            "value": 2,
                                             "unit": "open issue with feature request label",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -242,7 +242,7 @@
                                 {
                                     "class_name": "CommitFrequency",
                                     "name": "Commit Frequency",
-                                    "value": 1,
+                                    "value": 0.0,
                                     "impact": "POSITIVE",
                                     "entity": "Commit",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -252,7 +252,7 @@
                                         {
                                             "class_name": "CommitCount",
                                             "name": "CommitCount",
-                                            "value": 1,
+                                            "value": 0.0,
                                             "unit": "commit",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -263,7 +263,7 @@
                                 {
                                     "class_name": "UpdatedSince",
                                     "name": "Updated since",
-                                    "value": 88.46666666666667,
+                                    "value": 88.5,
                                     "impact": "NEGATIVE",
                                     "entity": "Commit history",
                                     "relevant_oss_aspect": "CODE",
@@ -273,7 +273,7 @@
                                         {
                                             "class_name": "TimeSinceLastCommit",
                                             "name": "TimeSinceLastCommit",
-                                            "value": 88.46666666666667,
+                                            "value": 88.5,
                                             "unit": "months",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -314,7 +314,7 @@
                                 {
                                     "class_name": "IssueAgeAverage",
                                     "name": "Issue Age Average",
-                                    "value": 2645.0,
+                                    "value": 2646.5,
                                     "impact": "NEGATIVE",
                                     "entity": "Repository issue tracker",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -324,7 +324,7 @@
                                         {
                                             "class_name": "OpenIssueAge",
                                             "name": "Open Issue Age",
-                                            "value": 2645.0,
+                                            "value": 2646.5,
                                             "unit": "day(s)",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -482,7 +482,7 @@
                                 {
                                     "class_name": "TimeToRespondToIssues",
                                     "name": "Time to Respond to Issues",
-                                    "value": 169.0,
+                                    "value": 2592000,
                                     "impact": "NEGATIVE",
                                     "entity": "issue",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -492,7 +492,7 @@
                                         {
                                             "class_name": "IssueResponseTime",
                                             "name": "Issue Response Time",
-                                            "value": 169.0,
+                                            "value": 2592000,
                                             "unit": "issue",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -524,7 +524,7 @@
                                 {
                                     "class_name": "NumberOfReleases",
                                     "name": "Number of releases",
-                                    "value": 1,
+                                    "value": 0,
                                     "impact": "POSITIVE",
                                     "entity": "Release",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -534,7 +534,7 @@
                                         {
                                             "class_name": "ReleaseCount",
                                             "name": "ReleaseCount",
-                                            "value": 1,
+                                            "value": 0,
                                             "unit": "release",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -641,7 +641,7 @@
                                 {
                                     "class_name": "AvgIssueResponseTimeMC",
                                     "name": "Average Issue Response Time",
-                                    "value": 169.0,
+                                    "value": 2592000,
                                     "impact": "POSITIVE",
                                     "entity": "First comment on issues",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -651,7 +651,7 @@
                                         {
                                             "class_name": "IssueResponseTime",
                                             "name": "Issue Response Time",
-                                            "value": 169.0,
+                                            "value": 2592000,
                                             "unit": "issue",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -668,7 +668,7 @@
                                 {
                                     "class_name": "CyclomaticComplexityMC",
                                     "name": "Cyclomatic Complexity",
-                                    "value": 123.0,
+                                    "value": 1.0,
                                     "impact": "NEGATIVE",
                                     "entity": "soure code",
                                     "relevant_oss_aspect": "CODE",
@@ -678,7 +678,7 @@
                                         {
                                             "class_name": "CruzCyclomaticComplexityBaseMeasure",
                                             "name": "Cruz Cyclomatic Complexity Base Measure",
-                                            "value": 123.0,
+                                            "value": 1.0,
                                             "unit": "",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -1007,7 +1007,7 @@
                                 {
                                     "class_name": "IssueResolutionDurationAverage",
                                     "name": "Average Duration to Resolve Issues",
-                                    "value": 49.0,
+                                    "value": 7776000,
                                     "impact": "NEGATIVE",
                                     "entity": "issues in issue tracker",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -1017,7 +1017,7 @@
                                         {
                                             "class_name": "DurationToResolveIssues",
                                             "name": "Closed Issue Resolution Duration",
-                                            "value": 49.0,
+                                            "value": 7776000,
                                             "unit": "issue(s)",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -1028,7 +1028,7 @@
                                 {
                                     "class_name": "TimeToRespondToIssues",
                                     "name": "Time to Respond to Issues",
-                                    "value": 169.0,
+                                    "value": 2592000,
                                     "impact": "NEGATIVE",
                                     "entity": "issue",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -1038,7 +1038,7 @@
                                         {
                                             "class_name": "IssueResponseTime",
                                             "name": "Issue Response Time",
-                                            "value": 169.0,
+                                            "value": 2592000,
                                             "unit": "issue",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -1448,7 +1448,7 @@
                                 {
                                     "class_name": "IssueAgeAverage",
                                     "name": "Issue Age Average",
-                                    "value": 2645.0,
+                                    "value": 2646.5,
                                     "impact": "NEGATIVE",
                                     "entity": "Repository issue tracker",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -1458,7 +1458,7 @@
                                         {
                                             "class_name": "OpenIssueAge",
                                             "name": "Open Issue Age",
-                                            "value": 2645.0,
+                                            "value": 2646.5,
                                             "unit": "day(s)",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -1517,7 +1517,7 @@
                                 {
                                     "class_name": "AvgIssueResponseTimeMC",
                                     "name": "Average Issue Response Time",
-                                    "value": 169.0,
+                                    "value": 2592000,
                                     "impact": "POSITIVE",
                                     "entity": "First comment on issues",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -1527,7 +1527,7 @@
                                         {
                                             "class_name": "IssueResponseTime",
                                             "name": "Issue Response Time",
-                                            "value": 169.0,
+                                            "value": 2592000,
                                             "unit": "issue",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",

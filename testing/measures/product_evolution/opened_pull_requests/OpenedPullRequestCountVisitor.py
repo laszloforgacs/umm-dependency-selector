@@ -17,6 +17,11 @@ class OpenedPullRequestCountVisitor(Visitor[int]):
 
     async def measure(self, measure: 'BaseMeasure', repository: 'Repository') -> int:
         try:
+            cached_result = await self.get_cached_result(measure, repository)
+            if cached_result is not None:
+                print(f"{repository.full_name}: {measure.name} is {cached_result}")
+                return cached_result
+
             end_date = datetime.now(timezone.utc)
             start_date = end_date - relativedelta(months=6)
             opened_pull_requests = self._github_rate_limiter.execute(
@@ -30,7 +35,10 @@ class OpenedPullRequestCountVisitor(Visitor[int]):
                     opened_pull_request_count += 1
                 else:
                     break
+
             print(f"{repository.full_name}: {measure.name} is {opened_pull_request_count}")
+
+            await self.cache_result(measure, repository, opened_pull_request_count)
             return opened_pull_request_count
         except Exception as e:
             raise Exception(str(e) + self.__class__.__name__)

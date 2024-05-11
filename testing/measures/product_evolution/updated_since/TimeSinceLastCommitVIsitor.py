@@ -10,6 +10,11 @@ class TimeSinceLastCommitVisitor(Visitor[float]):
 
     async def measure(self, measure: 'BaseMeasure', repository: Repository) -> float:
         try:
+            cached_result = await self.get_cached_result(measure, repository)
+            if cached_result is not None:
+                print(f"{repository.full_name}: {measure.name} is {cached_result}")
+                return cached_result
+
             # default time threshold is 1 year in months
             default_time_threshold = 12
             current_date = datetime.now(timezone.utc)
@@ -22,6 +27,9 @@ class TimeSinceLastCommitVisitor(Visitor[float]):
             last_commit = commits[0]
             last_commit_date = last_commit.commit.author.date
             time_since_last_commit = current_date - last_commit_date
-            return time_since_last_commit.days / 30
+            time_since_last_commit_months = time_since_last_commit.days / 30
+
+            await self.cache_result(measure, repository, time_since_last_commit_months)
+            return time_since_last_commit_months
         except Exception as e:
             raise Exception(str(e) + self.__class__.__name__)

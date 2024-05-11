@@ -17,6 +17,11 @@ class NewIssuesCountVisitor(BaseMeasureVisitor[int]):
 
     async def measure(self, measure: 'BaseMeasure', repository: Repository) -> int:
         try:
+            cached_result = await self.get_cached_result(measure, repository)
+            if cached_result is not None:
+                print(f"{repository.full_name}: {measure.name} is {cached_result}")
+                return cached_result
+
             start_date = datetime.now(timezone.utc) - relativedelta(months=3)
             issues = self._github_rate_limiter.execute(
                 repository.get_issues,
@@ -35,6 +40,8 @@ class NewIssuesCountVisitor(BaseMeasureVisitor[int]):
             new_issues_count = len(new_issues)
 
             print(f"{repository.full_name}: {measure.name} is {new_issues_count} {measure.unit}")
+
+            await self.cache_result(measure, repository, new_issues_count)
             return new_issues_count
         except Exception as e:
             raise Exception(str(e) + self.__class__.__name__)

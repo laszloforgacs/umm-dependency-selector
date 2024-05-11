@@ -23,6 +23,11 @@ class NewContributorsVisitor(BaseMeasureVisitor[int]):
 
     async def measure(self, measure: 'BaseMeasure', repository: Repository) -> int:
         try:
+            cached_result = await self.get_cached_result(measure, repository)
+            if cached_result is not None:
+                print(f"{repository.full_name}: {measure.name} is {cached_result}")
+                return cached_result
+
             new_contributor_count = 0
             commenters = set()
             end_date = datetime.now(timezone.utc)
@@ -70,6 +75,7 @@ class NewContributorsVisitor(BaseMeasureVisitor[int]):
 
             print(f"{repository.full_name}: {measure.name} is {new_contributor_count}")
 
+            await self.cache_result(measure, repository, new_contributor_count)
             return new_contributor_count
         except Exception as e:
             raise Exception(str(e) + self.__class__.__name__)

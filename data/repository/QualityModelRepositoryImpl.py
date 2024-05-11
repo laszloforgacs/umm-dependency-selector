@@ -45,6 +45,10 @@ from testing.measurableconcepts.communitycapability.code_development_efficiency.
     ChangeRequestsDurationAverage
 from testing.measurableconcepts.communitycapability.code_development_process_quality.ChangeRequestReviews import \
     ChangeRequestReviews
+from testing.measurableconcepts.communitycapability.community_growth.NewContributorsClosingIssuesCount import \
+    NewContributorsClosingIssuesCount
+from testing.measurableconcepts.communitycapability.community_growth.NewContributorsClosingIssuesPercentage import \
+    NewContributorsClosingIssuesPercentage
 from testing.measurableconcepts.communitycapability.issue_resolution.IssuesActiveCount import IssuesActiveCount
 from testing.measurableconcepts.communitycapability.issue_resolution.IssuesActiveRatio import IssuesActiveRatio
 from testing.measurableconcepts.communitycapability.issue_resolution.IssuesClosedCount import IssuesClosedCount
@@ -90,6 +94,11 @@ from testing.measures.communitycapability.TruckFactor import TruckFactor
 from testing.measures.communitycapability.change_request_reviews.PercentageOfPRsReviewed import PercentageOfPRsReviewed
 from testing.measures.communitycapability.change_requests_duration.DurationToResolvePullRequests import \
     DurationToResolvePullRequests
+from testing.measures.communitycapability.community_growth.ClosedIssuesCountByNewContributors import \
+    ClosedIssuesCountByNewContributors
+from testing.measures.communitycapability.community_growth.ClosedIssuesPercentageByNewContributors import \
+    ClosedIssuesPercentageByNewContributors
+from testing.measures.communitycapability.community_growth.NewContributors import NewContributors
 from testing.measures.communitycapability.issue_resolution.issues_active.ActiveIssuesRatio import ActiveIssuesRatio
 from testing.measures.communitycapability.issue_resolution.issues_closed.ClosedIssuesRatio import ClosedIssuesRatio
 from testing.measures.communitycapability.issue_resolution.issues_new.NewIssuesCount import NewIssuesCount
@@ -97,7 +106,7 @@ from testing.measures.communitycapability.issue_resolution.issues_new.NewIssuesR
 from testing.measures.maintainer_organization.OrgCountMeasure import OrgCountMeasure
 from testing.measures.number_of_open_feature_request.OpenFeatureRequestCount import OpenFeatureRequestCount
 from testing.measures.numberofreleases.ReleaseCount import ReleaseCount
-from testing.measures.open_participation.NewContributors import NewContributors
+from testing.measures.open_participation.NewContributorsCount import NewContributorsCount
 from testing.measures.peer_influence.RepoMessages import RepoMessages
 from testing.measures.popularity.AnnualCommitCount import AnnualCommitCount
 from testing.measures.popularity.ForksCount import ForksCount
@@ -505,8 +514,8 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
-            new_contributors = self._base_measure_visitor_factory.instantiate_with_visitor(
-                NewContributors,
+            new_contributors_count = self._base_measure_visitor_factory.instantiate_with_visitor(
+                NewContributorsCount,
                 visitor_kwargs={
                     "github_rate_limiter": self._github_rate_limiter
                 }
@@ -515,7 +524,7 @@ class QualityModelRepositoryImpl(QualityModelRepository):
             open_participation = self._measurable_concept_visitor_factory.instantiate_with_visitor(
                 OpenParticipation,
                 children={
-                    new_contributors.name: new_contributors
+                    new_contributors_count.name: new_contributors_count
                 }
             )
 
@@ -575,8 +584,8 @@ class QualityModelRepositoryImpl(QualityModelRepository):
             new_contributors_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
                 NewContributorsMC,
                 children={
-                    new_contributors.name: self._base_measure_visitor_factory.instantiate_with_visitor(
-                        NewContributors,
+                    new_contributors_count.name: self._base_measure_visitor_factory.instantiate_with_visitor(
+                        NewContributorsCount,
                         visitor_kwargs={
                             "github_rate_limiter": self._github_rate_limiter
                         }
@@ -1021,6 +1030,46 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            new_contributors_list = self._base_measure_visitor_factory.instantiate_with_visitor(
+                NewContributors,
+                visitor_kwargs={
+                    "github_rate_limiter": self._github_rate_limiter
+                }
+            )
+
+            closed_issues_count_by_new_contributors = self._derived_measure_visitor_factory.instantiate_with_visitor(
+                ClosedIssuesCountByNewContributors,
+                children={
+                    new_contributors_list.name: new_contributors_list
+                }
+            )
+
+            new_contributors_closing_issues_count = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                NewContributorsClosingIssuesCount,
+                children={
+                    closed_issues_count_by_new_contributors.name: closed_issues_count_by_new_contributors
+                }
+            )
+
+            closed_issues_percentage_by_new_contributors = self._derived_measure_visitor_factory.instantiate_with_visitor(
+                ClosedIssuesPercentageByNewContributors,
+                children={
+                    new_contributors_list.name: self._base_measure_visitor_factory.instantiate_with_visitor(
+                        NewContributors,
+                        visitor_kwargs={
+                            "github_rate_limiter": self._github_rate_limiter
+                        }
+                    )
+                }
+            )
+
+            new_contributors_closing_issues_percentage = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                NewContributorsClosingIssuesPercentage,
+                children={
+                    closed_issues_percentage_by_new_contributors.name: closed_issues_percentage_by_new_contributors
+                }
+            )
+
             community_and_adoption = CommunityAndAdoption(
                 children={
                     community_exists.name: CommunityExists(
@@ -1158,14 +1207,16 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                             new_contributors_mc.name: self._measurable_concept_visitor_factory.instantiate_with_visitor(
                                 NewContributorsMC,
                                 children={
-                                    new_contributors.name: self._base_measure_visitor_factory.instantiate_with_visitor(
-                                        NewContributors,
+                                    new_contributors_count.name: self._base_measure_visitor_factory.instantiate_with_visitor(
+                                        NewContributorsCount,
                                         visitor_kwargs={
                                             "github_rate_limiter": self._github_rate_limiter
                                         }
                                     )
                                 }
-                            )
+                            ),
+                            new_contributors_closing_issues_count.name: new_contributors_closing_issues_count,
+                            new_contributors_closing_issues_percentage.name: new_contributors_closing_issues_percentage
                         }
                     ),
                     contact_within_reasonable_time.name: ContactWithinReasonableTime(

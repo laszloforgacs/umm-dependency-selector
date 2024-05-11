@@ -1,5 +1,6 @@
 from domain.model.Measure import Measure
 from presentation.core.visitors.Visitor import AggregateVisitor
+from source_temp.PyGithub.github.Repository import Repository
 from testing.measures.communitycapability.ClosedIssuesCount import ClosedIssuesCount
 from testing.measures.communitycapability.TotalIssuesCount import TotalIssuesCount
 
@@ -8,7 +9,7 @@ class AugurIssueThroughputVisitor(AggregateVisitor[tuple[Measure, int]]):
     def __init__(self):
         super().__init__()
 
-    def aggregate(self, normalized_measures: list[tuple[Measure, int]]) -> float:
+    def aggregate(self, normalized_measures: list[tuple[Measure, int]], repository: Repository) -> float:
         try:
             closed_issues_count = 0
             total_issues_count = 0

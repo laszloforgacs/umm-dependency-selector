@@ -28,7 +28,7 @@ class NewContributorsVisitor(BaseMeasureVisitor[int]):
                 print(f"{repository.full_name}: {measure.name} is {cached_result}")
                 return cached_result
 
-            new_contributor_count = 0
+            new_contributors = []
             commenters = set()
             end_date = datetime.now(timezone.utc)
             start_date = end_date - relativedelta(months=3)
@@ -71,11 +71,11 @@ class NewContributorsVisitor(BaseMeasureVisitor[int]):
                             first_contribution_date = event.created_at
 
                 if first_contribution_date and first_contribution_date >= start_date:
-                    new_contributor_count += 1
+                    new_contributors.append(commenter)
 
-            print(f"{repository.full_name}: {measure.name} is {new_contributor_count}")
+            print(f"{repository.full_name}: {measure.name} is {new_contributors}")
 
-            await self.cache_result(measure, repository, new_contributor_count)
-            return new_contributor_count
+            await self.cache_result(measure, repository, new_contributors)
+            return new_contributors
         except Exception as e:
             raise Exception(str(e) + self.__class__.__name__)

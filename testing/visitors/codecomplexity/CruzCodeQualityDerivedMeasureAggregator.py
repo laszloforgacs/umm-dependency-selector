@@ -1,5 +1,6 @@
 from domain.model.Measure import Measure
 from presentation.core.visitors.Visitor import AggregateVisitor
+from source_temp.PyGithub.github.Repository import Repository
 from testing.measures.CruzNumberOfCommentsBaseMeasure import CruzNumberOfCommentsBaseMeasure
 from testing.measures.LinesOfCode import LinesOfCode
 
@@ -8,7 +9,7 @@ class CruzCodeQualityDerivedMeasureAggregator(AggregateVisitor[tuple[Measure, fl
     def __init__(self):
         super().__init__()
 
-    def aggregate(self, normalized_measures: list[tuple[Measure, float]]) -> float:
+    def aggregate(self, normalized_measures: list[tuple[Measure, float]], repository: Repository) -> float:
         lines_of_code = 0.0
         comments = 0.0
 

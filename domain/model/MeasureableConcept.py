@@ -61,16 +61,16 @@ class MeasurableConcept(CompositeComponent, Generic[T], metaclass=ABCGenericMeta
         measurements = [
             (child, await child.measure(repository)) for child in self.children.values()
         ]
-        normalized = self.normalize(measurements)
-        aggregated = self.aggregate(normalized)
+        normalized = self.normalize(measurements, repository)
+        aggregated = self.aggregate(normalized, repository)
         self._value = aggregated
         return aggregated
 
-    def normalize(self, measurements: list[T]) -> list[T]:
-        return self.normalize_visitor.normalize(measurements)
+    def normalize(self, measurements: list[T], repository: Repository) -> list[T]:
+        return self.normalize_visitor.normalize(measurements, repository)
 
-    def aggregate(self, normalized_measures: list[T]) -> U:
-        return self.aggregate_visitor.aggregate(normalized_measures)
+    def aggregate(self, normalized_measures: list[T], repository: Repository) -> U:
+        return self.aggregate_visitor.aggregate(normalized_measures, repository)
 
     def accept_visitors(self, normalize_visitor: 'NormalizeVisitor', aggregate_visitor: 'AggregateVisitor'):
         self.normalize_visitor = normalize_visitor

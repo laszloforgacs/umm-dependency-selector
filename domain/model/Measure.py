@@ -105,6 +105,7 @@ class BaseMeasure(Measure, LeafComponent, Generic[T], metaclass=ABCGenericMeta):
         self._value = value
 
     async def measure(self, repository: str) -> T:
+        print(f"{repository.full_name}: Measuring {self.name}")
         result = await self.visitor.measure(self, repository)
         self.value = result
         return result
@@ -167,17 +168,17 @@ class DerivedMeasure(Measure, CompositeComponent, Generic[T], metaclass=ABCGener
         measurements = [
             (child, await child.measure(repository)) for child in self.children.values()
         ]
-        normalized = self.normalize(measurements)
-        aggregated = self.aggregate(normalized)
+        normalized = self.normalize(measurements, repository)
+        aggregated = self.aggregate(normalized, repository)
         print(f"{repository.full_name}: {self.name} is {aggregated}")
         self.value = aggregated
         return aggregated
 
-    def normalize(self, measurements: list[T]) -> list[T]:
-        return self.normalize_visitor.normalize(measurements)
+    def normalize(self, measurements: list[T], repository: Repository) -> list[T]:
+        return self.normalize_visitor.normalize(measurements, repository)
 
-    def aggregate(self, normalized_measures: list[T]) -> U:
-        return self.aggregate_visitor.aggregate(normalized_measures)
+    def aggregate(self, normalized_measures: list[T], repository: Repository) -> U:
+        return self.aggregate_visitor.aggregate(normalized_measures, repository)
 
     def accept_visitors(self, normalize_visitor: 'NormalizeVisitor', aggregate_visitor: 'AggregateVisitor'):
         self.normalize_visitor = normalize_visitor

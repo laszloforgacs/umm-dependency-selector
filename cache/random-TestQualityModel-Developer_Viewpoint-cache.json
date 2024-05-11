@@ -25,5 +25,7 @@
     "New_Issues_Count_NewIssuesCountVisitor": 0,
     "New_Issues_Ratio_NewIssuesRatioVisitor": 0.0,
     "Active_Issues_Ratio_ActiveIssuesRatioVisitor": 0.0,
-    "Closed_Issues_Ratio_ClosedIssuesRatioVisitor": 0.0
+    "Closed_Issues_Ratio_ClosedIssuesRatioVisitor": 0.0,
+    "New_Contributors_Count_NewContributorsCountVisitor": 0,
+    "New_Contributors_Count_NewContributorsVisitor": []
 }

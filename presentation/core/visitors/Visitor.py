@@ -22,8 +22,9 @@ class Visitor(Generic[T], metaclass=ABCGenericMeta):
     async def cache_result(self, measure: 'Measure', repository: 'Repository', value: T):
         quality_model = measure.get_quality_model()
         viewpoint = measure.get_viewpoint()
-        path = os.path.join(CACHE_FOLDER, f"{repository.name}-{quality_model.name}-{viewpoint.name}-cache.json").replace(" ",
-                                                                                                                    "_")
+        path = os.path.join(CACHE_FOLDER,
+                            f"{repository.name}-{quality_model.name}-{viewpoint.name}-cache.json").replace(" ",
+                                                                                                           "_")
 
         key = f"{measure.name}_{self.__class__.__name__}".replace(" ", "_")
         data = {
@@ -48,8 +49,9 @@ class Visitor(Generic[T], metaclass=ABCGenericMeta):
     async def get_cached_result(self, measure: 'Measure', repository: 'Repository') -> Optional[T]:
         quality_model = measure.get_quality_model()
         viewpoint = measure.get_viewpoint()
-        path = os.path.join(CACHE_FOLDER, f"{repository.name}-{quality_model.name}-{viewpoint.name}-cache.json").replace(" ",
-                                                                                                                    "_")
+        path = os.path.join(CACHE_FOLDER,
+                            f"{repository.name}-{quality_model.name}-{viewpoint.name}-cache.json").replace(" ",
+                                                                                                           "_")
         if not os.path.exists(path):
             return None
 
@@ -77,7 +79,7 @@ class NormalizeVisitor(Visitor[T]):
         pass
 
     @abstractmethod
-    def normalize(self, measurements: list[T]) -> list[T]:
+    def normalize(self, measurements: list[T], repository: Repository) -> list[T]:
         pass
 
 
@@ -86,7 +88,7 @@ class AggregateVisitor(Visitor[T]):
         pass
 
     @abstractmethod
-    def aggregate(self, normalized_measures: list[T]) -> U:
+    def aggregate(self, normalized_measures: list[T], repository: Repository) -> U:
         pass
 
 

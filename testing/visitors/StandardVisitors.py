@@ -7,24 +7,24 @@ from presentation.core.visitors.Visitor import NormalizeVisitor, AggregateVisito
 
 
 class NoOpNormalizeVisitor(NormalizeVisitor[tuple[Measure, float]]):
-    def normalize(self, measurements: list[tuple[Measure, float]]) -> list[tuple[Measure, float]]:
+    def normalize(self, measurements: list[tuple[Measure, float]], repository: Repository) -> list[tuple[Measure, float]]:
         return measurements
 
 
 class StandardNormalizeVisitor(NormalizeVisitor[tuple[Measure, float]]):
-    def normalize(self, measurements: list[tuple[Measure, float]]) -> list[tuple[Measure, float]]:
+    def normalize(self, measurements: list[tuple[Measure, float]], repository: Repository) -> list[tuple[Measure, float]]:
         total = sum(measurement_value for _, measurement_value in measurements)
         return [(measure, measure / total) for measure, _ in measurements]
 
 
 class AverageAggregateVisitor(AggregateVisitor[tuple[Measure, float]]):
-    def aggregate(self, normalized_measures: list[tuple[Measure, float]]) -> float:
+    def aggregate(self, normalized_measures: list[tuple[Measure, float]], repository: Repository) -> float:
         total = sum(measurement_value for _, measurement_value in normalized_measures)
         return total / len(normalized_measures)
 
 
 class AddAggregateVisitor(AggregateVisitor[tuple[Measure, int | float]]):
-    def aggregate(self, normalized_measures: list[tuple[Measure, int | float]]) -> float:
+    def aggregate(self, normalized_measures: list[tuple[Measure, int | float]], repository: Repository) -> float:
         total = sum(measurement_value for _, measurement_value in normalized_measures)
         return total
 

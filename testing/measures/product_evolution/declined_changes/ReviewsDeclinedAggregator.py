@@ -1,5 +1,6 @@
 from domain.model.Measure import Measure
 from presentation.core.visitors.Visitor import AggregateVisitor
+from source_temp.PyGithub.github.Repository import Repository
 from testing.measures.communitycapability.TotalIssuesCount import TotalIssuesCount
 from testing.measures.product_evolution.declined_changes.ReviewsDeclinedCount import ReviewsDeclinedCount
 
@@ -8,7 +9,7 @@ class ReviewsDeclinedAggregator(AggregateVisitor[tuple[Measure, int]]):
     def __init__(self):
         super().__init__()
 
-    def aggregate(self, normalized_measures: list[tuple[Measure, int]]) -> float:
+    def aggregate(self, normalized_measures: list[tuple[Measure, int]], repository: Repository) -> float:
         declined_issues = 0
         total_issues = 0
 

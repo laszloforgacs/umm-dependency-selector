@@ -3,7 +3,8 @@ from abc import ABC, abstractmethod
 from testing.measures.community_vitality.RepositoryAgeMeasureVisitor import RepositoryAgeMeasureVisitor
 from testing.measures.communitycapability.change_request_acceptance_ratio.ReviewsAcceptedToDeclinedRatioAggregator import \
     ReviewsAcceptedToDeclinedRatioAggregator
-from testing.measures.communitycapability.change_request_commits.AvgNumberOfCommitsPerPRsVisitor import AvgNumberOfCommitsPerPRsVisitor
+from testing.measures.communitycapability.change_request_commits.AvgNumberOfCommitsPerPRsVisitor import \
+    AvgNumberOfCommitsPerPRsVisitor
 from testing.measures.communitycapability.change_request_contributors.AvgNumberOfContributorsPerPRsVisitor import \
     AvgNumberOfContributorsPerPRsVisitor
 from testing.measures.communitycapability.LinesChangedCountVisitor import LinesChangedCountVisitor
@@ -11,6 +12,11 @@ from testing.measures.communitycapability.change_request_reviews.PercentageOfPRs
     PercentageOfPRsReviewedVisitor
 from testing.measures.communitycapability.change_requests_duration.DurationToResolvePullRequestsVisitor import \
     DurationToResolvePullRequestsVisitor
+from testing.measures.communitycapability.community_growth.ClosedIssuesCountByNewContributorsVisitor import \
+    ClosedIssuesCountByNewContributorsAggregator
+from testing.measures.communitycapability.community_growth.ClosedIssuesPercentageByNewContributorsAggregator import \
+    ClosedIssuesPercentageByNewContributorsAggregator
+from testing.measures.communitycapability.community_growth.NewContributorsVisitor import NewContributorsVisitor
 from testing.measures.communitycapability.issue_resolution.issues_active.ActiveIssuesRatioVisitor import \
     ActiveIssuesRatioVisitor
 from testing.measures.communitycapability.issue_resolution.issues_closed.ClosedIssuesRatioVisitor import \
@@ -21,7 +27,7 @@ from testing.measures.maintainer_organization.OrgCountMeasureVisitor import OrgC
 from testing.measures.number_of_open_feature_request.OpenFeatureRequestCountVisitor import \
     OpenFeatureRequestCountVisitor
 from testing.measures.numberofreleases.ReleaseCountVisitor import ReleaseCountVisitor
-from testing.measures.open_participation.NewContributorsVisitor import NewContributorsVisitor
+from testing.measures.open_participation.NewContributorsCountVisitor import NewContributorsCountVisitor
 from testing.measures.peer_influence.RepoMessagesVisitor import RepoMessagesVisitor
 from testing.measures.popularity.AnnualCommitCountVisitor import AnnualCommitCountVisitor
 from testing.measures.popularity.DownloadsCountVisitor import DownloadsCountVisitor
@@ -76,6 +82,7 @@ class MeasureVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "NewContributors": NewContributorsVisitor,
             "DurationToResolvePullRequests": DurationToResolvePullRequestsVisitor,
             "ClosedIssuesRatio": ClosedIssuesRatioVisitor,
             "ActiveIssuesRatio": ActiveIssuesRatioVisitor,
@@ -94,7 +101,7 @@ class MeasureVisitorFactory(VisitorFactory):
             "OrgCountMeasure": OrgCountMeasureVisitor,
             "RepositoryAgeMeasure": RepositoryAgeMeasureVisitor,
             "RepoMessages": RepoMessagesVisitor,
-            "NewContributors": NewContributorsVisitor,
+            "NewContributorsCount": NewContributorsCountVisitor,
             "ReviewsAcceptedRatio": ReviewsAcceptedRatioVisitor,
             "OpenedPullRequestCount": OpenedPullRequestCountVisitor,
             "ReviewsDeclinedCount": ReviewsDeclinedCountVisitor,
@@ -143,6 +150,9 @@ class DerivedMeasureVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "ClosedIssuesPercentageByNewContributors": (
+            NoOpNormalizeVisitor, ClosedIssuesPercentageByNewContributorsAggregator),
+            "ClosedIssuesCountByNewContributors": (NoOpNormalizeVisitor, ClosedIssuesCountByNewContributorsAggregator),
             "ReviewsAcceptedToDeclinedRatio": (NoOpNormalizeVisitor, ReviewsAcceptedToDeclinedRatioAggregator),
             "ReviewsDeclinedRatio": (NoOpNormalizeVisitor, ReviewsDeclinedAggregator),
             "IssueThroughput": (NoOpNormalizeVisitor, AugurIssueThroughputVisitor),
@@ -188,6 +198,8 @@ class MeasurableConceptVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "NewContributorsClosingIssuesPercentage": (NoOpNormalizeVisitor, AddAggregateVisitor),
+            "NewContributorsClosingIssuesCount": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "ChangeRequestsDurationAverage": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "IssuesClosedRatio": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "IssuesClosedCount": (NoOpNormalizeVisitor, AddAggregateVisitor),

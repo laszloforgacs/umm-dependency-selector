@@ -442,13 +442,13 @@
                                     "quality_requirement": "Open participation affects a supportive community positively",
                                     "measures": [
                                         {
-                                            "class_name": "NewContributors",
-                                            "name": "New Contributors",
+                                            "class_name": "NewContributorsCount",
+                                            "name": "New Contributors Count",
                                             "value": 0,
                                             "unit": "contributor(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
-                                            "visitor": "NewContributorsVisitor"
+                                            "visitor": "NewContributorsCountVisitor"
                                         }
                                     ]
                                 },
@@ -559,13 +559,13 @@
                                     "quality_requirement": "Affects 'Community Exists' positively",
                                     "measures": [
                                         {
-                                            "class_name": "NewContributors",
-                                            "name": "New Contributors",
+                                            "class_name": "NewContributorsCount",
+                                            "name": "New Contributors Count",
                                             "value": 0,
                                             "unit": "contributor(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
-                                            "visitor": "NewContributorsVisitor"
+                                            "visitor": "NewContributorsCountVisitor"
                                         }
                                     ]
                                 },
@@ -763,13 +763,13 @@
                                     "quality_requirement": "Affects 'Community Exists' positively",
                                     "measures": [
                                         {
-                                            "class_name": "NewContributors",
-                                            "name": "New Contributors",
+                                            "class_name": "NewContributorsCount",
+                                            "name": "New Contributors Count",
                                             "value": 0,
                                             "unit": "contributor(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
-                                            "visitor": "NewContributorsVisitor"
+                                            "visitor": "NewContributorsCountVisitor"
                                         }
                                     ]
                                 },
@@ -1498,13 +1498,46 @@
                                     "quality_requirement": "Affects 'Community Exists' positively",
                                     "measures": [
                                         {
-                                            "class_name": "NewContributors",
-                                            "name": "New Contributors",
+                                            "class_name": "NewContributorsCount",
+                                            "name": "New Contributors Count",
                                             "value": 0,
                                             "unit": "contributor(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
-                                            "visitor": "NewContributorsVisitor"
+                                            "visitor": "NewContributorsCountVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "class_name": "NewContributorsClosingIssuesCount",
+                                    "name": "New Contributors Closing Issues Count",
+                                    "value": 0,
+                                    "impact": "POSITIVE",
+                                    "entity": "issues in the issue tracker",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the number of new contributors closing issues in the issue tracker",
+                                    "quality_requirement": "New contributors closing issues signal community growth and affect product evolution/community capability positively",
+                                    "measures": [
+                                        {
+                                            "class_name": "ClosedIssuesCountByNewContributors",
+                                            "name": "Number of issues closed by new contributors",
+                                            "value": 0,
+                                            "unit": "issue(s)",
+                                            "scale": 1.0,
+                                            "measurement_method": "AUTOMATIC",
+                                            "base_measures": [
+                                                {
+                                                    "class_name": "NewContributors",
+                                                    "name": "New Contributors Count",
+                                                    "value": [],
+                                                    "unit": "contributor(s)",
+                                                    "scale": 1.0,
+                                                    "measurement_method": "AUTOMATIC",
+                                                    "visitor": "NewContributorsVisitor"
+                                                }
+                                            ],
+                                            "normalize_visitor": "NoOpNormalizeVisitor",
+                                            "aggregate_visitor": "ClosedIssuesCountByNewContributorsAggregator"
                                         }
                                     ]
                                 }

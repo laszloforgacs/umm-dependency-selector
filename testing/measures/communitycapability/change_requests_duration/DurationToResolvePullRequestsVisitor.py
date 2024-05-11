@@ -23,7 +23,8 @@ class DurationToResolvePullRequestsVisitor(BaseMeasureVisitor[float]):
 
             time_difference_seconds = [time_difference.total_seconds() for time_difference in time_differences]
             average_time_difference_seconds = sum(time_difference_seconds) / len(time_differences)
-            print(f"{repository.full_name}: {measure.name} is {average_time_difference_seconds}")
-            return average_time_difference_seconds
+            average_time_difference_days = average_time_difference_seconds / (24 * 60 * 60)
+            print(f"{repository.full_name}: {measure.name} is {average_time_difference_days} days")
+            return average_time_difference_days
         except Exception as e:
             raise Exception(str(e) + self.__class__.__name__)

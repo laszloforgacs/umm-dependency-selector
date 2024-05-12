@@ -3,7 +3,9 @@ from domain.model.Measure import MeasurementMethod, BaseMeasure
 """
 from CHAOSS. belongs to Comunity Growth, Inactive Contributors
 Category 1 measure
-Analyzed in the last 3 months, which means we list the developers who went inactive in the last 3 months, but were active before that period.
+Analyzed in the last 1 year. We count the number of developers who went inactive in the last year.
+The interval, or cutoff period is 180 days.
+If a developer has not contributed in the last 180 days, they are considered inactive.
 """
 
 

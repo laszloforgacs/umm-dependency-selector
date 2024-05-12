@@ -845,7 +845,7 @@
                                 {
                                     "class_name": "PopularityMC",
                                     "name": "Popularity",
-                                    "value": 18484,
+                                    "value": 18488,
                                     "impact": "POSITIVE",
                                     "entity": "repository properties",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -864,7 +864,7 @@
                                         {
                                             "class_name": "StarsCount",
                                             "name": "Stars Count",
-                                            "value": 8667,
+                                            "value": 8671,
                                             "unit": "star(s)",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -1511,7 +1511,7 @@
                                 {
                                     "class_name": "NewContributorsClosingIssuesCount",
                                     "name": "New Contributors Closing Issues Count",
-                                    "value": 60,
+                                    "value": 1,
                                     "impact": "POSITIVE",
                                     "entity": "issues in the issue tracker",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -1521,7 +1521,7 @@
                                         {
                                             "class_name": "ClosedIssuesCountByNewContributors",
                                             "name": "Number of issues closed by new contributors",
-                                            "value": 60,
+                                            "value": 1,
                                             "unit": "issue(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -1543,6 +1543,65 @@
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
                                             "aggregate_visitor": "ClosedIssuesCountByNewContributorsAggregator"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "class_name": "NewContributorsClosingIssuesPercentage",
+                                    "name": "New Contributors Closing Issues Percentage",
+                                    "value": 11.11111111111111,
+                                    "impact": "POSITIVE",
+                                    "entity": "issues in the issue tracker",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the percentage of new contributors closing issues in the issue tracker compared to the total number of issues closed by new contributors in the analyzed period",
+                                    "quality_requirement": "New contributors closing issues signal community growth and affect product evolution/community capability positively",
+                                    "measures": [
+                                        {
+                                            "class_name": "ClosedIssuesPercentageByNewContributors",
+                                            "name": "Percentage of issues closed by new contributors",
+                                            "value": 11.11111111111111,
+                                            "unit": "percentage",
+                                            "scale": 1.0,
+                                            "measurement_method": "AUTOMATIC",
+                                            "base_measures": [
+                                                {
+                                                    "class_name": "NewContributors",
+                                                    "name": "New Contributors list",
+                                                    "value": [
+                                                        "marcellogalhardo",
+                                                        "arnaudgiuliani",
+                                                        "momosetkn",
+                                                        "hoc081098"
+                                                    ],
+                                                    "unit": "contributor(s)",
+                                                    "scale": 1.0,
+                                                    "measurement_method": "AUTOMATIC",
+                                                    "visitor": "NewContributorsVisitor"
+                                                }
+                                            ],
+                                            "normalize_visitor": "NoOpNormalizeVisitor",
+                                            "aggregate_visitor": "ClosedIssuesPercentageByNewContributorsAggregator"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "class_name": "InactiveContributorCountInAPeriod",
+                                    "name": "Inactive Contributor Count In A Period",
+                                    "value": 13,
+                                    "impact": "NEGATIVE",
+                                    "entity": "contributors in issue tracker",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the number of contributors who have gone inactive in the analyzed period",
+                                    "quality_requirement": "Developers going inactive affects community capability/product evolution negatively",
+                                    "measures": [
+                                        {
+                                            "class_name": "InactiveContributorCount",
+                                            "name": "Number of inactive contributors",
+                                            "value": 13,
+                                            "unit": "contributor(s)",
+                                            "scale": 1.0,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "InactiveContributorCountVisitor"
                                         }
                                     ]
                                 }

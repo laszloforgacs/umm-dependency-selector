@@ -29,5 +29,6 @@
     "Active_Issues_Ratio_ActiveIssuesRatioVisitor": 0.017582417582417582,
     "Closed_Issues_Ratio_ClosedIssuesRatioVisitor": 0.013186813186813187,
     "Duration_to_Resolve_Pull_Requests_DurationToResolvePullRequestsVisitor": 26.791701879315756,
-    "New_Contributors_list_NewContributorsVisitor": []
+    "New_Contributors_list_NewContributorsVisitor": [],
+    "Number_of_inactive_contributors_InactiveContributorCountVisitor": 0
 }

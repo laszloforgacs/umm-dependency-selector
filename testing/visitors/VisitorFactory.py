@@ -12,10 +12,12 @@ from testing.measures.communitycapability.change_request_reviews.PercentageOfPRs
     PercentageOfPRsReviewedVisitor
 from testing.measures.communitycapability.change_requests_duration.DurationToResolvePullRequestsVisitor import \
     DurationToResolvePullRequestsVisitor
-from testing.measures.communitycapability.community_growth.ClosedIssuesCountByNewContributorsVisitor import \
+from testing.measures.communitycapability.community_growth.ClosedIssuesCountByNewContributorsAggregator import \
     ClosedIssuesCountByNewContributorsAggregator
 from testing.measures.communitycapability.community_growth.ClosedIssuesPercentageByNewContributorsAggregator import \
     ClosedIssuesPercentageByNewContributorsAggregator
+from testing.measures.communitycapability.community_growth.InactiveContributorCountVisitor import \
+    InactiveContributorCountVisitor
 from testing.measures.communitycapability.community_growth.NewContributorsVisitor import NewContributorsVisitor
 from testing.measures.communitycapability.issue_resolution.issues_active.ActiveIssuesRatioVisitor import \
     ActiveIssuesRatioVisitor
@@ -82,6 +84,7 @@ class MeasureVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "InactiveContributorCount": InactiveContributorCountVisitor,
             "NewContributors": NewContributorsVisitor,
             "DurationToResolvePullRequests": DurationToResolvePullRequestsVisitor,
             "ClosedIssuesRatio": ClosedIssuesRatioVisitor,
@@ -198,6 +201,7 @@ class MeasurableConceptVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "InactiveContributorCountInAPeriod": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "NewContributorsClosingIssuesPercentage": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "NewContributorsClosingIssuesCount": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "ChangeRequestsDurationAverage": (NoOpNormalizeVisitor, AddAggregateVisitor),

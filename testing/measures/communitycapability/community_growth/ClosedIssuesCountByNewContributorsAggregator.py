@@ -25,7 +25,7 @@ class ClosedIssuesCountByNewContributorsAggregator(AggregateVisitor[tuple[Measur
                 if isinstance(measure, NewContributors):
                     new_contributors = new_contributors + measure_value
 
-            new_contributors_closing_issues = 0
+            new_contributors_closing_issues = set()
             end_date = datetime.now(timezone.utc)
             start_date = end_date - relativedelta(months=3)
 
@@ -43,10 +43,11 @@ class ClosedIssuesCountByNewContributorsAggregator(AggregateVisitor[tuple[Measur
                 # The new contributors returned by the child measure are new ones
                 # based on their contribution in the last 3 months
                 if issue.closed_by and issue.closed_by.login in new_contributors:
-                    new_contributors_closing_issues += 1
+                    new_contributors_closing_issues.add(issue.closed_by.login)
 
-            print(f"Number of new contributors closing issues: {new_contributors_closing_issues}")
-            return new_contributors_closing_issues
+            count_new_contributors_closing_issues = len(new_contributors_closing_issues)
+            print(f"Number of new contributors closing issues: {count_new_contributors_closing_issues}")
+            return count_new_contributors_closing_issues
         except Exception as e:
             raise Exception(str(e) + self.__class__.__name__)
 
@@ -54,4 +55,3 @@ class ClosedIssuesCountByNewContributorsAggregator(AggregateVisitor[tuple[Measur
         auth = Token(os.getenv('UMM_DEPENDENCY_SELECTOR_GITHUB_TOKEN'))
         github = Github(auth=auth, per_page=100)
         self._github_rate_limiter = GithubRateLimiter(github=github)
-

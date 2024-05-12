@@ -45,6 +45,8 @@ from testing.measurableconcepts.communitycapability.code_development_efficiency.
     ChangeRequestsDurationAverage
 from testing.measurableconcepts.communitycapability.code_development_process_quality.ChangeRequestReviews import \
     ChangeRequestReviews
+from testing.measurableconcepts.communitycapability.community_growth.InactiveContributorCountInAPeriod import \
+    InactiveContributorCountInAPeriod
 from testing.measurableconcepts.communitycapability.community_growth.NewContributorsClosingIssuesCount import \
     NewContributorsClosingIssuesCount
 from testing.measurableconcepts.communitycapability.community_growth.NewContributorsClosingIssuesPercentage import \
@@ -98,6 +100,7 @@ from testing.measures.communitycapability.community_growth.ClosedIssuesCountByNe
     ClosedIssuesCountByNewContributors
 from testing.measures.communitycapability.community_growth.ClosedIssuesPercentageByNewContributors import \
     ClosedIssuesPercentageByNewContributors
+from testing.measures.communitycapability.community_growth.InactiveContributorCount import InactiveContributorCount
 from testing.measures.communitycapability.community_growth.NewContributors import NewContributors
 from testing.measures.communitycapability.issue_resolution.issues_active.ActiveIssuesRatio import ActiveIssuesRatio
 from testing.measures.communitycapability.issue_resolution.issues_closed.ClosedIssuesRatio import ClosedIssuesRatio
@@ -1070,6 +1073,20 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            inactive_contributor_count = self._base_measure_visitor_factory.instantiate_with_visitor(
+                InactiveContributorCount,
+                visitor_kwargs={
+                    "github_rate_limiter": self._github_rate_limiter
+                }
+            )
+
+            inactive_contributor_count_in_a_period = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                InactiveContributorCountInAPeriod,
+                children={
+                    inactive_contributor_count.name: inactive_contributor_count
+                }
+            )
+
             community_and_adoption = CommunityAndAdoption(
                 children={
                     community_exists.name: CommunityExists(
@@ -1216,7 +1233,8 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                                 }
                             ),
                             new_contributors_closing_issues_count.name: new_contributors_closing_issues_count,
-                            new_contributors_closing_issues_percentage.name: new_contributors_closing_issues_percentage
+                            new_contributors_closing_issues_percentage.name: new_contributors_closing_issues_percentage,
+                            inactive_contributor_count_in_a_period.name: inactive_contributor_count_in_a_period
                         }
                     ),
                     contact_within_reasonable_time.name: ContactWithinReasonableTime(

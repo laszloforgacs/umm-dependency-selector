@@ -26,7 +26,7 @@ class ClosedIssuesPercentageByNewContributorsAggregator(AggregateVisitor[tuple[M
                 if isinstance(measure, NewContributors):
                     new_contributors = new_contributors + measure_value
 
-            new_contributors_closing_issues = 0
+            new_contributors_closing_issues = set()
             end_date = datetime.now(timezone.utc)
             start_date = end_date - relativedelta(months=3)
 
@@ -44,18 +44,18 @@ class ClosedIssuesPercentageByNewContributorsAggregator(AggregateVisitor[tuple[M
                 # The new contributors returned by the child measure are new ones
                 # based on their contribution in the last 3 months
                 if issue.closed_by and issue.closed_by.login in new_contributors:
-                    new_contributors_closing_issues += 1
+                    new_contributors_closing_issues.add(issue.closed_by.login)
 
                 if issue.closed_by:
                     contributors_closing_issues.add(issue.closed_by.login)
 
-
             total_issue_closers = len(contributors_closing_issues)
+            count_new_contributors_closing_issues = len(new_contributors_closing_issues)
             if total_issue_closers == 0:
                 print(f"Number of new contributors closing issues: {0}")
                 return 0.0
 
-            percentage = (new_contributors_closing_issues / total_issue_closers) * 100
+            percentage = (count_new_contributors_closing_issues / total_issue_closers) * 100
             print(f"Percentage of new contributors closing issues: {percentage}")
             return percentage
         except Exception as e:
@@ -65,4 +65,3 @@ class ClosedIssuesPercentageByNewContributorsAggregator(AggregateVisitor[tuple[M
         auth = Token(os.getenv('UMM_DEPENDENCY_SELECTOR_GITHUB_TOKEN'))
         github = Github(auth=auth, per_page=100)
         self._github_rate_limiter = GithubRateLimiter(github=github)
-

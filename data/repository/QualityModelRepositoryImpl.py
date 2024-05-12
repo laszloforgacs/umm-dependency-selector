@@ -51,6 +51,7 @@ from testing.measurableconcepts.communitycapability.community_growth.NewContribu
     NewContributorsClosingIssuesCount
 from testing.measurableconcepts.communitycapability.community_growth.NewContributorsClosingIssuesPercentage import \
     NewContributorsClosingIssuesPercentage
+from testing.measurableconcepts.communitycapability.community_growth.NumberOfDownloads import NumberOfDownloads
 from testing.measurableconcepts.communitycapability.issue_resolution.IssuesActiveCount import IssuesActiveCount
 from testing.measurableconcepts.communitycapability.issue_resolution.IssuesActiveRatio import IssuesActiveRatio
 from testing.measurableconcepts.communitycapability.issue_resolution.IssuesClosedCount import IssuesClosedCount
@@ -96,6 +97,7 @@ from testing.measures.communitycapability.TruckFactor import TruckFactor
 from testing.measures.communitycapability.change_request_reviews.PercentageOfPRsReviewed import PercentageOfPRsReviewed
 from testing.measures.communitycapability.change_requests_duration.DurationToResolvePullRequests import \
     DurationToResolvePullRequests
+from testing.measures.communitycapability.community_growth.AssetDownloadCount import AssetDownloadCount
 from testing.measures.communitycapability.community_growth.ClosedIssuesCountByNewContributors import \
     ClosedIssuesCountByNewContributors
 from testing.measures.communitycapability.community_growth.ClosedIssuesPercentageByNewContributors import \
@@ -1087,6 +1089,20 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            asset_download_count = self._base_measure_visitor_factory.instantiate_with_visitor(
+                AssetDownloadCount,
+                visitor_kwargs={
+                    "github_rate_limiter": self._github_rate_limiter
+                }
+            )
+
+            number_of_downloads = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                NumberOfDownloads,
+                children={
+                    asset_download_count.name: asset_download_count
+                }
+            )
+
             community_and_adoption = CommunityAndAdoption(
                 children={
                     community_exists.name: CommunityExists(
@@ -1234,7 +1250,8 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                             ),
                             new_contributors_closing_issues_count.name: new_contributors_closing_issues_count,
                             new_contributors_closing_issues_percentage.name: new_contributors_closing_issues_percentage,
-                            inactive_contributor_count_in_a_period.name: inactive_contributor_count_in_a_period
+                            inactive_contributor_count_in_a_period.name: inactive_contributor_count_in_a_period,
+                            number_of_downloads.name: number_of_downloads
                         }
                     ),
                     contact_within_reasonable_time.name: ContactWithinReasonableTime(

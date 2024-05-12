@@ -1604,6 +1604,27 @@
                                             "visitor": "InactiveContributorCountVisitor"
                                         }
                                     ]
+                                },
+                                {
+                                    "class_name": "NumberOfDownloads",
+                                    "name": "Number Of Downloads",
+                                    "value": 0,
+                                    "impact": "POSITIVE",
+                                    "entity": "release assets",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Number of Downloads measures the relative and absolute traffic to a project\u2019s repository on the frequency of downloaded or cloned software artifacts",
+                                    "quality_requirement": "Increasing download numbers indicates interest in the project",
+                                    "measures": [
+                                        {
+                                            "class_name": "AssetDownloadCount",
+                                            "name": "Count of asset downloads",
+                                            "value": 0,
+                                            "unit": "asset(s)",
+                                            "scale": 1.0,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "AssetDownloadCountVisitor"
+                                        }
+                                    ]
                                 }
                             ]
                         },

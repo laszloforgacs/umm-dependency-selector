@@ -12,6 +12,7 @@ from testing.measures.communitycapability.change_request_reviews.PercentageOfPRs
     PercentageOfPRsReviewedVisitor
 from testing.measures.communitycapability.change_requests_duration.DurationToResolvePullRequestsVisitor import \
     DurationToResolvePullRequestsVisitor
+from testing.measures.communitycapability.community_growth.AssetDownloadCountVisitor import AssetDownloadCountVisitor
 from testing.measures.communitycapability.community_growth.ClosedIssuesCountByNewContributorsAggregator import \
     ClosedIssuesCountByNewContributorsAggregator
 from testing.measures.communitycapability.community_growth.ClosedIssuesPercentageByNewContributorsAggregator import \
@@ -84,6 +85,7 @@ class MeasureVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "AssetDownloadCount": AssetDownloadCountVisitor,
             "InactiveContributorCount": InactiveContributorCountVisitor,
             "NewContributors": NewContributorsVisitor,
             "DurationToResolvePullRequests": DurationToResolvePullRequestsVisitor,
@@ -201,6 +203,7 @@ class MeasurableConceptVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "NumberOfDownloads": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "InactiveContributorCountInAPeriod": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "NewContributorsClosingIssuesPercentage": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "NewContributorsClosingIssuesCount": (NoOpNormalizeVisitor, AddAggregateVisitor),

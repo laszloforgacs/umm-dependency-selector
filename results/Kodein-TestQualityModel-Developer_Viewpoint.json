@@ -845,7 +845,7 @@
                                 {
                                     "class_name": "PopularityMC",
                                     "name": "Popularity",
-                                    "value": 18488,
+                                    "value": 18489,
                                     "impact": "POSITIVE",
                                     "entity": "repository properties",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -864,7 +864,7 @@
                                         {
                                             "class_name": "StarsCount",
                                             "name": "Stars Count",
-                                            "value": 8671,
+                                            "value": 8672,
                                             "unit": "star(s)",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -1650,6 +1650,33 @@
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
                                             "visitor": "IssueResponseTimeVisitor"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "class_name": "Documentation",
+                            "name": "Documentation",
+                            "measurable_concepts": [
+                                {
+                                    "class_name": "GunningFogIndex",
+                                    "name": "Average Gunning Fog Index of files",
+                                    "value": 22.404541515447214,
+                                    "impact": "NEGATIVE",
+                                    "entity": "text files in the repository",
+                                    "relevant_oss_aspect": "CODE",
+                                    "information_need": "Calculating the average Gunning Fog Index of files in the repository",
+                                    "quality_requirement": "Smaller Gunning Fog Index affects the readability of documentation positively",
+                                    "measures": [
+                                        {
+                                            "class_name": "AvgGunningFogIndex",
+                                            "name": "Average Gunning Fog Index",
+                                            "value": 22.404541515447214,
+                                            "unit": "value",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "AvgGunningFogIndexVisitor"
                                         }
                                     ]
                                 }

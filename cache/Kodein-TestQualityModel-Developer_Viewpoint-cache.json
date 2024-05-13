@@ -31,5 +31,6 @@
     "Duration_to_Resolve_Pull_Requests_DurationToResolvePullRequestsVisitor": 26.791701879315756,
     "New_Contributors_list_NewContributorsVisitor": [],
     "Number_of_inactive_contributors_InactiveContributorCountVisitor": 0,
-    "Count_of_asset_downloads_AssetDownloadCountVisitor": 0
+    "Count_of_asset_downloads_AssetDownloadCountVisitor": 0,
+    "Average_Gunning_Fog_Index_AvgGunningFogIndexVisitor": 16.788229826655687
 }

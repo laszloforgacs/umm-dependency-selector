@@ -60,6 +60,7 @@ from testing.measurableconcepts.communitycapability.issue_resolution.IssuesNewCo
 from testing.measurableconcepts.communitycapability.issue_resolution.IssuesNewRatio import IssuesNewRatio
 from testing.measurableconcepts.complexity.CyclomaticComplexityMC import CyclomaticComplexityMC
 from testing.measurableconcepts.contact_within_reasonable_time.AvgIssueResponseTimeMC import AvgIssueResponseTimeMC
+from testing.measurableconcepts.documentation.GunningFogIndex import GunningFogIndex
 from testing.measurableconcepts.maintainer_organization.MaintainerOrganizationMC import MaintainerOrganizationMC
 from testing.measurableconcepts.numberofopenfeaturerequests.NumberOfOpenFeatureRequests import \
     NumberOfOpenFeatureRequests
@@ -108,6 +109,7 @@ from testing.measures.communitycapability.issue_resolution.issues_active.ActiveI
 from testing.measures.communitycapability.issue_resolution.issues_closed.ClosedIssuesRatio import ClosedIssuesRatio
 from testing.measures.communitycapability.issue_resolution.issues_new.NewIssuesCount import NewIssuesCount
 from testing.measures.communitycapability.issue_resolution.issues_new.NewIssuesRatio import NewIssuesRatio
+from testing.measures.gunning_fog.AvgGunningFogIndex import AvgGunningFogIndex
 from testing.measures.maintainer_organization.OrgCountMeasure import OrgCountMeasure
 from testing.measures.number_of_open_feature_request.OpenFeatureRequestCount import OpenFeatureRequestCount
 from testing.measures.numberofreleases.ReleaseCount import ReleaseCount
@@ -127,6 +129,7 @@ from testing.measures.product_evolution.reviews_accepted.ReviewsAcceptedRatio im
 from testing.measures.product_evolution.staleness.OpenIssueAge import OpenIssueAge
 from testing.measures.product_evolution.updated_since.TimeSinceLastCommit import TimeSinceLastCommit
 from testing.measures.risk.DelBiancoRiskMeasure import DelBiancoRiskMeasure
+from testing.subcharacteristic.Documentation import Documentation
 from testing.subcharacteristic.ReturnOnInvestment import ReturnOnInvestment
 from testing.subcharacteristic.community_exists.CommunityExists import CommunityExists
 from testing.subcharacteristic.community_vitality.CommunityVitality import CommunityVitality
@@ -1103,6 +1106,26 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            avg_gunning_fog_index = self._base_measure_visitor_factory.instantiate_with_visitor(
+                AvgGunningFogIndex,
+                visitor_kwargs={
+                    "github_rate_limiter": self._github_rate_limiter
+                }
+            )
+
+            gunning_fog_index = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                GunningFogIndex,
+                children={
+                    avg_gunning_fog_index.name: avg_gunning_fog_index
+                }
+            )
+
+            documentation = Documentation(
+                children={
+                    gunning_fog_index.name: gunning_fog_index
+                }
+            )
+
             community_and_adoption = CommunityAndAdoption(
                 children={
                     community_exists.name: CommunityExists(
@@ -1268,7 +1291,8 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                                 }
                             )
                         }
-                    )
+                    ),
+                    documentation.name: documentation
                 }
             )
 
@@ -1281,7 +1305,7 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 cost.name: cost,
                 reliability.name: reliability,
                 support_and_service.name: support_and_service,
-                community_and_adoption.name: community_and_adoption
+                community_and_adoption.name: community_and_adoption,
             })
 
             test_quality_model = TestQualityModel(

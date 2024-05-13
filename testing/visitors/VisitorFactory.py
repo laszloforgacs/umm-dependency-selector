@@ -26,6 +26,7 @@ from testing.measures.communitycapability.issue_resolution.issues_closed.ClosedI
     ClosedIssuesRatioVisitor
 from testing.measures.communitycapability.issue_resolution.issues_new.NewIssuesCountVisitor import NewIssuesCountVisitor
 from testing.measures.communitycapability.issue_resolution.issues_new.NewIssuesRatioVisitor import NewIssuesRatioVisitor
+from testing.measures.gunning_fog.AvgGunningFogIndexVisitor import AvgGunningFogIndexVisitor
 from testing.measures.maintainer_organization.OrgCountMeasureVisitor import OrgCountMeasureVisitor
 from testing.measures.number_of_open_feature_request.OpenFeatureRequestCountVisitor import \
     OpenFeatureRequestCountVisitor
@@ -85,6 +86,7 @@ class MeasureVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "AvgGunningFogIndex": AvgGunningFogIndexVisitor,
             "AssetDownloadCount": AssetDownloadCountVisitor,
             "InactiveContributorCount": InactiveContributorCountVisitor,
             "NewContributors": NewContributorsVisitor,
@@ -203,6 +205,7 @@ class MeasurableConceptVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "GunningFogIndex": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "NumberOfDownloads": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "InactiveContributorCountInAPeriod": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "NewContributorsClosingIssuesPercentage": (NoOpNormalizeVisitor, AddAggregateVisitor),

@@ -845,7 +845,7 @@
                                 {
                                     "class_name": "PopularityMC",
                                     "name": "Popularity",
-                                    "value": 18489,
+                                    "value": 18492,
                                     "impact": "POSITIVE",
                                     "entity": "repository properties",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -864,7 +864,7 @@
                                         {
                                             "class_name": "StarsCount",
                                             "name": "Stars Count",
-                                            "value": 8672,
+                                            "value": 8675,
                                             "unit": "star(s)",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -1623,6 +1623,27 @@
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
                                             "visitor": "AssetDownloadCountVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "class_name": "CodeQuality",
+                                    "name": "Code Quality",
+                                    "value": 1,
+                                    "impact": "POSITIVE",
+                                    "entity": "source code",
+                                    "relevant_oss_aspect": "CODE",
+                                    "information_need": "Measuring code quality",
+                                    "quality_requirement": "Affects overall quality of the project positively",
+                                    "measures": [
+                                        {
+                                            "class_name": "CodeQualityMeasure",
+                                            "name": "Code Quality Measure",
+                                            "value": 1,
+                                            "unit": "value",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "SonarQubeVisitor"
                                         }
                                     ]
                                 }

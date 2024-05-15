@@ -16,6 +16,7 @@ from testing.characteristic.InteroperabilityCompatibility import Interoperabilit
 from testing.characteristic.Reliability import Reliability
 from testing.characteristic.SupportAndService import SupportAndService
 from testing.measurableconcepts.AbsenceOfLicenseFees import AbsenceOfLicenseFees
+from testing.measurableconcepts.code_quality.CodeQuality import CodeQuality
 from testing.measurableconcepts.community_exists.CommunityInteractionMC import CommunityInteractionMC
 from testing.measurableconcepts.community_exists.NewContributorsMC import NewContributorsMC
 from testing.measurableconcepts.community_vitality.CommunityLifespan import CommunityLifespan
@@ -80,6 +81,7 @@ from testing.measures.CruzCodeQualityDerivedMeasure import CruzCodeQualityDerive
 from testing.measures.CruzCyclomaticComplexityBaseMeasure import CruzCyclomaticComplexityBaseMeasure
 from testing.measures.CruzNumberOfCommentsBaseMeasure import CruzNumberOfCommentsBaseMeasure
 from testing.measures.License import License
+from testing.measures.code_quality.CodeQualityMeasure import CodeQualityMeasure
 from testing.measures.community_vitality.RepositoryAgeMeasure import RepositoryAgeMeasure
 from testing.measures.communitycapability.change_request_acceptance_ratio.ReviewsAcceptedToDeclinedRatio import \
     ReviewsAcceptedToDeclinedRatio
@@ -1126,6 +1128,20 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            code_quality_measure = self._base_measure_visitor_factory.instantiate_with_visitor(
+                CodeQualityMeasure,
+                visitor_kwargs={
+                    "github_rate_limiter": self._github_rate_limiter
+                }
+            )
+
+            code_quality = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                CodeQuality,
+                children={
+                    code_quality_measure.name: code_quality_measure
+                }
+            )
+
             community_and_adoption = CommunityAndAdoption(
                 children={
                     community_exists.name: CommunityExists(
@@ -1274,7 +1290,8 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                             new_contributors_closing_issues_count.name: new_contributors_closing_issues_count,
                             new_contributors_closing_issues_percentage.name: new_contributors_closing_issues_percentage,
                             inactive_contributor_count_in_a_period.name: inactive_contributor_count_in_a_period,
-                            number_of_downloads.name: number_of_downloads
+                            number_of_downloads.name: number_of_downloads,
+                            code_quality.name: code_quality
                         }
                     ),
                     contact_within_reasonable_time.name: ContactWithinReasonableTime(

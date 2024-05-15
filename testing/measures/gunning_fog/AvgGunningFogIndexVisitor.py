@@ -1,4 +1,5 @@
 import os
+from typing import Final
 
 import aiofiles
 from readability import Readability
@@ -14,7 +15,7 @@ from github.Auth import Token
 Category 2 - belongs to Documentation
 """
 
-SOURCE_TEMP_DIR = "source_temp"
+SOURCE_TEMP_DIR: Final = "source_temp"
 
 
 class AvgGunningFogIndexVisitor(BaseMeasureVisitor[int]):

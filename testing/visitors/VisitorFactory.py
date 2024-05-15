@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+from testing.measures.SonarQubeVisitor import SonarQubeVisitor
 from testing.measures.community_vitality.RepositoryAgeMeasureVisitor import RepositoryAgeMeasureVisitor
 from testing.measures.communitycapability.change_request_acceptance_ratio.ReviewsAcceptedToDeclinedRatioAggregator import \
     ReviewsAcceptedToDeclinedRatioAggregator
@@ -86,6 +87,7 @@ class MeasureVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "CodeQualityMeasure": SonarQubeVisitor,
             "AvgGunningFogIndex": AvgGunningFogIndexVisitor,
             "AssetDownloadCount": AssetDownloadCountVisitor,
             "InactiveContributorCount": InactiveContributorCountVisitor,
@@ -205,6 +207,7 @@ class MeasurableConceptVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "CodeQuality": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "GunningFogIndex": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "NumberOfDownloads": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "InactiveContributorCountInAPeriod": (NoOpNormalizeVisitor, AddAggregateVisitor),

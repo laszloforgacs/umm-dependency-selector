@@ -33,5 +33,9 @@
     "Closed_Issues_Ratio_ClosedIssuesRatioVisitor": 0.0196078431372549,
     "Duration_to_Resolve_Pull_Requests_DurationToResolvePullRequestsVisitor": 156.77505555555555,
     "New_Contributors_Count_NewContributorsCountVisitor": 0,
-    "New_Contributors_Count_NewContributorsVisitor": []
+    "New_Contributors_Count_NewContributorsVisitor": [],
+    "New_Contributors_list_NewContributorsVisitor": [],
+    "Number_of_inactive_contributors_InactiveContributorCountVisitor": 0,
+    "Count_of_asset_downloads_AssetDownloadCountVisitor": 0,
+    "Code_Quality_Measure_SonarQubeVisitor": {}
 }

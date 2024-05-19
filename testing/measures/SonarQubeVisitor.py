@@ -108,7 +108,7 @@ class SonarQubeVisitor(BaseMeasureVisitor[dict]):
 
                 sonar_project = result.get('project')
 
-            await self._scan_sonar_project(global_token, repository)
+            await asyncio.create_task(self._scan_sonar_project(global_token, repository))
 
             metric_keys = self._get_available_metric_keys(encoded_credentials)
 

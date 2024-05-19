@@ -1128,20 +1128,6 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
-            code_quality_measure = self._base_measure_visitor_factory.instantiate_with_visitor(
-                CodeQualityMeasure,
-                visitor_kwargs={
-                    "github_rate_limiter": self._github_rate_limiter
-                }
-            )
-
-            code_quality = self._measurable_concept_visitor_factory.instantiate_with_visitor(
-                CodeQuality,
-                children={
-                    code_quality_measure.name: code_quality_measure
-                }
-            )
-
             community_and_adoption = CommunityAndAdoption(
                 children={
                     community_exists.name: CommunityExists(
@@ -1290,8 +1276,7 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                             new_contributors_closing_issues_count.name: new_contributors_closing_issues_count,
                             new_contributors_closing_issues_percentage.name: new_contributors_closing_issues_percentage,
                             inactive_contributor_count_in_a_period.name: inactive_contributor_count_in_a_period,
-                            number_of_downloads.name: number_of_downloads,
-                            code_quality.name: code_quality
+                            number_of_downloads.name: number_of_downloads
                         }
                     ),
                     contact_within_reasonable_time.name: ContactWithinReasonableTime(
@@ -1313,17 +1298,35 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
-            maintainability = Maintainability(children={
+            code_quality_measure = self._base_measure_visitor_factory.instantiate_with_visitor(
+                CodeQualityMeasure,
+                visitor_kwargs={
+                    "github_rate_limiter": self._github_rate_limiter
+                }
+            )
 
-            })
+            code_quality = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                CodeQuality,
+                children={
+                    code_quality_measure.name: code_quality_measure
+                }
+            )
 
-            developer_viewpoint = DeveloperViewpoint(children={
-                # maintainability.name: maintainability,
-                cost.name: cost,
-                reliability.name: reliability,
-                support_and_service.name: support_and_service,
-                community_and_adoption.name: community_and_adoption,
-            })
+            maintainability = Maintainability(
+                children={
+
+                }
+            )
+
+            developer_viewpoint = DeveloperViewpoint(
+                children={
+                    cost.name: cost,
+                    reliability.name: reliability,
+                    support_and_service.name: support_and_service,
+                    community_and_adoption.name: community_and_adoption,
+                    maintainability.name: maintainability
+                }
+            )
 
             test_quality_model = TestQualityModel(
                 children={

@@ -53,7 +53,7 @@ from testing.subcharacteristic.communitycapability.AugurClosedIssuesCountVisitor
 from testing.subcharacteristic.communitycapability.AugurIssueThroughputVisitor import AugurIssueThroughputVisitor
 from testing.subcharacteristic.communitycapability.AugurTotalIssuesCountVisitor import AugurTotalIssuesCountVisitor
 from testing.visitors.StandardVisitors import MockMeasureVisitor, AverageAggregateVisitor, NoOpNormalizeVisitor, \
-    AddAggregateVisitor
+    AddAggregateVisitor, StandardNormalizeVisitor
 from testing.visitors.codecomplexity.DurationToResolveIssuesVisitor import \
     DurationToResolveIssuesVisitor
 from testing.visitors.codecomplexity.IssueResponseTimeVisitor import IssueResponseTimeVisitor
@@ -87,7 +87,6 @@ class MeasureVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
-            "CodeQualityMeasure": SonarQubeVisitor,
             "AvgGunningFogIndex": AvgGunningFogIndexVisitor,
             "AssetDownloadCount": AssetDownloadCountVisitor,
             "InactiveContributorCount": InactiveContributorCountVisitor,
@@ -159,6 +158,7 @@ class DerivedMeasureVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "SoftwareQualityDerivedMeasure": (StandardNormalizeVisitor, AverageAggregateVisitor),
             "ClosedIssuesPercentageByNewContributors": (
             NoOpNormalizeVisitor, ClosedIssuesPercentageByNewContributorsAggregator),
             "ClosedIssuesCountByNewContributors": (NoOpNormalizeVisitor, ClosedIssuesCountByNewContributorsAggregator),
@@ -207,7 +207,7 @@ class MeasurableConceptVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
-            "CodeQuality": (NoOpNormalizeVisitor, AddAggregateVisitor),
+            "SoftwareQuality": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "GunningFogIndex": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "NumberOfDownloads": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "InactiveContributorCountInAPeriod": (NoOpNormalizeVisitor, AddAggregateVisitor),

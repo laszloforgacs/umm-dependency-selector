@@ -16,7 +16,7 @@ from testing.characteristic.InteroperabilityCompatibility import Interoperabilit
 from testing.characteristic.Reliability import Reliability
 from testing.characteristic.SupportAndService import SupportAndService
 from testing.measurableconcepts.AbsenceOfLicenseFees import AbsenceOfLicenseFees
-from testing.measurableconcepts.code_quality.CodeQuality import CodeQuality
+from testing.measurableconcepts.code_quality.SoftwareQuality import SoftwareQuality
 from testing.measurableconcepts.community_exists.CommunityInteractionMC import CommunityInteractionMC
 from testing.measurableconcepts.community_exists.NewContributorsMC import NewContributorsMC
 from testing.measurableconcepts.community_vitality.CommunityLifespan import CommunityLifespan
@@ -81,7 +81,7 @@ from testing.measures.CruzCodeQualityDerivedMeasure import CruzCodeQualityDerive
 from testing.measures.CruzCyclomaticComplexityBaseMeasure import CruzCyclomaticComplexityBaseMeasure
 from testing.measures.CruzNumberOfCommentsBaseMeasure import CruzNumberOfCommentsBaseMeasure
 from testing.measures.License import License
-from testing.measures.code_quality.CodeQualityMeasure import CodeQualityMeasure
+from testing.measures.software_quality.SoftwareQualityDerivedMeasure import SoftwareQualityDerivedMeasure
 from testing.measures.community_vitality.RepositoryAgeMeasure import RepositoryAgeMeasure
 from testing.measures.communitycapability.change_request_acceptance_ratio.ReviewsAcceptedToDeclinedRatio import \
     ReviewsAcceptedToDeclinedRatio
@@ -1298,21 +1298,13 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
-            code_quality_measure = self._base_measure_visitor_factory.instantiate_with_visitor(
-                CodeQualityMeasure,
-                visitor_kwargs={
-                    "github_rate_limiter": self._github_rate_limiter
-                }
-            )
-
-            code_quality = self._measurable_concept_visitor_factory.instantiate_with_visitor(
-                CodeQuality,
-                children={
-                    code_quality_measure.name: code_quality_measure
-                }
-            )
-
             maintainability = Maintainability(
+                children={
+
+                }
+            )
+
+            code_quality_characteristic = SoftwareQuality(
                 children={
 
                 }
@@ -1324,7 +1316,8 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                     reliability.name: reliability,
                     support_and_service.name: support_and_service,
                     community_and_adoption.name: community_and_adoption,
-                    maintainability.name: maintainability
+                    #maintainability.name: maintainability,
+                    #code_quality_characteristic.name: code_quality_characteristic
                 }
             )
 

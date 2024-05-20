@@ -1,14 +1,14 @@
 from domain.model.MeasureableConcept import MeasurableConcept, Impact, OSSAspect
 
 
-class CodeQuality(MeasurableConcept[int]):
+class SoftwareQuality(MeasurableConcept[int]):
     def __init__(self, children, normalize_visitor=None, aggregate_visitor=None):
         super().__init__(
-            "Code Quality",
+            "Software Quality",
             children,
             Impact.POSITIVE,
             "source code",
-            "Measuring code quality",
+            "Measuring software quality",
             "Affects overall quality of the project positively",
             OSSAspect.CODE,
             normalize_visitor,

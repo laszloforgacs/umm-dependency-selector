@@ -1,13 +1,17 @@
 {
     "preference_matrix": {
-        "Cost, Reliability": "3",
-        "Cost, Support and Service": "4",
-        "Cost, Community and Adoption": "1",
-        "Reliability, Support and Service": "3",
-        "Reliability, Community and Adoption": "5",
-        "Support and Service, Community and Adoption": "7"
+        "Cost, Reliability": "1",
+        "Cost, Support and Service": "1",
+        "Cost, Community and Adoption": "2",
+        "Reliability, Support and Service": "6",
+        "Reliability, Community and Adoption": "1/4",
+        "Support and Service, Community and Adoption": "1/4",
+        "Cost, Code Quality": "4",
+        "Reliability, Code Quality": "1/5",
+        "Support and Service, Code Quality": "1",
+        "Community and Adoption, Code Quality": "3"
     },
     "oss_aspect_preference_matrix": {
-        "COMMUNITY, CODE": "3"
+        "COMMUNITY, CODE": "1/6"
     }
 }

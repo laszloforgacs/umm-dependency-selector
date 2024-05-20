@@ -12,9 +12,11 @@ class NoOpNormalizeVisitor(NormalizeVisitor[tuple[Measure, float]]):
 
 
 class StandardNormalizeVisitor(NormalizeVisitor[tuple[Measure, float]]):
-    def normalize(self, measurements: list[tuple[Measure, float]], repository: Repository) -> list[tuple[Measure, float]]:
+    def normalize(self, measurements: list[tuple[int, float]], repository: Repository) -> list[tuple[int, float]]:
         total = sum(measurement_value for _, measurement_value in measurements)
-        return [(measure, measure / total) for measure, _ in measurements]
+        if total == 0:
+            return [(measure, 0.0) for measure, _ in measurements]
+        return [(measure, measurement_value / total) for measure, measurement_value in measurements]
 
 
 class AverageAggregateVisitor(AggregateVisitor[tuple[Measure, float]]):

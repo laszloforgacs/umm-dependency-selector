@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
 
-from testing.measures.SonarQubeVisitor import SonarQubeVisitor
 from testing.measures.community_vitality.RepositoryAgeMeasureVisitor import RepositoryAgeMeasureVisitor
 from testing.measures.communitycapability.change_request_acceptance_ratio.ReviewsAcceptedToDeclinedRatioAggregator import \
     ReviewsAcceptedToDeclinedRatioAggregator
@@ -49,6 +48,9 @@ from testing.measures.product_evolution.reviews_accepted.ReviewsAcceptedCountVis
 from testing.measures.product_evolution.reviews_accepted.ReviewsAcceptedRatioVisitor import ReviewsAcceptedRatioVisitor
 from testing.measures.product_evolution.staleness.OpenIssueAgeVisitor import OpenIssueAgeVisitor
 from testing.measures.product_evolution.updated_since.TimeSinceLastCommitVIsitor import TimeSinceLastCommitVisitor
+from testing.measures.software_quality.MaintainabilityIssuesVisitor import MaintainabilityIssuesVisitor
+from testing.measures.software_quality.ReliabilityRemediationEffortVisitor import ReliabilityRemediationEffortVisitor
+from testing.measures.software_quality.SecurityRemediationEffortVisitor import SecurityRemediationEffortVisitor
 from testing.subcharacteristic.communitycapability.AugurClosedIssuesCountVisitor import AugurClosedIssuesCountVisitor
 from testing.subcharacteristic.communitycapability.AugurIssueThroughputVisitor import AugurIssueThroughputVisitor
 from testing.subcharacteristic.communitycapability.AugurTotalIssuesCountVisitor import AugurTotalIssuesCountVisitor
@@ -87,6 +89,9 @@ class MeasureVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "MaintainabilityIssues": MaintainabilityIssuesVisitor,
+            "ReliabilityRemediationEffort": ReliabilityRemediationEffortVisitor,
+            "SecurityRemediationEffort": SecurityRemediationEffortVisitor,
             "AvgGunningFogIndex": AvgGunningFogIndexVisitor,
             "AssetDownloadCount": AssetDownloadCountVisitor,
             "InactiveContributorCount": InactiveContributorCountVisitor,
@@ -207,7 +212,7 @@ class MeasurableConceptVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
-            "SoftwareQuality": (NoOpNormalizeVisitor, AddAggregateVisitor),
+            "SonarSoftwareQuality": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "GunningFogIndex": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "NumberOfDownloads": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "InactiveContributorCountInAPeriod": (NoOpNormalizeVisitor, AddAggregateVisitor),

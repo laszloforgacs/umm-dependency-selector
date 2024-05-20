@@ -1,18 +1,16 @@
 import asyncio
 import base64
+import json
 import os
 from typing import Final
 
+import aiofiles
 import requests
 from dotenv import set_key, find_dotenv
 
 from data.repository.SourceRepositoryImpl import SOURCE_TEMP_DIR
-from presentation.core.visitors.Visitor import BaseMeasureVisitor
+from presentation.core.visitors.Visitor import CACHE_FOLDER
 from source_temp.PyGithub.github.Repository import Repository
-from util.GithubRateLimiter import GithubRateLimiter
-
-"""
-"""
 
 SONAR_BASE_URL: Final = "http://localhost:9000"
 GLOBAL_ANALYSIS_TOKEN: Final = "GLOBAL_ANALYSIS_TOKEN"
@@ -38,14 +36,16 @@ plugins_to_install = [
 ]
 
 
-class SonarQubeVisitor(BaseMeasureVisitor[dict]):
-    def __init__(self, github_rate_limiter: GithubRateLimiter):
-        super().__init__()
+class Sonar():
+    def __init__(self, quality_model_name: str, viewpoint_name: str, repository: Repository):
+        self._quality_model_name = quality_model_name
+        self._viewpoint_name = viewpoint_name
+        self._repository = repository
 
-    async def measure(self, measure: 'BaseMeasure', repository: Repository) -> dict:
+    async def measure(self):
         try:
-            cached_result = await self.get_cached_result(measure, repository)
-            if cached_result is not None:
+            cached_result = await self.get_cached_result()
+            if cached_result:
                 return cached_result
 
             username, password = self._get_user_credentials()
@@ -89,7 +89,7 @@ class SonarQubeVisitor(BaseMeasureVisitor[dict]):
             # for plugin_key in missing_plugin_keys:
             # self._install_plugin(encoded_credentials, plugin_key)
 
-            sonar_projects = self._get_sonar_projects(encoded_credentials, repository)
+            sonar_projects = self._get_sonar_projects(encoded_credentials, self._repository)
             # TODO: fix this
             if sonar_projects is None:
                 return {}
@@ -97,27 +97,26 @@ class SonarQubeVisitor(BaseMeasureVisitor[dict]):
             components = sonar_projects.get('components', [])
             sonar_project = next(
                 (component for component in components if
-                 component.get('key', None) == repository.full_name.replace('/', '-')),
+                 component.get('key', None) == self._repository.full_name.replace('/', '-')),
                 None
             )
 
             if sonar_project is None:
-                result = self._create_sonar_project(encoded_credentials, repository)
+                result = self._create_sonar_project(encoded_credentials, self._repository)
                 if result is None:
                     return {}
 
                 sonar_project = result.get('project')
 
-            await asyncio.create_task(self._scan_sonar_project(global_token, repository))
+            await asyncio.create_task(self._scan_sonar_project(global_token, self._repository))
 
             metric_keys = self._get_available_metric_keys(encoded_credentials)
 
-            measures_dict = self._get_measures_dict(encoded_credentials, repository, metric_keys)
+            measures_dict = self._get_measures_dict(encoded_credentials, self._repository, metric_keys)
 
-            await self.cache_result(measure, repository, measures_dict)
+            await self._cache_result(measures_dict)
 
             return measures_dict
-
         except Exception as e:
             raise Exception(str(e) + self.__class__.__name__)
 
@@ -320,3 +319,55 @@ class SonarQubeVisitor(BaseMeasureVisitor[dict]):
     def _encode_credentials(self, username: str, password: str) -> str:
         string_to_encode = f"{username}:{password}"
         return base64.b64encode(string_to_encode.encode()).decode()
+
+    async def get_cached_result(self) -> dict[str, str]:
+        path = os.path.join(CACHE_FOLDER,
+                            f"{self._repository.name}-{self._quality_model_name}-{self._viewpoint_name}-cache.json").replace(
+            " ",
+            "_")
+        if not os.path.exists(path):
+            return None
+
+        content = await self._read_from_file(path)
+        if not content:
+            return None
+
+        data = json.loads(content)
+        key = f"{self.__class__.__name__}"
+        return data.get(key, None)
+
+    async def _cache_result(self, measures_dict: dict[str, str]):
+        path = os.path.join(CACHE_FOLDER,
+                            f"{self._repository.name}-{self._quality_model_name}-{self._viewpoint_name}-cache.json").replace(
+            " ",
+            "_")
+
+        key = f"{self.__class__.__name__}"
+        data = {
+            key: measures_dict
+        }
+
+        if not os.path.exists(path):
+            await self._write_to_file(path, data)
+            return
+
+        content = await self._read_from_file(path)
+
+        if not content:
+            await self._write_to_file(path, data)
+            return
+
+        data = json.loads(content)
+        data[key] = measures_dict
+
+        await self._write_to_file(path, data)
+
+    async def _write_to_file(self, path: str, data: dict):
+        async with aiofiles.open(path, "w") as file:
+            json_string = json.dumps(data, indent=4)
+            await file.write(json_string)
+
+    async def _read_from_file(self, path: str) -> str:
+        async with aiofiles.open(path, "r") as file:
+            content = await file.read()
+            return content

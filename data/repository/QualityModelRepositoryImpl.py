@@ -10,13 +10,14 @@ from domain.model.QualityModel import QualityModel
 from domain.model.Result import Result, Success, Failure
 from domain.model.Viewpoint import Viewpoint
 from domain.repository.QualityModelRepository import QualityModelRepository
+from testing.characteristic.CodeQuality import CodeQuality
 from testing.characteristic.Cost import Cost
 from testing.characteristic.CommunityAndAdoption import CommunityAndAdoption
 from testing.characteristic.InteroperabilityCompatibility import InteroperabilityCompatibility
 from testing.characteristic.Reliability import Reliability
 from testing.characteristic.SupportAndService import SupportAndService
 from testing.measurableconcepts.AbsenceOfLicenseFees import AbsenceOfLicenseFees
-from testing.measurableconcepts.code_quality.SoftwareQuality import SoftwareQuality
+from testing.measurableconcepts.code_quality.SonarSoftwareQuality import SonarSoftwareQuality
 from testing.measurableconcepts.community_exists.CommunityInteractionMC import CommunityInteractionMC
 from testing.measurableconcepts.community_exists.NewContributorsMC import NewContributorsMC
 from testing.measurableconcepts.community_vitality.CommunityLifespan import CommunityLifespan
@@ -81,6 +82,9 @@ from testing.measures.CruzCodeQualityDerivedMeasure import CruzCodeQualityDerive
 from testing.measures.CruzCyclomaticComplexityBaseMeasure import CruzCyclomaticComplexityBaseMeasure
 from testing.measures.CruzNumberOfCommentsBaseMeasure import CruzNumberOfCommentsBaseMeasure
 from testing.measures.License import License
+from testing.measures.software_quality.MaintainabilityIssues import MaintainabilityIssues
+from testing.measures.software_quality.ReliabilityRemediationEffort import ReliabilityRemediationEffort
+from testing.measures.software_quality.SecurityRemediationEffort import SecurityRemediationEffort
 from testing.measures.software_quality.SoftwareQualityDerivedMeasure import SoftwareQualityDerivedMeasure
 from testing.measures.community_vitality.RepositoryAgeMeasure import RepositoryAgeMeasure
 from testing.measures.communitycapability.change_request_acceptance_ratio.ReviewsAcceptedToDeclinedRatio import \
@@ -133,6 +137,7 @@ from testing.measures.product_evolution.updated_since.TimeSinceLastCommit import
 from testing.measures.risk.DelBiancoRiskMeasure import DelBiancoRiskMeasure
 from testing.subcharacteristic.Documentation import Documentation
 from testing.subcharacteristic.ReturnOnInvestment import ReturnOnInvestment
+from testing.subcharacteristic.code_quality.SoftwareQuality import SoftwareQuality
 from testing.subcharacteristic.community_exists.CommunityExists import CommunityExists
 from testing.subcharacteristic.community_vitality.CommunityVitality import CommunityVitality
 from testing.subcharacteristic.communitycapability.CommunityCapability import CommunityCapability
@@ -1304,9 +1309,52 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
-            code_quality_characteristic = SoftwareQuality(
-                children={
+            reliability_remediation_effort = self._base_measure_visitor_factory.instantiate_with_visitor(
+                ReliabilityRemediationEffort,
+                visitor_kwargs={
+                    "github_rate_limiter": self._github_rate_limiter
+                }
+            )
 
+            security_remediation_effort = self._base_measure_visitor_factory.instantiate_with_visitor(
+                SecurityRemediationEffort,
+                visitor_kwargs={
+                    "github_rate_limiter": self._github_rate_limiter
+                }
+            )
+
+            maintainability_issues = self._base_measure_visitor_factory.instantiate_with_visitor(
+                MaintainabilityIssues,
+                visitor_kwargs={
+                    "github_rate_limiter": self._github_rate_limiter
+                }
+            )
+
+            software_quality_derived = self._derived_measure_visitor_factory.instantiate_with_visitor(
+                SoftwareQualityDerivedMeasure,
+                children={
+                    security_remediation_effort.name: security_remediation_effort,
+                    reliability_remediation_effort.name: reliability_remediation_effort,
+                    maintainability_issues.name: maintainability_issues
+                }
+            )
+
+            software_quality_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                SonarSoftwareQuality,
+                children={
+                    software_quality_derived.name: software_quality_derived
+                }
+            )
+
+            software_quality = SoftwareQuality(
+                children={
+                    software_quality_mc.name: software_quality_mc
+                }
+            )
+
+            code_quality = CodeQuality(
+                children={
+                    software_quality.name: software_quality
                 }
             )
 
@@ -1317,7 +1365,7 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                     support_and_service.name: support_and_service,
                     community_and_adoption.name: community_and_adoption,
                     #maintainability.name: maintainability,
-                    #code_quality_characteristic.name: code_quality_characteristic
+                    code_quality.name: code_quality
                 }
             )
 

@@ -845,7 +845,7 @@
                                 {
                                     "class_name": "PopularityMC",
                                     "name": "Popularity",
-                                    "value": 18492,
+                                    "value": 18510,
                                     "impact": "POSITIVE",
                                     "entity": "repository properties",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -864,7 +864,7 @@
                                         {
                                             "class_name": "StarsCount",
                                             "name": "Stars Count",
-                                            "value": 8675,
+                                            "value": 8693,
                                             "unit": "star(s)",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -1549,7 +1549,7 @@
                                 {
                                     "class_name": "NewContributorsClosingIssuesPercentage",
                                     "name": "New Contributors Closing Issues Percentage",
-                                    "value": 11.11111111111111,
+                                    "value": 8.333333333333332,
                                     "impact": "POSITIVE",
                                     "entity": "issues in the issue tracker",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -1559,7 +1559,7 @@
                                         {
                                             "class_name": "ClosedIssuesPercentageByNewContributors",
                                             "name": "Percentage of issues closed by new contributors",
-                                            "value": 11.11111111111111,
+                                            "value": 8.333333333333332,
                                             "unit": "percentage",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -1625,27 +1625,6 @@
                                             "visitor": "AssetDownloadCountVisitor"
                                         }
                                     ]
-                                },
-                                {
-                                    "class_name": "CodeQuality",
-                                    "name": "Code Quality",
-                                    "value": 1,
-                                    "impact": "POSITIVE",
-                                    "entity": "source code",
-                                    "relevant_oss_aspect": "CODE",
-                                    "information_need": "Measuring code quality",
-                                    "quality_requirement": "Affects overall quality of the project positively",
-                                    "measures": [
-                                        {
-                                            "class_name": "CodeQualityMeasure",
-                                            "name": "Code Quality Measure",
-                                            "value": 1,
-                                            "unit": "value",
-                                            "scale": 1,
-                                            "measurement_method": "AUTOMATIC",
-                                            "visitor": "SonarQubeVisitor"
-                                        }
-                                    ]
                                 }
                             ]
                         },
@@ -1698,6 +1677,69 @@
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
                                             "visitor": "AvgGunningFogIndexVisitor"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "class_name": "CodeQuality",
+                    "name": "Code Quality",
+                    "sub_characteristics": [
+                        {
+                            "class_name": "SoftwareQuality",
+                            "name": "Software Quality",
+                            "measurable_concepts": [
+                                {
+                                    "class_name": "SonarSoftwareQuality",
+                                    "name": "Sonar Software Quality",
+                                    "value": 0.3333333333333333,
+                                    "impact": "NEGATIVE",
+                                    "entity": "source code",
+                                    "relevant_oss_aspect": "CODE",
+                                    "information_need": "Measuring software quality",
+                                    "quality_requirement": "Affects overall quality of the project negatively",
+                                    "measures": [
+                                        {
+                                            "class_name": "SoftwareQualityDerivedMeasure",
+                                            "name": "Software Quality",
+                                            "value": 0.3333333333333333,
+                                            "unit": "unit",
+                                            "scale": 1.0,
+                                            "measurement_method": "AUTOMATIC",
+                                            "base_measures": [
+                                                {
+                                                    "class_name": "SecurityRemediationEffort",
+                                                    "name": "Security remediation effort",
+                                                    "value": 0,
+                                                    "unit": "effort unit",
+                                                    "scale": 1,
+                                                    "measurement_method": "AUTOMATIC",
+                                                    "visitor": "SecurityRemediationEffortVisitor"
+                                                },
+                                                {
+                                                    "class_name": "ReliabilityRemediationEffort",
+                                                    "name": "Reliability remediation effort",
+                                                    "value": 2,
+                                                    "unit": "effort unit",
+                                                    "scale": 1,
+                                                    "measurement_method": "AUTOMATIC",
+                                                    "visitor": "ReliabilityRemediationEffortVisitor"
+                                                },
+                                                {
+                                                    "class_name": "MaintainabilityIssues",
+                                                    "name": "Number of Maintainability issues",
+                                                    "value": 679,
+                                                    "unit": "total issues",
+                                                    "scale": 1,
+                                                    "measurement_method": "AUTOMATIC",
+                                                    "visitor": "MaintainabilityIssuesVisitor"
+                                                }
+                                            ],
+                                            "normalize_visitor": "StandardNormalizeVisitor",
+                                            "aggregate_visitor": "AverageAggregateVisitor"
                                         }
                                     ]
                                 }

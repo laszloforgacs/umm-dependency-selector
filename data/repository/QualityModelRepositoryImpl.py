@@ -158,11 +158,7 @@ from testing.visitors.VisitorFactory import MeasureVisitorFactory, DerivedMeasur
 from presentation.util.Util import convert_tuple_keys_to_string, convert_string_keys_to_tuple
 from presentation.viewpoint_preferences.ComponentPreferencesState import PrefMatrix
 from testing.characteristic.Maintainability import Maintainability
-from testing.measurableconcepts.ComplexityOfSourceCode import ComplexityOfSourceCode, ComplexityOfSourceCode2
-from testing.measures.CyclomaticComplexity import CyclomaticComplexity
 from testing.measures.LinesOfCode import LinesOfCode
-from testing.measures.NumberOfComplexFunctions import NumberOfComplexFunctions
-from testing.measures.NumberOfStatements import NumberOfStatements
 from testing.qualitymodels.TestQualityModel import TestQualityModel
 from testing.viewpoints.DeveloperViewpoint import DeveloperViewpoint
 from util.GithubRateLimiter import GithubRateLimiter
@@ -188,41 +184,9 @@ class QualityModelRepositoryImpl(QualityModelRepository):
     async def fetch_quality_models(self) -> Result[list[QualityModel]]:
         try:
             linesOfCode = self._base_measure_visitor_factory.instantiate_with_visitor(LinesOfCode)
-            numberOfComplexFunctions = self._base_measure_visitor_factory.instantiate_with_visitor(
-                NumberOfComplexFunctions
-            )
-            cyclomaticComplexity = self._derived_measure_visitor_factory.instantiate_with_visitor(
-                CyclomaticComplexity,
-                children={
-                    linesOfCode.name: linesOfCode,
-                    numberOfComplexFunctions.name: numberOfComplexFunctions
-                }
-            )
             lizard_cyclomatic_complexity = self._base_measure_visitor_factory.instantiate_with_visitor(
                 CruzCyclomaticComplexityBaseMeasure
             )
-            numberOfStatements = self._base_measure_visitor_factory.instantiate_with_visitor(NumberOfStatements)
-            complexityOfSourceCode = self._measurable_concept_visitor_factory.instantiate_with_visitor(
-                ComplexityOfSourceCode,
-                children={
-                    cyclomaticComplexity.name: cyclomaticComplexity,
-                    numberOfStatements.name: numberOfStatements
-                }
-            )
-
-            complexityOfSourceCode2 = self._measurable_concept_visitor_factory.instantiate_with_visitor(
-                ComplexityOfSourceCode2,
-                children={
-                    cyclomaticComplexity.name: cyclomaticComplexity.copy(
-                        children={
-                            linesOfCode.name: linesOfCode.copy(),
-                            numberOfComplexFunctions.name: numberOfComplexFunctions.copy()
-                        }
-                    ),
-                    numberOfStatements.name: numberOfStatements.copy()
-                }
-            )
-
             cruz_number_of_comments = self._base_measure_visitor_factory.instantiate_with_visitor(
                 CruzNumberOfCommentsBaseMeasure
             )
@@ -333,13 +297,6 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 TimeToRespondToIssues,
                 children={
                     issue_response_time.name: issue_response_time
-                }
-            )
-
-            total_lines_changed_over_time = self._base_measure_visitor_factory.instantiate_with_visitor(
-                LinesChangedCount,
-                visitor_kwargs={
-                    "github_rate_limiter": self._github_rate_limiter
                 }
             )
 
@@ -1249,17 +1206,6 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                                 children={
                                     open_issue_age.name: self._base_measure_visitor_factory.instantiate_with_visitor(
                                         OpenIssueAge,
-                                        visitor_kwargs={
-                                            "github_rate_limiter": self._github_rate_limiter
-                                        }
-                                    )
-                                }
-                            ),
-                            time_to_respond_to_issues.name: self._measurable_concept_visitor_factory.instantiate_with_visitor(
-                                TimeToRespondToIssues,
-                                children={
-                                    issue_response_time.name: self._base_measure_visitor_factory.instantiate_with_visitor(
-                                        IssueResponseTime,
                                         visitor_kwargs={
                                             "github_rate_limiter": self._github_rate_limiter
                                         }

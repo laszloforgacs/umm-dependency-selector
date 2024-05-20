@@ -134,8 +134,6 @@ class MeasureVisitorFactory(VisitorFactory):
             "License": OSSAQMLicenseVisitor,
             "CruzNumberOfCommentsBaseMeasure": ClocNumberOfCommentsVisitor,
             "LinesOfCode": LizardLinesOfCodeVisitor,
-            "NumberOfComplexFunctions": MockMeasureVisitor,
-            "NumberOfStatements": MockMeasureVisitor,
             "CruzCyclomaticComplexityBaseMeasure": LizardCyclomaticComplexityVisitor
         }
 
@@ -165,7 +163,7 @@ class DerivedMeasureVisitorFactory(VisitorFactory):
             # Add more mappings as needed
             "SoftwareQualityDerivedMeasure": (StandardNormalizeVisitor, AverageAggregateVisitor),
             "ClosedIssuesPercentageByNewContributors": (
-            NoOpNormalizeVisitor, ClosedIssuesPercentageByNewContributorsAggregator),
+                NoOpNormalizeVisitor, ClosedIssuesPercentageByNewContributorsAggregator),
             "ClosedIssuesCountByNewContributors": (NoOpNormalizeVisitor, ClosedIssuesCountByNewContributorsAggregator),
             "ReviewsAcceptedToDeclinedRatio": (NoOpNormalizeVisitor, ReviewsAcceptedToDeclinedRatioAggregator),
             "ReviewsDeclinedRatio": (NoOpNormalizeVisitor, ReviewsDeclinedAggregator),
@@ -260,8 +258,6 @@ class MeasurableConceptVisitorFactory(VisitorFactory):
             "NumberOfContributors": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "DelBiancoVulnerabilitiesMC": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "AbsenceOfLicenseFees": (NoOpNormalizeVisitor, AverageAggregateVisitor),
-            "ComplexityOfSourceCode": (NoOpNormalizeVisitor, AverageAggregateVisitor),
-            "ComplexityOfSourceCode2": (NoOpNormalizeVisitor, AverageAggregateVisitor)
         }
 
     def instantiate_with_visitor(

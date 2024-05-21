@@ -13,7 +13,11 @@ class ClocNumberOfCommentsVisitor(Visitor[int]):
 
     async def measure(self, measure: 'BaseMeasure', repository: Repository) -> int:
         try:
-            return 26
+            cached_result = await self.get_cached_result(measure, repository)
+            if cached_result is not None:
+                print(f"{repository.full_name}: {measure.name} is {cached_result}")
+                return cached_result
+
             base_path = os.getcwd()
             path_to_repository = f"{base_path}/{SOURCE_TEMP_DIR}/{repository.name}"
 
@@ -34,8 +38,10 @@ class ClocNumberOfCommentsVisitor(Visitor[int]):
                 raise Exception("No output from cloc")
 
             split_previous_to_last_line = previous_to_last_line.split()
+
             number_of_comments = int(split_previous_to_last_line[-2])
             print(f"{repository.full_name}: {measure.name} is {number_of_comments}")
+            await self.cache_result(measure, repository, number_of_comments)
 
             return number_of_comments
 

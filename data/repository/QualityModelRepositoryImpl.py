@@ -63,6 +63,7 @@ from testing.measurableconcepts.communitycapability.issue_resolution.IssuesNewRa
 from testing.measurableconcepts.complexity.CyclomaticComplexityMC import CyclomaticComplexityMC
 from testing.measurableconcepts.contact_within_reasonable_time.AvgIssueResponseTimeMC import AvgIssueResponseTimeMC
 from testing.measurableconcepts.documentation.GunningFogIndex import GunningFogIndex
+from testing.measurableconcepts.ease_of_maintenance.MaintainabilityRating import MaintainabilityRating
 from testing.measurableconcepts.maintainer_organization.MaintainerOrganizationMC import MaintainerOrganizationMC
 from testing.measurableconcepts.numberofopenfeaturerequests.NumberOfOpenFeatureRequests import \
     NumberOfOpenFeatureRequests
@@ -76,12 +77,19 @@ from testing.measurableconcepts.product_evolution.ReviewsAccepted import Reviews
 from testing.measurableconcepts.product_evolution.IssueAgeAverage import IssueAgeAverage
 from testing.measurableconcepts.risk.DelBiancoVulnerabilitiesMC import DelBiancoVulnerabilitiesMC
 from testing.measurableconcepts.product_evolution.UpdatedSince import UpdatedSince
+from testing.measurableconcepts.size.AvgLengthOfFunctions import AvgLengthOfFunctions
+from testing.measurableconcepts.size.NumberOfClasses import NumberOfClasses
+from testing.measurableconcepts.size.NumberOfFiles import NumberOfFiles
 from testing.measurableconcepts.support_community.OpenParticipation import OpenParticipation
 from testing.measurableconcepts.support_community.PeerInfluence import PeerInfluence
 from testing.measures.CruzCodeQualityDerivedMeasure import CruzCodeQualityDerivedMeasure
 from testing.measures.CruzCyclomaticComplexityBaseMeasure import CruzCyclomaticComplexityBaseMeasure
 from testing.measures.CruzNumberOfCommentsBaseMeasure import CruzNumberOfCommentsBaseMeasure
 from testing.measures.License import License
+from testing.measures.maintainability_rating.SqaleRating import SqaleRating
+from testing.measures.size.avg_length_of_functions.AvgLinesOfCodePerFunction import AvgLinesOfCodePerFunction
+from testing.measures.size.number_of_classes.ClassesCount import ClassesCount
+from testing.measures.size.number_of_files.FilesCount import FilesCount
 from testing.measures.software_quality.MaintainabilityIssues import MaintainabilityIssues
 from testing.measures.software_quality.ReliabilityRemediationEffort import ReliabilityRemediationEffort
 from testing.measures.software_quality.SecurityRemediationEffort import SecurityRemediationEffort
@@ -144,6 +152,8 @@ from testing.subcharacteristic.communitycapability.CommunityCapability import Co
 from testing.subcharacteristic.complexity.Complexity import Complexity
 from testing.subcharacteristic.contact_within_reasonable_time.ContactWithinReasonableTime import \
     ContactWithinReasonableTime
+from testing.subcharacteristic.maintainability.EaseOfMaintenance import EaseOfMaintenance
+from testing.subcharacteristic.maintainability.Size import Size
 from testing.subcharacteristic.maintainer_organization.MaintainerOrganization import MaintainerOrganization
 from testing.subcharacteristic.number_of_contributors.NumberOfContributorsSubChar import NumberOfContributorsSubChar
 from testing.subcharacteristic.openfeaturerequests.CruzOpenFeatureRequests import CruzOpenFeatureRequests
@@ -1249,9 +1259,68 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            avg_lines_of_code_per_function = self._base_measure_visitor_factory.instantiate_with_visitor(
+                AvgLinesOfCodePerFunction
+            )
+
+            avg_length_of_functions = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                AvgLengthOfFunctions,
+                children={
+                    avg_lines_of_code_per_function.name: avg_lines_of_code_per_function
+                }
+            )
+
+            classes_count = self._base_measure_visitor_factory.instantiate_with_visitor(
+                ClassesCount
+            )
+
+            number_of_classes = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                NumberOfClasses,
+                children={
+                    classes_count.name: classes_count
+                }
+            )
+
+            files_count = self._base_measure_visitor_factory.instantiate_with_visitor(
+                FilesCount
+            )
+
+            number_of_files = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                NumberOfFiles,
+                children={
+                    files_count.name: files_count
+                }
+            )
+
+            size = Size(
+                children={
+                    avg_length_of_functions.name: avg_length_of_functions,
+                    number_of_classes.name: number_of_classes,
+                    number_of_files.name: number_of_files
+                }
+            )
+
+            sqale_rating = self._base_measure_visitor_factory.instantiate_with_visitor(
+                SqaleRating
+            )
+
+            maintainability_rating = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                MaintainabilityRating,
+                children={
+                    sqale_rating.name: sqale_rating
+                }
+            )
+
+            ease_of_maintenance = EaseOfMaintenance(
+                children={
+                    maintainability_rating.name: maintainability_rating
+                }
+            )
+
             maintainability = Maintainability(
                 children={
-
+                    size.name: size,
+                    ease_of_maintenance.name: ease_of_maintenance
                 }
             )
 
@@ -1310,7 +1379,7 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                     reliability.name: reliability,
                     support_and_service.name: support_and_service,
                     community_and_adoption.name: community_and_adoption,
-                    #maintainability.name: maintainability,
+                    maintainability.name: maintainability,
                     code_quality.name: code_quality
                 }
             )

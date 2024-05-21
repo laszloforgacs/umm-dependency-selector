@@ -1,5 +1,7 @@
 from abc import ABC, abstractmethod
 
+from testing.measures.maintainability_rating.SqaleRatingVisitor import SqaleRatingVisitor
+from testing.measures.size.avg_length_of_functions.AvgLinesOfCodePerFunctionVisitor import AvgLinesOfCodePerFunctionVisitor
 from testing.measures.community_vitality.RepositoryAgeMeasureVisitor import RepositoryAgeMeasureVisitor
 from testing.measures.communitycapability.change_request_acceptance_ratio.ReviewsAcceptedToDeclinedRatioAggregator import \
     ReviewsAcceptedToDeclinedRatioAggregator
@@ -48,13 +50,15 @@ from testing.measures.product_evolution.reviews_accepted.ReviewsAcceptedCountVis
 from testing.measures.product_evolution.reviews_accepted.ReviewsAcceptedRatioVisitor import ReviewsAcceptedRatioVisitor
 from testing.measures.product_evolution.staleness.OpenIssueAgeVisitor import OpenIssueAgeVisitor
 from testing.measures.product_evolution.updated_since.TimeSinceLastCommitVIsitor import TimeSinceLastCommitVisitor
+from testing.measures.size.number_of_classes.ClassesCountVisitor import ClassesCountVisitor
+from testing.measures.size.number_of_files.FilesCountVisitor import FilesCountVisitor
 from testing.measures.software_quality.MaintainabilityIssuesVisitor import MaintainabilityIssuesVisitor
 from testing.measures.software_quality.ReliabilityRemediationEffortVisitor import ReliabilityRemediationEffortVisitor
 from testing.measures.software_quality.SecurityRemediationEffortVisitor import SecurityRemediationEffortVisitor
 from testing.subcharacteristic.communitycapability.AugurClosedIssuesCountVisitor import AugurClosedIssuesCountVisitor
 from testing.subcharacteristic.communitycapability.AugurIssueThroughputVisitor import AugurIssueThroughputVisitor
 from testing.subcharacteristic.communitycapability.AugurTotalIssuesCountVisitor import AugurTotalIssuesCountVisitor
-from testing.visitors.StandardVisitors import MockMeasureVisitor, AverageAggregateVisitor, NoOpNormalizeVisitor, \
+from testing.visitors.StandardVisitors import AverageAggregateVisitor, NoOpNormalizeVisitor, \
     AddAggregateVisitor, StandardNormalizeVisitor
 from testing.visitors.codecomplexity.DurationToResolveIssuesVisitor import \
     DurationToResolveIssuesVisitor
@@ -89,6 +93,10 @@ class MeasureVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "SqaleRating": SqaleRatingVisitor,
+            "FilesCount": FilesCountVisitor,
+            "ClassesCount": ClassesCountVisitor,
+            "AvgLinesOfCodePerFunction": AvgLinesOfCodePerFunctionVisitor,
             "MaintainabilityIssues": MaintainabilityIssuesVisitor,
             "ReliabilityRemediationEffort": ReliabilityRemediationEffortVisitor,
             "SecurityRemediationEffort": SecurityRemediationEffortVisitor,
@@ -210,6 +218,12 @@ class MeasurableConceptVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "MaintainabilityRating": (NoOpNormalizeVisitor, AddAggregateVisitor),
+            "NumberOfFiles": (NoOpNormalizeVisitor, AddAggregateVisitor),
+            "NumberOfClasses": (NoOpNormalizeVisitor, AddAggregateVisitor),
+            "AvgLengthOfFunctions": (NoOpNormalizeVisitor, AddAggregateVisitor),
+            "NumberOfClasses": (NoOpNormalizeVisitor, AddAggregateVisitor),
+            "NumberOfFiles": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "SonarSoftwareQuality": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "GunningFogIndex": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "NumberOfDownloads": (NoOpNormalizeVisitor, AddAggregateVisitor),

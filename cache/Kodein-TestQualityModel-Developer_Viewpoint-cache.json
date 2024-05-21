@@ -17,7 +17,6 @@
     "TimeSinceLastCommit_TimeSinceLastCommitVisitor": 1.3333333333333333,
     "New_Contributors_Count_NewContributorsCountVisitor": 0,
     "Repo_Messages_RepoMessagesVisitor": 0,
-    "Cruz_Cyclomatic_Complexity_Base_Measure_LizardCyclomaticComplexityVisitor": 1.2,
     "Repository_Age_RepositoryAgeMeasureVisitor": 9,
     "Organization_Count_OrgCountMeasureVisitor": 13,
     "Watchers_Count_WatchersCountVisitor": 3144,
@@ -93,5 +92,10 @@
     },
     "Security_remediation_effort_SecurityRemediationEffortVisitor": 0,
     "Reliability_remediation_effort_ReliabilityRemediationEffortVisitor": 0,
-    "Number_of_Maintainability_issues_MaintainabilityIssuesVisitor": 563
+    "Number_of_Maintainability_issues_MaintainabilityIssuesVisitor": 563,
+    "Cruz_Cyclomatic_Complexity_Base_Measure_LizardCyclomaticComplexityVisitor": 1.2,
+    "Avg_Lines_of_Code_per_Function_AvgLinesOfCodePerFunctionVisitor": 7.9,
+    "Count_of_classes_ClassesCountVisitor": 0,
+    "Count_of_files_FilesCountVisitor": 0,
+    "Sqale_Rating_SqaleRatingVisitor": 1.0
 }

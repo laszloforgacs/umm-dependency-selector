@@ -845,7 +845,7 @@
                                 {
                                     "class_name": "PopularityMC",
                                     "name": "Popularity",
-                                    "value": 18510,
+                                    "value": 18512,
                                     "impact": "POSITIVE",
                                     "entity": "repository properties",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -864,7 +864,7 @@
                                         {
                                             "class_name": "StarsCount",
                                             "name": "Stars Count",
-                                            "value": 8693,
+                                            "value": 8694,
                                             "unit": "star(s)",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -873,7 +873,7 @@
                                         {
                                             "class_name": "ForksCount",
                                             "name": "Forks Count",
-                                            "value": 688,
+                                            "value": 689,
                                             "unit": "fork(s)",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -1677,6 +1677,108 @@
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
                                             "visitor": "AvgGunningFogIndexVisitor"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "class_name": "Maintainability",
+                    "name": "Maintainability",
+                    "sub_characteristics": [
+                        {
+                            "class_name": "Size",
+                            "name": "Size",
+                            "measurable_concepts": [
+                                {
+                                    "class_name": "AvgLengthOfFunctions",
+                                    "name": "Average Length of Functions",
+                                    "value": 4.8,
+                                    "impact": "NEGATIVE",
+                                    "entity": "source code",
+                                    "relevant_oss_aspect": "CODE",
+                                    "information_need": "Calculating the average number lines of code per function in the source code",
+                                    "quality_requirement": "Affects project size negatively",
+                                    "measures": [
+                                        {
+                                            "class_name": "AvgLinesOfCodePerFunction",
+                                            "name": "Avg Lines of Code per Function",
+                                            "value": 4.8,
+                                            "unit": "lines",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "AvgLinesOfCodePerFunctionVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "class_name": "NumberOfClasses",
+                                    "name": "Number of Classes",
+                                    "value": 0,
+                                    "impact": "POSITIVE",
+                                    "entity": "source code",
+                                    "relevant_oss_aspect": "CODE",
+                                    "information_need": "Calculating the efficiency of the number of classes in the repository",
+                                    "quality_requirement": "Affects project size negatively",
+                                    "measures": [
+                                        {
+                                            "class_name": "ClassesCount",
+                                            "name": "Count of classes",
+                                            "value": 0,
+                                            "unit": "efficient",
+                                            "scale": 1.0,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "ClassesCountVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "class_name": "NumberOfFiles",
+                                    "name": "Number of Files",
+                                    "value": 0,
+                                    "impact": "POSITIVE",
+                                    "entity": "source code",
+                                    "relevant_oss_aspect": "CODE",
+                                    "information_need": "Calculating the efficiency of the number of files in the repository",
+                                    "quality_requirement": "Affects project size negatively",
+                                    "measures": [
+                                        {
+                                            "class_name": "FilesCount",
+                                            "name": "Count of files",
+                                            "value": 0,
+                                            "unit": "efficient",
+                                            "scale": 1.0,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "FilesCountVisitor"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "class_name": "EaseOfMaintenance",
+                            "name": "Ease of Maintenance",
+                            "measurable_concepts": [
+                                {
+                                    "class_name": "MaintainabilityRating",
+                                    "name": "Rating given related to the amount of technical debt in the repository",
+                                    "value": 1.0,
+                                    "impact": "NEGATIVE",
+                                    "entity": "source code",
+                                    "relevant_oss_aspect": "CODE",
+                                    "information_need": "Calculating the maintainability rating of the repository",
+                                    "quality_requirement": "High technical debt affects the maintainability of the software negatively",
+                                    "measures": [
+                                        {
+                                            "class_name": "SqaleRating",
+                                            "name": "Sqale Rating",
+                                            "value": 1.0,
+                                            "unit": "rating",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "SqaleRatingVisitor"
                                         }
                                     ]
                                 }

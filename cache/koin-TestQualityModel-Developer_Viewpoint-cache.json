@@ -102,5 +102,9 @@
     },
     "Security_remediation_effort_SecurityRemediationEffortVisitor": 0,
     "Reliability_remediation_effort_ReliabilityRemediationEffortVisitor": 2,
-    "Number_of_Maintainability_issues_MaintainabilityIssuesVisitor": 679
+    "Number_of_Maintainability_issues_MaintainabilityIssuesVisitor": 679,
+    "Avg_Lines_of_Code_per_Function_AvgLinesOfCodePerFunctionVisitor": 4.8,
+    "Count_of_classes_ClassesCountVisitor": 0,
+    "Count_of_files_FilesCountVisitor": 0,
+    "Sqale_Rating_SqaleRatingVisitor": 1.0
 }

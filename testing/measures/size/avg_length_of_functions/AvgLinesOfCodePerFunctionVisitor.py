@@ -7,7 +7,7 @@ from data.repository.SourceRepositoryImpl import SOURCE_TEMP_DIR
 from presentation.core.visitors.Visitor import Visitor
 
 
-class LizardLinesOfCodeVisitor(Visitor[float]):
+class AvgLinesOfCodePerFunctionVisitor(Visitor[float]):
     def __init__(self):
         pass
 
@@ -54,12 +54,12 @@ class LizardLinesOfCodeVisitor(Visitor[float]):
                 "fun_rt": fun_rt,
                 "nloc_rt": nloc_rt
             }
-            lines_of_code = float(analysis["total_nloc"])
-            print(f"{repository.full_name}: {measure.name} is {lines_of_code}")
+            avg_loc_per_fn = float(analysis["avg_nloc"])
+            print(f"{repository.full_name}: {measure.name} is {avg_loc_per_fn}")
 
-            await self.cache_result(measure, repository, lines_of_code)
+            await self.cache_result(measure, repository, avg_loc_per_fn)
 
-            return lines_of_code
+            return avg_loc_per_fn
 
         except Exception as e:
             raise Exception(str(e))

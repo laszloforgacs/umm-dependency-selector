@@ -11,8 +11,8 @@ Sonar measure
 """
 
 
-class MaintainabilityIssuesVisitor(BaseMeasureVisitor[int]):
-    def __init__(self, github_rate_limiter: GithubRateLimiter):
+class FilesCountVisitor(BaseMeasureVisitor[int]):
+    def __init__(self):
         pass
 
     async def measure(self, measure: 'BaseMeasure', repository: Repository) -> int:
@@ -29,20 +29,24 @@ class MaintainabilityIssuesVisitor(BaseMeasureVisitor[int]):
 
             sonar_cache = await sonar.get_cached_result()
             if sonar_cache is not None:
-                maintainability_issues = sonar_cache.get("maintainability_issues", 0)
-                total = json.loads(maintainability_issues).get("total", 0)
-                print(f"{repository.full_name}: {measure.name} is {total} {measure.unit}")
-                await self.cache_result(measure, repository, total)
-                return total
+                files_count = int(sonar_cache.get("files", 0))
+                efficiency = self.efficiency(files_count)
+                print(f"{repository.full_name}: {measure.name} is {files_count}, which is {efficiency} {measure.unit}")
+                await self.cache_result(measure, repository, efficiency)
+                return efficiency
 
             result = await asyncio.create_task(
                 sonar.measure()
             )
 
-            maintainability_issues = result.get("maintainability_issues", 0)
-            total = json.loads(maintainability_issues).get("total", 0)
-            print(f"{repository.full_name}: {measure.name} is {total} {measure.unit}")
-            await self.cache_result(measure, repository, total)
-            return total
+            files_count = int(result.get("files", 0))
+            efficiency = self.efficiency(files_count)
+            print(f"{repository.full_name}: {measure.name} is {files_count}, which is {efficiency} {measure.unit}")
+            await self.cache_result(measure, repository, efficiency)
+            return efficiency
         except Exception as e:
             raise Exception(str(e) + self.__class__.__name__)
+
+    def efficiency(self, measurement_value: int, optimal_value: int = 150, scaling_factor: float = 0.1) -> float:
+        raw_efficiency = 100 - scaling_factor * (measurement_value - optimal_value)**2
+        return max(0, raw_efficiency)

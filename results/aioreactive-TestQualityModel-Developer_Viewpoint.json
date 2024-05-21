@@ -1528,7 +1528,7 @@
                                             "base_measures": [
                                                 {
                                                     "class_name": "NewContributors",
-                                                    "name": "New Contributors Count",
+                                                    "name": "New Contributors list",
                                                     "value": [],
                                                     "unit": "contributor(s)",
                                                     "scale": 1.0,
@@ -1538,6 +1538,81 @@
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
                                             "aggregate_visitor": "ClosedIssuesCountByNewContributorsAggregator"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "class_name": "NewContributorsClosingIssuesPercentage",
+                                    "name": "New Contributors Closing Issues Percentage",
+                                    "value": 0.0,
+                                    "impact": "POSITIVE",
+                                    "entity": "issues in the issue tracker",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the percentage of new contributors closing issues in the issue tracker compared to the total number of issues closed by new contributors in the analyzed period",
+                                    "quality_requirement": "New contributors closing issues signal community growth and affect product evolution/community capability positively",
+                                    "measures": [
+                                        {
+                                            "class_name": "ClosedIssuesPercentageByNewContributors",
+                                            "name": "Percentage of issues closed by new contributors",
+                                            "value": 0.0,
+                                            "unit": "percentage",
+                                            "scale": 1.0,
+                                            "measurement_method": "AUTOMATIC",
+                                            "base_measures": [
+                                                {
+                                                    "class_name": "NewContributors",
+                                                    "name": "New Contributors list",
+                                                    "value": [],
+                                                    "unit": "contributor(s)",
+                                                    "scale": 1.0,
+                                                    "measurement_method": "AUTOMATIC",
+                                                    "visitor": "NewContributorsVisitor"
+                                                }
+                                            ],
+                                            "normalize_visitor": "NoOpNormalizeVisitor",
+                                            "aggregate_visitor": "ClosedIssuesPercentageByNewContributorsAggregator"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "class_name": "InactiveContributorCountInAPeriod",
+                                    "name": "Inactive Contributor Count In A Period",
+                                    "value": 0,
+                                    "impact": "NEGATIVE",
+                                    "entity": "contributors in issue tracker",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the number of contributors who have gone inactive in the analyzed period",
+                                    "quality_requirement": "Developers going inactive affects community capability/product evolution negatively",
+                                    "measures": [
+                                        {
+                                            "class_name": "InactiveContributorCount",
+                                            "name": "Number of inactive contributors",
+                                            "value": 0,
+                                            "unit": "contributor(s)",
+                                            "scale": 1.0,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "InactiveContributorCountVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "class_name": "NumberOfDownloads",
+                                    "name": "Number Of Downloads",
+                                    "value": 0,
+                                    "impact": "POSITIVE",
+                                    "entity": "release assets",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Number of Downloads measures the relative and absolute traffic to a project\u2019s repository on the frequency of downloaded or cloned software artifacts",
+                                    "quality_requirement": "Increasing download numbers indicates interest in the project",
+                                    "measures": [
+                                        {
+                                            "class_name": "AssetDownloadCount",
+                                            "name": "Count of asset downloads",
+                                            "value": 0,
+                                            "unit": "asset(s)",
+                                            "scale": 1.0,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "AssetDownloadCountVisitor"
                                         }
                                     ]
                                 }
@@ -1565,6 +1640,171 @@
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
                                             "visitor": "IssueResponseTimeVisitor"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "class_name": "Documentation",
+                            "name": "Documentation",
+                            "measurable_concepts": [
+                                {
+                                    "class_name": "GunningFogIndex",
+                                    "name": "Average Gunning Fog Index of files",
+                                    "value": 30.0,
+                                    "impact": "NEGATIVE",
+                                    "entity": "text files in the repository",
+                                    "relevant_oss_aspect": "CODE",
+                                    "information_need": "Calculating the average Gunning Fog Index of files in the repository",
+                                    "quality_requirement": "Smaller Gunning Fog Index affects the readability of documentation positively",
+                                    "measures": [
+                                        {
+                                            "class_name": "AvgGunningFogIndex",
+                                            "name": "Average Gunning Fog Index",
+                                            "value": 30.0,
+                                            "unit": "value",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "AvgGunningFogIndexVisitor"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "class_name": "Maintainability",
+                    "name": "Maintainability",
+                    "sub_characteristics": [
+                        {
+                            "class_name": "Size",
+                            "name": "Size",
+                            "measurable_concepts": [
+                                {
+                                    "class_name": "AvgLengthOfFunctions",
+                                    "name": "Average Length of Functions",
+                                    "value": 8.4,
+                                    "impact": "NEGATIVE",
+                                    "entity": "source code",
+                                    "relevant_oss_aspect": "CODE",
+                                    "information_need": "Calculating the average number lines of code per function in the source code",
+                                    "quality_requirement": "Affects project size negatively",
+                                    "measures": [
+                                        {
+                                            "class_name": "AvgLinesOfCodePerFunction",
+                                            "name": "Avg Lines of Code per Function",
+                                            "value": 8.4,
+                                            "unit": "lines",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "AvgLinesOfCodePerFunctionVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "class_name": "NumberOfClasses",
+                                    "name": "Number of Classes",
+                                    "value": 0,
+                                    "impact": "POSITIVE",
+                                    "entity": "source code",
+                                    "relevant_oss_aspect": "CODE",
+                                    "information_need": "Calculating the efficiency of the number of classes in the repository",
+                                    "quality_requirement": "Affects project size negatively",
+                                    "measures": [
+                                        {
+                                            "class_name": "ClassesCount",
+                                            "name": "Count of classes",
+                                            "value": 0,
+                                            "unit": "efficient",
+                                            "scale": 1.0,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "ClassesCountVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "class_name": "NumberOfFiles",
+                                    "name": "Number of Files",
+                                    "value": 0,
+                                    "impact": "POSITIVE",
+                                    "entity": "source code",
+                                    "relevant_oss_aspect": "CODE",
+                                    "information_need": "Calculating the efficiency of the number of files in the repository",
+                                    "quality_requirement": "Affects project size negatively",
+                                    "measures": [
+                                        {
+                                            "class_name": "FilesCount",
+                                            "name": "Count of files",
+                                            "value": 0,
+                                            "unit": "efficient",
+                                            "scale": 1.0,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "FilesCountVisitor"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "class_name": "CodeQuality",
+                    "name": "Code Quality",
+                    "sub_characteristics": [
+                        {
+                            "class_name": "SoftwareQuality",
+                            "name": "Software Quality",
+                            "measurable_concepts": [
+                                {
+                                    "class_name": "SonarSoftwareQuality",
+                                    "name": "Sonar Software Quality",
+                                    "value": 0.3333333333333333,
+                                    "impact": "NEGATIVE",
+                                    "entity": "source code",
+                                    "relevant_oss_aspect": "CODE",
+                                    "information_need": "Measuring software quality",
+                                    "quality_requirement": "Affects overall quality of the project negatively",
+                                    "measures": [
+                                        {
+                                            "class_name": "SoftwareQualityDerivedMeasure",
+                                            "name": "Software Quality",
+                                            "value": 0.3333333333333333,
+                                            "unit": "unit",
+                                            "scale": 1.0,
+                                            "measurement_method": "AUTOMATIC",
+                                            "base_measures": [
+                                                {
+                                                    "class_name": "SecurityRemediationEffort",
+                                                    "name": "Security remediation effort",
+                                                    "value": 0,
+                                                    "unit": "effort unit",
+                                                    "scale": 1,
+                                                    "measurement_method": "AUTOMATIC",
+                                                    "visitor": "SecurityRemediationEffortVisitor"
+                                                },
+                                                {
+                                                    "class_name": "ReliabilityRemediationEffort",
+                                                    "name": "Reliability remediation effort",
+                                                    "value": 5,
+                                                    "unit": "effort unit",
+                                                    "scale": 1,
+                                                    "measurement_method": "AUTOMATIC",
+                                                    "visitor": "ReliabilityRemediationEffortVisitor"
+                                                },
+                                                {
+                                                    "class_name": "MaintainabilityIssues",
+                                                    "name": "Number of Maintainability issues",
+                                                    "value": 20,
+                                                    "unit": "total issues",
+                                                    "scale": 1,
+                                                    "measurement_method": "AUTOMATIC",
+                                                    "visitor": "MaintainabilityIssuesVisitor"
+                                                }
+                                            ],
+                                            "normalize_visitor": "StandardNormalizeVisitor",
+                                            "aggregate_visitor": "AverageAggregateVisitor"
                                         }
                                     ]
                                 }

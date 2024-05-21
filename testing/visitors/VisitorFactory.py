@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+from testing.measures.duplicated_blocks.DuplicatedBlocksCountVisitor import DuplicatedBlocksCountVisitor
 from testing.measures.maintainability_rating.SqaleRatingVisitor import SqaleRatingVisitor
 from testing.measures.size.avg_length_of_functions.AvgLinesOfCodePerFunctionVisitor import AvgLinesOfCodePerFunctionVisitor
 from testing.measures.community_vitality.RepositoryAgeMeasureVisitor import RepositoryAgeMeasureVisitor
@@ -93,6 +94,7 @@ class MeasureVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "DuplicatedBlocksCount": DuplicatedBlocksCountVisitor,
             "SqaleRating": SqaleRatingVisitor,
             "FilesCount": FilesCountVisitor,
             "ClassesCount": ClassesCountVisitor,
@@ -218,6 +220,7 @@ class MeasurableConceptVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "DuplicatedBlocks": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "MaintainabilityRating": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "NumberOfFiles": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "NumberOfClasses": (NoOpNormalizeVisitor, AddAggregateVisitor),

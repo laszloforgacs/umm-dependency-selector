@@ -1,5 +1,6 @@
 {
     "preference_matrix": {
-        "Software Quality, Software Quality": 1
+        "Software Quality, Software Quality": 1,
+        "Software Quality, Reusable Code": "3"
     }
 }

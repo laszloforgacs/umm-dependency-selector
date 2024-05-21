@@ -1846,6 +1846,33 @@
                                     ]
                                 }
                             ]
+                        },
+                        {
+                            "class_name": "ReusableCode",
+                            "name": "Reusable Code",
+                            "measurable_concepts": [
+                                {
+                                    "class_name": "DuplicatedBlocks",
+                                    "name": "Duplicated Blocks",
+                                    "value": 23,
+                                    "impact": "NEGATIVE",
+                                    "entity": "source code",
+                                    "relevant_oss_aspect": "CODE",
+                                    "information_need": "Measuring the number of duplicated blocks in the source code",
+                                    "quality_requirement": "Affects reusability negatively",
+                                    "measures": [
+                                        {
+                                            "class_name": "DuplicatedBlocksCount",
+                                            "name": "Count of Duplicated Blocks",
+                                            "value": 23,
+                                            "unit": "block(s)",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "DuplicatedBlocksCountVisitor"
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ]
                 }

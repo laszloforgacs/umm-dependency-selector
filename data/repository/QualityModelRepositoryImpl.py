@@ -13,6 +13,7 @@ from domain.repository.QualityModelRepository import QualityModelRepository
 from testing.characteristic.CodeQuality import CodeQuality
 from testing.characteristic.Cost import Cost
 from testing.characteristic.CommunityAndAdoption import CommunityAndAdoption
+from testing.characteristic.Innovation import Innovation
 from testing.characteristic.InteroperabilityCompatibility import InteroperabilityCompatibility
 from testing.characteristic.Reliability import Reliability
 from testing.characteristic.SupportAndService import SupportAndService
@@ -75,6 +76,7 @@ from testing.measurableconcepts.product_evolution.IssueInteractions import Issue
 from testing.measurableconcepts.product_evolution.OpenedPullRequests import OpenedPullRequests
 from testing.measurableconcepts.product_evolution.ReviewsAccepted import ReviewsAccepted
 from testing.measurableconcepts.product_evolution.IssueAgeAverage import IssueAgeAverage
+from testing.measurableconcepts.reusable_code.DuplicatedBlocks import DuplicatedBlocks
 from testing.measurableconcepts.risk.DelBiancoVulnerabilitiesMC import DelBiancoVulnerabilitiesMC
 from testing.measurableconcepts.product_evolution.UpdatedSince import UpdatedSince
 from testing.measurableconcepts.size.AvgLengthOfFunctions import AvgLengthOfFunctions
@@ -86,6 +88,7 @@ from testing.measures.CruzCodeQualityDerivedMeasure import CruzCodeQualityDerive
 from testing.measures.CruzCyclomaticComplexityBaseMeasure import CruzCyclomaticComplexityBaseMeasure
 from testing.measures.CruzNumberOfCommentsBaseMeasure import CruzNumberOfCommentsBaseMeasure
 from testing.measures.License import License
+from testing.measures.duplicated_blocks.DuplicatedBlocksCount import DuplicatedBlocksCount
 from testing.measures.maintainability_rating.SqaleRating import SqaleRating
 from testing.measures.size.avg_length_of_functions.AvgLinesOfCodePerFunction import AvgLinesOfCodePerFunction
 from testing.measures.size.number_of_classes.ClassesCount import ClassesCount
@@ -145,6 +148,7 @@ from testing.measures.product_evolution.updated_since.TimeSinceLastCommit import
 from testing.measures.risk.DelBiancoRiskMeasure import DelBiancoRiskMeasure
 from testing.subcharacteristic.Documentation import Documentation
 from testing.subcharacteristic.ReturnOnInvestment import ReturnOnInvestment
+from testing.subcharacteristic.code_quality.ReusableCode import ReusableCode
 from testing.subcharacteristic.code_quality.SoftwareQuality import SoftwareQuality
 from testing.subcharacteristic.community_exists.CommunityExists import CommunityExists
 from testing.subcharacteristic.community_vitality.CommunityVitality import CommunityVitality
@@ -1367,10 +1371,32 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            duplicated_blocks_count = self._base_measure_visitor_factory.instantiate_with_visitor(
+                DuplicatedBlocksCount
+            )
+
+            duplicated_blocks = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                DuplicatedBlocks,
+                children={
+                    duplicated_blocks_count.name: duplicated_blocks_count
+                }
+            )
+
+            reusable_code = ReusableCode(
+                children={
+                    duplicated_blocks.name: duplicated_blocks
+                }
+            )
+
             code_quality = CodeQuality(
                 children={
-                    software_quality.name: software_quality
+                    software_quality.name: software_quality,
+                    reusable_code.name: reusable_code
                 }
+            )
+
+            innovation = Innovation(
+
             )
 
             developer_viewpoint = DeveloperViewpoint(

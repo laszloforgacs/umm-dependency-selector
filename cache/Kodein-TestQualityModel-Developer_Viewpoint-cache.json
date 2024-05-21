@@ -97,5 +97,6 @@
     "Avg_Lines_of_Code_per_Function_AvgLinesOfCodePerFunctionVisitor": 7.9,
     "Count_of_classes_ClassesCountVisitor": 0,
     "Count_of_files_FilesCountVisitor": 0,
-    "Sqale_Rating_SqaleRatingVisitor": 1.0
+    "Sqale_Rating_SqaleRatingVisitor": 1.0,
+    "Count_of_Duplicated_Blocks_DuplicatedBlocksCountVisitor": 82
 }

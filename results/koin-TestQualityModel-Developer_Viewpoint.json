@@ -1875,6 +1875,39 @@
                             ]
                         }
                     ]
+                },
+                {
+                    "class_name": "Innovation",
+                    "name": "Innovation",
+                    "sub_characteristics": [
+                        {
+                            "class_name": "RoyaltyFreeLicenses",
+                            "name": "Royalty Free Licenses",
+                            "measurable_concepts": [
+                                {
+                                    "class_name": "AbsenceOfLicenseFees",
+                                    "name": "Absence of license fees",
+                                    "value": 5.0,
+                                    "impact": "POSITIVE",
+                                    "entity": "Software license",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculation of the absence of fees",
+                                    "quality_requirement": "Absence of fees affects cost positively",
+                                    "measures": [
+                                        {
+                                            "class_name": "License",
+                                            "name": "License",
+                                            "value": 5,
+                                            "unit": "levels",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "OSSAQMLicenseVisitor"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
                 }
             ]
         }

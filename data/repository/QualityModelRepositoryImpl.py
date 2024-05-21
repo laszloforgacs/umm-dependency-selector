@@ -156,6 +156,7 @@ from testing.subcharacteristic.communitycapability.CommunityCapability import Co
 from testing.subcharacteristic.complexity.Complexity import Complexity
 from testing.subcharacteristic.contact_within_reasonable_time.ContactWithinReasonableTime import \
     ContactWithinReasonableTime
+from testing.subcharacteristic.innovation.RoyaltyFreeLicenses import RoyaltyFreeLicenses
 from testing.subcharacteristic.maintainability.EaseOfMaintenance import EaseOfMaintenance
 from testing.subcharacteristic.maintainability.Size import Size
 from testing.subcharacteristic.maintainer_organization.MaintainerOrganization import MaintainerOrganization
@@ -1395,8 +1396,23 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
-            innovation = Innovation(
+            royalty_free_licenses = RoyaltyFreeLicenses(
+                children={
+                    absence_of_license_fees.name: self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                        AbsenceOfLicenseFees,
+                        children={
+                            license_measure.name: self._base_measure_visitor_factory.instantiate_with_visitor(
+                                License
+                            )
+                        }
+                    )
+                }
+            )
 
+            innovation = Innovation(
+                children={
+                    royalty_free_licenses.name: royalty_free_licenses
+                }
             )
 
             developer_viewpoint = DeveloperViewpoint(
@@ -1406,7 +1422,8 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                     support_and_service.name: support_and_service,
                     community_and_adoption.name: community_and_adoption,
                     maintainability.name: maintainability,
-                    code_quality.name: code_quality
+                    code_quality.name: code_quality,
+                    innovation.name: innovation
                 }
             )
 

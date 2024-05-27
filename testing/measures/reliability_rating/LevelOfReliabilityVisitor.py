@@ -10,11 +10,11 @@ Sonar measure
 """
 
 
-class LevelOfReliabilityVisitor(BaseMeasureVisitor[int]):
+class LevelOfReliabilityVisitor(BaseMeasureVisitor[float]):
     def __init__(self, github_rate_limiter: GithubRateLimiter):
         pass
 
-    async def measure(self, measure: 'BaseMeasure', repository: Repository) -> int:
+    async def measure(self, measure: 'BaseMeasure', repository: Repository) -> float:
         try:
             sonar = Sonar(
                 quality_model_name=measure.get_quality_model().name,
@@ -24,8 +24,10 @@ class LevelOfReliabilityVisitor(BaseMeasureVisitor[int]):
 
             cached_result = await self.get_cached_result(measure, repository)
             if cached_result is not None:
-                print(f"{repository.full_name}: {measure.name} is {cached_result}")
-                return cached_result
+                converted_reliability_rating = self._convert_reliability_rating(cached_result)
+                print(
+                    f"{repository.full_name}: {measure.name} is {converted_reliability_rating}, rating {self._get_literal_rating(converted_reliability_rating)}")
+                return converted_reliability_rating
 
             sonar_cache = await sonar.get_cached_result()
             if sonar_cache is not None:
@@ -33,7 +35,7 @@ class LevelOfReliabilityVisitor(BaseMeasureVisitor[int]):
                 converted_reliability_rating = self._convert_reliability_rating(reliability_rating)
                 print(
                     f"{repository.full_name}: {measure.name} is {converted_reliability_rating}, rating {self._get_literal_rating(converted_reliability_rating)}")
-                await self.cache_result(measure, repository, converted_reliability_rating)
+                await self.cache_result(measure, repository, reliability_rating)
                 return converted_reliability_rating
 
             result = await asyncio.create_task(
@@ -44,12 +46,12 @@ class LevelOfReliabilityVisitor(BaseMeasureVisitor[int]):
             converted_reliability_rating = self._convert_reliability_rating(reliability_rating)
             print(
                 f"{repository.full_name}: {measure.name} is {converted_reliability_rating}, rating {self._get_literal_rating(converted_reliability_rating)}")
-            await self.cache_result(measure, repository, converted_reliability_rating)
+            await self.cache_result(measure, repository, reliability_rating)
             return converted_reliability_rating
         except Exception as e:
             raise Exception(str(e) + self.__class__.__name__)
 
-    def _convert_reliability_rating(self, sonar_reliability_rating: float):
+    def _convert_reliability_rating(self, sonar_reliability_rating: float) -> float:
         # Sonar reliability rating is 1-5, where 1 is the best and 5 is the worst
         if sonar_reliability_rating == 1.0:
             return 5.0
@@ -64,7 +66,7 @@ class LevelOfReliabilityVisitor(BaseMeasureVisitor[int]):
         else:
             return 1.0
 
-    def _get_literal_rating(self, converted_rating: float):
+    def _get_literal_rating(self, converted_rating: float) -> float:
         if converted_rating == 5.0:
             return "A"
         elif converted_rating == 4.0:

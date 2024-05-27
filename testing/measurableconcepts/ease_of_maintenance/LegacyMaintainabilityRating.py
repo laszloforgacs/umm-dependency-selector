@@ -5,7 +5,7 @@ Sonar Maintainability Rating
 """
 
 
-class MaintainabilityRating(MeasurableConcept[float]):
+class LegacyMaintainabilityRating(MeasurableConcept[float]):
     def __init__(self, children, normalize_visitor=None, aggregate_visitor=None):
         super().__init__(
             "Rating given related to the amount of technical debt in the repository",

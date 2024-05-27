@@ -1762,9 +1762,9 @@
                             "name": "Ease of Maintenance",
                             "measurable_concepts": [
                                 {
-                                    "class_name": "MaintainabilityRating",
+                                    "class_name": "LegacyMaintainabilityRating",
                                     "name": "Rating given related to the amount of technical debt in the repository",
-                                    "value": 1.0,
+                                    "value": 5.0,
                                     "impact": "NEGATIVE",
                                     "entity": "source code",
                                     "relevant_oss_aspect": "CODE",
@@ -1774,7 +1774,7 @@
                                         {
                                             "class_name": "SqaleRating",
                                             "name": "Sqale Rating",
-                                            "value": 1.0,
+                                            "value": 5.0,
                                             "unit": "rating",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -1896,6 +1896,33 @@
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
                                             "visitor": "LevelOfReliabilityVisitor"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "class_name": "Maintainability",
+                            "name": "Maintainability",
+                            "measurable_concepts": [
+                                {
+                                    "class_name": "MaintainabilityRating",
+                                    "name": "Maintainability Rating",
+                                    "value": 5.0,
+                                    "impact": "POSITIVE",
+                                    "entity": "source code",
+                                    "relevant_oss_aspect": "CODE",
+                                    "information_need": "Calculating the maintainability rating of a repository",
+                                    "quality_requirement": "Maintainability affects quality positively",
+                                    "measures": [
+                                        {
+                                            "class_name": "SqaleRating",
+                                            "name": "Sqale Rating",
+                                            "value": 5.0,
+                                            "unit": "rating",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "SqaleRatingVisitor"
                                         }
                                     ]
                                 }

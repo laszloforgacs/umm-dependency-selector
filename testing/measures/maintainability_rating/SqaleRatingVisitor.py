@@ -1,5 +1,4 @@
 import asyncio
-import json
 
 from presentation.core.visitors.Visitor import BaseMeasureVisitor
 from source_temp.PyGithub.github.Repository import Repository
@@ -11,8 +10,8 @@ Sonar measure
 """
 
 
-class SqaleRatingVisitor(BaseMeasureVisitor[int]):
-    def __init__(self):
+class SqaleRatingVisitor(BaseMeasureVisitor[float]):
+    def __init__(self, github_rate_limiter: GithubRateLimiter):
         pass
 
     async def measure(self, measure: 'BaseMeasure', repository: Repository) -> float:
@@ -22,25 +21,61 @@ class SqaleRatingVisitor(BaseMeasureVisitor[int]):
                 viewpoint_name=measure.get_viewpoint().name,
                 repository=repository
             )
+
             cached_result = await self.get_cached_result(measure, repository)
             if cached_result is not None:
-                print(f"{repository.full_name}: {measure.name} is {cached_result} {measure.unit}")
-                return cached_result
+                converted_sqale_rating = self._convert_rating(cached_result)
+                print(
+                    f"{repository.full_name}: {measure.name} is {converted_sqale_rating}, rating {self._get_literal_rating(converted_sqale_rating)}")
+                return converted_sqale_rating
 
             sonar_cache = await sonar.get_cached_result()
             if sonar_cache is not None:
-                sqale_rating = float(sonar_cache.get("sqale_rating", 1.0))
-                print(f"{repository.full_name}: {measure.name} is {sqale_rating} {measure.unit}")
+                sqale_rating = float(sonar_cache.get("sqale_rating", 5.0))
+                converted_sqale_rating = self._convert_rating(sqale_rating)
+                print(
+                    f"{repository.full_name}: {measure.name} is {converted_sqale_rating}, rating {self._get_literal_rating(converted_sqale_rating)}")
                 await self.cache_result(measure, repository, sqale_rating)
-                return sqale_rating
+                return converted_sqale_rating
 
             result = await asyncio.create_task(
                 sonar.measure()
             )
 
-            sqale_rating = float(result.get("sqale_rating", 1.0))
-            print(f"{repository.full_name}: {measure.name} is {sqale_rating} {measure.unit}")
+            sqale_rating = float(result.get("sqale_rating", 5.0))
+            converted_sqale_rating = self._convert_rating(sqale_rating)
+            print(
+                f"{repository.full_name}: {measure.name} is {converted_sqale_rating}, rating {self._get_literal_rating(converted_sqale_rating)}")
             await self.cache_result(measure, repository, sqale_rating)
-            return sqale_rating
+            return converted_sqale_rating
         except Exception as e:
             raise Exception(str(e) + self.__class__.__name__)
+
+    def _convert_rating(self, sonar_rating: float) -> float:
+        # Sonar reliability rating is 1-5, where 1 is the best and 5 is the worst
+        if sonar_rating == 1.0:
+            return 5.0
+        elif sonar_rating == 2.0:
+            return 4.0
+        elif sonar_rating == 3.0:
+            return 3.0
+        elif sonar_rating == 4.0:
+            return 2.0
+        elif sonar_rating == 5.0:
+            return 1.0
+        else:
+            return 1.0
+
+    def _get_literal_rating(self, converted_rating: float) -> float:
+        if converted_rating == 5.0:
+            return "A"
+        elif converted_rating == 4.0:
+            return "B"
+        elif converted_rating == 3.0:
+            return "C"
+        elif converted_rating == 2.0:
+            return "D"
+        elif converted_rating == 1.0:
+            return "E"
+        else:
+            return "E"

@@ -224,10 +224,11 @@ class MeasurableConceptVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "MaintainabilityRating": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "ReliabilityRating": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "SecurityIssuesMeasurableConcept": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "DuplicatedBlocks": (NoOpNormalizeVisitor, AddAggregateVisitor),
-            "MaintainabilityRating": (NoOpNormalizeVisitor, AddAggregateVisitor),
+            "LegacyMaintainabilityRating": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "NumberOfFiles": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "NumberOfClasses": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "AvgLengthOfFunctions": (NoOpNormalizeVisitor, AddAggregateVisitor),

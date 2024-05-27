@@ -16,6 +16,7 @@ from testing.characteristic.CommunityAndAdoption import CommunityAndAdoption
 from testing.characteristic.Innovation import Innovation
 from testing.characteristic.InteroperabilityCompatibility import InteroperabilityCompatibility
 from testing.characteristic.Reliability import Reliability
+from testing.measurableconcepts.maintainability.MaintainabilityRating import MaintainabilityRating
 from testing.measurableconcepts.reliability.ReliabilityRating import ReliabilityRating
 from testing.measures.reliability_rating.LevelOfReliability import LevelOfReliability
 from testing.subcharacteristic.quality.Reliability import Reliability as ReliabilitySubChar
@@ -68,7 +69,7 @@ from testing.measurableconcepts.communitycapability.issue_resolution.IssuesNewRa
 from testing.measurableconcepts.complexity.CyclomaticComplexityMC import CyclomaticComplexityMC
 from testing.measurableconcepts.contact_within_reasonable_time.AvgIssueResponseTimeMC import AvgIssueResponseTimeMC
 from testing.measurableconcepts.documentation.GunningFogIndex import GunningFogIndex
-from testing.measurableconcepts.ease_of_maintenance.MaintainabilityRating import MaintainabilityRating
+from testing.measurableconcepts.ease_of_maintenance.LegacyMaintainabilityRating import LegacyMaintainabilityRating
 from testing.measurableconcepts.maintainer_organization.MaintainerOrganizationMC import MaintainerOrganizationMC
 from testing.measurableconcepts.numberofopenfeaturerequests.NumberOfOpenFeatureRequests import \
     NumberOfOpenFeatureRequests
@@ -180,6 +181,7 @@ from testing.visitors.VisitorFactory import MeasureVisitorFactory, DerivedMeasur
 from presentation.util.Util import convert_tuple_keys_to_string, convert_string_keys_to_tuple
 from presentation.viewpoint_preferences.ComponentPreferencesState import PrefMatrix
 from testing.characteristic.Maintainability import Maintainability
+from testing.subcharacteristic.quality.Maintainability import Maintainability as MaintainabilitySubChar
 from testing.measures.LinesOfCode import LinesOfCode
 from testing.qualitymodels.TestQualityModel import TestQualityModel
 from testing.viewpoints.DeveloperViewpoint import DeveloperViewpoint
@@ -1313,11 +1315,15 @@ class QualityModelRepositoryImpl(QualityModelRepository):
             )
 
             sqale_rating = self._base_measure_visitor_factory.instantiate_with_visitor(
-                SqaleRating
+                SqaleRating,
+                visitor_kwargs={
+                    "github_rate_limiter": self._github_rate_limiter
+                }
             )
 
-            maintainability_rating = self._measurable_concept_visitor_factory.instantiate_with_visitor(
-                MaintainabilityRating,
+            # legeacy_maintainability_rating treats sqale_rating as negative due to sonar returning 5.0 as the worst possible rating
+            legacy_maintainability_rating = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                LegacyMaintainabilityRating,
                 children={
                     sqale_rating.name: sqale_rating
                 }
@@ -1325,7 +1331,7 @@ class QualityModelRepositoryImpl(QualityModelRepository):
 
             ease_of_maintenance = EaseOfMaintenance(
                 children={
-                    maintainability_rating.name: maintainability_rating
+                    legacy_maintainability_rating.name: legacy_maintainability_rating
                 }
             )
 
@@ -1416,11 +1422,30 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            maintainability_rating = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                MaintainabilityRating,
+                children={
+                    sqale_rating.name: self._base_measure_visitor_factory.instantiate_with_visitor(
+                        SqaleRating,
+                        visitor_kwargs={
+                            "github_rate_limiter": self._github_rate_limiter
+                        }
+                    )
+                }
+            )
+
+            maintainability_sub_char = MaintainabilitySubChar(
+                children={
+                    maintainability_rating.name: maintainability_rating
+                }
+            )
+
             code_quality = CodeQuality(
                 children={
                     software_quality.name: software_quality,
                     reusable_code.name: reusable_code,
-                    reliability_sub_char.name: reliability_sub_char
+                    reliability_sub_char.name: reliability_sub_char,
+                    maintainability_sub_char.name: maintainability_sub_char
                 }
             )
 

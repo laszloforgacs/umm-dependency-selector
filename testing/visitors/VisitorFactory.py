@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 
 from testing.measures.duplicated_blocks.DuplicatedBlocksCountVisitor import DuplicatedBlocksCountVisitor
 from testing.measures.maintainability_rating.SqaleRatingVisitor import SqaleRatingVisitor
+from testing.measures.reliability_rating.LevelOfReliabilityVisitor import LevelOfReliabilityVisitor
 from testing.measures.security_issues.TotalSecurityIssuesVisitor import TotalSecurityIssuesVisitor
 from testing.measures.size.avg_length_of_functions.AvgLinesOfCodePerFunctionVisitor import AvgLinesOfCodePerFunctionVisitor
 from testing.measures.community_vitality.RepositoryAgeMeasureVisitor import RepositoryAgeMeasureVisitor
@@ -95,6 +96,7 @@ class MeasureVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "LevelOfReliability": LevelOfReliabilityVisitor,
             "TotalSecurityIssues": TotalSecurityIssuesVisitor,
             "DuplicatedBlocksCount": DuplicatedBlocksCountVisitor,
             "SqaleRating": SqaleRatingVisitor,

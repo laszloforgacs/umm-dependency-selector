@@ -16,6 +16,9 @@ from testing.characteristic.CommunityAndAdoption import CommunityAndAdoption
 from testing.characteristic.Innovation import Innovation
 from testing.characteristic.InteroperabilityCompatibility import InteroperabilityCompatibility
 from testing.characteristic.Reliability import Reliability
+from testing.measurableconcepts.reliability.ReliabilityRating import ReliabilityRating
+from testing.measures.reliability_rating.LevelOfReliability import LevelOfReliability
+from testing.subcharacteristic.quality.Reliability import Reliability as ReliabilitySubChar
 from testing.characteristic.Security import Security
 from testing.characteristic.SupportAndService import SupportAndService
 from testing.measurableconcepts.AbsenceOfLicenseFees import AbsenceOfLicenseFees
@@ -1393,10 +1396,31 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            level_of_reliability = self._base_measure_visitor_factory.instantiate_with_visitor(
+                LevelOfReliability,
+                visitor_kwargs={
+                    "github_rate_limiter": self._github_rate_limiter
+                }
+            )
+
+            reliability_rating = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                ReliabilityRating,
+                children={
+                    level_of_reliability.name: level_of_reliability
+                }
+            )
+
+            reliability_sub_char = ReliabilitySubChar(
+                children={
+                    reliability_rating.name: reliability_rating
+                }
+            )
+
             code_quality = CodeQuality(
                 children={
                     software_quality.name: software_quality,
-                    reusable_code.name: reusable_code
+                    reusable_code.name: reusable_code,
+                    reliability_sub_char.name: reliability_sub_char
                 }
             )
 

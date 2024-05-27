@@ -845,7 +845,7 @@
                                 {
                                     "class_name": "PopularityMC",
                                     "name": "Popularity",
-                                    "value": 18512,
+                                    "value": 18524,
                                     "impact": "POSITIVE",
                                     "entity": "repository properties",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -864,7 +864,7 @@
                                         {
                                             "class_name": "StarsCount",
                                             "name": "Stars Count",
-                                            "value": 8694,
+                                            "value": 8705,
                                             "unit": "star(s)",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -873,7 +873,7 @@
                                         {
                                             "class_name": "ForksCount",
                                             "name": "Forks Count",
-                                            "value": 689,
+                                            "value": 690,
                                             "unit": "fork(s)",
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
@@ -1869,6 +1869,33 @@
                                             "scale": 1,
                                             "measurement_method": "AUTOMATIC",
                                             "visitor": "DuplicatedBlocksCountVisitor"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "class_name": "Reliability",
+                            "name": "Reliability",
+                            "measurable_concepts": [
+                                {
+                                    "class_name": "ReliabilityRating",
+                                    "name": "Reliability Rating",
+                                    "value": 3.0,
+                                    "impact": "POSITIVE",
+                                    "entity": "source code",
+                                    "relevant_oss_aspect": "CODE",
+                                    "information_need": "Calculating the reliability rating of a repository",
+                                    "quality_requirement": "Reliability affects quality positively",
+                                    "measures": [
+                                        {
+                                            "class_name": "LevelOfReliability",
+                                            "name": "Level of Reliability",
+                                            "value": 3.0,
+                                            "unit": "grade",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "LevelOfReliabilityVisitor"
                                         }
                                     ]
                                 }

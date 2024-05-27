@@ -16,6 +16,7 @@ from testing.characteristic.CommunityAndAdoption import CommunityAndAdoption
 from testing.characteristic.Innovation import Innovation
 from testing.characteristic.InteroperabilityCompatibility import InteroperabilityCompatibility
 from testing.characteristic.Reliability import Reliability
+from testing.characteristic.Security import Security
 from testing.characteristic.SupportAndService import SupportAndService
 from testing.measurableconcepts.AbsenceOfLicenseFees import AbsenceOfLicenseFees
 from testing.measurableconcepts.code_quality.SonarSoftwareQuality import SonarSoftwareQuality
@@ -79,6 +80,7 @@ from testing.measurableconcepts.product_evolution.IssueAgeAverage import IssueAg
 from testing.measurableconcepts.reusable_code.DuplicatedBlocks import DuplicatedBlocks
 from testing.measurableconcepts.risk.DelBiancoVulnerabilitiesMC import DelBiancoVulnerabilitiesMC
 from testing.measurableconcepts.product_evolution.UpdatedSince import UpdatedSince
+from testing.measurableconcepts.security_issues.SecurityIssuesMeasurableConcept import SecurityIssuesMeasurableConcept
 from testing.measurableconcepts.size.AvgLengthOfFunctions import AvgLengthOfFunctions
 from testing.measurableconcepts.size.NumberOfClasses import NumberOfClasses
 from testing.measurableconcepts.size.NumberOfFiles import NumberOfFiles
@@ -90,6 +92,7 @@ from testing.measures.CruzNumberOfCommentsBaseMeasure import CruzNumberOfComment
 from testing.measures.License import License
 from testing.measures.duplicated_blocks.DuplicatedBlocksCount import DuplicatedBlocksCount
 from testing.measures.maintainability_rating.SqaleRating import SqaleRating
+from testing.measures.security_issues.TotalSecurityIssues import TotalSecurityIssues
 from testing.measures.size.avg_length_of_functions.AvgLinesOfCodePerFunction import AvgLinesOfCodePerFunction
 from testing.measures.size.number_of_classes.ClassesCount import ClassesCount
 from testing.measures.size.number_of_files.FilesCount import FilesCount
@@ -166,6 +169,7 @@ from testing.subcharacteristic.popularity.Popularity import Popularity
 from testing.subcharacteristic.product_evolution.ProductEvolution import ProductEvolution
 from testing.subcharacteristic.regularupdates.RegularUpdates import RegularUpdates
 from testing.subcharacteristic.risk.DelBiancoRiskAnalysis import DelBiancoRiskAnalysis
+from testing.subcharacteristic.security.SecurityIssues import SecurityIssues
 from testing.subcharacteristic.short_term_support.ShortTermSupport import ShortTermSupport
 from testing.subcharacteristic.support_community.SupportCommunity import SupportCommunity
 from testing.visitors.VisitorFactory import MeasureVisitorFactory, DerivedMeasureVisitorFactory, \
@@ -1415,6 +1419,41 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            total_security_issues = self._base_measure_visitor_factory.instantiate_with_visitor(
+                TotalSecurityIssues
+            )
+
+            security_issues_mc = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                SecurityIssuesMeasurableConcept,
+                children={
+                    total_security_issues.name: total_security_issues
+                }
+            )
+
+            security_issues = SecurityIssues(
+                children={
+                    security_issues_mc.name: security_issues_mc
+                }
+            )
+
+            security = Security(
+                children={
+                    security_issues.name: security_issues,
+                    number_of_contributors_subchar.name: NumberOfContributorsSubChar(
+                        children={
+                            number_of_contributors_mc.name: self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                                NumberOfContributors,
+                                children={
+                                    community_count_measure.name: self._base_measure_visitor_factory.instantiate_with_visitor(
+                                        ContributorCount
+                                    )
+                                }
+                            )
+                        }
+                    )
+                }
+            )
+
             developer_viewpoint = DeveloperViewpoint(
                 children={
                     cost.name: cost,
@@ -1423,7 +1462,8 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                     community_and_adoption.name: community_and_adoption,
                     maintainability.name: maintainability,
                     code_quality.name: code_quality,
-                    innovation.name: innovation
+                    innovation.name: innovation,
+                    security.name: security
                 }
             )
 

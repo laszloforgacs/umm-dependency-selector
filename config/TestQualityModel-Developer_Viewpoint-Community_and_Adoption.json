@@ -1,19 +1,19 @@
 {
     "preference_matrix": {
-        "Community Exists, Popularity": "1",
+        "Community Exists, Popularity": "4",
         "Community Exists, Number of Contributors sub-characteristic": "2",
-        "Community Exists, Community Capability": "3",
-        "Community Exists, Contact within reasonable time": "6",
-        "Community Exists, Documentation": "4",
-        "Popularity, Number of Contributors sub-characteristic": "3",
-        "Popularity, Community Capability": "5",
-        "Popularity, Contact within reasonable time": "7",
-        "Popularity, Documentation": "1/3",
-        "Number of Contributors sub-characteristic, Community Capability": "1/4",
-        "Number of Contributors sub-characteristic, Contact within reasonable time": "1/6",
-        "Number of Contributors sub-characteristic, Documentation": "1/3",
-        "Community Capability, Contact within reasonable time": "3",
-        "Community Capability, Documentation": "2",
-        "Contact within reasonable time, Documentation": "1"
+        "Community Exists, Community Capability": "1",
+        "Community Exists, Contact within reasonable time": "2",
+        "Community Exists, Documentation": "3",
+        "Popularity, Number of Contributors sub-characteristic": "5",
+        "Popularity, Community Capability": "7",
+        "Popularity, Contact within reasonable time": "9",
+        "Popularity, Documentation": "4",
+        "Number of Contributors sub-characteristic, Community Capability": "3",
+        "Number of Contributors sub-characteristic, Contact within reasonable time": "5",
+        "Number of Contributors sub-characteristic, Documentation": "7",
+        "Community Capability, Contact within reasonable time": "6",
+        "Community Capability, Documentation": "4",
+        "Contact within reasonable time, Documentation": "4"
     }
 }

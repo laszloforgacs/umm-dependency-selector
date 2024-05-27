@@ -1908,66 +1908,6 @@
                             ]
                         }
                     ]
-                },
-                {
-                    "class_name": "Security",
-                    "name": "Security",
-                    "sub_characteristics": [
-                        {
-                            "class_name": "SecurityIssues",
-                            "name": "Security Issues",
-                            "measurable_concepts": [
-                                {
-                                    "class_name": "SecurityIssuesMeasurableConcept",
-                                    "name": "Security Issues",
-                                    "value": 0,
-                                    "impact": "NEGATIVE",
-                                    "entity": "source code",
-                                    "relevant_oss_aspect": "CODE",
-                                    "information_need": "Measuring the number of total security issues in the source code",
-                                    "quality_requirement": "Affects security negatively",
-                                    "measures": [
-                                        {
-                                            "class_name": "TotalSecurityIssues",
-                                            "name": "Number of Security Issues",
-                                            "value": 0,
-                                            "unit": "total issues",
-                                            "scale": 1,
-                                            "measurement_method": "AUTOMATIC",
-                                            "visitor": "TotalSecurityIssuesVisitor"
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "class_name": "NumberOfContributorsSubChar",
-                            "name": "Number of Contributors sub-characteristic",
-                            "measurable_concepts": [
-                                {
-                                    "class_name": "NumberOfContributors",
-                                    "name": "Number of Contributors",
-                                    "value": 131,
-                                    "impact": "POSITIVE",
-                                    "entity": "Contributors",
-                                    "relevant_oss_aspect": "COMMUNITY",
-                                    "information_need": "Calculating the number of contributors",
-                                    "quality_requirement": "Affects Community Capability positively",
-                                    "measures": [
-                                        {
-                                            "class_name": "ContributorCount",
-                                            "name": "Contributor count",
-                                            "value": 131,
-                                            "unit": "person",
-                                            "scale": 1,
-                                            "measurement_method": "AUTOMATIC",
-                                            "visitor": "PyGithubCommunityCountVisitor"
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
                 }
             ]
         }

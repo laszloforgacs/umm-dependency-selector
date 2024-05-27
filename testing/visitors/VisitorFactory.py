@@ -4,6 +4,7 @@ from testing.measures.duplicated_blocks.DuplicatedBlocksCountVisitor import Dupl
 from testing.measures.maintainability_rating.SqaleRatingVisitor import SqaleRatingVisitor
 from testing.measures.reliability_rating.LevelOfReliabilityVisitor import LevelOfReliabilityVisitor
 from testing.measures.security_issues.TotalSecurityIssuesVisitor import TotalSecurityIssuesVisitor
+from testing.measures.security_rating.LevelOfSecurityVisitor import LevelOfSecurityVisitor
 from testing.measures.size.avg_length_of_functions.AvgLinesOfCodePerFunctionVisitor import AvgLinesOfCodePerFunctionVisitor
 from testing.measures.community_vitality.RepositoryAgeMeasureVisitor import RepositoryAgeMeasureVisitor
 from testing.measures.communitycapability.change_request_acceptance_ratio.ReviewsAcceptedToDeclinedRatioAggregator import \
@@ -96,6 +97,7 @@ class MeasureVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "LevelOfSecurity": LevelOfSecurityVisitor,
             "LevelOfReliability": LevelOfReliabilityVisitor,
             "TotalSecurityIssues": TotalSecurityIssuesVisitor,
             "DuplicatedBlocksCount": DuplicatedBlocksCountVisitor,
@@ -224,6 +226,7 @@ class MeasurableConceptVisitorFactory(VisitorFactory):
         self.visitor_mappings = {
             # Key needs to be the exact name of the class, not the class property "name"
             # Add more mappings as needed
+            "SecurityRating": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "MaintainabilityRating": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "ReliabilityRating": (NoOpNormalizeVisitor, AddAggregateVisitor),
             "SecurityIssuesMeasurableConcept": (NoOpNormalizeVisitor, AddAggregateVisitor),

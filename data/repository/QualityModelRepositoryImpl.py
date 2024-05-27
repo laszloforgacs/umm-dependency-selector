@@ -18,9 +18,12 @@ from testing.characteristic.InteroperabilityCompatibility import Interoperabilit
 from testing.characteristic.Reliability import Reliability
 from testing.measurableconcepts.maintainability.MaintainabilityRating import MaintainabilityRating
 from testing.measurableconcepts.reliability.ReliabilityRating import ReliabilityRating
+from testing.measurableconcepts.security.SecurityRating import SecurityRating
 from testing.measures.reliability_rating.LevelOfReliability import LevelOfReliability
+from testing.measures.security_rating.LevelOfSecurity import LevelOfSecurity
 from testing.subcharacteristic.quality.Reliability import Reliability as ReliabilitySubChar
 from testing.characteristic.Security import Security
+from testing.subcharacteristic.quality.Security import Security as SecuritySubChar
 from testing.characteristic.SupportAndService import SupportAndService
 from testing.measurableconcepts.AbsenceOfLicenseFees import AbsenceOfLicenseFees
 from testing.measurableconcepts.code_quality.SonarSoftwareQuality import SonarSoftwareQuality
@@ -1440,12 +1443,33 @@ class QualityModelRepositoryImpl(QualityModelRepository):
                 }
             )
 
+            level_of_security = self._base_measure_visitor_factory.instantiate_with_visitor(
+                LevelOfSecurity,
+                visitor_kwargs={
+                    "github_rate_limiter": self._github_rate_limiter
+                }
+            )
+
+            security_rating = self._measurable_concept_visitor_factory.instantiate_with_visitor(
+                SecurityRating,
+                children={
+                    level_of_security.name: level_of_security
+                }
+            )
+
+            security_sub_char = SecuritySubChar(
+                children={
+                    security_rating.name: security_rating
+                }
+            )
+
             code_quality = CodeQuality(
                 children={
                     software_quality.name: software_quality,
                     reusable_code.name: reusable_code,
                     reliability_sub_char.name: reliability_sub_char,
-                    maintainability_sub_char.name: maintainability_sub_char
+                    maintainability_sub_char.name: maintainability_sub_char,
+                    security_sub_char.name: security_sub_char
                 }
             )
 

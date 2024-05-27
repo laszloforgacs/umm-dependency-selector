@@ -6,11 +6,11 @@ from util.GithubRateLimiter import GithubRateLimiter
 from util.Sonar import Sonar
 
 """
-Sonar measure - Reliability Rating
+Sonar measure - Security Rating
 """
 
 
-class LevelOfReliabilityVisitor(BaseMeasureVisitor[float]):
+class LevelOfSecurityVisitor(BaseMeasureVisitor[float]):
     def __init__(self, github_rate_limiter: GithubRateLimiter):
         pass
 
@@ -24,44 +24,44 @@ class LevelOfReliabilityVisitor(BaseMeasureVisitor[float]):
 
             cached_result = await self.get_cached_result(measure, repository)
             if cached_result is not None:
-                converted_reliability_rating = self._convert_reliability_rating(cached_result)
+                converted_security_rating = self._convert_rating(cached_result)
                 print(
-                    f"{repository.full_name}: {measure.name} is {converted_reliability_rating}, rating {self._get_literal_rating(converted_reliability_rating)}")
-                return converted_reliability_rating
+                    f"{repository.full_name}: {measure.name} is {converted_security_rating}, rating {self._get_literal_rating(converted_security_rating)}")
+                return converted_security_rating
 
             sonar_cache = await sonar.get_cached_result()
             if sonar_cache is not None:
-                reliability_rating = float(sonar_cache.get("reliability_rating", 5.0))
-                converted_reliability_rating = self._convert_reliability_rating(reliability_rating)
+                security_rating = float(sonar_cache.get("security_rating", 5.0))
+                converted_security_rating = self._convert_rating(security_rating)
                 print(
-                    f"{repository.full_name}: {measure.name} is {converted_reliability_rating}, rating {self._get_literal_rating(converted_reliability_rating)}")
-                await self.cache_result(measure, repository, reliability_rating)
-                return converted_reliability_rating
+                    f"{repository.full_name}: {measure.name} is {converted_security_rating}, rating {self._get_literal_rating(converted_security_rating)}")
+                await self.cache_result(measure, repository, security_rating)
+                return converted_security_rating
 
             result = await asyncio.create_task(
                 sonar.measure()
             )
 
-            reliability_rating = float(result.get("reliability_rating", 5.0))
-            converted_reliability_rating = self._convert_reliability_rating(reliability_rating)
+            security_rating = float(result.get("security_rating", 5.0))
+            converted_security_rating = self._convert_rating(security_rating)
             print(
-                f"{repository.full_name}: {measure.name} is {converted_reliability_rating}, rating {self._get_literal_rating(converted_reliability_rating)}")
-            await self.cache_result(measure, repository, reliability_rating)
-            return converted_reliability_rating
+                f"{repository.full_name}: {measure.name} is {converted_security_rating}, rating {self._get_literal_rating(converted_security_rating)}")
+            await self.cache_result(measure, repository, security_rating)
+            return converted_security_rating
         except Exception as e:
             raise Exception(str(e) + self.__class__.__name__)
 
-    def _convert_reliability_rating(self, sonar_reliability_rating: float) -> float:
+    def _convert_rating(self, sonar_rating: float) -> float:
         # Sonar reliability rating is 1-5, where 1 is the best and 5 is the worst
-        if sonar_reliability_rating == 1.0:
+        if sonar_rating == 1.0:
             return 5.0
-        elif sonar_reliability_rating == 2.0:
+        elif sonar_rating == 2.0:
             return 4.0
-        elif sonar_reliability_rating == 3.0:
+        elif sonar_rating == 3.0:
             return 3.0
-        elif sonar_reliability_rating == 4.0:
+        elif sonar_rating == 4.0:
             return 2.0
-        elif sonar_reliability_rating == 5.0:
+        elif sonar_rating == 5.0:
             return 1.0
         else:
             return 1.0

@@ -6,7 +6,7 @@ from util.GithubRateLimiter import GithubRateLimiter
 from util.Sonar import Sonar
 
 """
-Sonar measure
+Sonar measure - Sqale Rating
 """
 
 

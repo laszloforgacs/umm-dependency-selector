@@ -1,10 +1,14 @@
 {
     "preference_matrix": {
-        "Software Quality, Reusable Code": "6",
-        "Software Quality, Reliability": "7",
-        "Reusable Code, Reliability": "9",
-        "Software Quality, Maintainability": "8",
-        "Reusable Code, Maintainability": "5",
-        "Reliability, Maintainability": "2"
+        "Software Quality, Reusable Code": "1",
+        "Software Quality, Reliability": "2",
+        "Reusable Code, Reliability": "6",
+        "Software Quality, Maintainability": "3",
+        "Reusable Code, Maintainability": "8",
+        "Reliability, Maintainability": "4",
+        "Software Quality, Security": "4",
+        "Reusable Code, Security": "3",
+        "Reliability, Security": "5",
+        "Maintainability, Security": "2"
     }
 }

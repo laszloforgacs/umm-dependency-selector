@@ -1927,6 +1927,33 @@
                                     ]
                                 }
                             ]
+                        },
+                        {
+                            "class_name": "Security",
+                            "name": "Security",
+                            "measurable_concepts": [
+                                {
+                                    "class_name": "SecurityRating",
+                                    "name": "Security Rating",
+                                    "value": 5.0,
+                                    "impact": "POSITIVE",
+                                    "entity": "source code",
+                                    "relevant_oss_aspect": "CODE",
+                                    "information_need": "Calculating the security rating of a repository",
+                                    "quality_requirement": "Security affects quality positively",
+                                    "measures": [
+                                        {
+                                            "class_name": "LevelOfSecurity",
+                                            "name": "Level of Security",
+                                            "value": 5.0,
+                                            "unit": "grade",
+                                            "scale": 1,
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "LevelOfSecurityVisitor"
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ]
                 },

@@ -109,5 +109,6 @@
     "Sqale_Rating_SqaleRatingVisitor": 1.0,
     "Count_of_Duplicated_Blocks_DuplicatedBlocksCountVisitor": 23,
     "Number_of_Security_Issues_TotalSecurityIssuesVisitor": 0,
-    "Level_of_Reliability_LevelOfReliabilityVisitor": 3.0
+    "Level_of_Reliability_LevelOfReliabilityVisitor": 3.0,
+    "Level_of_Security_LevelOfSecurityVisitor": 1.0
 }

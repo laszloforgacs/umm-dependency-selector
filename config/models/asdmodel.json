@@ -1,0 +1,72 @@
+{
+  "class_name": "TestQualityModel",
+  "name": "asdmodel",
+  "viewpoints": [
+    {
+      "class_name": "DeveloperViewpoint",
+      "name": "Developer Viewpoint",
+      "characteristics": [
+        {
+          "class_name": "CommunityAndAdoption",
+          "name": "Community and Adoption",
+          "sub_characteristics": [
+            {
+              "class_name": "Popularity",
+              "name": "Popularity",
+              "measurable_concepts": [
+                {
+                  "class_name": "PopularityMC",
+                  "name": "Popularity",
+                  "impact": "POSITIVE",
+                  "entity": "repository properties",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Calculating the popularity of a repository",
+                  "quality_requirement": "Popularity affects 'Community and Adoption' positively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "class_name": "ContributorCount",
+                      "name": "Contributor count",
+                      "unit": "person",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/communitycapability/PyGithubCommunityCountVisitor.py"
+                    },
+                    {
+                      "class_name": "IssueThroughput",
+                      "name": "Issue Throughput",
+                      "unit": "issue",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                      "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                      "base_measures": [
+                        {
+                          "class_name": "ClosedIssuesCount",
+                          "name": "Number of closed issues",
+                          "unit": "issue",
+                          "scale": 1,
+                          "measurement_method": "AUTOMATIC",
+                          "visitor": "./testing/visitors/communitycapability/PyGithubCommunityCountVisitor.py"
+                        },
+                        {
+                          "class_name": "TotalIssuesCount",
+                          "name": "Number of total issues",
+                          "unit": "issue",
+                          "scale": 1,
+                          "measurement_method": "AUTOMATIC",
+                          "visitor": "./testing/visitors/communitycapability/PyGithubCommunityCountVisitor.py"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

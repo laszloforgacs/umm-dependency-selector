@@ -6,6 +6,7 @@ from typing import Final
 import aiofiles
 
 from domain.model.Characteristic import Characteristic
+from domain.model.Model import QualityModelSchema
 from domain.model.QualityModel import QualityModel
 from domain.model.Result import Result, Success, Failure
 from domain.model.Viewpoint import Viewpoint
@@ -19,8 +20,8 @@ from testing.characteristic.Reliability import Reliability
 from testing.measurableconcepts.maintainability.MaintainabilityRating import MaintainabilityRating
 from testing.measurableconcepts.reliability.ReliabilityRating import ReliabilityRating
 from testing.measurableconcepts.security.SecurityRating import SecurityRating
-from testing.measures.reliability_rating.LevelOfReliability import LevelOfReliability
-from testing.measures.security_rating.LevelOfSecurity import LevelOfSecurity
+from testing.visitors.reliability_rating.LevelOfReliability import LevelOfReliability
+from testing.visitors.security_rating.LevelOfSecurity import LevelOfSecurity
 from testing.subcharacteristic.quality.Reliability import Reliability as ReliabilitySubChar
 from testing.characteristic.Security import Security
 from testing.subcharacteristic.quality.Security import Security as SecuritySubChar
@@ -93,69 +94,69 @@ from testing.measurableconcepts.size.NumberOfClasses import NumberOfClasses
 from testing.measurableconcepts.size.NumberOfFiles import NumberOfFiles
 from testing.measurableconcepts.support_community.OpenParticipation import OpenParticipation
 from testing.measurableconcepts.support_community.PeerInfluence import PeerInfluence
-from testing.measures.CruzCodeQualityDerivedMeasure import CruzCodeQualityDerivedMeasure
-from testing.measures.CruzCyclomaticComplexityBaseMeasure import CruzCyclomaticComplexityBaseMeasure
-from testing.measures.CruzNumberOfCommentsBaseMeasure import CruzNumberOfCommentsBaseMeasure
-from testing.measures.License import License
-from testing.measures.duplicated_blocks.DuplicatedBlocksCount import DuplicatedBlocksCount
-from testing.measures.maintainability_rating.SqaleRating import SqaleRating
-from testing.measures.security_issues.TotalSecurityIssues import TotalSecurityIssues
-from testing.measures.size.avg_length_of_functions.AvgLinesOfCodePerFunction import AvgLinesOfCodePerFunction
-from testing.measures.size.number_of_classes.ClassesCount import ClassesCount
-from testing.measures.size.number_of_files.FilesCount import FilesCount
-from testing.measures.software_quality.MaintainabilityIssues import MaintainabilityIssues
-from testing.measures.software_quality.ReliabilityRemediationEffort import ReliabilityRemediationEffort
-from testing.measures.software_quality.SecurityRemediationEffort import SecurityRemediationEffort
-from testing.measures.software_quality.SoftwareQualityDerivedMeasure import SoftwareQualityDerivedMeasure
-from testing.measures.community_vitality.RepositoryAgeMeasure import RepositoryAgeMeasure
-from testing.measures.communitycapability.change_request_acceptance_ratio.ReviewsAcceptedToDeclinedRatio import \
+from testing.visitors.CruzCodeQualityDerivedMeasure import CruzCodeQualityDerivedMeasure
+from testing.visitors.CruzCyclomaticComplexityBaseMeasure import CruzCyclomaticComplexityBaseMeasure
+from testing.visitors.CruzNumberOfCommentsBaseMeasure import CruzNumberOfCommentsBaseMeasure
+from testing.visitors.License import License
+from testing.visitors.duplicated_blocks.DuplicatedBlocksCount import DuplicatedBlocksCount
+from testing.visitors.maintainability_rating.SqaleRating import SqaleRating
+from testing.visitors.security_issues.TotalSecurityIssues import TotalSecurityIssues
+from testing.visitors.size.avg_length_of_functions.AvgLinesOfCodePerFunction import AvgLinesOfCodePerFunction
+from testing.visitors.size.number_of_classes.ClassesCount import ClassesCount
+from testing.visitors.size.number_of_files.FilesCount import FilesCount
+from testing.visitors.software_quality.MaintainabilityIssues import MaintainabilityIssues
+from testing.visitors.software_quality.ReliabilityRemediationEffort import ReliabilityRemediationEffort
+from testing.visitors.software_quality.SecurityRemediationEffort import SecurityRemediationEffort
+from testing.visitors.software_quality.SoftwareQualityDerivedMeasure import SoftwareQualityDerivedMeasure
+from testing.visitors.community_vitality.RepositoryAgeMeasure import RepositoryAgeMeasure
+from testing.visitors.communitycapability.change_request_acceptance_ratio.ReviewsAcceptedToDeclinedRatio import \
     ReviewsAcceptedToDeclinedRatio
-from testing.measures.communitycapability.change_request_commits.AvgNumberOfCommitsPerPRs import \
+from testing.visitors.communitycapability.change_request_commits.AvgNumberOfCommitsPerPRs import \
     AvgNumberOfCommitsPerPRs
-from testing.measures.communitycapability.change_request_contributors.AvgNumberOfContributorsPerPRs import \
+from testing.visitors.communitycapability.change_request_contributors.AvgNumberOfContributorsPerPRs import \
     AvgNumberOfContributorsPerPRs
-from testing.measures.communitycapability.DurationToResolveIssues import DurationToResolveIssues
-from testing.measures.communitycapability.ClosedIssuesCount import ClosedIssuesCount
-from testing.measures.communitycapability.ContributorCount import ContributorCount
-from testing.measures.communitycapability.IssueResponseTime import IssueResponseTime
-from testing.measures.communitycapability.IssueThroughput import IssueThroughput
-from testing.measures.communitycapability.LinesChangedCount import LinesChangedCount
-from testing.measures.communitycapability.TotalIssuesCount import TotalIssuesCount
-from testing.measures.communitycapability.TruckFactor import TruckFactor
-from testing.measures.communitycapability.change_request_reviews.PercentageOfPRsReviewed import PercentageOfPRsReviewed
-from testing.measures.communitycapability.change_requests_duration.DurationToResolvePullRequests import \
+from testing.visitors.communitycapability.DurationToResolveIssues import DurationToResolveIssues
+from testing.visitors.communitycapability.ClosedIssuesCount import ClosedIssuesCount
+from testing.visitors.communitycapability.ContributorCount import ContributorCount
+from testing.visitors.communitycapability.IssueResponseTime import IssueResponseTime
+from testing.visitors.communitycapability.IssueThroughput import IssueThroughput
+from testing.visitors.communitycapability.LinesChangedCount import LinesChangedCount
+from testing.visitors.communitycapability.TotalIssuesCount import TotalIssuesCount
+from testing.visitors.communitycapability.TruckFactor import TruckFactor
+from testing.visitors.communitycapability.change_request_reviews.PercentageOfPRsReviewed import PercentageOfPRsReviewed
+from testing.visitors.communitycapability.change_requests_duration.DurationToResolvePullRequests import \
     DurationToResolvePullRequests
-from testing.measures.communitycapability.community_growth.AssetDownloadCount import AssetDownloadCount
-from testing.measures.communitycapability.community_growth.ClosedIssuesCountByNewContributors import \
+from testing.visitors.communitycapability.community_growth.AssetDownloadCount import AssetDownloadCount
+from testing.visitors.communitycapability.community_growth.ClosedIssuesCountByNewContributors import \
     ClosedIssuesCountByNewContributors
-from testing.measures.communitycapability.community_growth.ClosedIssuesPercentageByNewContributors import \
+from testing.visitors.communitycapability.community_growth.ClosedIssuesPercentageByNewContributors import \
     ClosedIssuesPercentageByNewContributors
-from testing.measures.communitycapability.community_growth.InactiveContributorCount import InactiveContributorCount
-from testing.measures.communitycapability.community_growth.NewContributors import NewContributors
-from testing.measures.communitycapability.issue_resolution.issues_active.ActiveIssuesRatio import ActiveIssuesRatio
-from testing.measures.communitycapability.issue_resolution.issues_closed.ClosedIssuesRatio import ClosedIssuesRatio
-from testing.measures.communitycapability.issue_resolution.issues_new.NewIssuesCount import NewIssuesCount
-from testing.measures.communitycapability.issue_resolution.issues_new.NewIssuesRatio import NewIssuesRatio
-from testing.measures.gunning_fog.AvgGunningFogIndex import AvgGunningFogIndex
-from testing.measures.maintainer_organization.OrgCountMeasure import OrgCountMeasure
-from testing.measures.number_of_open_feature_request.OpenFeatureRequestCount import OpenFeatureRequestCount
-from testing.measures.numberofreleases.ReleaseCount import ReleaseCount
-from testing.measures.open_participation.NewContributorsCount import NewContributorsCount
-from testing.measures.peer_influence.RepoMessages import RepoMessages
-from testing.measures.popularity.AnnualCommitCount import AnnualCommitCount
-from testing.measures.popularity.ForksCount import ForksCount
-from testing.measures.popularity.StarsCount import StarsCount
-from testing.measures.popularity.WatchersCount import WatchersCount
-from testing.measures.product_evolution.CommitCount import CommitCount
-from testing.measures.product_evolution.declined_changes.ReviewsDeclinedCount import ReviewsDeclinedCount
-from testing.measures.product_evolution.declined_changes.ReviewsDeclinedRatio import ReviewsDeclinedRatio
-from testing.measures.product_evolution.issue_interactions.UpdatedIssuesCount import UpdatedIssuesCount
-from testing.measures.product_evolution.opened_pull_requests.OpenedPullRequestCount import OpenedPullRequestCount
-from testing.measures.product_evolution.reviews_accepted.ReviewsAcceptedCount import ReviewsAcceptedCount
-from testing.measures.product_evolution.reviews_accepted.ReviewsAcceptedRatio import ReviewsAcceptedRatio
-from testing.measures.product_evolution.staleness.OpenIssueAge import OpenIssueAge
-from testing.measures.product_evolution.updated_since.TimeSinceLastCommit import TimeSinceLastCommit
-from testing.measures.risk.DelBiancoRiskMeasure import DelBiancoRiskMeasure
+from testing.visitors.communitycapability.community_growth.InactiveContributorCount import InactiveContributorCount
+from testing.visitors.communitycapability.community_growth.NewContributors import NewContributors
+from testing.visitors.communitycapability.issue_resolution.issues_active.ActiveIssuesRatio import ActiveIssuesRatio
+from testing.visitors.communitycapability.issue_resolution.issues_closed.ClosedIssuesRatio import ClosedIssuesRatio
+from testing.visitors.communitycapability.issue_resolution.issues_new.NewIssuesCount import NewIssuesCount
+from testing.visitors.communitycapability.issue_resolution.issues_new.NewIssuesRatio import NewIssuesRatio
+from testing.visitors.gunning_fog.AvgGunningFogIndex import AvgGunningFogIndex
+from testing.visitors.maintainer_organization.OrgCountMeasure import OrgCountMeasure
+from testing.visitors.number_of_open_feature_request.OpenFeatureRequestCount import OpenFeatureRequestCount
+from testing.visitors.numberofreleases.ReleaseCount import ReleaseCount
+from testing.visitors.open_participation.NewContributorsCount import NewContributorsCount
+from testing.visitors.peer_influence.RepoMessages import RepoMessages
+from testing.visitors.popularity.AnnualCommitCount import AnnualCommitCount
+from testing.visitors.popularity.ForksCount import ForksCount
+from testing.visitors.popularity.StarsCount import StarsCount
+from testing.visitors.popularity.WatchersCount import WatchersCount
+from testing.visitors.product_evolution.CommitCount import CommitCount
+from testing.visitors.product_evolution.declined_changes.ReviewsDeclinedCount import ReviewsDeclinedCount
+from testing.visitors.product_evolution.declined_changes.ReviewsDeclinedRatio import ReviewsDeclinedRatio
+from testing.visitors.product_evolution.issue_interactions.UpdatedIssuesCount import UpdatedIssuesCount
+from testing.visitors.product_evolution.opened_pull_requests.OpenedPullRequestCount import OpenedPullRequestCount
+from testing.visitors.product_evolution.reviews_accepted.ReviewsAcceptedCount import ReviewsAcceptedCount
+from testing.visitors.product_evolution.reviews_accepted.ReviewsAcceptedRatio import ReviewsAcceptedRatio
+from testing.visitors.product_evolution.staleness.OpenIssueAge import OpenIssueAge
+from testing.visitors.product_evolution.updated_since.TimeSinceLastCommit import TimeSinceLastCommit
+from testing.visitors.risk.DelBiancoRiskMeasure import DelBiancoRiskMeasure
 from testing.subcharacteristic.Documentation import Documentation
 from testing.subcharacteristic.ReturnOnInvestment import ReturnOnInvestment
 from testing.subcharacteristic.code_quality.ReusableCode import ReusableCode
@@ -185,12 +186,13 @@ from presentation.util.Util import convert_tuple_keys_to_string, convert_string_
 from presentation.viewpoint_preferences.ComponentPreferencesState import PrefMatrix
 from testing.characteristic.Maintainability import Maintainability
 from testing.subcharacteristic.quality.Maintainability import Maintainability as MaintainabilitySubChar
-from testing.measures.LinesOfCode import LinesOfCode
+from testing.visitors.LinesOfCode import LinesOfCode
 from testing.qualitymodels.TestQualityModel import TestQualityModel
 from testing.viewpoints.DeveloperViewpoint import DeveloperViewpoint
 from util.GithubRateLimiter import GithubRateLimiter
 
 QM_FOLDER: Final = "config"
+MODELS_FOLDER: Final = f"{QM_FOLDER}/models"
 RESULTS_FOLDER: Final = "results"
 JSON_EXTENSION: Final = ".json"
 
@@ -210,6 +212,15 @@ class QualityModelRepositoryImpl(QualityModelRepository):
 
     async def fetch_quality_models(self) -> Result[list[QualityModel]]:
         try:
+            read_json_files = await self._read_json_files_from_config_dir(MODELS_FOLDER)
+            quality_models = []
+            for data in read_json_files:
+                qm_schema = QualityModelSchema()
+                quality_models.append(qm_schema.load(data))
+
+            return Success(
+                quality_models
+            )
             linesOfCode = self._base_measure_visitor_factory.instantiate_with_visitor(LinesOfCode)
             lizard_cyclomatic_complexity = self._base_measure_visitor_factory.instantiate_with_visitor(
                 CruzCyclomaticComplexityBaseMeasure
@@ -1608,6 +1619,22 @@ class QualityModelRepositoryImpl(QualityModelRepository):
         async with aiofiles.open(path, "w") as file:
             json_string = json.dumps(data, indent=4)
             await file.write(json_string)
+
+    async def _read_json_files_from_config_dir(self, dir: str) -> list[str]:
+        base_path = os.getcwd()
+        config_path = os.path.join(base_path, dir)
+        files = os.listdir(config_path)
+        data = []
+        for file in files:
+            if file.endswith(".json"):
+                file_path = os.path.join(config_path, file)
+                async with aiofiles.open(file_path, "r") as f:
+                    try:
+                        content = await f.read()
+                        data.append(json.loads(content))
+                    except json.JSONDecodeError:
+                        print(f"Error reading file {file}")
+        return data
 
     async def _init_viewpoint_pref_matrix(
             self,

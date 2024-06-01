@@ -1,8 +1,8 @@
 from domain.model.Measure import Measure
 from presentation.core.visitors.Visitor import AggregateVisitor
 from source_temp.PyGithub.github.Repository import Repository
-from testing.measures.communitycapability.ClosedIssuesCount import ClosedIssuesCount
-from testing.measures.communitycapability.TotalIssuesCount import TotalIssuesCount
+from testing.visitors.communitycapability.ClosedIssuesCount import ClosedIssuesCount
+from testing.visitors.communitycapability.TotalIssuesCount import TotalIssuesCount
 
 
 class AugurIssueThroughputVisitor(AggregateVisitor[tuple[Measure, int]]):

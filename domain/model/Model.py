@@ -25,7 +25,6 @@ class EnumField(fields.Field):
 
 
 class MeasureSchema(Schema):
-    class_name = fields.Str()
     name = fields.Str(required=True)
     value = fields.Raw(allow_none=True)
     unit = fields.Str()
@@ -51,7 +50,6 @@ class BaseMeasureSchema(MeasureSchema):
 
     @post_load
     def make_base_measure(self, data, **kwargs):
-        data.pop('class_name')
         visitor_path = data.pop('visitor')
         visitor = load_class_from_file_path(visitor_path)
         data['visitor'] = visitor
@@ -66,7 +64,6 @@ class DerivedMeasureSchema(MeasureSchema):
 
     @post_load
     def make_derived_measure(self, data, **kwargs):
-        data.pop('class_name')
         children = {child.name: child for child in data.pop('base_measures')}
         data['children'] = children
 
@@ -82,7 +79,6 @@ class DerivedMeasureSchema(MeasureSchema):
 
 
 class MeasurableConceptSchema(Schema):
-    class_name = fields.Str()
     name = fields.Str()
     value = fields.Float()
     impact = EnumField(Impact)
@@ -96,7 +92,6 @@ class MeasurableConceptSchema(Schema):
 
     @post_load
     def make_measurable_concept(self, data, **kwargs):
-        data.pop('class_name')
         children = {child.name: child for child in data.pop('measures')}
         data['children'] = children
 
@@ -112,52 +107,44 @@ class MeasurableConceptSchema(Schema):
 
 
 class SubCharacteristicSchema(Schema):
-    class_name = fields.Str()
     name = fields.Str()
     measurable_concepts = fields.List(fields.Nested(lambda: MeasurableConceptSchema()), default=[])
 
     @post_load
     def make_sub_characteristic(self, data, **kwargs):
-        data.pop('class_name')
         children = {child.name: child for child in data.pop('measurable_concepts')}
         data['children'] = children
         return SubCharacteristic(**data)
 
 
 class CharacteristicSchema(Schema):
-    class_name = fields.Str()
     name = fields.Str()
     sub_characteristics = fields.List(fields.Nested(lambda: SubCharacteristicSchema()), default=[])
 
     @post_load
     def make_characteristic(self, data, **kwargs):
-        data.pop('class_name')
         children = {child.name: child for child in data.pop('sub_characteristics')}
         data['children'] = children
         return Characteristic(**data)
 
 
 class ViewpointSchema(Schema):
-    class_name = fields.Str()
     name = fields.Str()
     characteristics = fields.List(fields.Nested(lambda: CharacteristicSchema()), default=[])
 
     @post_load
     def make_viewpoint(self, data, **kwargs):
-        data.pop('class_name')
         children = {child.name: child for child in data.pop('characteristics')}
         data['children'] = children
         return Viewpoint(**data)
 
 
 class QualityModelSchema(Schema):
-    class_name = fields.Str()
     name = fields.Str()
     viewpoints = fields.List(fields.Nested(lambda: ViewpointSchema()), default=[])
 
     @post_load
     def make_quality_model(self, data, **kwargs):
-        data.pop('class_name')
         children = {child.name: child for child in data.pop('viewpoints')}
         data['children'] = children
         return QualityModel(**data)

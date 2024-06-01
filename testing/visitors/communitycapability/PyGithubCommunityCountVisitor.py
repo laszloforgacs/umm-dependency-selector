@@ -1,4 +1,9 @@
+import os
+
 from presentation.core.visitors.Visitor import Visitor
+from source_temp.PyGithub.github import Github
+from util.GithubRateLimiter import GithubRateLimiter
+from github.Auth import Token
 
 
 class PyGithubCommunityCountVisitor(Visitor[int]):
@@ -12,7 +17,11 @@ class PyGithubCommunityCountVisitor(Visitor[int]):
                 print(f"{repository.full_name}: {measure.name} is {cached_result}")
                 return cached_result
 
-            contributors = repository.get_contributors()
+            auth = Token(os.getenv('UMM_DEPENDENCY_SELECTOR_GITHUB_TOKEN'))
+            github = Github(auth=auth, per_page=100)
+            github_rate_limiter = GithubRateLimiter(github=github)
+
+            contributors = github_rate_limiter.execute(repository.get_contributors)
             contributors_count = sum(1 for _ in contributors)
             print(f"{repository.full_name}: {measure.name} is {contributors_count}")
 

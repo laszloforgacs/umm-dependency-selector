@@ -1,0 +1,228 @@
+
+{
+  "name": "TestQualityModel",
+  "viewpoints": [
+    {
+      "name": "Developer Viewpoint",
+      "characteristics": [
+        {
+          "name": "Economic",
+          "sub_characteristics": [
+            {
+              "name": "Cost",
+              "measurable_concepts": [
+                {
+                  "name": "Bug fixing cost",
+                  "impact": "NEGATIVE",
+                  "entity": "issue tracker",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Calculating the bug fixing cost in the project",
+                  "quality_requirement": "Increased bug fixing costs affect overall costs negatively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Number of bugs to fix",
+                      "unit": "bug(s)",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/bug_fixing_cost/NumberOfBugsToFixVisitor.py"
+                    },
+                    {
+                      "name": "Number of contributors",
+                      "unit": "contributor(s)",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/communitycapability/PyGithubCommunityCountVisitor.py"
+                    }
+                  ]
+                },
+                {
+                  "name": "Maintenance cost",
+                  "impact": "NEGATIVE",
+                  "entity": "source code",
+                  "relevant_oss_aspect": "CODE",
+                  "information_need": "Calculating the cost of maintenance",
+                  "quality_requirement": "Elevated levels of maintenance costs affect overall costs negatively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Sqale Index - Technical Debt",
+                      "unit": "minutes and/or days",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/maintenance_cost/SqaleIndexVisitor.py"
+                    }
+                  ]
+                },
+                {
+
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Quality",
+          "sub_characteristics": [
+            {
+              "name": "Popularity",
+              "measurable_concepts": [
+                {
+                  "name": "Popularity",
+                  "impact": "POSITIVE",
+                  "entity": "repository properties",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Calculating the popularity of a repository",
+                  "quality_requirement": "Popularity affects 'Community and Adoption' positively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Contributor count",
+                      "unit": "person",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/communitycapability/PyGithubCommunityCountVisitor.py"
+                    },
+                    {
+                      "name": "Issue Throughput",
+                      "unit": "issue",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                      "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                      "base_measures": [
+                        {
+                          "name": "Number of closed issues",
+                          "unit": "issue",
+                          "scale": 1,
+                          "measurement_method": "AUTOMATIC",
+                          "visitor": "./testing/visitors/communitycapability/PyGithubCommunityCountVisitor.py"
+                        },
+                        {
+                          "name": "Number of total issues",
+                          "unit": "issue",
+                          "scale": 1,
+                          "measurement_method": "AUTOMATIC",
+                          "visitor": "./testing/visitors/communitycapability/PyGithubCommunityCountVisitor.py"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Support and Service",
+          "sub_characteristics": [
+            {
+              "name": "Popularity",
+              "measurable_concepts": [
+                {
+                  "name": "Popularity",
+                  "impact": "POSITIVE",
+                  "entity": "repository properties",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Calculating the popularity of a repository",
+                  "quality_requirement": "Popularity affects 'Community and Adoption' positively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Contributor count",
+                      "unit": "person",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/communitycapability/PyGithubCommunityCountVisitor.py"
+                    },
+                    {
+                      "name": "Issue Throughput",
+                      "unit": "issue",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                      "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                      "base_measures": [
+                        {
+                          "name": "Number of closed issues",
+                          "unit": "issue",
+                          "scale": 1,
+                          "measurement_method": "AUTOMATIC",
+                          "visitor": "./testing/visitors/communitycapability/PyGithubCommunityCountVisitor.py"
+                        },
+                        {
+                          "name": "Number of total issues",
+                          "unit": "issue",
+                          "scale": 1,
+                          "measurement_method": "AUTOMATIC",
+                          "visitor": "./testing/visitors/communitycapability/PyGithubCommunityCountVisitor.py"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Community and Adoption",
+          "sub_characteristics": [
+            {
+              "name": "Popularity",
+              "measurable_concepts": [
+                {
+                  "name": "Popularity",
+                  "impact": "POSITIVE",
+                  "entity": "repository properties",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Calculating the popularity of a repository",
+                  "quality_requirement": "Popularity affects 'Community and Adoption' positively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Contributor count",
+                      "unit": "person",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/communitycapability/PyGithubCommunityCountVisitor.py"
+                    },
+                    {
+                      "name": "Issue Throughput",
+                      "unit": "issue",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                      "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                      "base_measures": [
+                        {
+                          "name": "Number of closed issues",
+                          "unit": "issue",
+                          "scale": 1,
+                          "measurement_method": "AUTOMATIC",
+                          "visitor": "./testing/visitors/communitycapability/PyGithubCommunityCountVisitor.py"
+                        },
+                        {
+                          "name": "Number of total issues",
+                          "unit": "issue",
+                          "scale": 1,
+                          "measurement_method": "AUTOMATIC",
+                          "visitor": "./testing/visitors/communitycapability/PyGithubCommunityCountVisitor.py"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

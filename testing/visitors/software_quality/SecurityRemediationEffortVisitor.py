@@ -2,7 +2,6 @@ import asyncio
 
 from presentation.core.visitors.Visitor import BaseMeasureVisitor
 from source_temp.PyGithub.github.Repository import Repository
-from util.GithubRateLimiter import GithubRateLimiter
 from util.Sonar import Sonar
 
 """
@@ -11,7 +10,7 @@ Sonar measure
 
 
 class SecurityRemediationEffortVisitor(BaseMeasureVisitor[int]):
-    def __init__(self, github_rate_limiter: GithubRateLimiter):
+    def __init__(self):
         pass
 
     async def measure(self, measure: 'BaseMeasure', repository: Repository) -> int:

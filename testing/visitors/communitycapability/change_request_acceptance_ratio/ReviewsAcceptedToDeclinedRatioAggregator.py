@@ -1,8 +1,8 @@
 from domain.model.Measure import Measure
 from presentation.core.visitors.Visitor import AggregateVisitor
 from source_temp.PyGithub.github.Repository import Repository
-from testing.measures.product_evolution.declined_changes.ReviewsDeclinedCount import ReviewsDeclinedCount
-from testing.measures.product_evolution.reviews_accepted.ReviewsAcceptedCount import ReviewsAcceptedCount
+from testing.visitors.product_evolution.declined_changes.ReviewsDeclinedCount import ReviewsDeclinedCount
+from testing.visitors.product_evolution.reviews_accepted.ReviewsAcceptedCount import ReviewsAcceptedCount
 from util.GithubRateLimiter import GithubRateLimiter
 
 

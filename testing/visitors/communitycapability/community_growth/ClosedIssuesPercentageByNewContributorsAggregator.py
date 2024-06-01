@@ -8,7 +8,7 @@ from domain.model.Measure import Measure
 from presentation.core.visitors.Visitor import AggregateVisitor
 from source_temp.PyGithub.github import Github
 from source_temp.PyGithub.github.Repository import Repository
-from testing.measures.communitycapability.community_growth.NewContributors import NewContributors
+from testing.visitors.communitycapability.community_growth.NewContributors import NewContributors
 from util.GithubRateLimiter import GithubRateLimiter
 
 

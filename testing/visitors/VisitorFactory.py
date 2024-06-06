@@ -62,7 +62,7 @@ from testing.visitors.software_quality.SecurityRemediationEffortVisitor import S
 from testing.subcharacteristic.communitycapability.AugurClosedIssuesCountVisitor import AugurClosedIssuesCountVisitor
 from testing.subcharacteristic.communitycapability.AugurIssueThroughputVisitor import AugurIssueThroughputVisitor
 from testing.subcharacteristic.communitycapability.AugurTotalIssuesCountVisitor import AugurTotalIssuesCountVisitor
-from testing.visitors.StandardVisitors import AverageAggregateVisitor, NoOpNormalizeVisitor, \
+from testing.visitors import AverageAggregateVisitor, NoOpNormalizeVisitor, \
     AddAggregateVisitor, StandardNormalizeVisitor
 from testing.visitors.codecomplexity.DurationToResolveIssuesVisitor import \
     DurationToResolveIssuesVisitor

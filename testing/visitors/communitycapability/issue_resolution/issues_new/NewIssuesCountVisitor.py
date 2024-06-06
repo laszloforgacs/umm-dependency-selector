@@ -1,10 +1,13 @@
+import os
 from datetime import datetime, timezone
 
 from dateutil.relativedelta import relativedelta
 
 from presentation.core.visitors.Visitor import BaseMeasureVisitor
 from source_temp.PyGithub.github.Repository import Repository
+from source_temp.PyGithub.github import Github
 from util.GithubRateLimiter import GithubRateLimiter
+from github.Auth import Token
 
 """
 CHAOSS metric attributed to Issue Resolution. Category 1 measure. Analysed in the last 3 months.
@@ -12,8 +15,8 @@ CHAOSS metric attributed to Issue Resolution. Category 1 measure. Analysed in th
 
 
 class NewIssuesCountVisitor(BaseMeasureVisitor[int]):
-    def __init__(self, github_rate_limiter: GithubRateLimiter):
-        self._github_rate_limiter = github_rate_limiter
+    def __init__(self):
+        pass
 
     async def measure(self, measure: 'BaseMeasure', repository: Repository) -> int:
         try:
@@ -22,8 +25,12 @@ class NewIssuesCountVisitor(BaseMeasureVisitor[int]):
                 print(f"{repository.full_name}: {measure.name} is {cached_result}")
                 return cached_result
 
+            auth = Token(os.getenv('UMM_DEPENDENCY_SELECTOR_GITHUB_TOKEN'))
+            github = Github(auth=auth, per_page=100)
+            github_rate_limiter = GithubRateLimiter(github=github)
+
             start_date = datetime.now(timezone.utc) - relativedelta(months=3)
-            issues = self._github_rate_limiter.execute(
+            issues = github_rate_limiter.execute(
                 repository.get_issues,
                 state="all",
                 sort="created",

@@ -1,21 +1,24 @@
+import os
 from datetime import datetime, timezone
 
 from dateutil.relativedelta import relativedelta
 
 from presentation.core.visitors.Visitor import BaseMeasureVisitor
 from source_temp.PyGithub.github.Repository import Repository
+from source_temp.PyGithub.github import Github
 from util.GithubRateLimiter import GithubRateLimiter
+from github.Auth import Token
 
 """
-CHAOSS workgroup's github page. Part of Change Request Contributors measurable concept.
+CHAOSS workgroup's github page.
 Counts the average number of contributors per pull request in the version control history.
 The period will be the last 3 months for the sake of saving API limits.
 """
 
 
 class AvgNumberOfContributorsPerPRsVisitor(BaseMeasureVisitor[int]):
-    def __init__(self, github_rate_limiter: GithubRateLimiter):
-        self._github_rate_limiter = github_rate_limiter
+    def __init__(self):
+        pass
 
     async def measure(self, measure: 'BaseMeasure', repository: Repository) -> int:
         try:
@@ -24,9 +27,13 @@ class AvgNumberOfContributorsPerPRsVisitor(BaseMeasureVisitor[int]):
                 print(f"{repository.full_name}: {measure.name} is {cached_result}")
                 return cached_result
 
+            auth = Token(os.getenv('UMM_DEPENDENCY_SELECTOR_GITHUB_TOKEN'))
+            github = Github(auth=auth, per_page=100)
+            github_rate_limiter = GithubRateLimiter(github=github)
+
             contributors_count = 0
             start_date = datetime.now(timezone.utc) - relativedelta(months=3)
-            pull_requests = self._github_rate_limiter.execute(
+            pull_requests = github_rate_limiter.execute(
                 repository.get_pulls,
                 state="all",
                 sort="created",
@@ -40,7 +47,7 @@ class AvgNumberOfContributorsPerPRsVisitor(BaseMeasureVisitor[int]):
                 contributors.add(
                     pr.user.login
                 )
-                commits = self._github_rate_limiter.execute(pr.get_commits)
+                commits = github_rate_limiter.execute(pr.get_commits)
                 for commit in commits:
                     if commit.author is not None or commit.committer is not None:
                         contributors.add(

@@ -1,9 +1,12 @@
+import os
 from datetime import datetime, timezone
 
 from dateutil.relativedelta import relativedelta
 
 from presentation.core.visitors.Visitor import Visitor
+from source_temp.PyGithub.github import Github
 from util.GithubRateLimiter import GithubRateLimiter
+from github.Auth import Token
 
 """
 Augur measure: Time series of number of accepted reviews / pull requests opened within a certain period
@@ -11,8 +14,8 @@ Augur measure: Time series of number of accepted reviews / pull requests opened 
 
 
 class ReviewsAcceptedRatioVisitor(Visitor[float]):
-    def __init__(self, github_rate_limiter: GithubRateLimiter):
-        self._github_rate_limiter = github_rate_limiter
+    def __init__(self):
+        pass
 
     async def measure(self, measure: 'BaseMeasure', repository: 'Repository') -> float:
         try:
@@ -21,9 +24,13 @@ class ReviewsAcceptedRatioVisitor(Visitor[float]):
                 print(f"{repository.full_name}: {measure.name} is {cached_result}")
                 return cached_result
 
+            auth = Token(os.getenv('UMM_DEPENDENCY_SELECTOR_GITHUB_TOKEN'))
+            github = Github(auth=auth, per_page=100)
+            github_rate_limiter = GithubRateLimiter(github=github)
+
             end_date = datetime.now(timezone.utc)
             start_date = end_date - relativedelta(months=6)
-            pull_requests = self._github_rate_limiter.execute(
+            pull_requests = github_rate_limiter.execute(
                 repository.get_pulls,
                 state='closed',
                 direction='desc'
@@ -33,7 +40,7 @@ class ReviewsAcceptedRatioVisitor(Visitor[float]):
                                          start_date <= pull_request.created_at <= end_date]
             accepted_count = sum(1 for pull_request in pull_requests_within_date if pull_request.merged_at is not None)
 
-            opened_pull_requests = self._github_rate_limiter.execute(
+            opened_pull_requests = github_rate_limiter.execute(
                 repository.get_pulls,
                 direction='desc'
             )

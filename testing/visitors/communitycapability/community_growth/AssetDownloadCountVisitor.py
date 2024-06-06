@@ -15,7 +15,7 @@ from CHAOSS. belongs to Comunity Growth, Number of Downloads
 
 
 class AssetDownloadCountVisitor(BaseMeasureVisitor[int]):
-    def __init__(self, github_rate_limiter: GithubRateLimiter):
+    def __init__(self):
         super().__init__()
 
     async def measure(self, measure: 'BaseMeasure', repository: Repository) -> int:

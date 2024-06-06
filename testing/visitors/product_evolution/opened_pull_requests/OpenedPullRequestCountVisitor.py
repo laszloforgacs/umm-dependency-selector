@@ -1,9 +1,12 @@
+import os
 from datetime import timezone, datetime
 
 from dateutil.relativedelta import relativedelta
 
 from presentation.core.visitors.Visitor import Visitor
+from source_temp.PyGithub.github import Github
 from util.GithubRateLimiter import GithubRateLimiter
+from github.Auth import Token
 
 """
 Augur measure that counts the number of opened pull request in a period of time.
@@ -12,8 +15,8 @@ It's 6 months by default.
 
 
 class OpenedPullRequestCountVisitor(Visitor[int]):
-    def __init__(self, github_rate_limiter: GithubRateLimiter):
-        self._github_rate_limiter = github_rate_limiter
+    def __init__(self):
+        pass
 
     async def measure(self, measure: 'BaseMeasure', repository: 'Repository') -> int:
         try:
@@ -22,9 +25,13 @@ class OpenedPullRequestCountVisitor(Visitor[int]):
                 print(f"{repository.full_name}: {measure.name} is {cached_result}")
                 return cached_result
 
+            auth = Token(os.getenv('UMM_DEPENDENCY_SELECTOR_GITHUB_TOKEN'))
+            github = Github(auth=auth, per_page=100)
+            github_rate_limiter = GithubRateLimiter(github=github)
+
             end_date = datetime.now(timezone.utc)
             start_date = end_date - relativedelta(months=6)
-            opened_pull_requests = self._github_rate_limiter.execute(
+            opened_pull_requests = github_rate_limiter.execute(
                 repository.get_pulls,
                 sort='created',
                 direction='desc'

@@ -1,10 +1,13 @@
+import os
 from datetime import timezone, datetime
 
 from dateutil.relativedelta import relativedelta
 
 from presentation.core.visitors.Visitor import BaseMeasureVisitor, T
 from source_temp.PyGithub.github.Repository import Repository
+from source_temp.PyGithub.github import Github
 from util.GithubRateLimiter import GithubRateLimiter
+from github.Auth import Token
 
 """
 Augur measure: Time series of number of new contributors
@@ -17,9 +20,8 @@ In the last 3 months.
 
 
 class NewContributorsCountVisitor(BaseMeasureVisitor[int]):
-    def __init__(self, github_rate_limiter: GithubRateLimiter):
-        super().__init__()
-        self._github_rate_limiter = github_rate_limiter
+    def __init__(self):
+        pass
 
     async def measure(self, measure: 'BaseMeasure', repository: Repository) -> int:
         try:
@@ -27,6 +29,10 @@ class NewContributorsCountVisitor(BaseMeasureVisitor[int]):
             if cached_result is not None:
                 print(f"{repository.full_name}: {measure.name} is {cached_result}")
                 return cached_result
+
+            auth = Token(os.getenv('UMM_DEPENDENCY_SELECTOR_GITHUB_TOKEN'))
+            github = Github(auth=auth, per_page=100)
+            github_rate_limiter = GithubRateLimiter(github=github)
 
             new_contributor_count = 0
             commenters = set()
@@ -43,7 +49,7 @@ class NewContributorsCountVisitor(BaseMeasureVisitor[int]):
                 "ReleaseEvent"
             ]
 
-            pr_comments = self._github_rate_limiter.execute(
+            pr_comments = github_rate_limiter.execute(
                 repository.get_pulls_comments,
                 sort='updated',
                 direction='desc',
@@ -54,11 +60,11 @@ class NewContributorsCountVisitor(BaseMeasureVisitor[int]):
 
             for commenter in commenters:
                 first_contribution_date = None
-                user = self._github_rate_limiter.execute(
-                    self._github_rate_limiter.github_client.get_user,
+                user = github_rate_limiter.execute(
+                    github_rate_limiter.github_client.get_user,
                     login=commenter
                 )
-                events = self._github_rate_limiter.execute(
+                events = github_rate_limiter.execute(
                     user.get_events,
                 )
 

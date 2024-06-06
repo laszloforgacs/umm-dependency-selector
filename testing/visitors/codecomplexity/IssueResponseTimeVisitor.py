@@ -1,5 +1,9 @@
+import os
+
 from presentation.core.visitors.Visitor import Visitor
+from source_temp.PyGithub.github import Github
 from util.GithubRateLimiter import GithubRateLimiter
+from github.Auth import Token
 
 """
 Comes from augur. Average time to respond to an issue in a repository.
@@ -9,8 +13,8 @@ CATEGORY 1
 
 
 class IssueResponseTimeVisitor(Visitor[float]):
-    def __init__(self, github_rate_limiter: GithubRateLimiter):
-        self._github_rate_limiter = github_rate_limiter
+    def __init__(self):
+        pass
 
     async def measure(self, measure: 'BaseMeasure', repository: 'Repository') -> float:
         try:
@@ -19,13 +23,17 @@ class IssueResponseTimeVisitor(Visitor[float]):
                 print(f"{repository.full_name}: {measure.name} is {cached_result}")
                 return cached_result
 
-            issues = self._github_rate_limiter.execute(
+            auth = Token(os.getenv('UMM_DEPENDENCY_SELECTOR_GITHUB_TOKEN'))
+            github = Github(auth=auth, per_page=100)
+            github_rate_limiter = GithubRateLimiter(github=github)
+
+            issues = github_rate_limiter.execute(
                 repository.get_issues,
                 state="all"
             )
             time_differences = []
             for issue in issues:
-                comments = self._github_rate_limiter.execute(
+                comments = github_rate_limiter.execute(
                     issue.get_comments
                 )
                 if comments.totalCount > 0:

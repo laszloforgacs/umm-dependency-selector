@@ -1,6 +1,10 @@
+import os
+
 from presentation.core.visitors.Visitor import BaseMeasureVisitor
 from source_temp.PyGithub.github.Repository import Repository
+from source_temp.PyGithub.github import Github
 from util.GithubRateLimiter import GithubRateLimiter
+from github.Auth import Token
 
 """
 CHAOSS metric attributed to Change Request Reviews measurable concept.
@@ -8,9 +12,8 @@ CHAOSS metric attributed to Change Request Reviews measurable concept.
 
 
 class PercentageOfPRsReviewedVisitor(BaseMeasureVisitor[int]):
-    def __init__(self, github_rate_limiter: GithubRateLimiter):
-        super().__init__()
-        self._github_rate_limiter = github_rate_limiter
+    def __init__(self):
+        pass
 
     async def measure(self, measure: 'BaseMeasure', repository: Repository) -> int:
         try:
@@ -19,8 +22,12 @@ class PercentageOfPRsReviewedVisitor(BaseMeasureVisitor[int]):
                 print(f"{repository.full_name}: {measure.name} is {cached_result}")
                 return cached_result
 
+            auth = Token(os.getenv('UMM_DEPENDENCY_SELECTOR_GITHUB_TOKEN'))
+            github = Github(auth=auth, per_page=100)
+            github_rate_limiter = GithubRateLimiter(github=github)
+
             human_reviewed_prs = 0
-            closed_prs = self._github_rate_limiter.execute(
+            closed_prs = github_rate_limiter.execute(
                 repository.get_pulls,
                 state="closed"
             )
@@ -30,7 +37,7 @@ class PercentageOfPRsReviewedVisitor(BaseMeasureVisitor[int]):
                 return 0
 
             for pr in closed_prs:
-                reviews = self._github_rate_limiter.execute(pr.get_reviews)
+                reviews = github_rate_limiter.execute(pr.get_reviews)
                 is_human_reviewed = any(
                     review.user is not None and review.user.type == "User" for review in reviews
                 )

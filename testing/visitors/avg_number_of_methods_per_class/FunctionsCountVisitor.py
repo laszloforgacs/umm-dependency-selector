@@ -9,7 +9,7 @@ Sonar measure
 """
 
 
-class ClassesCountVisitor(BaseMeasureVisitor[int]):
+class FunctionsCountVisitor(BaseMeasureVisitor[int]):
     def __init__(self):
         pass
 
@@ -27,24 +27,18 @@ class ClassesCountVisitor(BaseMeasureVisitor[int]):
 
             sonar_cache = await sonar.get_cached_result()
             if sonar_cache is not None:
-                classes_count = int(sonar_cache.get("classes", 0))
-                efficiency = self.efficiency(classes_count)
-                print(f"{repository.full_name}: {measure.name} is {classes_count}, which is {efficiency} {measure.unit}")
-                await self.cache_result(measure, repository, efficiency)
-                return efficiency
+                functions = int(sonar_cache.get("functions", 0))
+                print(f"{repository.full_name}: {measure.name} is {functions} {measure.unit}")
+                await self.cache_result(measure, repository, functions)
+                return functions
 
             result = await asyncio.create_task(
                 sonar.measure()
             )
 
-            classes_count = int(result.get("classes", 0))
-            efficiency = self.efficiency(classes_count)
-            print(f"{repository.full_name}: {measure.name} is {classes_count}, which is {efficiency} {measure.unit}")
-            await self.cache_result(measure, repository, efficiency)
-            return efficiency
+            functions = int(result.get("functions", 0))
+            print(f"{repository.full_name}: {measure.name} is {functions} {measure.unit}")
+            await self.cache_result(measure, repository, functions)
+            return functions
         except Exception as e:
             raise Exception(str(e) + self.__class__.__name__)
-
-    def efficiency(self, measurement_value: int, optimal_value: int = 150, scaling_factor: float = 0.1) -> float:
-        raw_efficiency = 100 - scaling_factor * (measurement_value - optimal_value) ** 2
-        return max(0, raw_efficiency)

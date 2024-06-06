@@ -1,10 +1,13 @@
+import os
 from datetime import datetime, timezone
 
 from dateutil.relativedelta import relativedelta
 
 from presentation.core.visitors.Visitor import BaseMeasureVisitor
 from source_temp.PyGithub.github.Repository import Repository
+from source_temp.PyGithub.github import Github
 from util.GithubRateLimiter import GithubRateLimiter
+from github.Auth import Token
 
 """
 CHAOSS workgroup's github page. Total number of line changes metric (during a period).
@@ -15,8 +18,8 @@ As an example this will be 3 months
 
 
 class LinesChangedCountVisitor(BaseMeasureVisitor[int]):
-    def __init__(self, github_rate_limiter: GithubRateLimiter):
-        self._github_rate_limiter = github_rate_limiter
+    def __init__(self):
+        pass
 
     async def measure(self, measure: 'BaseMeasure', repository: Repository) -> int:
         try:
@@ -25,10 +28,14 @@ class LinesChangedCountVisitor(BaseMeasureVisitor[int]):
                 print(f"{repository.full_name}: {measure.name} is {cached_result}")
                 return cached_result
 
+            auth = Token(os.getenv('UMM_DEPENDENCY_SELECTOR_GITHUB_TOKEN'))
+            github = Github(auth=auth, per_page=100)
+            github_rate_limiter = GithubRateLimiter(github=github)
+
             total_changes = 0
             end_date = datetime.now(timezone.utc)
             start_date = end_date - relativedelta(months=3)
-            commits = self._github_rate_limiter.execute(
+            commits = github_rate_limiter.execute(
                 repository.get_commits,
                 since=start_date,
                 until=end_date

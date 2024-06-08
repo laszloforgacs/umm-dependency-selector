@@ -6,11 +6,11 @@ from util.GithubRateLimiter import GithubRateLimiter
 from github.Auth import Token
 
 
-class DurationToResolvePullRequestsVisitor(BaseMeasureVisitor[float]):
+class AvgTimeToFixBugsVisitor(BaseMeasureVisitor[int]):
     def __init__(self):
-        pass
+        self._github_rate_limiter = None
 
-    async def measure(self, measure: 'BaseMeasure', repository: 'Repository') -> float:
+    async def measure(self, measure: 'BaseMeasure', repository: 'Repository') -> int:
         try:
             cached_result = await self.get_cached_result(measure, repository)
             if cached_result is not None:
@@ -19,20 +19,18 @@ class DurationToResolvePullRequestsVisitor(BaseMeasureVisitor[float]):
 
             auth = Token(os.getenv('UMM_DEPENDENCY_SELECTOR_GITHUB_TOKEN'))
             github = Github(auth=auth, per_page=100)
-            github_rate_limiter = GithubRateLimiter(github=github)
+            self._github_rate_limiter = GithubRateLimiter(github=github)
 
-            closed_prs = github_rate_limiter.execute(
-                repository.get_pulls,
-                state="closed"
-            )
+            bug_labels = self._get_bug_labels(repository)
+            bugs = repository.get_issues(labels=bug_labels, state='closed')
             time_differences = []
-            for pr in closed_prs:
-                time_differences.append(pr.closed_at - pr.created_at)
+            for bug in bugs:
+                time_differences.append(bug.closed_at - bug.created_at)
 
             if len(time_differences) == 0:
-                # returning 90 days in seconds as an appropriately high value.
-                print(f"{repository.full_name}: {measure.name} is {90 * 24 * 60 * 60}")
-                return 90 * 24 * 60 * 60
+                upper_threshold = 90 * 24 * 60 * 60
+                print(f"{repository.full_name}: {measure.name} is {upper_threshold}")
+                return upper_threshold
 
             time_difference_seconds = [time_difference.total_seconds() for time_difference in time_differences]
             average_time_difference_seconds = sum(time_difference_seconds) / len(time_differences)
@@ -42,5 +40,15 @@ class DurationToResolvePullRequestsVisitor(BaseMeasureVisitor[float]):
 
             await self.cache_result(measure, repository, average_time_difference_days)
             return average_time_difference_days
+        except Exception as e:
+            raise Exception(str(e) + self.__class__.__name__)
+
+    def _get_bug_labels(self, repository: 'Repository') -> list[str]:
+        try:
+            labels = self._github_rate_limiter.execute(
+                repository.get_labels
+            )
+            bug_labels = [label.name for label in labels if 'bug' in label.name.lower()]
+            return bug_labels
         except Exception as e:
             raise Exception(str(e) + self.__class__.__name__)

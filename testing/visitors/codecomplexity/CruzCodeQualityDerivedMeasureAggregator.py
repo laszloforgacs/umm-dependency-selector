@@ -25,8 +25,8 @@ class CruzCodeQualityDerivedMeasureAggregator(AggregateVisitor[tuple[Measure, fl
         ratio = comments / lines_of_code
 
         if ratio <= 0.10:
-            return 1.0
+            return 2.0
         elif ratio <= 0.25:
-            return 1.0 - ((ratio - 0.10) * (1.0 / (0.25 - 0.10)))
+            return 2.0 + ((ratio - 0.10) * (1.0 / (0.25 - 0.10)))
         else:
-            return 0.0
+            return 3.0

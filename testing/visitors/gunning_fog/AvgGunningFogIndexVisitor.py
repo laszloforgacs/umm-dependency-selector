@@ -19,7 +19,7 @@ SOURCE_TEMP_DIR: Final = "source_temp"
 
 
 class AvgGunningFogIndexVisitor(BaseMeasureVisitor[int]):
-    def __init__(self, github_rate_limiter: GithubRateLimiter):
+    def __init__(self):
         super().__init__()
 
     async def measure(self, measure: 'BaseMeasure', repository: Repository) -> float:

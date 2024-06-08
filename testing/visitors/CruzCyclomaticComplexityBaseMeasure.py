@@ -1,5 +1,3 @@
-from github.Repository import Repository
-
 from domain.model.Measure import BaseMeasure
 
 

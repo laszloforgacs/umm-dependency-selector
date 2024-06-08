@@ -22,7 +22,11 @@ class NumberOfBugsToFixVisitor(BaseMeasureVisitor[int]):
             self._github_rate_limiter = GithubRateLimiter(github=github)
 
             bug_labels = self._get_bug_labels(repository)
-            open_bugs = repository.get_issues(labels=bug_labels, state='open')
+            open_bugs = self._github_rate_limiter.execute(
+                repository.get_issues,
+                labels=bug_labels,
+                state='open'
+            )
             print(f"{repository.full_name}: {measure.name} is {open_bugs.totalCount}")
 
             await self.cache_result(measure, repository, open_bugs.totalCount)

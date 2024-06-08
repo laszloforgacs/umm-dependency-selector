@@ -15,21 +15,20 @@ class TimeSinceLastCommitVisitor(Visitor[float]):
                 print(f"{repository.full_name}: {measure.name} is {cached_result}")
                 return cached_result
 
-            # default time threshold is 1 year in months
-            default_time_threshold = 12
+            # default time threshold is 1 year in days
+            default_time_threshold_days = 365
             current_date = datetime.now(timezone.utc)
 
             commits = repository.get_commits()
             if commits.totalCount == 0:
-                print(f"{repository.full_name}: {measure.name} is {default_time_threshold}")
-                return default_time_threshold
+                print(f"{repository.full_name}: {measure.name} is {default_time_threshold_days}")
+                return default_time_threshold_days
 
             last_commit = commits[0]
             last_commit_date = last_commit.commit.author.date
             time_since_last_commit = current_date - last_commit_date
-            time_since_last_commit_months = time_since_last_commit.days / 30
 
-            await self.cache_result(measure, repository, time_since_last_commit_months)
-            return time_since_last_commit_months
+            await self.cache_result(measure, repository, time_since_last_commit.days)
+            return time_since_last_commit.days
         except Exception as e:
             raise Exception(str(e) + self.__class__.__name__)

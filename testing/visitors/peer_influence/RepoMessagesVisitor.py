@@ -1,10 +1,13 @@
+import os
 from datetime import datetime, timezone
 
 from dateutil.relativedelta import relativedelta
 from github.Repository import Repository
 
 from presentation.core.visitors.Visitor import BaseMeasureVisitor, T
+from source_temp.PyGithub.github import Github
 from util.GithubRateLimiter import GithubRateLimiter
+from github.Auth import Token
 
 """
 Augur measure: Number of messages exchanged for a repository over a specified period.
@@ -14,9 +17,8 @@ Augur measure: Number of messages exchanged for a repository over a specified pe
 
 class RepoMessagesVisitor(BaseMeasureVisitor[int]):
 
-    def __init__(self, github_rate_limiter: GithubRateLimiter):
+    def __init__(self):
         super().__init__()
-        self._github_rate_limiter = github_rate_limiter
 
     async def measure(self, measure: 'BaseMeasure', repository: Repository) -> int:
         try:
@@ -24,6 +26,8 @@ class RepoMessagesVisitor(BaseMeasureVisitor[int]):
             if cached_result is not None:
                 print(f"{repository.full_name}: {measure.name} is {cached_result}")
                 return cached_result
+
+            self._init()
 
             end_date = datetime.now(timezone.utc)
             start_date = end_date - relativedelta(months=3)
@@ -42,3 +46,8 @@ class RepoMessagesVisitor(BaseMeasureVisitor[int]):
             return total_comments
         except Exception as e:
             raise Exception(str(e) + self.__class__.__name__)
+
+    def _init(self):
+        auth = Token(os.getenv('UMM_DEPENDENCY_SELECTOR_GITHUB_TOKEN'))
+        github = Github(auth=auth, per_page=100)
+        self._github_rate_limiter = GithubRateLimiter(github=github)

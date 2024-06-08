@@ -1,9 +1,9 @@
 import asyncio
 import json
 
+from github.Repository import Repository
+
 from presentation.core.visitors.Visitor import BaseMeasureVisitor
-from source_temp.PyGithub.github.Repository import Repository
-from util.GithubRateLimiter import GithubRateLimiter
 from util.Sonar import Sonar
 
 """

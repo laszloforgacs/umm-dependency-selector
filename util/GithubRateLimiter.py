@@ -1,8 +1,6 @@
 import time
 
-from github import Github
-
-from source_temp.PyGithub.github import RateLimitExceededException
+from github import Github, RateLimitExceededException
 
 
 class GithubRateLimiter():

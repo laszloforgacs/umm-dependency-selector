@@ -2,12 +2,12 @@ import os
 from typing import Final
 
 import aiofiles
+from github import Github
+from github.Repository import Repository
 from readability import Readability
 from readability.exceptions import ReadabilityException
 
 from presentation.core.visitors.Visitor import BaseMeasureVisitor
-from source_temp.PyGithub.github import Github
-from source_temp.PyGithub.github.Repository import Repository
 from util.GithubRateLimiter import GithubRateLimiter
 from github.Auth import Token
 

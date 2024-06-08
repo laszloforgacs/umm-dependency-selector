@@ -584,3 +584,5 @@ pyrightconfig.json
 .idea/
 
 source_temp/
+
+.DS_Store

@@ -1,8 +1,11 @@
-from datetime import datetime, timezone
+import os
+
+from github import Github
+from github.Repository import Repository
 
 from presentation.core.visitors.Visitor import BaseMeasureVisitor
-from source_temp.PyGithub.github.Repository import Repository
 from util.GithubRateLimiter import GithubRateLimiter
+from github.Auth import Token
 
 """
 Measured in Augur. Called Watchers Count.
@@ -10,8 +13,8 @@ Measured in Augur. Called Watchers Count.
 
 
 class WatchersCountVisitor(BaseMeasureVisitor[int]):
-    def __init__(self, github_rate_limiter: GithubRateLimiter):
-        self._github_rate_limiter = github_rate_limiter
+    def __init__(self):
+        pass
 
     async def measure(self, measure: 'BaseMeasure', repository: Repository) -> int:
         try:
@@ -19,6 +22,8 @@ class WatchersCountVisitor(BaseMeasureVisitor[int]):
             if cached_result is not None:
                 print(f"{repository.full_name}: {measure.name} is {cached_result}")
                 return cached_result
+
+            self._init()
 
             watchers = self._github_rate_limiter.execute(
                 repository.get_watchers
@@ -30,3 +35,8 @@ class WatchersCountVisitor(BaseMeasureVisitor[int]):
             return watchers.totalCount
         except Exception as e:
             raise Exception(str(e) + self.__class__.__name__)
+
+    def _init(self):
+        auth = Token(os.getenv('UMM_DEPENDENCY_SELECTOR_GITHUB_TOKEN'))
+        github = Github(auth=auth, per_page=100)
+        self._github_rate_limiter = GithubRateLimiter(github=github)

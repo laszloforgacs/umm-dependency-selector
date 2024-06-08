@@ -1,9 +1,9 @@
 import os
 from datetime import datetime, timedelta, timezone
 
-from data.repository.SourceRepositoryImpl import SOURCE_TEMP_DIR
+from github.Repository import Repository
+
 from presentation.core.visitors.Visitor import Visitor
-from source_temp.PyGithub.github.Repository import Repository
 
 
 class ReleaseCountVisitor(Visitor[int]):

@@ -1,9 +1,10 @@
 import asyncio
 import os
 
+from github.Repository import Repository
+
 from data.repository.SourceRepositoryImpl import SOURCE_TEMP_DIR
 from presentation.core.visitors.Visitor import Visitor
-from source_temp.PyGithub.github.Repository import Repository
 
 
 class DelBiancoSnykRiskMeasureVisitor(Visitor[int]):

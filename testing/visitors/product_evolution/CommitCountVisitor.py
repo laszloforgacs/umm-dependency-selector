@@ -1,7 +1,8 @@
 from datetime import datetime, timezone
 
+from github.Repository import Repository
+
 from presentation.core.visitors.Visitor import Visitor
-from source_temp.PyGithub.github.Repository import Repository
 
 """
 criticality_score project, average commits per week in the last year

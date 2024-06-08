@@ -1,0 +1,10 @@
+{
+    "preference_matrix": {
+        "Reliability, Maintainability": null,
+        "Reliability, Security": null,
+        "Reliability, Code Quality": null,
+        "Maintainability, Security": null,
+        "Maintainability, Code Quality": null,
+        "Security, Code Quality": null
+    }
+}

@@ -7,10 +7,10 @@ from typing import Final
 import aiofiles
 import requests
 from dotenv import set_key, find_dotenv
+from github.Repository import Repository
 
 from data.repository.SourceRepositoryImpl import SOURCE_TEMP_DIR
 from presentation.core.visitors.Visitor import CACHE_FOLDER
-from source_temp.PyGithub.github.Repository import Repository
 
 SONAR_BASE_URL: Final = "http://localhost:9000"
 GLOBAL_ANALYSIS_TOKEN: Final = "GLOBAL_ANALYSIS_TOKEN"

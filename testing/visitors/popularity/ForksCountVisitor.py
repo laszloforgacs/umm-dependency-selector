@@ -1,8 +1,6 @@
-from datetime import datetime, timezone
+from github.Repository import Repository
 
 from presentation.core.visitors.Visitor import BaseMeasureVisitor
-from source_temp.PyGithub.github.Repository import Repository
-from util.GithubRateLimiter import GithubRateLimiter
 
 """
 Measured in Augur. Called Forks Count.
@@ -10,8 +8,8 @@ Measured in Augur. Called Forks Count.
 
 
 class ForksCountVisitor(BaseMeasureVisitor[int]):
-    def __init__(self, github_rate_limiter: GithubRateLimiter):
-        self._github_rate_limiter = github_rate_limiter
+    def __init__(self):
+        pass
 
     async def measure(self, measure: 'BaseMeasure', repository: Repository) -> int:
         try:

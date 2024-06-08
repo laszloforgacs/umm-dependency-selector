@@ -2,12 +2,12 @@ import os
 from datetime import timezone, datetime
 
 from dateutil.relativedelta import relativedelta
+from github import Github
 from github.Auth import Token
+from github.Repository import Repository
 
 from domain.model.Measure import Measure
 from presentation.core.visitors.Visitor import AggregateVisitor
-from source_temp.PyGithub.github import Github
-from source_temp.PyGithub.github.Repository import Repository
 from testing.visitors.communitycapability.community_growth.NewContributors import NewContributors
 from util.GithubRateLimiter import GithubRateLimiter
 

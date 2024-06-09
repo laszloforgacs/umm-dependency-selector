@@ -26,7 +26,7 @@ class GithubRateLimiter():
         self.last_remaining = rate_limit.remaining
         print(f"API requests remaining: {self.last_remaining}")
         if self.last_remaining < 500:  # Adjust threshold as necessary
-            self._throttle(rate_limit.reset)
+            self._throttle(rate_limit.reset.timestamp())
 
     def _throttle(self, reset_time):
         current_time = time.time()

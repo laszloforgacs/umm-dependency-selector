@@ -139,7 +139,7 @@
                   ]
                 },
                 {
-                  "name": "Change Requests Accepted",
+                  "name": "Number of Change Requests Accepted",
                   "impact": "POSITIVE",
                   "entity": "pull requests in version control history",
                   "relevant_oss_aspect": "COMMUNITY",
@@ -154,7 +154,19 @@
                       "scale": 1,
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/product_evolution/reviews_accepted/ReviewsAcceptedCountVisitor.py"
-                    },
+                    }
+                  ]
+                },
+                {
+                  "name": "Change Requests Accepted to Total Change Requests Ratio",
+                  "impact": "POSITIVE",
+                  "entity": "pull requests in version control history",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "The amount of pull requests accepted in the project",
+                  "quality_requirement": "Affects community capability positively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
                     {
                       "name": "Reviews Accepted - Total PR Ratio",
                       "unit": "pull request(s)",
@@ -165,7 +177,7 @@
                   ]
                 },
                 {
-                  "name": "Change Requests Declined",
+                  "name": "Number of Change Requests Declined",
                   "impact": "NEGATIVE",
                   "entity": "pull requests in version control history",
                   "relevant_oss_aspect": "COMMUNITY",
@@ -180,7 +192,19 @@
                       "scale": 1,
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/product_evolution/declined_changes/ReviewsDeclinedCountVisitor.py"
-                    },
+                    }
+                  ]
+                },
+                {
+                  "name": "Change Requests Declined to Total Change Requests Ratio",
+                  "impact": "NEGATIVE",
+                  "entity": "pull requests in version control history",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "The amount of pull requests rejected in the project",
+                  "quality_requirement": "Affects community capability negatively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
                     {
                       "name": "Reviews Declined - Total PR Ratio",
                       "unit": "ratio",
@@ -208,7 +232,7 @@
                   ]
                 },
                 {
-                  "name": "Issues New",
+                  "name": "Number of Issues New",
                   "impact": "POSITIVE",
                   "entity": "issues in version control history",
                   "relevant_oss_aspect": "COMMUNITY",
@@ -223,7 +247,19 @@
                       "scale": 1,
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/communitycapability/issue_resolution/issues_new/NewIssuesCountVisitor.py"
-                    },
+                    }
+                  ]
+                },
+                {
+                  "name": "Issues New to Total Issues Ratio",
+                  "impact": "POSITIVE",
+                  "entity": "issues in version control history",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Ratio of new issues to total issues in the version control history",
+                  "quality_requirement": "New issues are a proxy for activity and affect community capability positively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
                     {
                       "name": "New Issues Ratio",
                       "unit": "new issues in a period - total issues ratio",
@@ -234,7 +270,7 @@
                   ]
                 },
                 {
-                  "name": "Issues Active",
+                  "name": "Number of Issues Active",
                   "impact": "POSITIVE",
                   "entity": "issues in version control history",
                   "relevant_oss_aspect": "COMMUNITY",
@@ -244,18 +280,30 @@
                   "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
                   "measures": [
                     {
-                      "name": "New Issues Count",
-                      "unit": "issue(s)",
+                      "name": "Updated Issues Count",
+                      "unit": "updated issue",
                       "scale": 1,
                       "measurement_method": "AUTOMATIC",
-                      "visitor": "./testing/visitors/communitycapability/issue_resolution/issues_new/NewIssuesCountVisitor.py"
-                    },
+                      "visitor": "./testing/visitors/product_evolution/issue_interactions/UpdatedIssuesCountVisitor.py"
+                    }
+                  ]
+                },
+                {
+                  "name": "Issues Active to Total Issues Ratio",
+                  "impact": "POSITIVE",
+                  "entity": "issues in version control history",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Amount of active issues in the version control history",
+                  "quality_requirement": "Updating issues signals community activity and affect community capability positively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
                     {
-                      "name": "New Issues Ratio",
-                      "unit": "new issues in a period - total issues ratio",
+                      "name": "Active Issues Ratio",
+                      "unit": "ratio",
                       "scale": 1,
                       "measurement_method": "AUTOMATIC",
-                      "visitor": "./testing/visitors/communitycapability/issue_resolution/issues_new/NewIssuesRatioVisitor.py"
+                      "visitor": "./testing/visitors/communitycapability/issue_resolution/issues_active/ActiveIssuesRatioVisitor.py"
                     }
                   ]
                 },
@@ -677,11 +725,11 @@
                   ]
                 },
                 {
-                  "name": "New Contributors Closing Issues",
+                  "name": "Number of New Contributors Closing Issues",
                   "impact": "POSITIVE",
                   "entity": "issues in the issue tracker",
                   "relevant_oss_aspect": "COMMUNITY",
-                  "information_need": "New contributors closing issues in the issue tracker",
+                  "information_need": "Number of New contributors closing issues in the issue tracker",
                   "quality_requirement": "New contributors closing issues affect community health and vitality positively",
                   "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
                   "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
@@ -702,7 +750,19 @@
                           "visitor": "./testing/visitors/communitycapability/community_growth/NewContributorsVisitor.py"
                         }
                       ]
-                    },
+                    }
+                  ]
+                },
+                {
+                  "name": "Percentage of New Contributors Closing Issues",
+                  "impact": "POSITIVE",
+                  "entity": "issues in the issue tracker",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Percentage of New contributors closing issues in the issue tracker",
+                  "quality_requirement": "New contributors closing issues affect community health and vitality positively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
                     {
                       "name": "Percentage of issues closed by new contributors",
                       "unit": "percentage",
@@ -1042,7 +1102,7 @@
                   ]
                 },
                 {
-                  "name": "Change Requests Accepted",
+                  "name": "Number of Change Requests Accepted",
                   "impact": "POSITIVE",
                   "entity": "pull requests in version control history",
                   "relevant_oss_aspect": "COMMUNITY",
@@ -1057,7 +1117,19 @@
                       "scale": 1,
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/product_evolution/reviews_accepted/ReviewsAcceptedCountVisitor.py"
-                    },
+                    }
+                  ]
+                },
+                {
+                  "name": "Change Requests Accepted to Total Change Requests Ratio",
+                  "impact": "POSITIVE",
+                  "entity": "pull requests in version control history",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "The amount of pull requests accepted in the project",
+                  "quality_requirement": "Affects community capability positively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
                     {
                       "name": "Reviews Accepted - Total PR Ratio",
                       "unit": "pull request(s)",
@@ -1068,7 +1140,7 @@
                   ]
                 },
                 {
-                  "name": "Change Requests Declined",
+                  "name": "Number of Change Requests Declined",
                   "impact": "NEGATIVE",
                   "entity": "pull requests in version control history",
                   "relevant_oss_aspect": "COMMUNITY",
@@ -1083,7 +1155,19 @@
                       "scale": 1,
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/product_evolution/declined_changes/ReviewsDeclinedCountVisitor.py"
-                    },
+                    }
+                  ]
+                },
+                {
+                  "name": "Change Requests Declined to Total Change Requests Ratio",
+                  "impact": "NEGATIVE",
+                  "entity": "pull requests in version control history",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "The amount of pull requests rejected in the project",
+                  "quality_requirement": "Affects community capability negatively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
                     {
                       "name": "Reviews Declined - Total PR Ratio",
                       "unit": "ratio",
@@ -1242,7 +1326,7 @@
                   ]
                 },
                 {
-                  "name": "New Contributors Closing Issues",
+                  "name": "Number of New Contributors Closing Issues",
                   "impact": "POSITIVE",
                   "entity": "issues in the issue tracker",
                   "relevant_oss_aspect": "COMMUNITY",
@@ -1267,7 +1351,19 @@
                           "visitor": "./testing/visitors/communitycapability/community_growth/NewContributorsVisitor.py"
                         }
                       ]
-                    },
+                    }
+                  ]
+                },
+                {
+                  "name": "Percentage of New Contributors Closing Issues",
+                  "impact": "POSITIVE",
+                  "entity": "issues in the issue tracker",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "New contributors closing issues in the issue tracker",
+                  "quality_requirement": "New contributors closing issues affect community health and vitality positively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
                     {
                       "name": "Percentage of issues closed by new contributors",
                       "unit": "percentage",
@@ -1383,7 +1479,7 @@
                   ]
                 },
                 {
-                  "name": "Change Request Reviews",
+                  "name": "Change Request Reviews - Percentage of PRs Reviewed",
                   "impact": "POSITIVE",
                   "entity": "pull requests in version control history",
                   "relevant_oss_aspect": "COMMUNITY",
@@ -1398,7 +1494,19 @@
                       "scale": 1,
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/communitycapability/change_request_reviews/PercentageOfPRsReviewedVisitor.py"
-                    },
+                    }
+                  ]
+                },
+                {
+                  "name": "Change Request Reviews - Avg number of contributors per pull requests",
+                  "impact": "POSITIVE",
+                  "entity": "pull requests in version control history",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Calculating the average number of closed pull requests that have been reviewed",
+                  "quality_requirement": "Affects community health and vitality positively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
                     {
                       "name": "Avg number of contributors per pull requests",
                       "unit": "contributor(s)",
@@ -1616,7 +1724,7 @@
                   ]
                 },
                 {
-                  "name": "Change Request Reviews",
+                  "name": "Change Request Reviews - Percentage of PRs Reviewed",
                   "impact": "POSITIVE",
                   "entity": "pull requests in version control history",
                   "relevant_oss_aspect": "COMMUNITY",
@@ -1631,7 +1739,19 @@
                       "scale": 1,
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/communitycapability/change_request_reviews/PercentageOfPRsReviewedVisitor.py"
-                    },
+                    }
+                  ]
+                },
+                {
+                  "name": "Change Request Reviews - Avg number of contributors per pull requests",
+                  "impact": "POSITIVE",
+                  "entity": "pull requests in version control history",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Calculating the average number of closed pull requests that have been reviewed",
+                  "quality_requirement": "Affects community health and vitality positively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
                     {
                       "name": "Avg number of contributors per pull requests",
                       "unit": "contributor(s)",
@@ -1661,11 +1781,11 @@
                   ]
                 },
                 {
-                  "name": "New Contributors Closing Issues",
+                  "name": "Number of New Contributors Closing Issues",
                   "impact": "POSITIVE",
                   "entity": "issues in the issue tracker",
                   "relevant_oss_aspect": "COMMUNITY",
-                  "information_need": "New contributors closing issues in the issue tracker",
+                  "information_need": "Number of New contributors closing issues in the issue tracker",
                   "quality_requirement": "New contributors closing issues affect community health and vitality positively",
                   "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
                   "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
@@ -1686,7 +1806,19 @@
                           "visitor": "./testing/visitors/communitycapability/community_growth/NewContributorsVisitor.py"
                         }
                       ]
-                    },
+                    }
+                  ]
+                },
+                {
+                  "name": "Percentage of New Contributors Closing Issues",
+                  "impact": "POSITIVE",
+                  "entity": "issues in the issue tracker",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Percentage of New contributors closing issues in the issue tracker",
+                  "quality_requirement": "New contributors closing issues affect community health and vitality positively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
                     {
                       "name": "Percentage of issues closed by new contributors",
                       "unit": "percentage",
@@ -1859,7 +1991,7 @@
                   ]
                 },
                 {
-                  "name": "Change Requests Accepted",
+                  "name": "Number of Change Requests Accepted",
                   "impact": "POSITIVE",
                   "entity": "pull requests in version control history",
                   "relevant_oss_aspect": "COMMUNITY",
@@ -1874,7 +2006,19 @@
                       "scale": 1,
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/product_evolution/reviews_accepted/ReviewsAcceptedCountVisitor.py"
-                    },
+                    }
+                  ]
+                },
+                {
+                  "name": "Change Requests Accepted to Total Change Requests Ratio",
+                  "impact": "POSITIVE",
+                  "entity": "pull requests in version control history",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "The amount of pull requests accepted in the project",
+                  "quality_requirement": "Affects community capability positively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
                     {
                       "name": "Reviews Accepted - Total PR Ratio",
                       "unit": "pull request(s)",
@@ -1885,7 +2029,7 @@
                   ]
                 },
                 {
-                  "name": "Change Requests Declined",
+                  "name": "Number of Change Requests Declined",
                   "impact": "NEGATIVE",
                   "entity": "pull requests in version control history",
                   "relevant_oss_aspect": "COMMUNITY",
@@ -1900,7 +2044,19 @@
                       "scale": 1,
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/product_evolution/declined_changes/ReviewsDeclinedCountVisitor.py"
-                    },
+                    }
+                  ]
+                },
+                {
+                  "name": "Change Requests Declined to Total Change Requests Ratio",
+                  "impact": "NEGATIVE",
+                  "entity": "pull requests in version control history",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "The amount of pull requests rejected in the project",
+                  "quality_requirement": "Affects community capability negatively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
                     {
                       "name": "Reviews Declined - Total PR Ratio",
                       "unit": "ratio",
@@ -1928,7 +2084,7 @@
                   ]
                 },
                 {
-                  "name": "Issues New",
+                  "name": "Number of Issues New",
                   "impact": "POSITIVE",
                   "entity": "issues in version control history",
                   "relevant_oss_aspect": "COMMUNITY",
@@ -1943,7 +2099,19 @@
                       "scale": 1,
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/communitycapability/issue_resolution/issues_new/NewIssuesCountVisitor.py"
-                    },
+                    }
+                  ]
+                },
+                {
+                  "name": "Issues New to Total Issues Ratio",
+                  "impact": "POSITIVE",
+                  "entity": "issues in version control history",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Ratio of new issues to total issues in the version control history",
+                  "quality_requirement": "New issues are a proxy for activity and affect community capability positively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
                     {
                       "name": "New Issues Ratio",
                       "unit": "new issues in a period - total issues ratio",
@@ -1954,7 +2122,7 @@
                   ]
                 },
                 {
-                  "name": "Issues Active",
+                  "name": "Number of Issues Active",
                   "impact": "POSITIVE",
                   "entity": "issues in version control history",
                   "relevant_oss_aspect": "COMMUNITY",
@@ -1964,18 +2132,30 @@
                   "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
                   "measures": [
                     {
-                      "name": "New Issues Count",
-                      "unit": "issue(s)",
+                      "name": "Updated Issues Count",
+                      "unit": "updated issue",
                       "scale": 1,
                       "measurement_method": "AUTOMATIC",
-                      "visitor": "./testing/visitors/communitycapability/issue_resolution/issues_new/NewIssuesCountVisitor.py"
-                    },
+                      "visitor": "./testing/visitors/product_evolution/issue_interactions/UpdatedIssuesCountVisitor.py"
+                    }
+                  ]
+                },
+                {
+                  "name": "Issues Active to Total Issues Ratio",
+                  "impact": "POSITIVE",
+                  "entity": "issues in version control history",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Amount of active issues in the version control history",
+                  "quality_requirement": "Updating issues signals community activity and affect community capability positively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
                     {
-                      "name": "New Issues Ratio",
-                      "unit": "new issues in a period - total issues ratio",
+                      "name": "Active Issues Ratio",
+                      "unit": "ratio",
                       "scale": 1,
                       "measurement_method": "AUTOMATIC",
-                      "visitor": "./testing/visitors/communitycapability/issue_resolution/issues_new/NewIssuesRatioVisitor.py"
+                      "visitor": "./testing/visitors/communitycapability/issue_resolution/issues_active/ActiveIssuesRatioVisitor.py"
                     }
                   ]
                 },

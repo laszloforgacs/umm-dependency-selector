@@ -1,7 +1,12 @@
+import os
 from datetime import datetime, timezone, timedelta
 
 from presentation.core.visitors.Visitor import Visitor
 from util.GithubRateLimiter import GithubRateLimiter
+from github.Auth import Token
+
+from github import Github
+from github.Repository import Repository
 
 """
 criticality_score measure: Number of issues updated in the last 90 days.
@@ -11,8 +16,8 @@ Lower weight since it is dependent on project contributors.
 
 
 class UpdatedIssuesCountVisitor(Visitor[int]):
-    def __init__(self, github_rate_limiter: GithubRateLimiter):
-        self._github_rate_limiter = github_rate_limiter
+    def __init__(self):
+        pass
 
     async def measure(self, measure: 'BaseMeasure', repository: 'Repository') -> int:
         try:
@@ -20,6 +25,8 @@ class UpdatedIssuesCountVisitor(Visitor[int]):
             if cached_result is not None:
                 print(f"{repository.full_name}: {measure.name} is {cached_result}")
                 return cached_result
+
+            self._init()
 
             end_date = datetime.now(timezone.utc)
             start_date = end_date - timedelta(days=90)
@@ -34,3 +41,8 @@ class UpdatedIssuesCountVisitor(Visitor[int]):
             return updated_issues.totalCount
         except Exception as e:
             raise Exception(str(e) + self.__class__.__name__)
+
+    def _init(self):
+        auth = Token(os.getenv('UMM_DEPENDENCY_SELECTOR_GITHUB_TOKEN'))
+        github = Github(auth=auth, per_page=100)
+        self._github_rate_limiter = GithubRateLimiter(github=github)

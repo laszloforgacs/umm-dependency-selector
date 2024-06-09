@@ -13,6 +13,7 @@ from presentation.core.AHPReportStateSubject import AHPReportStateSubject
 from presentation.core.navigation.SourceStateSubject import SourceStateSubject
 from presentation.evaluation.EvaluationScreenState import Error as EvaluationError
 from presentation.evaluation.EvaluationStateSubject import EvaluationStateSubject
+from util.SafeVectorScaler import SafeVectorScaler
 
 
 class EvaluationViewModel:
@@ -67,9 +68,7 @@ class EvaluationViewModel:
             for i, repo in enumerate(repositories):
                 for mc in measurable_concepts:
                     result = await mc.measure(repo)
-                    print(f"{repo.full_name}: {mc.name} Measurable Concept - {result}")
-                    if 0 <= result < 1:
-                        result = result + 2
+                    # print(f"{repo.full_name}: {mc.name} Measurable Concept - {result}")
                     matrix[i].append(result)
 
             for mc in measurable_concepts:
@@ -94,7 +93,7 @@ class EvaluationViewModel:
 
             pipe = mkpipe(
                 invert_objectives.NegateMinimize(),
-                scalers.VectorScaler(target="matrix"),
+                SafeVectorScaler(target="matrix"),
                 scalers.SumScaler(target="weights"),
                 similarity.TOPSIS()
             )

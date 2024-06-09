@@ -293,7 +293,7 @@
                   "impact": "POSITIVE",
                   "entity": "issues in version control history",
                   "relevant_oss_aspect": "COMMUNITY",
-                  "information_need": "Amount of active issues in the version control history",
+                  "information_need": "Ratio of active issues to total issues in the version control history",
                   "quality_requirement": "Updating issues signals community activity and affect community capability positively",
                   "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
                   "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
@@ -308,7 +308,7 @@
                   ]
                 },
                 {
-                  "name": "Issues Closed",
+                  "name": "Number of Issues Closed",
                   "impact": "POSITIVE",
                   "entity": "issues in version control history",
                   "relevant_oss_aspect": "COMMUNITY",
@@ -323,7 +323,19 @@
                       "scale": 1,
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/subcharacteristic/communitycapability/AugurClosedIssuesCountVisitor.py"
-                    },
+                    }
+                  ]
+                },
+                {
+                  "name": "Issues Closed to Total Issues Ratio",
+                  "impact": "POSITIVE",
+                  "entity": "issues in version control history",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Ratio of closed issues to total issues in the version control history",
+                  "quality_requirement": "Closing issues is a proxy for community activity and affect community capability positively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
                     {
                       "name": "Closed Issues Ratio",
                       "unit": "closed issues in a period - total issues ratio",
@@ -2145,7 +2157,7 @@
                   "impact": "POSITIVE",
                   "entity": "issues in version control history",
                   "relevant_oss_aspect": "COMMUNITY",
-                  "information_need": "Amount of active issues in the version control history",
+                  "information_need": "Ratio of active issues to total issues in the version control history",
                   "quality_requirement": "Updating issues signals community activity and affect community capability positively",
                   "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
                   "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
@@ -2160,7 +2172,7 @@
                   ]
                 },
                 {
-                  "name": "Issues Closed",
+                  "name": "Number of Issues Closed",
                   "impact": "POSITIVE",
                   "entity": "issues in version control history",
                   "relevant_oss_aspect": "COMMUNITY",
@@ -2175,7 +2187,19 @@
                       "scale": 1,
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/subcharacteristic/communitycapability/AugurClosedIssuesCountVisitor.py"
-                    },
+                    }
+                  ]
+                },
+                {
+                  "name": "Issues Closed to Total Issues Ratio",
+                  "impact": "POSITIVE",
+                  "entity": "issues in version control history",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Ratio of closed issues to total issues in the version control history",
+                  "quality_requirement": "Closing issues is a proxy for community activity and affect community capability positively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
                     {
                       "name": "Closed Issues Ratio",
                       "unit": "closed issues in a period - total issues ratio",

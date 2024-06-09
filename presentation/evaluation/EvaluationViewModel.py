@@ -69,7 +69,7 @@ class EvaluationViewModel:
                     result = await mc.measure(repo)
                     print(f"{repo.full_name}: {mc.name} Measurable Concept - {result}")
                     if 0 <= result < 1:
-                        result = 2
+                        result = result + 2
                     matrix[i].append(result)
 
             for mc in measurable_concepts:
@@ -121,7 +121,8 @@ class EvaluationViewModel:
                 )
             )
 
-    async def _write_measurement_tree_to_json(self, quality_model: 'QualityModel', viewpoint: 'Viewpoint', repository_name: str):
+    async def _write_measurement_tree_to_json(self, quality_model: 'QualityModel', viewpoint: 'Viewpoint',
+                                              repository_name: str):
         await self._shared_view_model.write_measurement_result_tree_to_json(quality_model, viewpoint, repository_name)
 
     async def dispose(self):

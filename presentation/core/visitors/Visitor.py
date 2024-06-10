@@ -23,7 +23,7 @@ class Visitor(Generic[T], metaclass=ABCGenericMeta):
         quality_model = measure.get_quality_model()
         viewpoint = measure.get_viewpoint()
         path = os.path.join(CACHE_FOLDER,
-                            f"{repository.name}-{quality_model.name}-{viewpoint.name}-cache.json").replace(" ",
+                            f"{repository.name}-{quality_model.name}-cache.json").replace(" ",
                                                                                                            "_")
 
         key = f"{measure.name}_{self.__class__.__name__}".replace(" ", "_")
@@ -50,7 +50,7 @@ class Visitor(Generic[T], metaclass=ABCGenericMeta):
         quality_model = measure.get_quality_model()
         viewpoint = measure.get_viewpoint()
         path = os.path.join(CACHE_FOLDER,
-                            f"{repository.name}-{quality_model.name}-{viewpoint.name}-cache.json").replace(" ",
+                            f"{repository.name}-{quality_model.name}-cache.json").replace(" ",
                                                                                                            "_")
         if not os.path.exists(path):
             return None

@@ -1,0 +1,14 @@
+{
+    "preference_matrix": {
+        "Reliability, Maintainability": "1",
+        "Reliability, Security": "9",
+        "Reliability, Code Quality": "1",
+        "Reliability, Interoperability-Compatibility": "6",
+        "Maintainability, Security": "8",
+        "Maintainability, Code Quality": "1",
+        "Maintainability, Interoperability-Compatibility": "6",
+        "Security, Code Quality": "1/9",
+        "Security, Interoperability-Compatibility": "1/3",
+        "Code Quality, Interoperability-Compatibility": "9"
+    }
+}

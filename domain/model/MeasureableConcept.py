@@ -78,7 +78,6 @@ class MeasurableConcept(CompositeComponent, Generic[T], metaclass=ABCGenericMeta
 
     def serialize(self) -> dict:
         return {
-            "class_name": self.__class__.__name__,
             "name": self.name,
             "value": self._value,
             "impact": self.impact.name,

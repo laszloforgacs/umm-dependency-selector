@@ -75,7 +75,6 @@ class Viewpoint(CompositeComponent, metaclass=ABCMeta):
 
     def serialize(self) -> dict:
         return {
-            "class_name": self.__class__.__name__,
             "name": self.name,
             "characteristics": [child.serialize() for child in self.children.values()]
         }

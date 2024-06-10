@@ -1,0 +1,10 @@
+{
+    "preference_matrix": {
+        "Community Health and Vitality, Community Capability": "1",
+        "Community Health and Vitality, Time to fix bugs": "3",
+        "Community Health and Vitality, Community Size": "5",
+        "Community Capability, Time to fix bugs": "3",
+        "Community Capability, Community Size": "6",
+        "Time to fix bugs, Community Size": "5"
+    }
+}

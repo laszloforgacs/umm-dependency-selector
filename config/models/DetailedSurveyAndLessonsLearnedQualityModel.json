@@ -1,5 +1,5 @@
 {
-  "name": "Survey and Lessons Learned Quality Model",
+  "name": "Detailed Survey and Lessons Learned Quality Model",
   "viewpoints": [
     {
       "name": "Laszlo's Viewpoint",
@@ -8,7 +8,7 @@
           "name": "Economic",
           "sub_characteristics": [
             {
-              "name": "Cost",
+              "name": "Maintenance Cost",
               "measurable_concepts": [
                 {
                   "name": "Bug fixing cost",
@@ -54,7 +54,12 @@
                       "visitor": "./testing/visitors/maintenance_cost/SqaleIndexVisitor.py"
                     }
                   ]
-                },
+                }
+              ]
+            },
+            {
+              "name": "Number of Maintainers",
+              "measurable_concepts": [
                 {
                   "name": "Number of Contributors",
                   "impact": "POSITIVE",
@@ -92,33 +97,12 @@
                       "visitor": "./testing/visitors/communitycapability/TruckFactorVisitor.py"
                     }
                   ]
-                },
-                {
-                  "name": "Issue Throughput",
-                  "impact": "POSITIVE",
-                  "entity": "issues in issue tracker",
-                  "relevant_oss_aspect": "COMMUNITY",
-                  "information_need": "Calculating the ratio of closed issues to total issues in the project",
-                  "quality_requirement": "Increased closed issues to total issues ratio affects overall costs positively",
-                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
-                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
-                  "measures": [
-                    {
-                      "name": "Number of closed issues",
-                      "unit": "issue(s)",
-                      "scale": 1,
-                      "measurement_method": "AUTOMATIC",
-                      "visitor": "./testing/subcharacteristic/communitycapability/AugurClosedIssuesCountVisitor.py"
-                    },
-                    {
-                      "name": "Number of total issues",
-                      "unit": "issue(s)",
-                      "scale": 1,
-                      "measurement_method": "AUTOMATIC",
-                      "visitor": "./testing/subcharacteristic/communitycapability/AugurTotalIssuesCountVisitor.py"
-                    }
-                  ]
-                },
+                }
+              ]
+            },
+            {
+              "name": "Code Development Efficiency",
+              "measurable_concepts": [
                 {
                   "name": "Change Requests Duration",
                   "impact": "NEGATIVE",
@@ -228,6 +212,37 @@
                           "visitor": "./testing/subcharacteristic/communitycapability/AugurTotalIssuesCountVisitor.py"
                         }
                       ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Issue Resolution",
+              "measurable_concepts": [
+                {
+                  "name": "Issue Throughput",
+                  "impact": "POSITIVE",
+                  "entity": "issues in issue tracker",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Calculating the ratio of closed issues to total issues in the project",
+                  "quality_requirement": "Increased closed issues to total issues ratio affects overall costs positively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Number of closed issues",
+                      "unit": "issue(s)",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/subcharacteristic/communitycapability/AugurClosedIssuesCountVisitor.py"
+                    },
+                    {
+                      "name": "Number of total issues",
+                      "unit": "issue(s)",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/subcharacteristic/communitycapability/AugurTotalIssuesCountVisitor.py"
                     }
                   ]
                 },
@@ -382,7 +397,12 @@
                       "visitor": "./testing/visitors/communitycapability/change_requests_duration/DurationToResolvePullRequestsVisitor.py"
                     }
                   ]
-                },
+                }
+              ]
+            },
+            {
+              "name": "Flexible maintenance according to individual needs",
+              "measurable_concepts": [
                 {
                   "name": "Flexible maintenance according to individual needs",
                   "impact": "POSITIVE",
@@ -401,7 +421,12 @@
                       "visitor": "./testing/visitors/maintainability_rating/SqaleRatingVisitor.py"
                     }
                   ]
-                },
+                }
+              ]
+            },
+            {
+              "name": "Absence of license fees",
+              "measurable_concepts": [
                 {
                   "name": "Absence of license fees",
                   "impact": "POSITIVE",
@@ -431,6 +456,42 @@
             {
               "name": "Reliability",
               "measurable_concepts": [
+                {
+                  "name": "Comment lines and code lines ratio",
+                  "impact": "NEGATIVE",
+                  "entity": "source code",
+                  "relevant_oss_aspect": "CODE",
+                  "information_need": "Calculating the ratio of comment lines to code lines in the project",
+                  "quality_requirement": "Affects code quality negatively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Comment to Code Ratio",
+                      "unit": "ratio",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                      "aggregate_visitor": "./testing/visitors/codecomplexity/CruzCodeQualityDerivedMeasureAggregator.py",
+                      "base_measures": [
+                        {
+                          "name": "Lines of Code",
+                          "unit": "line(s)",
+                          "scale": 1,
+                          "measurement_method": "AUTOMATIC",
+                          "visitor": "./testing/visitors/codecomplexity/LizardLinesOfCodeVisitor.py"
+                        },
+                        {
+                          "name": "Lines of Comments",
+                          "unit": "line(s)",
+                          "scale": 1,
+                          "measurement_method": "AUTOMATIC",
+                          "visitor": "./testing/visitors/codecomplexity/ClocNumberOfCommentsVisitor.py"
+                        }
+                      ]
+                    }
+                  ]
+                },
                 {
                   "name": "Number of releases",
                   "impact": "POSITIVE",
@@ -510,6 +571,42 @@
             {
               "name": "Maintainability",
               "measurable_concepts": [
+                {
+                  "name": "Comment lines and code lines ratio",
+                  "impact": "NEGATIVE",
+                  "entity": "source code",
+                  "relevant_oss_aspect": "CODE",
+                  "information_need": "Calculating the ratio of comment lines to code lines in the project",
+                  "quality_requirement": "Affects code quality negatively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Comment to Code Ratio",
+                      "unit": "ratio",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                      "aggregate_visitor": "./testing/visitors/codecomplexity/CruzCodeQualityDerivedMeasureAggregator.py",
+                      "base_measures": [
+                        {
+                          "name": "Lines of Code",
+                          "unit": "line(s)",
+                          "scale": 1,
+                          "measurement_method": "AUTOMATIC",
+                          "visitor": "./testing/visitors/codecomplexity/LizardLinesOfCodeVisitor.py"
+                        },
+                        {
+                          "name": "Lines of Comments",
+                          "unit": "line(s)",
+                          "scale": 1,
+                          "measurement_method": "AUTOMATIC",
+                          "visitor": "./testing/visitors/codecomplexity/ClocNumberOfCommentsVisitor.py"
+                        }
+                      ]
+                    }
+                  ]
+                },
                 {
                   "name": "Ease of Maintenance",
                   "impact": "POSITIVE",
@@ -594,27 +691,228 @@
               ]
             },
             {
-              "name": "Code Quality",
+              "name": "Size",
               "measurable_concepts": [
                 {
-                  "name": "Documentation",
+                  "name": "Average Length of Functions",
                   "impact": "NEGATIVE",
-                  "entity": "text files in the repository",
+                  "entity": "source code",
                   "relevant_oss_aspect": "CODE",
-                  "information_need": "Calculating the average Gunning Fog Index of files in the repository",
-                  "quality_requirement": "Smaller Gunning Fog Index affects the readability of documentation positively",
+                  "information_need": "Calculating the average number lines of code per function in the source code",
+                  "quality_requirement": "Affects project size negatively",
                   "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
                   "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
                   "measures": [
                     {
-                      "name": "Average Gunning Fog Index",
-                      "unit": "value",
+                      "name": "Avg Lines of Code per Function",
+                      "unit": "lines",
                       "scale": 1,
                       "measurement_method": "AUTOMATIC",
-                      "visitor": "./testing/visitors/gunning_fog/AvgGunningFogIndexVisitor.py"
+                      "visitor": "./testing/visitors/size/avg_length_of_functions/AvgLinesOfCodePerFunctionVisitor.py"
                     }
                   ]
                 },
+                {
+                  "name": "Number of Classes",
+                  "impact": "POSITIVE",
+                  "entity": "source code",
+                  "relevant_oss_aspect": "CODE",
+                  "information_need": "Calculating the number of classes in the repository",
+                  "quality_requirement": "Affects project size negatively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Count of classes",
+                      "unit": "ranking",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/size/number_of_classes/ClassesCountVisitor.py"
+                    }
+                  ]
+                },
+                {
+                  "name": "Number of Files",
+                  "impact": "POSITIVE",
+                  "entity": "source code",
+                  "relevant_oss_aspect": "CODE",
+                  "information_need": "Calculating the number of files in the repository",
+                  "quality_requirement": "Affects project size negatively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Count of files",
+                      "unit": "ranking",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/size/number_of_files/FilesCountVisitor.py"
+                    }
+                  ]
+                },
+                {
+                  "name": "Comment lines and code lines ratio",
+                  "impact": "NEGATIVE",
+                  "entity": "source code",
+                  "relevant_oss_aspect": "CODE",
+                  "information_need": "Calculating the ratio of comment lines to code lines in the project",
+                  "quality_requirement": "Affects code quality negatively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Comment to Code Ratio",
+                      "unit": "ratio",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                      "aggregate_visitor": "./testing/visitors/codecomplexity/CruzCodeQualityDerivedMeasureAggregator.py",
+                      "base_measures": [
+                        {
+                          "name": "Lines of Code",
+                          "unit": "line(s)",
+                          "scale": 1,
+                          "measurement_method": "AUTOMATIC",
+                          "visitor": "./testing/visitors/codecomplexity/LizardLinesOfCodeVisitor.py"
+                        },
+                        {
+                          "name": "Lines of Comments",
+                          "unit": "line(s)",
+                          "scale": 1,
+                          "measurement_method": "AUTOMATIC",
+                          "visitor": "./testing/visitors/codecomplexity/ClocNumberOfCommentsVisitor.py"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Prompt fixing of bugs",
+              "measurable_concepts": [
+                {
+                  "name": "Time to fix bugs",
+                  "impact": "NEGATIVE",
+                  "entity": "issues in issue tracker",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Calculating the time to fix bugs",
+                  "quality_requirement": "Longer time to fix bugs affects quality negatively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Time to fix bugs",
+                      "unit": "day(s)",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/time_to_fix_bugs/AvgTimeToFixBugsVisitor.py"
+                    }
+                  ]
+                },
+                {
+                  "name": "Number of bugs",
+                  "impact": "NEGATIVE",
+                  "entity": "issues in issue tracker",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Calculating the number of bugs in the repository",
+                  "quality_requirement": "Affects code quality negatively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Number of issues labeled as bugs",
+                      "unit": "bug(s)",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/bug_fixing_cost/NumberOfBugsToFixVisitor.py"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Complexity",
+              "measurable_concepts": [
+                {
+                  "name": "Cyclomatic Complexity",
+                  "impact": "NEGATIVE",
+                  "entity": "source code",
+                  "relevant_oss_aspect": "CODE",
+                  "information_need": "Calculating the cyclomatic complexity of the project",
+                  "quality_requirement": "Affects complexity and quality negatively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Cyclomatic Complexity - Lizard",
+                      "unit": "value",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/codecomplexity/LizardCyclomaticComplexityVisitor.py"
+                    }
+                  ]
+                },
+                {
+                  "name": "Average Length of Functions",
+                  "impact": "NEGATIVE",
+                  "entity": "source code",
+                  "relevant_oss_aspect": "CODE",
+                  "information_need": "Calculating the average number lines of code per function in the source code",
+                  "quality_requirement": "Affects project size negatively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Avg Lines of Code per Function",
+                      "unit": "lines",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/size/avg_length_of_functions/AvgLinesOfCodePerFunctionVisitor.py"
+                    }
+                  ]
+                },
+                {
+                  "name": "Comment lines and code lines ratio",
+                  "impact": "NEGATIVE",
+                  "entity": "source code",
+                  "relevant_oss_aspect": "CODE",
+                  "information_need": "Calculating the ratio of comment lines to code lines in the project",
+                  "quality_requirement": "Affects code quality negatively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Comment to Code Ratio",
+                      "unit": "ratio",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                      "aggregate_visitor": "./testing/visitors/codecomplexity/CruzCodeQualityDerivedMeasureAggregator.py",
+                      "base_measures": [
+                        {
+                          "name": "Lines of Code",
+                          "unit": "line(s)",
+                          "scale": 1,
+                          "measurement_method": "AUTOMATIC",
+                          "visitor": "./testing/visitors/codecomplexity/LizardLinesOfCodeVisitor.py"
+                        },
+                        {
+                          "name": "Lines of Comments",
+                          "unit": "line(s)",
+                          "scale": 1,
+                          "measurement_method": "AUTOMATIC",
+                          "visitor": "./testing/visitors/codecomplexity/ClocNumberOfCommentsVisitor.py"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Rapid Evolution - Issue Resolution",
+              "measurable_concepts": [
                 {
                   "name": "Change Requests Duration",
                   "impact": "NEGATIVE",
@@ -716,7 +1014,12 @@
                       "visitor": "./testing/visitors/product_evolution/staleness/OpenIssueAgeVisitor.py"
                     }
                   ]
-                },
+                }
+              ]
+            },
+            {
+              "name": "Emerging Capability - Community Growth",
+              "measurable_concepts": [
                 {
                   "name": "Number of New Contributors",
                   "impact": "POSITIVE",
@@ -812,154 +1115,28 @@
                       "visitor": "./testing/visitors/communitycapability/community_growth/InactiveContributorCountVisitor.py"
                     }
                   ]
-                },
+                }
+              ]
+            },
+            {
+              "name": "Documentation",
+              "measurable_concepts": [
                 {
-                  "name": "Time to fix bugs",
+                  "name": "Documentation",
                   "impact": "NEGATIVE",
-                  "entity": "issues in issue tracker",
-                  "relevant_oss_aspect": "COMMUNITY",
-                  "information_need": "Calculating the time to fix bugs",
-                  "quality_requirement": "Longer time to fix bugs affects quality negatively",
-                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
-                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
-                  "measures": [
-                    {
-                      "name": "Time to fix bugs",
-                      "unit": "day(s)",
-                      "scale": 1,
-                      "measurement_method": "AUTOMATIC",
-                      "visitor": "./testing/visitors/time_to_fix_bugs/AvgTimeToFixBugsVisitor.py"
-                    }
-                  ]
-                },
-                {
-                  "name": "Average Length of Functions",
-                  "impact": "NEGATIVE",
-                  "entity": "source code",
+                  "entity": "text files in the repository",
                   "relevant_oss_aspect": "CODE",
-                  "information_need": "Calculating the average number lines of code per function in the source code",
-                  "quality_requirement": "Affects project size negatively",
+                  "information_need": "Calculating the average Gunning Fog Index of files in the repository",
+                  "quality_requirement": "Smaller Gunning Fog Index affects the readability of documentation positively",
                   "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
                   "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
                   "measures": [
                     {
-                      "name": "Avg Lines of Code per Function",
-                      "unit": "lines",
-                      "scale": 1,
-                      "measurement_method": "AUTOMATIC",
-                      "visitor": "./testing/visitors/size/avg_length_of_functions/AvgLinesOfCodePerFunctionVisitor.py"
-                    }
-                  ]
-                },
-                {
-                  "name": "Number of Classes",
-                  "impact": "POSITIVE",
-                  "entity": "source code",
-                  "relevant_oss_aspect": "CODE",
-                  "information_need": "Calculating the number of classes in the repository",
-                  "quality_requirement": "Affects project size negatively",
-                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
-                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
-                  "measures": [
-                    {
-                      "name": "Count of classes",
-                      "unit": "ranking",
-                      "scale": 1,
-                      "measurement_method": "AUTOMATIC",
-                      "visitor": "./testing/visitors/size/number_of_classes/ClassesCountVisitor.py"
-                    }
-                  ]
-                },
-                {
-                  "name": "Number of Files",
-                  "impact": "POSITIVE",
-                  "entity": "source code",
-                  "relevant_oss_aspect": "CODE",
-                  "information_need": "Calculating the number of files in the repository",
-                  "quality_requirement": "Affects project size negatively",
-                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
-                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
-                  "measures": [
-                    {
-                      "name": "Count of files",
-                      "unit": "ranking",
-                      "scale": 1,
-                      "measurement_method": "AUTOMATIC",
-                      "visitor": "./testing/visitors/size/number_of_files/FilesCountVisitor.py"
-                    }
-                  ]
-                },
-                {
-                  "name": "Number of bugs",
-                  "impact": "NEGATIVE",
-                  "entity": "issues in issue tracker",
-                  "relevant_oss_aspect": "COMMUNITY",
-                  "information_need": "Calculating the number of bugs in the repository",
-                  "quality_requirement": "Affects code quality negatively",
-                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
-                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
-                  "measures": [
-                    {
-                      "name": "Number of issues labeled as bugs",
-                      "unit": "bug(s)",
-                      "scale": 1,
-                      "measurement_method": "AUTOMATIC",
-                      "visitor": "./testing/visitors/bug_fixing_cost/NumberOfBugsToFixVisitor.py"
-                    }
-                  ]
-                },
-                {
-                  "name": "Cyclomatic Complexity",
-                  "impact": "NEGATIVE",
-                  "entity": "source code",
-                  "relevant_oss_aspect": "CODE",
-                  "information_need": "Calculating the cyclomatic complexity of the project",
-                  "quality_requirement": "Affects complexity and quality negatively",
-                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
-                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
-                  "measures": [
-                    {
-                      "name": "Cyclomatic Complexity - Lizard",
+                      "name": "Average Gunning Fog Index",
                       "unit": "value",
                       "scale": 1,
                       "measurement_method": "AUTOMATIC",
-                      "visitor": "./testing/visitors/codecomplexity/LizardCyclomaticComplexityVisitor.py"
-                    }
-                  ]
-                },
-                {
-                  "name": "Comment lines and code lines ratio",
-                  "impact": "NEGATIVE",
-                  "entity": "source code",
-                  "relevant_oss_aspect": "CODE",
-                  "information_need": "Calculating the ratio of comment lines to code lines in the project",
-                  "quality_requirement": "Affects code quality negatively",
-                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
-                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
-                  "measures": [
-                    {
-                      "name": "Comment to Code Ratio",
-                      "unit": "ratio",
-                      "scale": 1,
-                      "measurement_method": "AUTOMATIC",
-                      "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
-                      "aggregate_visitor": "./testing/visitors/codecomplexity/CruzCodeQualityDerivedMeasureAggregator.py",
-                      "base_measures": [
-                        {
-                          "name": "Lines of Code",
-                          "unit": "line(s)",
-                          "scale": 1,
-                          "measurement_method": "AUTOMATIC",
-                          "visitor": "./testing/visitors/codecomplexity/LizardLinesOfCodeVisitor.py"
-                        },
-                        {
-                          "name": "Lines of Comments",
-                          "unit": "line(s)",
-                          "scale": 1,
-                          "measurement_method": "AUTOMATIC",
-                          "visitor": "./testing/visitors/codecomplexity/ClocNumberOfCommentsVisitor.py"
-                        }
-                      ]
+                      "visitor": "./testing/visitors/gunning_fog/AvgGunningFogIndexVisitor.py"
                     }
                   ]
                 }
@@ -995,72 +1172,8 @@
           "name": "Support and Service",
           "sub_characteristics": [
             {
-              "name": "Contributors",
+              "name": "Product Evolution",
               "measurable_concepts": [
-                {
-                  "name": "Community Interaction",
-                  "impact": "POSITIVE",
-                  "entity": "project contributors",
-                  "relevant_oss_aspect": "COMMUNITY",
-                  "information_need": "Calculating the community interaction of the project",
-                  "quality_requirement": "Affects 'Community Exists' positively",
-                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
-                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
-                  "measures": [
-                    {
-                      "name": "Repo Messages",
-                      "unit": "comment(s) on pull requests",
-                      "scale": 1,
-                      "measurement_method": "AUTOMATIC",
-                      "visitor": "./testing/visitors/peer_influence/RepoMessagesVisitor.py"
-                    }
-                  ]
-                },
-                {
-                  "name": "Issue Throughput",
-                  "impact": "POSITIVE",
-                  "entity": "issues in issue tracker",
-                  "relevant_oss_aspect": "COMMUNITY",
-                  "information_need": "Calculating the ratio of closed issues to total issues in the project",
-                  "quality_requirement": "Increased closed issues to total issues ratio affects overall costs positively",
-                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
-                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
-                  "measures": [
-                    {
-                      "name": "Number of closed issues",
-                      "unit": "issue(s)",
-                      "scale": 1,
-                      "measurement_method": "AUTOMATIC",
-                      "visitor": "./testing/subcharacteristic/communitycapability/AugurClosedIssuesCountVisitor.py"
-                    },
-                    {
-                      "name": "Number of total issues",
-                      "unit": "issue(s)",
-                      "scale": 1,
-                      "measurement_method": "AUTOMATIC",
-                      "visitor": "./testing/subcharacteristic/communitycapability/AugurTotalIssuesCountVisitor.py"
-                    }
-                  ]
-                },
-                {
-                  "name": "Average Issue Response Time",
-                  "impact": "POSITIVE",
-                  "entity": "First comment on issues",
-                  "relevant_oss_aspect": "COMMUNITY",
-                  "information_need": "Calculating the average time to respond to issues",
-                  "quality_requirement": "Affects 'Contact within reasonable time' positively",
-                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
-                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
-                  "measures": [
-                    {
-                      "name": "Issue Response Time",
-                      "unit": "issue",
-                      "scale": 1,
-                      "measurement_method": "AUTOMATIC",
-                      "visitor": "./testing/visitors/codecomplexity/IssueResponseTimeVisitor.py"
-                    }
-                  ]
-                },
                 {
                   "name": "Code Changes Commits",
                   "impact": "POSITIVE",
@@ -1248,62 +1361,12 @@
                       "visitor": "./testing/visitors/product_evolution/opened_pull_requests/OpenedPullRequestCountVisitor.py"
                     }
                   ]
-                },
-                {
-                  "name": "Cyclomatic Complexity",
-                  "impact": "NEGATIVE",
-                  "entity": "source code",
-                  "relevant_oss_aspect": "CODE",
-                  "information_need": "Calculating the cyclomatic complexity of the project",
-                  "quality_requirement": "Affects complexity and quality negatively",
-                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
-                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
-                  "measures": [
-                    {
-                      "name": "Cyclomatic Complexity - Lizard",
-                      "unit": "value",
-                      "scale": 1,
-                      "measurement_method": "AUTOMATIC",
-                      "visitor": "./testing/visitors/codecomplexity/LizardCyclomaticComplexityVisitor.py"
-                    }
-                  ]
-                },
-                {
-                  "name": "Comment lines and code lines ratio",
-                  "impact": "NEGATIVE",
-                  "entity": "source code",
-                  "relevant_oss_aspect": "CODE",
-                  "information_need": "Calculating the ratio of comment lines to code lines in the project",
-                  "quality_requirement": "Affects code quality negatively",
-                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
-                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
-                  "measures": [
-                    {
-                      "name": "Comment to Code Ratio",
-                      "unit": "ratio",
-                      "scale": 1,
-                      "measurement_method": "AUTOMATIC",
-                      "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
-                      "aggregate_visitor": "./testing/visitors/codecomplexity/CruzCodeQualityDerivedMeasureAggregator.py",
-                      "base_measures": [
-                        {
-                          "name": "Lines of Code",
-                          "unit": "line(s)",
-                          "scale": 1,
-                          "measurement_method": "AUTOMATIC",
-                          "visitor": "./testing/visitors/codecomplexity/LizardLinesOfCodeVisitor.py"
-                        },
-                        {
-                          "name": "Lines of Comments",
-                          "unit": "line(s)",
-                          "scale": 1,
-                          "measurement_method": "AUTOMATIC",
-                          "visitor": "./testing/visitors/codecomplexity/ClocNumberOfCommentsVisitor.py"
-                        }
-                      ]
-                    }
-                  ]
-                },
+                }
+              ]
+            },
+            {
+              "name": "Contributors",
+              "measurable_concepts": [
                 {
                   "name": "Number of New Contributors",
                   "impact": "POSITIVE",
@@ -1437,6 +1500,186 @@
                       "visitor": "./testing/visitors/communitycapability/community_growth/InactiveContributorCountVisitor.py"
                     }
                   ]
+                }
+              ]
+            },
+            {
+              "name": "Complexity",
+              "measurable_concepts": [
+                {
+                  "name": "Cyclomatic Complexity",
+                  "impact": "NEGATIVE",
+                  "entity": "source code",
+                  "relevant_oss_aspect": "CODE",
+                  "information_need": "Calculating the cyclomatic complexity of the project",
+                  "quality_requirement": "Affects complexity and quality negatively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Cyclomatic Complexity - Lizard",
+                      "unit": "value",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/codecomplexity/LizardCyclomaticComplexityVisitor.py"
+                    }
+                  ]
+                },
+                {
+                  "name": "Average Length of Functions",
+                  "impact": "NEGATIVE",
+                  "entity": "source code",
+                  "relevant_oss_aspect": "CODE",
+                  "information_need": "Calculating the average number lines of code per function in the source code",
+                  "quality_requirement": "Affects project size negatively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Avg Lines of Code per Function",
+                      "unit": "lines",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/size/avg_length_of_functions/AvgLinesOfCodePerFunctionVisitor.py"
+                    }
+                  ]
+                },
+                {
+                  "name": "Comment lines and code lines ratio",
+                  "impact": "NEGATIVE",
+                  "entity": "source code",
+                  "relevant_oss_aspect": "CODE",
+                  "information_need": "Calculating the ratio of comment lines to code lines in the project",
+                  "quality_requirement": "Affects code quality negatively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Comment to Code Ratio",
+                      "unit": "ratio",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                      "aggregate_visitor": "./testing/visitors/codecomplexity/CruzCodeQualityDerivedMeasureAggregator.py",
+                      "base_measures": [
+                        {
+                          "name": "Lines of Code",
+                          "unit": "line(s)",
+                          "scale": 1,
+                          "measurement_method": "AUTOMATIC",
+                          "visitor": "./testing/visitors/codecomplexity/LizardLinesOfCodeVisitor.py"
+                        },
+                        {
+                          "name": "Lines of Comments",
+                          "unit": "line(s)",
+                          "scale": 1,
+                          "measurement_method": "AUTOMATIC",
+                          "visitor": "./testing/visitors/codecomplexity/ClocNumberOfCommentsVisitor.py"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Community Lifespan - Community Growth",
+              "measurable_concepts": [
+                {
+                  "name": "Number of New Contributors",
+                  "impact": "POSITIVE",
+                  "entity": "project contributors",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Calculating the new contributors to the project",
+                  "quality_requirement": "Affects community health and vitality positively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "New Contributors Count",
+                      "unit": "contributor(s)",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/open_participation/NewContributorsCountVisitor.py"
+                    }
+                  ]
+                },
+                {
+                  "name": "Number of New Contributors Closing Issues",
+                  "impact": "POSITIVE",
+                  "entity": "issues in the issue tracker",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "New contributors closing issues in the issue tracker",
+                  "quality_requirement": "New contributors closing issues affect community health and vitality positively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Number of issues closed by new contributors",
+                      "unit": "issue(s)",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                      "aggregate_visitor": "./testing/visitors/communitycapability/community_growth/ClosedIssuesCountByNewContributorsAggregator.py",
+                      "base_measures": [
+                        {
+                          "name": "New Contributors list",
+                          "unit": "contributor(s)",
+                          "scale": 1,
+                          "measurement_method": "AUTOMATIC",
+                          "visitor": "./testing/visitors/communitycapability/community_growth/NewContributorsVisitor.py"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "Percentage of New Contributors Closing Issues",
+                  "impact": "POSITIVE",
+                  "entity": "issues in the issue tracker",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "New contributors closing issues in the issue tracker",
+                  "quality_requirement": "New contributors closing issues affect community health and vitality positively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Percentage of issues closed by new contributors",
+                      "unit": "percentage",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                      "aggregate_visitor": "./testing/visitors/communitycapability/community_growth/ClosedIssuesPercentageByNewContributorsAggregator.py",
+                      "base_measures": [
+                        {
+                          "name": "New Contributors list",
+                          "unit": "contributor(s)",
+                          "scale": 1,
+                          "measurement_method": "AUTOMATIC",
+                          "visitor": "./testing/visitors/communitycapability/community_growth/NewContributorsVisitor.py"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "Inactive Contributor Count In A Period",
+                  "impact": "NEGATIVE",
+                  "entity": "contributors in issue tracker",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Calculating the number of contributors who have gone inactive in the analyzed period",
+                  "quality_requirement": "Developers going inactive affects community health and vitality negatively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Number of inactive contributors",
+                      "unit": "contributor(s)",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/communitycapability/community_growth/InactiveContributorCountVisitor.py"
+                    }
+                  ]
                 },
                 {
                   "name": "Number Of Downloads",
@@ -1454,6 +1697,94 @@
                       "scale": 1,
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/communitycapability/community_growth/AssetDownloadCountVisitor.py"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Short-term support",
+              "measurable_concepts": [
+                {
+                  "name": "Community Interaction",
+                  "impact": "POSITIVE",
+                  "entity": "project contributors",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Calculating the community interaction of the project",
+                  "quality_requirement": "Affects 'Community Exists' positively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Repo Messages",
+                      "unit": "comment(s) on pull requests",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/peer_influence/RepoMessagesVisitor.py"
+                    }
+                  ]
+                },
+                {
+                  "name": "Issue Throughput",
+                  "impact": "POSITIVE",
+                  "entity": "issues in issue tracker",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Calculating the ratio of closed issues to total issues in the project",
+                  "quality_requirement": "Increased closed issues to total issues ratio affects overall costs positively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Number of closed issues",
+                      "unit": "issue(s)",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/subcharacteristic/communitycapability/AugurClosedIssuesCountVisitor.py"
+                    },
+                    {
+                      "name": "Number of total issues",
+                      "unit": "issue(s)",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/subcharacteristic/communitycapability/AugurTotalIssuesCountVisitor.py"
+                    }
+                  ]
+                },
+                {
+                  "name": "Average Issue Response Time",
+                  "impact": "POSITIVE",
+                  "entity": "First comment on issues",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Calculating the average time to respond to issues",
+                  "quality_requirement": "Affects 'Contact within reasonable time' positively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Issue Response Time",
+                      "unit": "issue",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/codecomplexity/IssueResponseTimeVisitor.py"
+                    }
+                  ]
+                },
+                {
+                  "name": "Number of Contributors",
+                  "impact": "POSITIVE",
+                  "entity": "contributors in the repository",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Calculating the number of contributors in the project",
+                  "quality_requirement": "Increased number of contributors affects overall costs positively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Number of contributors",
+                      "unit": "contributor(s)",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/communitycapability/PyGithubCommunityCountVisitor.py"
                     }
                   ]
                 },
@@ -1560,91 +1891,8 @@
           "name": "Community and Adoption",
           "sub_characteristics": [
             {
-              "name": "Coordination",
+              "name": "Community Health and Vitality",
               "measurable_concepts": [
-                {
-                  "name": "Change Requests Duration",
-                  "impact": "NEGATIVE",
-                  "entity": "issues in issue tracker",
-                  "relevant_oss_aspect": "COMMUNITY",
-                  "information_need": "Calculating the duration to resolve issues",
-                  "quality_requirement": "Longer durations to resolve issues affect community capability negatively",
-                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
-                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
-                  "measures": [
-                    {
-                      "name": "Closed Issue Resolution Duration",
-                      "unit": "issue(s)",
-                      "scale": 1,
-                      "measurement_method": "AUTOMATIC",
-                      "visitor": "./testing/visitors/codecomplexity/DurationToResolveIssuesVisitor.py"
-                    }
-                  ]
-                },
-                {
-                  "name": "Issue Throughput",
-                  "impact": "POSITIVE",
-                  "entity": "issues in issue tracker",
-                  "relevant_oss_aspect": "COMMUNITY",
-                  "information_need": "Calculating the ratio of closed issues to total issues in the project",
-                  "quality_requirement": "Increased closed issues to total issues ratio affects overall costs positively",
-                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
-                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
-                  "measures": [
-                    {
-                      "name": "Number of closed issues",
-                      "unit": "issue(s)",
-                      "scale": 1,
-                      "measurement_method": "AUTOMATIC",
-                      "visitor": "./testing/subcharacteristic/communitycapability/AugurClosedIssuesCountVisitor.py"
-                    },
-                    {
-                      "name": "Number of total issues",
-                      "unit": "issue(s)",
-                      "scale": 1,
-                      "measurement_method": "AUTOMATIC",
-                      "visitor": "./testing/subcharacteristic/communitycapability/AugurTotalIssuesCountVisitor.py"
-                    }
-                  ]
-                },
-                {
-                  "name": "Issue Resolution Duration",
-                  "impact": "NEGATIVE",
-                  "entity": "pull requests in version control history",
-                  "relevant_oss_aspect": "COMMUNITY",
-                  "information_need": "The duration of time taken to accept or decline a pull request",
-                  "quality_requirement": "Longer time to resolve pull requests affects community capability negatively",
-                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
-                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
-                  "measures": [
-                    {
-                      "name": "Duration to Resolve Pull Requests",
-                      "unit": "day(s)",
-                      "scale": 1,
-                      "measurement_method": "AUTOMATIC",
-                      "visitor": "./testing/visitors/communitycapability/change_requests_duration/DurationToResolvePullRequestsVisitor.py"
-                    }
-                  ]
-                },
-                {
-                  "name": "Issue Age Average",
-                  "impact": "NEGATIVE",
-                  "entity": "issues in version control history",
-                  "relevant_oss_aspect": "COMMUNITY",
-                  "information_need": "Calculation of how long issues have been open for",
-                  "quality_requirement": "Long open issue age affects community capability negatively",
-                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
-                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
-                  "measures": [
-                    {
-                      "name": "Open Issue Age",
-                      "unit": "day(s)",
-                      "scale": 1,
-                      "measurement_method": "AUTOMATIC",
-                      "visitor": "./testing/visitors/product_evolution/staleness/OpenIssueAgeVisitor.py"
-                    }
-                  ]
-                },
                 {
                   "name": "Number of Contributors",
                   "impact": "POSITIVE",
@@ -1911,104 +2159,33 @@
                       "visitor": "./testing/visitors/communitycapability/community_growth/AssetDownloadCountVisitor.py"
                     }
                   ]
-                },
+                }
+              ]
+            },
+            {
+              "name": "Community Capability",
+              "measurable_concepts": [
                 {
-                  "name": "Time to fix bugs",
-                  "impact": "NEGATIVE",
-                  "entity": "issues in issue tracker",
-                  "relevant_oss_aspect": "COMMUNITY",
-                  "information_need": "Calculating the time to fix bugs",
-                  "quality_requirement": "Longer time to fix bugs affects quality negatively",
-                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
-                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
-                  "measures": [
-                    {
-                      "name": "Time to fix bugs",
-                      "unit": "day(s)",
-                      "scale": 1,
-                      "measurement_method": "AUTOMATIC",
-                      "visitor": "./testing/visitors/time_to_fix_bugs/AvgTimeToFixBugsVisitor.py"
-                    }
-                  ]
-                },
-                {
-                  "name": "Number of releases",
+                  "name": "Number of Contributors",
                   "impact": "POSITIVE",
-                  "entity": "releases",
+                  "entity": "contributors in the repository",
                   "relevant_oss_aspect": "COMMUNITY",
-                  "information_need": "Calculation of the number of releases",
-                  "quality_requirement": "Number of releases affects reliability positively",
+                  "information_need": "Calculating the number of contributors in the project",
+                  "quality_requirement": "Increased number of contributors affects overall costs positively",
                   "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
                   "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
                   "measures": [
                     {
-                      "name": "ReleaseCount",
-                      "unit": "release(s)",
+                      "name": "Number of contributors",
+                      "unit": "contributor(s)",
                       "scale": 1,
                       "measurement_method": "AUTOMATIC",
-                      "visitor": "./testing/visitors/numberofreleases/ReleaseCountVisitor.py"
+                      "visitor": "./testing/visitors/communitycapability/PyGithubCommunityCountVisitor.py"
                     }
                   ]
                 },
                 {
-                  "name": "Time since last commit",
-                  "impact": "NEGATIVE",
-                  "entity": "Commit history",
-                  "relevant_oss_aspect": "CODE",
-                  "information_need": "Calculation of the time since the last commit",
-                  "quality_requirement": "Non-regular updates affect short-term support negatively",
-                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
-                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
-                  "measures": [
-                    {
-                      "name": "Time Since Last Commit Measure",
-                      "unit": "day(s)",
-                      "scale": 1,
-                      "measurement_method": "AUTOMATIC",
-                      "visitor": "./testing/visitors/product_evolution/updated_since/TimeSinceLastCommitVisitor.py"
-                    }
-                  ]
-                },
-                {
-                  "name": "Commit Frequency",
-                  "impact": "POSITIVE",
-                  "entity": "commit(s)",
-                  "relevant_oss_aspect": "COMMUNITY",
-                  "information_need": "Calculation of the average commits in a specified date range",
-                  "quality_requirement": "Commit frequency affects short-term support positively",
-                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
-                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
-                  "measures": [
-                    {
-                      "name": "Commit Count",
-                      "unit": "commit(s)",
-                      "scale": 1,
-                      "measurement_method": "AUTOMATIC",
-                      "visitor": "./testing/visitors/product_evolution/CommitCountVisitor.py"
-                    }
-                  ]
-                },
-                {
-                  "name": "Average Issue Response Time",
-                  "impact": "POSITIVE",
-                  "entity": "First comment on issues",
-                  "relevant_oss_aspect": "COMMUNITY",
-                  "information_need": "Calculating the average time to respond to issues",
-                  "quality_requirement": "Affects 'Contact within reasonable time' positively",
-                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
-                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
-                  "measures": [
-                    {
-                      "name": "Issue Response Time",
-                      "unit": "issue",
-                      "scale": 1,
-                      "measurement_method": "AUTOMATIC",
-                      "visitor": "./testing/visitors/codecomplexity/IssueResponseTimeVisitor.py"
-                    }
-                  ]
-                },
-                {
-                  "name": "Core Maintainers",
+                  "name": "Core Maintainers - Truck Factor",
                   "impact": "POSITIVE",
                   "entity": "core contributors in the repository",
                   "relevant_oss_aspect": "COMMUNITY",
@@ -2023,6 +2200,70 @@
                       "scale": 1,
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/communitycapability/TruckFactorVisitor.py"
+                    }
+                  ]
+                },
+                {
+                  "name": "Issue Throughput",
+                  "impact": "POSITIVE",
+                  "entity": "issues in issue tracker",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Calculating the ratio of closed issues to total issues in the project",
+                  "quality_requirement": "Increased closed issues to total issues ratio affects overall costs positively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Number of closed issues",
+                      "unit": "issue(s)",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/subcharacteristic/communitycapability/AugurClosedIssuesCountVisitor.py"
+                    },
+                    {
+                      "name": "Number of total issues",
+                      "unit": "issue(s)",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/subcharacteristic/communitycapability/AugurTotalIssuesCountVisitor.py"
+                    }
+                  ]
+                },
+                {
+                  "name": "Issue Resolution Duration",
+                  "impact": "NEGATIVE",
+                  "entity": "pull requests in version control history",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "The duration of time taken to accept or decline a pull request",
+                  "quality_requirement": "Longer time to resolve pull requests affects community capability negatively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Duration to Resolve Pull Requests",
+                      "unit": "day(s)",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/communitycapability/change_requests_duration/DurationToResolvePullRequestsVisitor.py"
+                    }
+                  ]
+                },
+                {
+                  "name": "Change Requests Duration",
+                  "impact": "NEGATIVE",
+                  "entity": "issues in issue tracker",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Calculating the duration to resolve issues",
+                  "quality_requirement": "Longer durations to resolve issues affect community capability negatively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Closed Issue Resolution Duration",
+                      "unit": "issue(s)",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/codecomplexity/DurationToResolveIssuesVisitor.py"
                     }
                   ]
                 },
@@ -2249,6 +2490,125 @@
                       "scale": 1,
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/product_evolution/staleness/OpenIssueAgeVisitor.py"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Time to fix bugs",
+              "measurable_concepts": [
+                {
+                  "name": "Issue Age Average",
+                  "impact": "NEGATIVE",
+                  "entity": "issues in version control history",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Calculation of how long issues have been open for",
+                  "quality_requirement": "Long open issue age affects community capability negatively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Open Issue Age",
+                      "unit": "day(s)",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/product_evolution/staleness/OpenIssueAgeVisitor.py"
+                    }
+                  ]
+                },
+                {
+                  "name": "Time to fix bugs",
+                  "impact": "NEGATIVE",
+                  "entity": "issues in issue tracker",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Calculating the time to fix bugs",
+                  "quality_requirement": "Longer time to fix bugs affects quality negatively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Time to fix bugs",
+                      "unit": "day(s)",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/time_to_fix_bugs/AvgTimeToFixBugsVisitor.py"
+                    }
+                  ]
+                },
+                {
+                  "name": "Number of releases",
+                  "impact": "POSITIVE",
+                  "entity": "releases",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Calculation of the number of releases",
+                  "quality_requirement": "Number of releases affects reliability positively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "ReleaseCount",
+                      "unit": "release(s)",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/numberofreleases/ReleaseCountVisitor.py"
+                    }
+                  ]
+                },
+                {
+                  "name": "Time since last commit",
+                  "impact": "NEGATIVE",
+                  "entity": "Commit history",
+                  "relevant_oss_aspect": "CODE",
+                  "information_need": "Calculation of the time since the last commit",
+                  "quality_requirement": "Non-regular updates affect short-term support negatively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Time Since Last Commit Measure",
+                      "unit": "day(s)",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/product_evolution/updated_since/TimeSinceLastCommitVisitor.py"
+                    }
+                  ]
+                },
+                {
+                  "name": "Commit Frequency",
+                  "impact": "POSITIVE",
+                  "entity": "commit(s)",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Calculation of the average commits in a specified date range",
+                  "quality_requirement": "Commit frequency affects short-term support positively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Commit Count",
+                      "unit": "commit(s)",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/product_evolution/CommitCountVisitor.py"
+                    }
+                  ]
+                },
+                {
+                  "name": "Average Issue Response Time",
+                  "impact": "POSITIVE",
+                  "entity": "First comment on issues",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Calculating the average time to respond to issues",
+                  "quality_requirement": "Affects 'Contact within reasonable time' positively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Issue Response Time",
+                      "unit": "issue",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/codecomplexity/IssueResponseTimeVisitor.py"
                     }
                   ]
                 }

@@ -1,0 +1,14 @@
+{
+    "preference_matrix": {
+        "Product Evolution, Contributors": "2",
+        "Product Evolution, Complexity": "3",
+        "Product Evolution, Community Lifespan - Community Growth": "3",
+        "Product Evolution, Short-term support": "2",
+        "Contributors, Complexity": "1",
+        "Contributors, Community Lifespan - Community Growth": "1",
+        "Contributors, Short-term support": "1/2",
+        "Complexity, Community Lifespan - Community Growth": "1",
+        "Complexity, Short-term support": "1",
+        "Community Lifespan - Community Growth, Short-term support": "1"
+    }
+}

@@ -67,7 +67,7 @@ class NumberOfTestersVisitor(BaseMeasureVisitor[int]):
                 )
 
                 contains_issue_creation = any(
-                    event.type in tester_event_types and event.payload.action == 'opened'
+                    event.type in tester_event_types and event.payload.get('action') == 'opened'
                     for event in events
                 )
 

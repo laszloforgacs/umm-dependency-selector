@@ -65,7 +65,7 @@ class NewContributorsCountVisitor(BaseMeasureVisitor[int]):
                     login=commenter
                 )
                 events = github_rate_limiter.execute(
-                    user.get_events,
+                    user.get_events
                 )
 
                 for event in events:

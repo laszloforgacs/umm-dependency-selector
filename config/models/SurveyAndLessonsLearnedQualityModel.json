@@ -2327,6 +2327,25 @@
                       "visitor": "./testing/visitors/popularity/ForksCountVisitor.py"
                     }
                   ]
+                },
+                {
+                  "name": "Number of Testers",
+                  "impact": "POSITIVE",
+                  "entity": "contributors in the repository",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Calculating the number of testers in the project",
+                  "quality_requirement": "Increased number of testers affects community size positively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Number of testers",
+                      "unit": "tester(s)",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/NumberOfTestersVisitor.py"
+                    }
+                  ]
                 }
               ]
             }

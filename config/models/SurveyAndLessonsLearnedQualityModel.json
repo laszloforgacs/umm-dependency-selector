@@ -964,6 +964,30 @@
                   ]
                 }
               ]
+            },
+            {
+              "name": "Interoperability-Compatibility",
+              "measurable_concepts": [
+                {
+                  "name": "Technologies",
+                  "impact": "POSITIVE",
+                  "entity": "source code",
+                  "relevant_oss_aspect": "CODE",
+                  "information_need": "Calculating the popularity of languages in the project",
+                  "quality_requirement": "Popular languages affect interoperability and compatibility positively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Popular Languages",
+                      "unit": "language(s)",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/PopularLanguagesVisitor.py"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -2344,6 +2368,25 @@
                       "scale": 1,
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/NumberOfTestersVisitor.py"
+                    }
+                  ]
+                },
+                {
+                  "name": "Maintainer Organization",
+                  "impact": "POSITIVE",
+                  "entity": "contributor list",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Calculation of the number of maintainer organizations",
+                  "quality_requirement": "Affects support and service positively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Organization Count",
+                      "unit": "organization(s)",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/maintainer_organization/OrgCountMeasureVisitor.py"
                     }
                   ]
                 }

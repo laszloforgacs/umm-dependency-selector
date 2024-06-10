@@ -3,8 +3,8 @@
         "Economic, Quality": "1/9",
         "Economic, Support and Service": "1/9",
         "Economic, Community and Adoption": "1/9",
-        "Quality, Support and Service": "3",
-        "Quality, Community and Adoption": "2",
+        "Quality, Support and Service": "5",
+        "Quality, Community and Adoption": "4",
         "Support and Service, Community and Adoption": "1/2"
     },
     "oss_aspect_preference_matrix": {

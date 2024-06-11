@@ -78,3 +78,9 @@ class Viewpoint(CompositeComponent, metaclass=ABCMeta):
             "name": self.name,
             "characteristics": [child.serialize() for child in self.children.values()]
         }
+
+    def pretty_print(self) -> dict:
+        return {
+            "name": self.name,
+            "characteristics": [child.pretty_print() for child in self.children.values()]
+        }

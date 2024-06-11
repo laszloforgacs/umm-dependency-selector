@@ -77,3 +77,9 @@ class Characteristic(CompositeComponent, Generic[T], metaclass=ABCGenericMeta):
             "name": self.name,
             "sub_characteristics": [child.serialize() for child in self.children.values()]
         }
+
+    def pretty_print(self) -> dict:
+        return {
+            "name": self.name,
+            "sub_characteristics": [child.pretty_print() for child in self.children.values()]
+        }

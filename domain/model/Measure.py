@@ -123,6 +123,12 @@ class BaseMeasure(Measure, LeafComponent, Generic[T], metaclass=ABCGenericMeta):
             "visitor": self.visitor.__class__.__name__
         }
 
+    def pretty_print(self) -> dict:
+        return {
+            "name": self.name,
+            "unit": self.unit,
+        }
+
 
 class DerivedMeasure(Measure, CompositeComponent, Generic[T], metaclass=ABCGenericMeta):
     def __init__(self, name: str, unit: str, scale: float,
@@ -193,4 +199,11 @@ class DerivedMeasure(Measure, CompositeComponent, Generic[T], metaclass=ABCGener
             "base_measures": [child.serialize() for child in self.children.values()],
             "normalize_visitor": self.normalize_visitor.__class__.__name__,
             "aggregate_visitor": self.aggregate_visitor.__class__.__name__
+        }
+
+    def pretty_print(self) -> dict:
+        return {
+            "name": self.name,
+            "unit": self.unit,
+            "base_measures": [child.pretty_print() for child in self.children.values()],
         }

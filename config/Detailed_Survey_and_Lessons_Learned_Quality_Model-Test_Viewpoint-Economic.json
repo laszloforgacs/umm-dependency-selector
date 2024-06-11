@@ -1,0 +1,19 @@
+{
+    "preference_matrix": {
+        "Maintenance Cost, Number of Maintainers": "7",
+        "Maintenance Cost, Code Development Efficiency": "4",
+        "Maintenance Cost, Issue Resolution": "3",
+        "Maintenance Cost, Flexible maintenance according to individual needs": "1/2",
+        "Maintenance Cost, Absence of license fees": "7",
+        "Number of Maintainers, Code Development Efficiency": "1/4",
+        "Number of Maintainers, Issue Resolution": "1/4",
+        "Number of Maintainers, Flexible maintenance according to individual needs": "1/2",
+        "Number of Maintainers, Absence of license fees": "4",
+        "Code Development Efficiency, Issue Resolution": "6",
+        "Code Development Efficiency, Flexible maintenance according to individual needs": "1/2",
+        "Code Development Efficiency, Absence of license fees": "7",
+        "Issue Resolution, Flexible maintenance according to individual needs": "1/5",
+        "Issue Resolution, Absence of license fees": "8",
+        "Flexible maintenance according to individual needs, Absence of license fees": "6"
+    }
+}

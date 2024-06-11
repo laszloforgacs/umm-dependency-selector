@@ -16,3 +16,9 @@ class QualityModel(CompositeComponent, metaclass=ABCMeta):
             "name": self.name,
             "viewpoints": [child.serialize() for child in self.children.values()]
         }
+
+    def pretty_print(self) -> dict:
+        return {
+            "name": self.name,
+            "viewpoints": [child.pretty_print() for child in self.children.values()]
+        }

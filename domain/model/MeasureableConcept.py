@@ -87,3 +87,10 @@ class MeasurableConcept(CompositeComponent, Generic[T], metaclass=ABCGenericMeta
             "quality_requirement": self.quality_requirement,
             "measures": [child.serialize() for child in self.children.values()]
         }
+
+    def pretty_print(self) -> dict:
+        return {
+            "name": self.name,
+            "information_need": self.information_need,
+            "measures": [child.pretty_print() for child in self.children.values()]
+        }

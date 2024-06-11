@@ -111,5 +111,7 @@
     "Percentage_of_PRs_reviewed_PercentageOfPRsReviewedVisitor": 27.083333333333332,
     "Avg_number_of_contributors_per_pull_requests_AvgNumberOfContributorsPerPRsVisitor": 2.6,
     "Time_Since_Last_Commit_Measure_TimeSinceLastCommitVisitor": 32,
-    "Watchers_Count_WatchersCountVisitor": 1120
+    "Watchers_Count_WatchersCountVisitor": 1120,
+    "Number_of_testers_NumberOfTestersVisitor": 2,
+    "Popular_Languages_PopularLanguagesVisitor": 3
 }

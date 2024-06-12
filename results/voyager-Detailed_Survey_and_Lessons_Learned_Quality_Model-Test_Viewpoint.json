@@ -8311,7 +8311,7 @@
                                 },
                                 {
                                     "name": "Number of Stars - User community witnessing quality",
-                                    "value": 2323,
+                                    "value": 2324,
                                     "impact": "POSITIVE",
                                     "entity": "stars in the repository",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -8320,7 +8320,7 @@
                                     "measures": [
                                         {
                                             "name": "Stars Count",
-                                            "value": 2323,
+                                            "value": 2324,
                                             "unit": "star(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",

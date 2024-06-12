@@ -5584,7 +5584,7 @@
                             "measurable_concepts": [
                                 {
                                     "name": "Bug fixing cost",
-                                    "value": 38,
+                                    "value": 13,
                                     "impact": "NEGATIVE",
                                     "entity": "issue tracker",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -5593,7 +5593,7 @@
                                     "measures": [
                                         {
                                             "name": "Number of bugs to fix",
-                                            "value": 14,
+                                            "value": 0,
                                             "unit": "bug(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -5601,7 +5601,7 @@
                                         },
                                         {
                                             "name": "Number of contributors",
-                                            "value": 24,
+                                            "value": 13,
                                             "unit": "contributor(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -5611,7 +5611,7 @@
                                 },
                                 {
                                     "name": "Maintenance cost",
-                                    "value": 385,
+                                    "value": 464,
                                     "impact": "NEGATIVE",
                                     "entity": "source code",
                                     "relevant_oss_aspect": "CODE",
@@ -5620,7 +5620,7 @@
                                     "measures": [
                                         {
                                             "name": "Sqale Index - Technical Debt",
-                                            "value": 385,
+                                            "value": 464,
                                             "unit": "minutes and/or days",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -5635,7 +5635,7 @@
                             "measurable_concepts": [
                                 {
                                     "name": "Number of Contributors",
-                                    "value": 24,
+                                    "value": 13,
                                     "impact": "POSITIVE",
                                     "entity": "contributors in the repository",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -5644,7 +5644,7 @@
                                     "measures": [
                                         {
                                             "name": "Number of contributors",
-                                            "value": 24,
+                                            "value": 13,
                                             "unit": "contributor(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -5654,7 +5654,7 @@
                                 },
                                 {
                                     "name": "Core Maintainers",
-                                    "value": 2,
+                                    "value": 1,
                                     "impact": "POSITIVE",
                                     "entity": "core contributors in the repository",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -5663,7 +5663,7 @@
                                     "measures": [
                                         {
                                             "name": "Truck Factor",
-                                            "value": 2,
+                                            "value": 1,
                                             "unit": "contributor(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -5678,7 +5678,7 @@
                             "measurable_concepts": [
                                 {
                                     "name": "Change Requests Duration",
-                                    "value": 39.368902872260016,
+                                    "value": 143.43580432200292,
                                     "impact": "NEGATIVE",
                                     "entity": "issues in issue tracker",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -5687,7 +5687,7 @@
                                     "measures": [
                                         {
                                             "name": "Closed Issue Resolution Duration",
-                                            "value": 39.368902872260016,
+                                            "value": 143.43580432200292,
                                             "unit": "issue(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -5697,7 +5697,7 @@
                                 },
                                 {
                                     "name": "Number of Change Requests Accepted",
-                                    "value": 65,
+                                    "value": 29,
                                     "impact": "POSITIVE",
                                     "entity": "pull requests in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -5706,7 +5706,7 @@
                                     "measures": [
                                         {
                                             "name": "Change Requests Accepted Count",
-                                            "value": 65,
+                                            "value": 29,
                                             "unit": "pull request(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -5716,7 +5716,7 @@
                                 },
                                 {
                                     "name": "Change Requests Accepted to Total Change Requests Ratio",
-                                    "value": 5.25,
+                                    "value": 4.0,
                                     "impact": "POSITIVE",
                                     "entity": "pull requests in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -5725,7 +5725,7 @@
                                     "measures": [
                                         {
                                             "name": "Reviews Accepted - Total PR Ratio",
-                                            "value": 5.25,
+                                            "value": 4.0,
                                             "unit": "pull request(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -5735,7 +5735,7 @@
                                 },
                                 {
                                     "name": "Number of Change Requests Declined",
-                                    "value": 17,
+                                    "value": 26,
                                     "impact": "NEGATIVE",
                                     "entity": "pull requests in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -5744,7 +5744,7 @@
                                     "measures": [
                                         {
                                             "name": "Reviews Declined Count",
-                                            "value": 17,
+                                            "value": 26,
                                             "unit": "pull request(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -5754,7 +5754,7 @@
                                 },
                                 {
                                     "name": "Change Requests Declined to Total Change Requests Ratio",
-                                    "value": 389,
+                                    "value": 206,
                                     "impact": "NEGATIVE",
                                     "entity": "pull requests in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -5763,14 +5763,14 @@
                                     "measures": [
                                         {
                                             "name": "Reviews Declined - Total PR Ratio",
-                                            "value": 389,
+                                            "value": 206,
                                             "unit": "ratio",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
                                             "base_measures": [
                                                 {
                                                     "name": "Reviews Declined Count",
-                                                    "value": 17,
+                                                    "value": 26,
                                                     "unit": "pull request(s)",
                                                     "scale": 1.0,
                                                     "measurement_method": "AUTOMATIC",
@@ -5778,7 +5778,7 @@
                                                 },
                                                 {
                                                     "name": "Number of Total Issues",
-                                                    "value": 372,
+                                                    "value": 180,
                                                     "unit": "pull request(s)",
                                                     "scale": 1.0,
                                                     "measurement_method": "AUTOMATIC",
@@ -5797,7 +5797,7 @@
                             "measurable_concepts": [
                                 {
                                     "name": "Issue Throughput",
-                                    "value": 617,
+                                    "value": 332,
                                     "impact": "POSITIVE",
                                     "entity": "issues in issue tracker",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -5806,7 +5806,7 @@
                                     "measures": [
                                         {
                                             "name": "Number of closed issues",
-                                            "value": 245,
+                                            "value": 152,
                                             "unit": "issue(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -5814,7 +5814,7 @@
                                         },
                                         {
                                             "name": "Number of total issues",
-                                            "value": 372,
+                                            "value": 180,
                                             "unit": "issue(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -5824,7 +5824,7 @@
                                 },
                                 {
                                     "name": "Number of Issues New",
-                                    "value": 65,
+                                    "value": 6,
                                     "impact": "POSITIVE",
                                     "entity": "issues in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -5833,7 +5833,7 @@
                                     "measures": [
                                         {
                                             "name": "New Issues Count",
-                                            "value": 65,
+                                            "value": 6,
                                             "unit": "issue(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -5843,7 +5843,7 @@
                                 },
                                 {
                                     "name": "Issues New to Total Issues Ratio",
-                                    "value": 0.17473118279569894,
+                                    "value": 0.03333333333333333,
                                     "impact": "POSITIVE",
                                     "entity": "issues in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -5852,7 +5852,7 @@
                                     "measures": [
                                         {
                                             "name": "New Issues Ratio",
-                                            "value": 0.17473118279569894,
+                                            "value": 0.03333333333333333,
                                             "unit": "new issues in a period - total issues ratio",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -5862,7 +5862,7 @@
                                 },
                                 {
                                     "name": "Number of Issues Active",
-                                    "value": 155,
+                                    "value": 18,
                                     "impact": "POSITIVE",
                                     "entity": "issues in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -5871,7 +5871,7 @@
                                     "measures": [
                                         {
                                             "name": "Updated Issues Count",
-                                            "value": 155,
+                                            "value": 18,
                                             "unit": "updated issue",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -5881,7 +5881,7 @@
                                 },
                                 {
                                     "name": "Issues Active to Total Issues Ratio",
-                                    "value": 0.41935483870967744,
+                                    "value": 0.1,
                                     "impact": "POSITIVE",
                                     "entity": "issues in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -5890,7 +5890,7 @@
                                     "measures": [
                                         {
                                             "name": "Active Issues Ratio",
-                                            "value": 0.41935483870967744,
+                                            "value": 0.1,
                                             "unit": "ratio",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -5900,7 +5900,7 @@
                                 },
                                 {
                                     "name": "Number of Issues Closed",
-                                    "value": 245,
+                                    "value": 152,
                                     "impact": "POSITIVE",
                                     "entity": "issues in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -5909,7 +5909,7 @@
                                     "measures": [
                                         {
                                             "name": "Closed Issues Count",
-                                            "value": 245,
+                                            "value": 152,
                                             "unit": "issue(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -5919,7 +5919,7 @@
                                 },
                                 {
                                     "name": "Issues Closed to Total Issues Ratio",
-                                    "value": 0.13709677419354838,
+                                    "value": 0.03888888888888889,
                                     "impact": "POSITIVE",
                                     "entity": "issues in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -5928,7 +5928,7 @@
                                     "measures": [
                                         {
                                             "name": "Closed Issues Ratio",
-                                            "value": 0.13709677419354838,
+                                            "value": 0.03888888888888889,
                                             "unit": "closed issues in a period - total issues ratio",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -5938,7 +5938,7 @@
                                 },
                                 {
                                     "name": "Issue Age Average",
-                                    "value": 245.04724409448818,
+                                    "value": 658.0714285714286,
                                     "impact": "NEGATIVE",
                                     "entity": "issues in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -5947,7 +5947,7 @@
                                     "measures": [
                                         {
                                             "name": "Open Issue Age",
-                                            "value": 245.04724409448818,
+                                            "value": 658.0714285714286,
                                             "unit": "day(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -5957,7 +5957,7 @@
                                 },
                                 {
                                     "name": "Issue Resolution Duration",
-                                    "value": 25.502313403342367,
+                                    "value": 69.03752041245791,
                                     "impact": "NEGATIVE",
                                     "entity": "pull requests in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -5966,7 +5966,7 @@
                                     "measures": [
                                         {
                                             "name": "Duration to Resolve Pull Requests",
-                                            "value": 25.502313403342367,
+                                            "value": 69.03752041245791,
                                             "unit": "day(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -6050,7 +6050,7 @@
                                             "base_measures": [
                                                 {
                                                     "name": "Lines of Code",
-                                                    "value": 6298.0,
+                                                    "value": 6801.0,
                                                     "unit": "line(s)",
                                                     "scale": 1.0,
                                                     "measurement_method": "AUTOMATIC",
@@ -6058,7 +6058,7 @@
                                                 },
                                                 {
                                                     "name": "Lines of Comments",
-                                                    "value": 289,
+                                                    "value": 2608,
                                                     "unit": "line(s)",
                                                     "scale": 1.0,
                                                     "measurement_method": "AUTOMATIC",
@@ -6072,7 +6072,7 @@
                                 },
                                 {
                                     "name": "Number of releases",
-                                    "value": 11,
+                                    "value": 2,
                                     "impact": "POSITIVE",
                                     "entity": "releases",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -6081,7 +6081,7 @@
                                     "measures": [
                                         {
                                             "name": "ReleaseCount",
-                                            "value": 11,
+                                            "value": 2,
                                             "unit": "release(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -6110,7 +6110,7 @@
                                 },
                                 {
                                     "name": "Average number of functions per class",
-                                    "value": 465.0,
+                                    "value": 806,
                                     "impact": "NEGATIVE",
                                     "entity": "source code",
                                     "relevant_oss_aspect": "CODE",
@@ -6119,14 +6119,14 @@
                                     "measures": [
                                         {
                                             "name": "Avg number of functions per class",
-                                            "value": 465.0,
+                                            "value": 806,
                                             "unit": "function(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
                                             "base_measures": [
                                                 {
                                                     "name": "Number of functions",
-                                                    "value": 375,
+                                                    "value": 806,
                                                     "unit": "function(s)",
                                                     "scale": 1.0,
                                                     "measurement_method": "AUTOMATIC",
@@ -6134,7 +6134,7 @@
                                                 },
                                                 {
                                                     "name": "Number of classes",
-                                                    "value": 90.0,
+                                                    "value": 0,
                                                     "unit": "class(es)",
                                                     "scale": 1.0,
                                                     "measurement_method": "AUTOMATIC",
@@ -6169,7 +6169,7 @@
                                             "base_measures": [
                                                 {
                                                     "name": "Lines of Code",
-                                                    "value": 6298.0,
+                                                    "value": 6801.0,
                                                     "unit": "line(s)",
                                                     "scale": 1.0,
                                                     "measurement_method": "AUTOMATIC",
@@ -6177,7 +6177,7 @@
                                                 },
                                                 {
                                                     "name": "Lines of Comments",
-                                                    "value": 289,
+                                                    "value": 2608,
                                                     "unit": "line(s)",
                                                     "scale": 1.0,
                                                     "measurement_method": "AUTOMATIC",
@@ -6210,7 +6210,7 @@
                                 },
                                 {
                                     "name": "Documentation",
-                                    "value": 17.497228812583895,
+                                    "value": 19.011231111064355,
                                     "impact": "NEGATIVE",
                                     "entity": "text files in the repository",
                                     "relevant_oss_aspect": "CODE",
@@ -6219,7 +6219,7 @@
                                     "measures": [
                                         {
                                             "name": "Average Gunning Fog Index",
-                                            "value": 17.497228812583895,
+                                            "value": 19.011231111064355,
                                             "unit": "value",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -6253,7 +6253,7 @@
                                 },
                                 {
                                     "name": "Number of Contributors",
-                                    "value": 24,
+                                    "value": 13,
                                     "impact": "POSITIVE",
                                     "entity": "contributors in the repository",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -6262,7 +6262,7 @@
                                     "measures": [
                                         {
                                             "name": "Number of contributors",
-                                            "value": 24,
+                                            "value": 13,
                                             "unit": "contributor(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -6277,7 +6277,7 @@
                             "measurable_concepts": [
                                 {
                                     "name": "Average Length of Functions",
-                                    "value": 7.8,
+                                    "value": 7.7,
                                     "impact": "NEGATIVE",
                                     "entity": "source code",
                                     "relevant_oss_aspect": "CODE",
@@ -6286,7 +6286,7 @@
                                     "measures": [
                                         {
                                             "name": "Avg Lines of Code per Function",
-                                            "value": 7.8,
+                                            "value": 7.7,
                                             "unit": "lines",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -6296,7 +6296,7 @@
                                 },
                                 {
                                     "name": "Number of Classes",
-                                    "value": 90.0,
+                                    "value": 0,
                                     "impact": "POSITIVE",
                                     "entity": "source code",
                                     "relevant_oss_aspect": "CODE",
@@ -6305,7 +6305,7 @@
                                     "measures": [
                                         {
                                             "name": "Count of classes",
-                                            "value": 90.0,
+                                            "value": 0,
                                             "unit": "ranking",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -6350,7 +6350,7 @@
                                             "base_measures": [
                                                 {
                                                     "name": "Lines of Code",
-                                                    "value": 6298.0,
+                                                    "value": 6801.0,
                                                     "unit": "line(s)",
                                                     "scale": 1.0,
                                                     "measurement_method": "AUTOMATIC",
@@ -6358,7 +6358,7 @@
                                                 },
                                                 {
                                                     "name": "Lines of Comments",
-                                                    "value": 289,
+                                                    "value": 2608,
                                                     "unit": "line(s)",
                                                     "scale": 1.0,
                                                     "measurement_method": "AUTOMATIC",
@@ -6377,7 +6377,7 @@
                             "measurable_concepts": [
                                 {
                                     "name": "Time to fix bugs",
-                                    "value": 86.27517650462963,
+                                    "value": 7776000,
                                     "impact": "NEGATIVE",
                                     "entity": "issues in issue tracker",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -6386,7 +6386,7 @@
                                     "measures": [
                                         {
                                             "name": "Time to fix bugs",
-                                            "value": 86.27517650462963,
+                                            "value": 7776000,
                                             "unit": "day(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -6396,7 +6396,7 @@
                                 },
                                 {
                                     "name": "Number of bugs",
-                                    "value": 14,
+                                    "value": 0,
                                     "impact": "NEGATIVE",
                                     "entity": "issues in issue tracker",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -6405,7 +6405,7 @@
                                     "measures": [
                                         {
                                             "name": "Number of issues labeled as bugs",
-                                            "value": 14,
+                                            "value": 0,
                                             "unit": "bug(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -6439,7 +6439,7 @@
                                 },
                                 {
                                     "name": "Average Length of Functions",
-                                    "value": 7.8,
+                                    "value": 7.7,
                                     "impact": "NEGATIVE",
                                     "entity": "source code",
                                     "relevant_oss_aspect": "CODE",
@@ -6448,7 +6448,7 @@
                                     "measures": [
                                         {
                                             "name": "Avg Lines of Code per Function",
-                                            "value": 7.8,
+                                            "value": 7.7,
                                             "unit": "lines",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -6474,7 +6474,7 @@
                                             "base_measures": [
                                                 {
                                                     "name": "Lines of Code",
-                                                    "value": 6298.0,
+                                                    "value": 6801.0,
                                                     "unit": "line(s)",
                                                     "scale": 1.0,
                                                     "measurement_method": "AUTOMATIC",
@@ -6482,7 +6482,7 @@
                                                 },
                                                 {
                                                     "name": "Lines of Comments",
-                                                    "value": 289,
+                                                    "value": 2608,
                                                     "unit": "line(s)",
                                                     "scale": 1.0,
                                                     "measurement_method": "AUTOMATIC",
@@ -6501,7 +6501,7 @@
                             "measurable_concepts": [
                                 {
                                     "name": "Change Requests Duration",
-                                    "value": 39.368902872260016,
+                                    "value": 143.43580432200292,
                                     "impact": "NEGATIVE",
                                     "entity": "issues in issue tracker",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -6510,7 +6510,7 @@
                                     "measures": [
                                         {
                                             "name": "Closed Issue Resolution Duration",
-                                            "value": 39.368902872260016,
+                                            "value": 143.43580432200292,
                                             "unit": "issue(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -6520,7 +6520,7 @@
                                 },
                                 {
                                     "name": "Issue Throughput",
-                                    "value": 617,
+                                    "value": 332,
                                     "impact": "POSITIVE",
                                     "entity": "issues in issue tracker",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -6529,7 +6529,7 @@
                                     "measures": [
                                         {
                                             "name": "Number of closed issues",
-                                            "value": 245,
+                                            "value": 152,
                                             "unit": "issue(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -6537,7 +6537,7 @@
                                         },
                                         {
                                             "name": "Number of total issues",
-                                            "value": 372,
+                                            "value": 180,
                                             "unit": "issue(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -6547,7 +6547,7 @@
                                 },
                                 {
                                     "name": "Time to Respond to Issues",
-                                    "value": 1662664.5410958903,
+                                    "value": 5465730.360759494,
                                     "impact": "NEGATIVE",
                                     "entity": "issues in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -6556,7 +6556,7 @@
                                     "measures": [
                                         {
                                             "name": "Issue Response Time",
-                                            "value": 1662664.5410958903,
+                                            "value": 5465730.360759494,
                                             "unit": "second(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -6566,7 +6566,7 @@
                                 },
                                 {
                                     "name": "Issue Resolution Duration",
-                                    "value": 25.502313403342367,
+                                    "value": 69.03752041245791,
                                     "impact": "NEGATIVE",
                                     "entity": "pull requests in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -6575,7 +6575,7 @@
                                     "measures": [
                                         {
                                             "name": "Duration to Resolve Pull Requests",
-                                            "value": 25.502313403342367,
+                                            "value": 69.03752041245791,
                                             "unit": "day(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -6585,7 +6585,7 @@
                                 },
                                 {
                                     "name": "Issue Age Average",
-                                    "value": 245.04724409448818,
+                                    "value": 658.0714285714286,
                                     "impact": "NEGATIVE",
                                     "entity": "issues in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -6594,7 +6594,7 @@
                                     "measures": [
                                         {
                                             "name": "Open Issue Age",
-                                            "value": 245.04724409448818,
+                                            "value": 658.0714285714286,
                                             "unit": "day(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -6609,7 +6609,7 @@
                             "measurable_concepts": [
                                 {
                                     "name": "Number of New Contributors",
-                                    "value": 3,
+                                    "value": 2,
                                     "impact": "POSITIVE",
                                     "entity": "project contributors",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -6618,7 +6618,7 @@
                                     "measures": [
                                         {
                                             "name": "New Contributors Count",
-                                            "value": 3,
+                                            "value": 2,
                                             "unit": "contributor(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -6645,9 +6645,8 @@
                                                 {
                                                     "name": "New Contributors list",
                                                     "value": [
-                                                        "DevSrSouza",
-                                                        "rsicarelli",
-                                                        "shpasha"
+                                                        "russhwolf",
+                                                        "psuzn"
                                                     ],
                                                     "unit": "contributor(s)",
                                                     "scale": 1.0,
@@ -6679,9 +6678,8 @@
                                                 {
                                                     "name": "New Contributors list",
                                                     "value": [
-                                                        "DevSrSouza",
-                                                        "rsicarelli",
-                                                        "shpasha"
+                                                        "russhwolf",
+                                                        "psuzn"
                                                     ],
                                                     "unit": "contributor(s)",
                                                     "scale": 1.0,
@@ -6696,7 +6694,7 @@
                                 },
                                 {
                                     "name": "Inactive Contributor Count In A Period",
-                                    "value": 7,
+                                    "value": 0,
                                     "impact": "NEGATIVE",
                                     "entity": "contributors in issue tracker",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -6705,7 +6703,7 @@
                                     "measures": [
                                         {
                                             "name": "Number of inactive contributors",
-                                            "value": 7,
+                                            "value": 0,
                                             "unit": "contributor(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -6720,7 +6718,7 @@
                             "measurable_concepts": [
                                 {
                                     "name": "Documentation",
-                                    "value": 17.497228812583895,
+                                    "value": 19.011231111064355,
                                     "impact": "NEGATIVE",
                                     "entity": "text files in the repository",
                                     "relevant_oss_aspect": "CODE",
@@ -6729,7 +6727,7 @@
                                     "measures": [
                                         {
                                             "name": "Average Gunning Fog Index",
-                                            "value": 17.497228812583895,
+                                            "value": 19.011231111064355,
                                             "unit": "value",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -6773,7 +6771,7 @@
                             "measurable_concepts": [
                                 {
                                     "name": "Code Changes Commits",
-                                    "value": 65,
+                                    "value": 41,
                                     "impact": "POSITIVE",
                                     "entity": "commits in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -6782,7 +6780,7 @@
                                     "measures": [
                                         {
                                             "name": "Annual Commit Count",
-                                            "value": 65,
+                                            "value": 41,
                                             "unit": "commit(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -6792,7 +6790,7 @@
                                 },
                                 {
                                     "name": "Number of releases",
-                                    "value": 11,
+                                    "value": 2,
                                     "impact": "POSITIVE",
                                     "entity": "releases",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -6801,7 +6799,7 @@
                                     "measures": [
                                         {
                                             "name": "ReleaseCount",
-                                            "value": 11,
+                                            "value": 2,
                                             "unit": "release(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -6811,7 +6809,7 @@
                                 },
                                 {
                                     "name": "Code Changes Lines",
-                                    "value": 3691,
+                                    "value": 0,
                                     "impact": "NEGATIVE",
                                     "entity": "amount of lines changed in pull requests",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -6820,7 +6818,7 @@
                                     "measures": [
                                         {
                                             "name": "Total Number of Line Changes",
-                                            "value": 3691,
+                                            "value": 0,
                                             "unit": "line(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -6830,7 +6828,7 @@
                                 },
                                 {
                                     "name": "Change Request Commits",
-                                    "value": 6.888888888888889,
+                                    "value": 0.5,
                                     "impact": "NEGATIVE",
                                     "entity": "commits in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -6839,7 +6837,7 @@
                                     "measures": [
                                         {
                                             "name": "Avg number of commits per pull requests",
-                                            "value": 6.888888888888889,
+                                            "value": 0.5,
                                             "unit": "commit(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -6849,7 +6847,7 @@
                                 },
                                 {
                                     "name": "Number of Change Requests Accepted",
-                                    "value": 65,
+                                    "value": 29,
                                     "impact": "POSITIVE",
                                     "entity": "pull requests in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -6858,7 +6856,7 @@
                                     "measures": [
                                         {
                                             "name": "Change Requests Accepted Count",
-                                            "value": 65,
+                                            "value": 29,
                                             "unit": "pull request(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -6868,7 +6866,7 @@
                                 },
                                 {
                                     "name": "Change Requests Accepted to Total Change Requests Ratio",
-                                    "value": 5.25,
+                                    "value": 4.0,
                                     "impact": "POSITIVE",
                                     "entity": "pull requests in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -6877,7 +6875,7 @@
                                     "measures": [
                                         {
                                             "name": "Reviews Accepted - Total PR Ratio",
-                                            "value": 5.25,
+                                            "value": 4.0,
                                             "unit": "pull request(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -6887,7 +6885,7 @@
                                 },
                                 {
                                     "name": "Number of Change Requests Declined",
-                                    "value": 17,
+                                    "value": 26,
                                     "impact": "NEGATIVE",
                                     "entity": "pull requests in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -6896,7 +6894,7 @@
                                     "measures": [
                                         {
                                             "name": "Reviews Declined Count",
-                                            "value": 17,
+                                            "value": 26,
                                             "unit": "pull request(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -6906,7 +6904,7 @@
                                 },
                                 {
                                     "name": "Change Requests Declined to Total Change Requests Ratio",
-                                    "value": 389,
+                                    "value": 206,
                                     "impact": "NEGATIVE",
                                     "entity": "pull requests in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -6915,14 +6913,14 @@
                                     "measures": [
                                         {
                                             "name": "Reviews Declined - Total PR Ratio",
-                                            "value": 389,
+                                            "value": 206,
                                             "unit": "ratio",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
                                             "base_measures": [
                                                 {
                                                     "name": "Reviews Declined Count",
-                                                    "value": 17,
+                                                    "value": 26,
                                                     "unit": "pull request(s)",
                                                     "scale": 1.0,
                                                     "measurement_method": "AUTOMATIC",
@@ -6930,7 +6928,7 @@
                                                 },
                                                 {
                                                     "name": "Number of Total Issues",
-                                                    "value": 372,
+                                                    "value": 180,
                                                     "unit": "pull request(s)",
                                                     "scale": 1.0,
                                                     "measurement_method": "AUTOMATIC",
@@ -6944,7 +6942,7 @@
                                 },
                                 {
                                     "name": "Change Requests - Opened Pull Requests",
-                                    "value": 4,
+                                    "value": 1,
                                     "impact": "POSITIVE",
                                     "entity": "pull requests in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -6953,7 +6951,7 @@
                                     "measures": [
                                         {
                                             "name": "Number of opened pull requests",
-                                            "value": 4,
+                                            "value": 1,
                                             "unit": "pull request(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -6968,7 +6966,7 @@
                             "measurable_concepts": [
                                 {
                                     "name": "Number of New Contributors",
-                                    "value": 3,
+                                    "value": 2,
                                     "impact": "POSITIVE",
                                     "entity": "project contributors",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -6977,7 +6975,7 @@
                                     "measures": [
                                         {
                                             "name": "New Contributors Count",
-                                            "value": 3,
+                                            "value": 2,
                                             "unit": "contributor(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -6987,7 +6985,7 @@
                                 },
                                 {
                                     "name": "Number of Contributors",
-                                    "value": 24,
+                                    "value": 13,
                                     "impact": "POSITIVE",
                                     "entity": "contributors in the repository",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -6996,7 +6994,7 @@
                                     "measures": [
                                         {
                                             "name": "Number of contributors",
-                                            "value": 24,
+                                            "value": 13,
                                             "unit": "contributor(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -7006,7 +7004,7 @@
                                 },
                                 {
                                     "name": "Maintainer Organization",
-                                    "value": 10,
+                                    "value": 7,
                                     "impact": "POSITIVE",
                                     "entity": "contributor list",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -7015,7 +7013,7 @@
                                     "measures": [
                                         {
                                             "name": "Organization Count",
-                                            "value": 10,
+                                            "value": 7,
                                             "unit": "organization(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -7042,9 +7040,8 @@
                                                 {
                                                     "name": "New Contributors list",
                                                     "value": [
-                                                        "DevSrSouza",
-                                                        "rsicarelli",
-                                                        "shpasha"
+                                                        "russhwolf",
+                                                        "psuzn"
                                                     ],
                                                     "unit": "contributor(s)",
                                                     "scale": 1.0,
@@ -7076,9 +7073,8 @@
                                                 {
                                                     "name": "New Contributors list",
                                                     "value": [
-                                                        "DevSrSouza",
-                                                        "rsicarelli",
-                                                        "shpasha"
+                                                        "russhwolf",
+                                                        "psuzn"
                                                     ],
                                                     "unit": "contributor(s)",
                                                     "scale": 1.0,
@@ -7093,7 +7089,7 @@
                                 },
                                 {
                                     "name": "Inactive Contributor Count In A Period",
-                                    "value": 7,
+                                    "value": 0,
                                     "impact": "NEGATIVE",
                                     "entity": "contributors in issue tracker",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -7102,7 +7098,7 @@
                                     "measures": [
                                         {
                                             "name": "Number of inactive contributors",
-                                            "value": 7,
+                                            "value": 0,
                                             "unit": "contributor(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -7136,7 +7132,7 @@
                                 },
                                 {
                                     "name": "Average Length of Functions",
-                                    "value": 7.8,
+                                    "value": 7.7,
                                     "impact": "NEGATIVE",
                                     "entity": "source code",
                                     "relevant_oss_aspect": "CODE",
@@ -7145,7 +7141,7 @@
                                     "measures": [
                                         {
                                             "name": "Avg Lines of Code per Function",
-                                            "value": 7.8,
+                                            "value": 7.7,
                                             "unit": "lines",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -7171,7 +7167,7 @@
                                             "base_measures": [
                                                 {
                                                     "name": "Lines of Code",
-                                                    "value": 6298.0,
+                                                    "value": 6801.0,
                                                     "unit": "line(s)",
                                                     "scale": 1.0,
                                                     "measurement_method": "AUTOMATIC",
@@ -7179,7 +7175,7 @@
                                                 },
                                                 {
                                                     "name": "Lines of Comments",
-                                                    "value": 289,
+                                                    "value": 2608,
                                                     "unit": "line(s)",
                                                     "scale": 1.0,
                                                     "measurement_method": "AUTOMATIC",
@@ -7198,7 +7194,7 @@
                             "measurable_concepts": [
                                 {
                                     "name": "Number of New Contributors",
-                                    "value": 3,
+                                    "value": 2,
                                     "impact": "POSITIVE",
                                     "entity": "project contributors",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -7207,7 +7203,7 @@
                                     "measures": [
                                         {
                                             "name": "New Contributors Count",
-                                            "value": 3,
+                                            "value": 2,
                                             "unit": "contributor(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -7234,9 +7230,8 @@
                                                 {
                                                     "name": "New Contributors list",
                                                     "value": [
-                                                        "DevSrSouza",
-                                                        "rsicarelli",
-                                                        "shpasha"
+                                                        "russhwolf",
+                                                        "psuzn"
                                                     ],
                                                     "unit": "contributor(s)",
                                                     "scale": 1.0,
@@ -7268,9 +7263,8 @@
                                                 {
                                                     "name": "New Contributors list",
                                                     "value": [
-                                                        "DevSrSouza",
-                                                        "rsicarelli",
-                                                        "shpasha"
+                                                        "russhwolf",
+                                                        "psuzn"
                                                     ],
                                                     "unit": "contributor(s)",
                                                     "scale": 1.0,
@@ -7285,7 +7279,7 @@
                                 },
                                 {
                                     "name": "Inactive Contributor Count In A Period",
-                                    "value": 7,
+                                    "value": 0,
                                     "impact": "NEGATIVE",
                                     "entity": "contributors in issue tracker",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -7294,7 +7288,7 @@
                                     "measures": [
                                         {
                                             "name": "Number of inactive contributors",
-                                            "value": 7,
+                                            "value": 0,
                                             "unit": "contributor(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -7328,7 +7322,7 @@
                             "measurable_concepts": [
                                 {
                                     "name": "Community Interaction",
-                                    "value": 23,
+                                    "value": 4,
                                     "impact": "POSITIVE",
                                     "entity": "project contributors",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -7337,7 +7331,7 @@
                                     "measures": [
                                         {
                                             "name": "Repo Messages",
-                                            "value": 23,
+                                            "value": 4,
                                             "unit": "comment(s) on pull requests",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -7347,7 +7341,7 @@
                                 },
                                 {
                                     "name": "Issue Throughput",
-                                    "value": 617,
+                                    "value": 332,
                                     "impact": "POSITIVE",
                                     "entity": "issues in issue tracker",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -7356,7 +7350,7 @@
                                     "measures": [
                                         {
                                             "name": "Number of closed issues",
-                                            "value": 245,
+                                            "value": 152,
                                             "unit": "issue(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -7364,7 +7358,7 @@
                                         },
                                         {
                                             "name": "Number of total issues",
-                                            "value": 372,
+                                            "value": 180,
                                             "unit": "issue(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -7374,7 +7368,7 @@
                                 },
                                 {
                                     "name": "Average Issue Response Time",
-                                    "value": 1662664.5410958903,
+                                    "value": 5465730.360759494,
                                     "impact": "POSITIVE",
                                     "entity": "First comment on issues",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -7383,7 +7377,7 @@
                                     "measures": [
                                         {
                                             "name": "Issue Response Time",
-                                            "value": 1662664.5410958903,
+                                            "value": 5465730.360759494,
                                             "unit": "issue",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -7393,7 +7387,7 @@
                                 },
                                 {
                                     "name": "Number of Contributors",
-                                    "value": 24,
+                                    "value": 13,
                                     "impact": "POSITIVE",
                                     "entity": "contributors in the repository",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -7402,7 +7396,7 @@
                                     "measures": [
                                         {
                                             "name": "Number of contributors",
-                                            "value": 24,
+                                            "value": 13,
                                             "unit": "contributor(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -7412,7 +7406,7 @@
                                 },
                                 {
                                     "name": "Time since last commit",
-                                    "value": 6,
+                                    "value": 154,
                                     "impact": "NEGATIVE",
                                     "entity": "Commit history",
                                     "relevant_oss_aspect": "CODE",
@@ -7421,7 +7415,7 @@
                                     "measures": [
                                         {
                                             "name": "Time Since Last Commit Measure",
-                                            "value": 6,
+                                            "value": 154,
                                             "unit": "day(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -7431,7 +7425,7 @@
                                 },
                                 {
                                     "name": "Commit Frequency",
-                                    "value": 1.25,
+                                    "value": 0.7884615384615384,
                                     "impact": "POSITIVE",
                                     "entity": "commit(s)",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -7440,7 +7434,7 @@
                                     "measures": [
                                         {
                                             "name": "Commit Count",
-                                            "value": 1.25,
+                                            "value": 0.7884615384615384,
                                             "unit": "commit(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -7450,7 +7444,7 @@
                                 },
                                 {
                                     "name": "Change Requests Duration",
-                                    "value": 39.368902872260016,
+                                    "value": 143.43580432200292,
                                     "impact": "NEGATIVE",
                                     "entity": "issues in issue tracker",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -7459,7 +7453,7 @@
                                     "measures": [
                                         {
                                             "name": "Closed Issue Resolution Duration",
-                                            "value": 39.368902872260016,
+                                            "value": 143.43580432200292,
                                             "unit": "issue(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -7469,7 +7463,7 @@
                                 },
                                 {
                                     "name": "Change Request Reviews - Percentage of PRs Reviewed",
-                                    "value": 46.34146341463415,
+                                    "value": 27.27272727272727,
                                     "impact": "POSITIVE",
                                     "entity": "pull requests in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -7478,7 +7472,7 @@
                                     "measures": [
                                         {
                                             "name": "Percentage of PRs reviewed",
-                                            "value": 46.34146341463415,
+                                            "value": 27.27272727272727,
                                             "unit": "percentage",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -7488,7 +7482,7 @@
                                 },
                                 {
                                     "name": "Change Request Reviews - Avg number of contributors per pull requests",
-                                    "value": 2.111111111111111,
+                                    "value": 0.5,
                                     "impact": "POSITIVE",
                                     "entity": "pull requests in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -7497,7 +7491,7 @@
                                     "measures": [
                                         {
                                             "name": "Avg number of contributors per pull requests",
-                                            "value": 2.111111111111111,
+                                            "value": 0.5,
                                             "unit": "contributor(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -7517,7 +7511,7 @@
                             "measurable_concepts": [
                                 {
                                     "name": "Number of Contributors",
-                                    "value": 24,
+                                    "value": 13,
                                     "impact": "POSITIVE",
                                     "entity": "contributors in the repository",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -7526,7 +7520,7 @@
                                     "measures": [
                                         {
                                             "name": "Number of contributors",
-                                            "value": 24,
+                                            "value": 13,
                                             "unit": "contributor(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -7536,7 +7530,7 @@
                                 },
                                 {
                                     "name": "Time to Respond to Issues",
-                                    "value": 1662664.5410958903,
+                                    "value": 5465730.360759494,
                                     "impact": "NEGATIVE",
                                     "entity": "issues in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -7545,7 +7539,7 @@
                                     "measures": [
                                         {
                                             "name": "Issue Response Time",
-                                            "value": 1662664.5410958903,
+                                            "value": 5465730.360759494,
                                             "unit": "second(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -7555,7 +7549,7 @@
                                 },
                                 {
                                     "name": "Code Changes Commits",
-                                    "value": 65,
+                                    "value": 41,
                                     "impact": "POSITIVE",
                                     "entity": "commits in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -7564,7 +7558,7 @@
                                     "measures": [
                                         {
                                             "name": "Annual Commit Count",
-                                            "value": 65,
+                                            "value": 41,
                                             "unit": "commit(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -7574,7 +7568,7 @@
                                 },
                                 {
                                     "name": "Code Changes Lines",
-                                    "value": 3691,
+                                    "value": 0,
                                     "impact": "NEGATIVE",
                                     "entity": "amount of lines changed in pull requests",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -7583,7 +7577,7 @@
                                     "measures": [
                                         {
                                             "name": "Total Number of Line Changes",
-                                            "value": 3691,
+                                            "value": 0,
                                             "unit": "line(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -7593,7 +7587,7 @@
                                 },
                                 {
                                     "name": "Change Request Commits",
-                                    "value": 6.888888888888889,
+                                    "value": 0.5,
                                     "impact": "NEGATIVE",
                                     "entity": "commits in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -7602,7 +7596,7 @@
                                     "measures": [
                                         {
                                             "name": "Avg number of commits per pull requests",
-                                            "value": 6.888888888888889,
+                                            "value": 0.5,
                                             "unit": "commit(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -7612,7 +7606,7 @@
                                 },
                                 {
                                     "name": "Change Request Contributors",
-                                    "value": 2.111111111111111,
+                                    "value": 0.5,
                                     "impact": "POSITIVE",
                                     "entity": "pull requests in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -7621,7 +7615,7 @@
                                     "measures": [
                                         {
                                             "name": "Avg number of contributors per pull requests",
-                                            "value": 2.111111111111111,
+                                            "value": 0.5,
                                             "unit": "contributor(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -7631,7 +7625,7 @@
                                 },
                                 {
                                     "name": "Change Request Reviews - Percentage of PRs Reviewed",
-                                    "value": 46.34146341463415,
+                                    "value": 27.27272727272727,
                                     "impact": "POSITIVE",
                                     "entity": "pull requests in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -7640,7 +7634,7 @@
                                     "measures": [
                                         {
                                             "name": "Percentage of PRs reviewed",
-                                            "value": 46.34146341463415,
+                                            "value": 27.27272727272727,
                                             "unit": "percentage",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -7650,7 +7644,7 @@
                                 },
                                 {
                                     "name": "Change Request Reviews - Avg number of contributors per pull requests",
-                                    "value": 2.111111111111111,
+                                    "value": 0.5,
                                     "impact": "POSITIVE",
                                     "entity": "pull requests in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -7659,7 +7653,7 @@
                                     "measures": [
                                         {
                                             "name": "Avg number of contributors per pull requests",
-                                            "value": 2.111111111111111,
+                                            "value": 0.5,
                                             "unit": "contributor(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -7669,7 +7663,7 @@
                                 },
                                 {
                                     "name": "Number of New Contributors",
-                                    "value": 3,
+                                    "value": 2,
                                     "impact": "POSITIVE",
                                     "entity": "project contributors",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -7678,7 +7672,7 @@
                                     "measures": [
                                         {
                                             "name": "New Contributors Count",
-                                            "value": 3,
+                                            "value": 2,
                                             "unit": "contributor(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -7705,9 +7699,8 @@
                                                 {
                                                     "name": "New Contributors list",
                                                     "value": [
-                                                        "DevSrSouza",
-                                                        "rsicarelli",
-                                                        "shpasha"
+                                                        "russhwolf",
+                                                        "psuzn"
                                                     ],
                                                     "unit": "contributor(s)",
                                                     "scale": 1.0,
@@ -7739,9 +7732,8 @@
                                                 {
                                                     "name": "New Contributors list",
                                                     "value": [
-                                                        "DevSrSouza",
-                                                        "rsicarelli",
-                                                        "shpasha"
+                                                        "russhwolf",
+                                                        "psuzn"
                                                     ],
                                                     "unit": "contributor(s)",
                                                     "scale": 1.0,
@@ -7756,7 +7748,7 @@
                                 },
                                 {
                                     "name": "Inactive Contributor Count In A Period",
-                                    "value": 7,
+                                    "value": 0,
                                     "impact": "NEGATIVE",
                                     "entity": "contributors in issue tracker",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -7765,7 +7757,7 @@
                                     "measures": [
                                         {
                                             "name": "Number of inactive contributors",
-                                            "value": 7,
+                                            "value": 0,
                                             "unit": "contributor(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -7799,7 +7791,7 @@
                             "measurable_concepts": [
                                 {
                                     "name": "Number of Contributors",
-                                    "value": 24,
+                                    "value": 13,
                                     "impact": "POSITIVE",
                                     "entity": "contributors in the repository",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -7808,7 +7800,7 @@
                                     "measures": [
                                         {
                                             "name": "Number of contributors",
-                                            "value": 24,
+                                            "value": 13,
                                             "unit": "contributor(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -7818,7 +7810,7 @@
                                 },
                                 {
                                     "name": "Core Maintainers - Truck Factor",
-                                    "value": 2,
+                                    "value": 1,
                                     "impact": "POSITIVE",
                                     "entity": "core contributors in the repository",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -7827,7 +7819,7 @@
                                     "measures": [
                                         {
                                             "name": "Truck Factor",
-                                            "value": 2,
+                                            "value": 1,
                                             "unit": "contributor(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -7837,7 +7829,7 @@
                                 },
                                 {
                                     "name": "Issue Throughput",
-                                    "value": 617,
+                                    "value": 332,
                                     "impact": "POSITIVE",
                                     "entity": "issues in issue tracker",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -7846,7 +7838,7 @@
                                     "measures": [
                                         {
                                             "name": "Number of closed issues",
-                                            "value": 245,
+                                            "value": 152,
                                             "unit": "issue(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -7854,7 +7846,7 @@
                                         },
                                         {
                                             "name": "Number of total issues",
-                                            "value": 372,
+                                            "value": 180,
                                             "unit": "issue(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -7864,7 +7856,7 @@
                                 },
                                 {
                                     "name": "Issue Resolution Duration",
-                                    "value": 25.502313403342367,
+                                    "value": 69.03752041245791,
                                     "impact": "NEGATIVE",
                                     "entity": "pull requests in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -7873,7 +7865,7 @@
                                     "measures": [
                                         {
                                             "name": "Duration to Resolve Pull Requests",
-                                            "value": 25.502313403342367,
+                                            "value": 69.03752041245791,
                                             "unit": "day(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -7883,7 +7875,7 @@
                                 },
                                 {
                                     "name": "Change Requests Duration",
-                                    "value": 39.368902872260016,
+                                    "value": 143.43580432200292,
                                     "impact": "NEGATIVE",
                                     "entity": "issues in issue tracker",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -7892,7 +7884,7 @@
                                     "measures": [
                                         {
                                             "name": "Closed Issue Resolution Duration",
-                                            "value": 39.368902872260016,
+                                            "value": 143.43580432200292,
                                             "unit": "issue(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -7902,7 +7894,7 @@
                                 },
                                 {
                                     "name": "Number of Change Requests Accepted",
-                                    "value": 65,
+                                    "value": 29,
                                     "impact": "POSITIVE",
                                     "entity": "pull requests in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -7911,7 +7903,7 @@
                                     "measures": [
                                         {
                                             "name": "Change Requests Accepted Count",
-                                            "value": 65,
+                                            "value": 29,
                                             "unit": "pull request(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -7921,7 +7913,7 @@
                                 },
                                 {
                                     "name": "Change Requests Accepted to Total Change Requests Ratio",
-                                    "value": 5.25,
+                                    "value": 4.0,
                                     "impact": "POSITIVE",
                                     "entity": "pull requests in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -7930,7 +7922,7 @@
                                     "measures": [
                                         {
                                             "name": "Reviews Accepted - Total PR Ratio",
-                                            "value": 5.25,
+                                            "value": 4.0,
                                             "unit": "pull request(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -7940,7 +7932,7 @@
                                 },
                                 {
                                     "name": "Number of Change Requests Declined",
-                                    "value": 17,
+                                    "value": 26,
                                     "impact": "NEGATIVE",
                                     "entity": "pull requests in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -7949,7 +7941,7 @@
                                     "measures": [
                                         {
                                             "name": "Reviews Declined Count",
-                                            "value": 17,
+                                            "value": 26,
                                             "unit": "pull request(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -7959,7 +7951,7 @@
                                 },
                                 {
                                     "name": "Change Requests Declined to Total Change Requests Ratio",
-                                    "value": 389,
+                                    "value": 206,
                                     "impact": "NEGATIVE",
                                     "entity": "pull requests in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -7968,14 +7960,14 @@
                                     "measures": [
                                         {
                                             "name": "Reviews Declined - Total PR Ratio",
-                                            "value": 389,
+                                            "value": 206,
                                             "unit": "ratio",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
                                             "base_measures": [
                                                 {
                                                     "name": "Reviews Declined Count",
-                                                    "value": 17,
+                                                    "value": 26,
                                                     "unit": "pull request(s)",
                                                     "scale": 1.0,
                                                     "measurement_method": "AUTOMATIC",
@@ -7983,7 +7975,7 @@
                                                 },
                                                 {
                                                     "name": "Number of Total Issues",
-                                                    "value": 372,
+                                                    "value": 180,
                                                     "unit": "pull request(s)",
                                                     "scale": 1.0,
                                                     "measurement_method": "AUTOMATIC",
@@ -7997,7 +7989,7 @@
                                 },
                                 {
                                     "name": "Number of Issues New",
-                                    "value": 65,
+                                    "value": 6,
                                     "impact": "POSITIVE",
                                     "entity": "issues in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -8006,7 +7998,7 @@
                                     "measures": [
                                         {
                                             "name": "New Issues Count",
-                                            "value": 65,
+                                            "value": 6,
                                             "unit": "issue(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -8016,7 +8008,7 @@
                                 },
                                 {
                                     "name": "Issues New to Total Issues Ratio",
-                                    "value": 0.17473118279569894,
+                                    "value": 0.03333333333333333,
                                     "impact": "POSITIVE",
                                     "entity": "issues in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -8025,7 +8017,7 @@
                                     "measures": [
                                         {
                                             "name": "New Issues Ratio",
-                                            "value": 0.17473118279569894,
+                                            "value": 0.03333333333333333,
                                             "unit": "new issues in a period - total issues ratio",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -8035,7 +8027,7 @@
                                 },
                                 {
                                     "name": "Number of Issues Active",
-                                    "value": 155,
+                                    "value": 18,
                                     "impact": "POSITIVE",
                                     "entity": "issues in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -8044,7 +8036,7 @@
                                     "measures": [
                                         {
                                             "name": "Updated Issues Count",
-                                            "value": 155,
+                                            "value": 18,
                                             "unit": "updated issue",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -8054,7 +8046,7 @@
                                 },
                                 {
                                     "name": "Issues Active to Total Issues Ratio",
-                                    "value": 0.41935483870967744,
+                                    "value": 0.1,
                                     "impact": "POSITIVE",
                                     "entity": "issues in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -8063,7 +8055,7 @@
                                     "measures": [
                                         {
                                             "name": "Active Issues Ratio",
-                                            "value": 0.41935483870967744,
+                                            "value": 0.1,
                                             "unit": "ratio",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -8073,7 +8065,7 @@
                                 },
                                 {
                                     "name": "Number of Issues Closed",
-                                    "value": 245,
+                                    "value": 152,
                                     "impact": "POSITIVE",
                                     "entity": "issues in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -8082,7 +8074,7 @@
                                     "measures": [
                                         {
                                             "name": "Closed Issues Count",
-                                            "value": 245,
+                                            "value": 152,
                                             "unit": "issue(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -8092,7 +8084,7 @@
                                 },
                                 {
                                     "name": "Issues Closed to Total Issues Ratio",
-                                    "value": 0.13709677419354838,
+                                    "value": 0.03888888888888889,
                                     "impact": "POSITIVE",
                                     "entity": "issues in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -8101,7 +8093,7 @@
                                     "measures": [
                                         {
                                             "name": "Closed Issues Ratio",
-                                            "value": 0.13709677419354838,
+                                            "value": 0.03888888888888889,
                                             "unit": "closed issues in a period - total issues ratio",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -8111,7 +8103,7 @@
                                 },
                                 {
                                     "name": "Issue Age Average",
-                                    "value": 245.04724409448818,
+                                    "value": 658.0714285714286,
                                     "impact": "NEGATIVE",
                                     "entity": "issues in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -8120,7 +8112,7 @@
                                     "measures": [
                                         {
                                             "name": "Open Issue Age",
-                                            "value": 245.04724409448818,
+                                            "value": 658.0714285714286,
                                             "unit": "day(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -8135,7 +8127,7 @@
                             "measurable_concepts": [
                                 {
                                     "name": "Issue Age Average",
-                                    "value": 245.04724409448818,
+                                    "value": 658.0714285714286,
                                     "impact": "NEGATIVE",
                                     "entity": "issues in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -8144,7 +8136,7 @@
                                     "measures": [
                                         {
                                             "name": "Open Issue Age",
-                                            "value": 245.04724409448818,
+                                            "value": 658.0714285714286,
                                             "unit": "day(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -8154,7 +8146,7 @@
                                 },
                                 {
                                     "name": "Time to fix bugs",
-                                    "value": 86.27517650462963,
+                                    "value": 7776000,
                                     "impact": "NEGATIVE",
                                     "entity": "issues in issue tracker",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -8163,7 +8155,7 @@
                                     "measures": [
                                         {
                                             "name": "Time to fix bugs",
-                                            "value": 86.27517650462963,
+                                            "value": 7776000,
                                             "unit": "day(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -8173,7 +8165,7 @@
                                 },
                                 {
                                     "name": "Number of releases",
-                                    "value": 11,
+                                    "value": 2,
                                     "impact": "POSITIVE",
                                     "entity": "releases",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -8182,7 +8174,7 @@
                                     "measures": [
                                         {
                                             "name": "ReleaseCount",
-                                            "value": 11,
+                                            "value": 2,
                                             "unit": "release(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -8192,7 +8184,7 @@
                                 },
                                 {
                                     "name": "Time since last commit",
-                                    "value": 6,
+                                    "value": 154,
                                     "impact": "NEGATIVE",
                                     "entity": "Commit history",
                                     "relevant_oss_aspect": "CODE",
@@ -8201,7 +8193,7 @@
                                     "measures": [
                                         {
                                             "name": "Time Since Last Commit Measure",
-                                            "value": 6,
+                                            "value": 154,
                                             "unit": "day(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -8211,7 +8203,7 @@
                                 },
                                 {
                                     "name": "Commit Frequency",
-                                    "value": 1.25,
+                                    "value": 0.7884615384615384,
                                     "impact": "POSITIVE",
                                     "entity": "commit(s)",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -8220,7 +8212,7 @@
                                     "measures": [
                                         {
                                             "name": "Commit Count",
-                                            "value": 1.25,
+                                            "value": 0.7884615384615384,
                                             "unit": "commit(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -8230,7 +8222,7 @@
                                 },
                                 {
                                     "name": "Average Issue Response Time",
-                                    "value": 1662664.5410958903,
+                                    "value": 5465730.360759494,
                                     "impact": "POSITIVE",
                                     "entity": "First comment on issues",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -8239,7 +8231,7 @@
                                     "measures": [
                                         {
                                             "name": "Issue Response Time",
-                                            "value": 1662664.5410958903,
+                                            "value": 5465730.360759494,
                                             "unit": "issue",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -8254,7 +8246,7 @@
                             "measurable_concepts": [
                                 {
                                     "name": "Number of Contributors",
-                                    "value": 24,
+                                    "value": 13,
                                     "impact": "POSITIVE",
                                     "entity": "contributors in the repository",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -8263,7 +8255,7 @@
                                     "measures": [
                                         {
                                             "name": "Number of contributors",
-                                            "value": 24,
+                                            "value": 13,
                                             "unit": "contributor(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -8273,7 +8265,7 @@
                                 },
                                 {
                                     "name": "Number of New Contributors",
-                                    "value": 3,
+                                    "value": 2,
                                     "impact": "POSITIVE",
                                     "entity": "project contributors",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -8282,7 +8274,7 @@
                                     "measures": [
                                         {
                                             "name": "New Contributors Count",
-                                            "value": 3,
+                                            "value": 2,
                                             "unit": "contributor(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -8292,7 +8284,7 @@
                                 },
                                 {
                                     "name": "Number of Watchers - User community witnessing quality",
-                                    "value": 2323,
+                                    "value": 1449,
                                     "impact": "POSITIVE",
                                     "entity": "watchers in the repository",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -8301,7 +8293,7 @@
                                     "measures": [
                                         {
                                             "name": "Watchers Count",
-                                            "value": 2323,
+                                            "value": 1449,
                                             "unit": "watcher(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -8311,7 +8303,7 @@
                                 },
                                 {
                                     "name": "Number of Stars - User community witnessing quality",
-                                    "value": 2324,
+                                    "value": 1449,
                                     "impact": "POSITIVE",
                                     "entity": "stars in the repository",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -8320,7 +8312,7 @@
                                     "measures": [
                                         {
                                             "name": "Stars Count",
-                                            "value": 2324,
+                                            "value": 1449,
                                             "unit": "star(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -8330,7 +8322,7 @@
                                 },
                                 {
                                     "name": "Number of Forks - User community witnessing quality",
-                                    "value": 113,
+                                    "value": 62,
                                     "impact": "POSITIVE",
                                     "entity": "forks in the repository",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -8339,7 +8331,7 @@
                                     "measures": [
                                         {
                                             "name": "Forks Count",
-                                            "value": 113,
+                                            "value": 62,
                                             "unit": "fork(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -8349,7 +8341,7 @@
                                 },
                                 {
                                     "name": "Number of Testers",
-                                    "value": 2,
+                                    "value": 0,
                                     "impact": "POSITIVE",
                                     "entity": "contributors in the repository",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -8358,7 +8350,7 @@
                                     "measures": [
                                         {
                                             "name": "Number of testers",
-                                            "value": 2,
+                                            "value": 0,
                                             "unit": "tester(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -8368,7 +8360,7 @@
                                 },
                                 {
                                     "name": "Maintainer Organization",
-                                    "value": 10,
+                                    "value": 7,
                                     "impact": "POSITIVE",
                                     "entity": "contributor list",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -8377,7 +8369,7 @@
                                     "measures": [
                                         {
                                             "name": "Organization Count",
-                                            "value": 10,
+                                            "value": 7,
                                             "unit": "organization(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",

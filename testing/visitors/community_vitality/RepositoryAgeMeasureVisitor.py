@@ -1,14 +1,17 @@
+import os
 from datetime import datetime, timezone
 
+from github import Github
 from github.Repository import Repository
 
 from presentation.core.visitors.Visitor import BaseMeasureVisitor, T
 from util.GithubRateLimiter import GithubRateLimiter
+from github.Auth import Token
 
 
 class RepositoryAgeMeasureVisitor(BaseMeasureVisitor[int]):
-    def __init__(self, github_rate_limiter: GithubRateLimiter):
-        self.github_rate_limiter = github_rate_limiter
+    def __init__(self):
+        pass
 
     async def measure(self, measure: 'BaseMeasure', repository: Repository) -> int:
         try:
@@ -29,4 +32,7 @@ class RepositoryAgeMeasureVisitor(BaseMeasureVisitor[int]):
         except Exception as e:
             raise Exception(str(e) + self.__class__.__name__)
 
-
+    def _init(self):
+        auth = Token(os.getenv('UMM_DEPENDENCY_SELECTOR_GITHUB_TOKEN'))
+        github = Github(auth=auth, per_page=100)
+        self._github_rate_limiter = GithubRateLimiter(github=github)

@@ -7209,6 +7209,25 @@
                       "visitor": "./testing/visitors/communitycapability/community_growth/AssetDownloadCountVisitor.py"
                     }
                   ]
+                },
+                {
+                  "name": "Repository Age",
+                  "impact": "POSITIVE",
+                  "entity": "repository",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "The age of the repository",
+                  "quality_requirement": "Affects community health and vitality positively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Repository Age",
+                      "unit": "year(s)",
+                      "scale": 1,
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/community_vitality/RepositoryAgeMeasureVisitor.py"
+                    }
+                  ]
                 }
               ]
             },

@@ -24,7 +24,7 @@ class Visitor(Generic[T], metaclass=ABCGenericMeta):
         viewpoint = measure.get_viewpoint()
         path = os.path.join(CACHE_FOLDER,
                             f"{repository.name}-{quality_model.name}-cache.json").replace(" ",
-                                                                                                           "_")
+                                                                                          "_")
 
         key = f"{measure.name}_{self.__class__.__name__}".replace(" ", "_")
         data = {
@@ -51,7 +51,7 @@ class Visitor(Generic[T], metaclass=ABCGenericMeta):
         viewpoint = measure.get_viewpoint()
         path = os.path.join(CACHE_FOLDER,
                             f"{repository.name}-{quality_model.name}-cache.json").replace(" ",
-                                                                                                           "_")
+                                                                                          "_")
         if not os.path.exists(path):
             return None
 
@@ -88,7 +88,7 @@ class AggregateVisitor(Visitor[T]):
         pass
 
     @abstractmethod
-    def aggregate(self, normalized_measures: list[T], repository: Repository) -> U:
+    async def aggregate(self, normalized_measures: list[T], repository: Repository) -> U:
         pass
 
 

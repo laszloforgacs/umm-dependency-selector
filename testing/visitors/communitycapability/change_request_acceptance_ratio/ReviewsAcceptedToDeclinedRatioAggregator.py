@@ -12,7 +12,7 @@ class ReviewsAcceptedToDeclinedRatioAggregator(AggregateVisitor[tuple[Measure, f
         super().__init__()
         self._github_rate_limiter = github_rate_limiter
 
-    def aggregate(self, normalized_measures: list[tuple[Measure, float]], repository: Repository) -> float:
+    async def aggregate(self, normalized_measures: list[tuple[Measure, float]], repository: Repository) -> float:
         try:
             accepted_reviews = 0
             declined_reviews = 0

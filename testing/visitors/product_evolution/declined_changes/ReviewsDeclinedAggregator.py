@@ -10,7 +10,7 @@ class ReviewsDeclinedAggregator(AggregateVisitor[tuple[Measure, int]]):
     def __init__(self):
         super().__init__()
 
-    def aggregate(self, normalized_measures: list[tuple[Measure, int]], repository: Repository) -> float:
+    async def aggregate(self, normalized_measures: list[tuple[Measure, int]], repository: Repository) -> float:
         declined_issues = 0
         total_issues = 0
 

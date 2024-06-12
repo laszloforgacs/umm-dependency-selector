@@ -174,7 +174,7 @@ class DerivedMeasure(Measure, CompositeComponent, Generic[T], metaclass=ABCGener
             (child, await child.measure(repository)) for child in self.children.values()
         ]
         normalized = self.normalize(measurements, repository)
-        aggregated = self.aggregate(normalized, repository)
+        aggregated = await self.aggregate(normalized, repository)
         print(f"{repository.full_name}: {self.name} is {aggregated}")
         self.value = aggregated
         return aggregated
@@ -182,8 +182,8 @@ class DerivedMeasure(Measure, CompositeComponent, Generic[T], metaclass=ABCGener
     def normalize(self, measurements: list[T], repository: Repository) -> list[T]:
         return self.normalize_visitor.normalize(measurements, repository)
 
-    def aggregate(self, normalized_measures: list[T], repository: Repository) -> U:
-        return self.aggregate_visitor.aggregate(normalized_measures, repository)
+    async def aggregate(self, normalized_measures: list[T], repository: Repository) -> U:
+        return await self.aggregate_visitor.aggregate(normalized_measures, repository)
 
     def accept_visitors(self, normalize_visitor: 'NormalizeVisitor', aggregate_visitor: 'AggregateVisitor'):
         self.normalize_visitor = normalize_visitor

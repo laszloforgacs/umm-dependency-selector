@@ -322,7 +322,7 @@ class Sonar():
 
     async def get_cached_result(self) -> dict[str, str]:
         path = os.path.join(CACHE_FOLDER,
-                            f"{self._repository.name}-{self._quality_model_name}-{self._viewpoint_name}-cache.json").replace(
+                            f"{self._repository.name}-{self._quality_model_name}-cache.json").replace(
             " ",
             "_")
         if not os.path.exists(path):
@@ -338,7 +338,7 @@ class Sonar():
 
     async def _cache_result(self, measures_dict: dict[str, str]):
         path = os.path.join(CACHE_FOLDER,
-                            f"{self._repository.name}-{self._quality_model_name}-{self._viewpoint_name}-cache.json").replace(
+                            f"{self._repository.name}-{self._quality_model_name}-cache.json").replace(
             " ",
             "_")
 

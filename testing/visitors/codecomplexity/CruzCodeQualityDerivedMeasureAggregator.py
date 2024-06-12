@@ -10,7 +10,7 @@ class CruzCodeQualityDerivedMeasureAggregator(AggregateVisitor[tuple[Measure, fl
     def __init__(self):
         super().__init__()
 
-    def aggregate(self, normalized_measures: list[tuple[Measure, float]], repository: Repository) -> float:
+    async def aggregate(self, normalized_measures: list[tuple[Measure, float]], repository: Repository) -> float:
         lines_of_code = 0.0
         comments = 0.0
 

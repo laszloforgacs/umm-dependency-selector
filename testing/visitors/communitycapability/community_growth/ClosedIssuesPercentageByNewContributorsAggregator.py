@@ -16,8 +16,14 @@ class ClosedIssuesPercentageByNewContributorsAggregator(AggregateVisitor[tuple[M
     def __init__(self):
         super().__init__()
 
-    def aggregate(self, normalized_measures: list[tuple[Measure, int]], repository: Repository) -> float:
+    async def aggregate(self, normalized_measures: list[tuple[Measure, int]], repository: Repository) -> float:
         try:
+            base_measure = normalized_measures[0][0]
+            cached_result = await self.get_cached_result(base_measure.parent, repository)
+            if cached_result is not None:
+                print(f"{repository.full_name}: {base_measure.parent.name} is {cached_result}")
+                return cached_result
+
             self._init()
             new_contributors = []
             contributors_closing_issues = set()
@@ -52,11 +58,15 @@ class ClosedIssuesPercentageByNewContributorsAggregator(AggregateVisitor[tuple[M
             total_issue_closers = len(contributors_closing_issues)
             count_new_contributors_closing_issues = len(new_contributors_closing_issues)
             if total_issue_closers == 0:
-                print(f"Number of new contributors closing issues: {0}")
+                print(f"Percentage of new contributors closing issues: {0.0}")
+                await self.cache_result(base_measure.parent, repository, 0.0)
                 return 0.0
 
             percentage = (count_new_contributors_closing_issues / total_issue_closers) * 100
             print(f"Percentage of new contributors closing issues: {percentage}")
+
+            await self.cache_result(base_measure.parent, repository, percentage)
+
             return percentage
         except Exception as e:
             raise Exception(str(e) + self.__class__.__name__)

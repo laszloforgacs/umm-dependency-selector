@@ -16,8 +16,14 @@ class ClosedIssuesCountByNewContributorsAggregator(AggregateVisitor[tuple[Measur
     def __init__(self):
         super().__init__()
 
-    def aggregate(self, normalized_measures: list[tuple[Measure, float]], repository: Repository) -> int:
+    async def aggregate(self, normalized_measures: list[tuple[Measure, float]], repository: Repository) -> int:
         try:
+            base_measure = normalized_measures[0][0]
+            cached_result = await self.get_cached_result(base_measure.parent, repository)
+            if cached_result is not None:
+                print(f"{repository.full_name}: {base_measure.parent.name} is {cached_result}")
+                return cached_result
+
             self._init()
             new_contributors = []
 
@@ -47,6 +53,9 @@ class ClosedIssuesCountByNewContributorsAggregator(AggregateVisitor[tuple[Measur
 
             count_new_contributors_closing_issues = len(new_contributors_closing_issues)
             print(f"Number of new contributors closing issues: {count_new_contributors_closing_issues}")
+
+            await self.cache_result(base_measure.parent, repository, count_new_contributors_closing_issues)
+
             return count_new_contributors_closing_issues
         except Exception as e:
             raise Exception(str(e) + self.__class__.__name__)

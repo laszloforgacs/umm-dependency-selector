@@ -58,5 +58,6 @@
     "Avg_number_of_contributors_per_pull_requests_AvgNumberOfContributorsPerPRsVisitor": 21.77777777777778,
     "Time_Since_Last_Commit_Measure_TimeSinceLastCommitVisitor": 0,
     "Watchers_Count_WatchersCountVisitor": 1341,
-    "Number_of_testers_NumberOfTestersVisitor": 0
+    "Number_of_testers_NumberOfTestersVisitor": 0,
+    "Repository_Age_RepositoryAgeMeasureVisitor": 1
 }

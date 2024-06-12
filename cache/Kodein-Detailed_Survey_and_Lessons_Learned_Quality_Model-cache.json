@@ -48,5 +48,6 @@
     "Percentage_of_PRs_reviewed_PercentageOfPRsReviewedVisitor": 11.016949152542372,
     "Time_Since_Last_Commit_Measure_TimeSinceLastCommitVisitor": 18,
     "Watchers_Count_WatchersCountVisitor": 3151,
-    "Number_of_testers_NumberOfTestersVisitor": 0
+    "Number_of_testers_NumberOfTestersVisitor": 0,
+    "Repository_Age_RepositoryAgeMeasureVisitor": 9
 }

@@ -1,19 +1,19 @@
 {
     "preference_matrix": {
-        "Maintenance Cost, Number of Maintainers": null,
-        "Maintenance Cost, Code Development Efficiency": null,
-        "Maintenance Cost, Issue Resolution": null,
-        "Maintenance Cost, Flexible maintenance according to individual needs": null,
-        "Maintenance Cost, Absence of license fees": null,
-        "Number of Maintainers, Code Development Efficiency": null,
-        "Number of Maintainers, Issue Resolution": null,
-        "Number of Maintainers, Flexible maintenance according to individual needs": null,
-        "Number of Maintainers, Absence of license fees": null,
-        "Code Development Efficiency, Issue Resolution": null,
-        "Code Development Efficiency, Flexible maintenance according to individual needs": null,
-        "Code Development Efficiency, Absence of license fees": null,
-        "Issue Resolution, Flexible maintenance according to individual needs": null,
-        "Issue Resolution, Absence of license fees": null,
-        "Flexible maintenance according to individual needs, Absence of license fees": null
+        "Maintenance Cost, Number of Maintainers": "1",
+        "Maintenance Cost, Code Development Efficiency": "1",
+        "Maintenance Cost, Issue Resolution": "1",
+        "Maintenance Cost, Flexible maintenance according to individual needs": "1/3",
+        "Maintenance Cost, Absence of license fees": "5",
+        "Number of Maintainers, Code Development Efficiency": "1",
+        "Number of Maintainers, Issue Resolution": "1",
+        "Number of Maintainers, Flexible maintenance according to individual needs": "1/2",
+        "Number of Maintainers, Absence of license fees": "5",
+        "Code Development Efficiency, Issue Resolution": "1",
+        "Code Development Efficiency, Flexible maintenance according to individual needs": "1/2",
+        "Code Development Efficiency, Absence of license fees": "5",
+        "Issue Resolution, Flexible maintenance according to individual needs": "1/2",
+        "Issue Resolution, Absence of license fees": "6",
+        "Flexible maintenance according to individual needs, Absence of license fees": "9"
     }
 }

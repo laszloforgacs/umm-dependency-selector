@@ -1,14 +1,14 @@
 {
     "preference_matrix": {
-        "Product Evolution, Contributors": null,
-        "Product Evolution, Complexity": null,
-        "Product Evolution, Community Lifespan - Community Growth": null,
-        "Product Evolution, Short-term support": null,
-        "Contributors, Complexity": null,
-        "Contributors, Community Lifespan - Community Growth": null,
-        "Contributors, Short-term support": null,
-        "Complexity, Community Lifespan - Community Growth": null,
-        "Complexity, Short-term support": null,
-        "Community Lifespan - Community Growth, Short-term support": null
+        "Product Evolution, Contributors": "1",
+        "Product Evolution, Complexity": "1",
+        "Product Evolution, Community Lifespan - Community Growth": "2",
+        "Product Evolution, Short-term support": "1",
+        "Contributors, Complexity": "1",
+        "Contributors, Community Lifespan - Community Growth": "2",
+        "Contributors, Short-term support": "1",
+        "Complexity, Community Lifespan - Community Growth": "1",
+        "Complexity, Short-term support": "1",
+        "Community Lifespan - Community Growth, Short-term support": "1/2"
     }
 }

@@ -112,5 +112,8 @@
         "info_violations": "11",
         "files": "107",
         "statements": "2562"
-    }
+    },
+    "Number_of_issues_closed_by_new_contributors_ClosedIssuesCountByNewContributorsAggregator": 0,
+    "Percentage_of_issues_closed_by_new_contributors_ClosedIssuesPercentageByNewContributorsAggregator": 0.0,
+    "Repository_Age_RepositoryAgeMeasureVisitor": 6
 }

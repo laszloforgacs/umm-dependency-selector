@@ -1,0 +1,13 @@
+{
+    "preference_matrix": {
+        "Economic, Quality": null,
+        "Economic, Support and Service": null,
+        "Economic, Community and Adoption": null,
+        "Quality, Support and Service": null,
+        "Quality, Community and Adoption": null,
+        "Support and Service, Community and Adoption": null
+    },
+    "oss_aspect_preference_matrix": {
+        "COMMUNITY, CODE": null
+    }
+}

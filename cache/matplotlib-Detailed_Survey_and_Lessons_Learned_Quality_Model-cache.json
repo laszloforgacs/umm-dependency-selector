@@ -143,5 +143,10 @@
     "Count_of_asset_downloads_AssetDownloadCountVisitor": 0,
     "Repository_Age_RepositoryAgeMeasureVisitor": 13,
     "Repo_Messages_RepoMessagesVisitor": 777,
-    "Commit_Count_CommitCountVisitor": 54.05769230769231
+    "Commit_Count_CommitCountVisitor": 54.05769230769231,
+    "Percentage_of_PRs_reviewed_PercentageOfPRsReviewedVisitor": 57.23572639909553,
+    "Avg_number_of_contributors_per_pull_requests_AvgNumberOfContributorsPerPRsVisitor": 1.068421052631579,
+    "Time_Since_Last_Commit_Measure_TimeSinceLastCommitVisitor": 0,
+    "Watchers_Count_WatchersCountVisitor": 19552,
+    "Number_of_testers_NumberOfTestersVisitor": 0
 }

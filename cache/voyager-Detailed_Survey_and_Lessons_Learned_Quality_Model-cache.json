@@ -115,5 +115,7 @@
         "analysis_from_sonarqube_9_4": "true",
         "vulnerabilities": "0",
         "security_hotspots_reviewed": "0.0"
-    }
+    },
+    "Number_of_issues_closed_by_new_contributors_ClosedIssuesCountByNewContributorsAggregator": 0,
+    "Percentage_of_issues_closed_by_new_contributors_ClosedIssuesPercentageByNewContributorsAggregator": 0.0
 }

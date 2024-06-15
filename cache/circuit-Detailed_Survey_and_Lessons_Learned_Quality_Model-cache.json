@@ -118,5 +118,7 @@
         "cognitive_complexity": "837",
         "lines_to_cover": "4510",
         "comment_lines": "2997"
-    }
+    },
+    "Number_of_issues_closed_by_new_contributors_ClosedIssuesCountByNewContributorsAggregator": 0,
+    "Percentage_of_issues_closed_by_new_contributors_ClosedIssuesPercentageByNewContributorsAggregator": 0.0
 }

@@ -115,5 +115,7 @@
         "bugs": "0",
         "security_rating": "1.0",
         "confirmed_issues": "0"
-    }
+    },
+    "Number_of_issues_closed_by_new_contributors_ClosedIssuesCountByNewContributorsAggregator": 0,
+    "Percentage_of_issues_closed_by_new_contributors_ClosedIssuesPercentageByNewContributorsAggregator": 0.0
 }

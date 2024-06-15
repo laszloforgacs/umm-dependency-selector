@@ -114,5 +114,7 @@
         "last_commit_date": "1714692690000",
         "alert_status": "OK",
         "quality_profiles": "[{\"key\":\"f9ce8a03-f7d3-4e96-b8ed-699184604708\",\"language\":\"kotlin\",\"name\":\"Sonar way\",\"rulesUpdatedAt\":\"2024-05-13T09:43:32+0000\"}]"
-    }
+    },
+    "Number_of_issues_closed_by_new_contributors_ClosedIssuesCountByNewContributorsAggregator": 0,
+    "Percentage_of_issues_closed_by_new_contributors_ClosedIssuesPercentageByNewContributorsAggregator": 0.0
 }

@@ -107,5 +107,7 @@
         "security_hotspots_reviewed_status": "0",
         "major_violations": "39",
         "code_smells": "561"
-    }
+    },
+    "Number_of_issues_closed_by_new_contributors_ClosedIssuesCountByNewContributorsAggregator": 0,
+    "Percentage_of_issues_closed_by_new_contributors_ClosedIssuesPercentageByNewContributorsAggregator": 0.0
 }

@@ -2,7 +2,7 @@ import os
 from datetime import datetime, timezone
 
 from dateutil.relativedelta import relativedelta
-from github import Github
+from github import Github, GithubException
 from github.Repository import Repository
 
 from presentation.core.visitors.Visitor import BaseMeasureVisitor
@@ -47,13 +47,18 @@ class AvgNumberOfContributorsPerPRsVisitor(BaseMeasureVisitor[int]):
                 contributors.add(
                     pr.user.login
                 )
-                commits = github_rate_limiter.execute(pr.get_commits)
-                for commit in commits:
-                    if commit.author is not None or commit.committer is not None:
-                        contributors.add(
-                            commit.author.login if commit.author else commit.committer.login
-                        )
-                contributors_count += len(contributors)
+                try:
+                    commits = github_rate_limiter.execute(pr.get_commits)
+                    for commit in commits:
+                        if commit.author is not None or commit.committer is not None:
+                            contributors.add(
+                                commit.author.login if commit.author else commit.committer.login
+                            )
+                    contributors_count += len(contributors)
+
+                except GithubException as e:
+                    print(f"Error while fetching commits for PR {pr.number} in {repository.full_name}: {str(e)}")
+                    continue
 
             if pull_requests.totalCount == 0:
                 print(f"{repository.full_name}: {measure.name} is {0} {measure.unit}")

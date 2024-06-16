@@ -20254,7 +20254,7 @@
                                 },
                                 {
                                     "name": "Documentation",
-                                    "value": 10.0,
+                                    "value": 30.0,
                                     "impact": "NEGATIVE",
                                     "entity": "text files in the repository",
                                     "relevant_oss_aspect": "CODE",
@@ -20263,7 +20263,7 @@
                                     "measures": [
                                         {
                                             "name": "Average Gunning Fog Index",
-                                            "value": 10.0,
+                                            "value": 30.0,
                                             "unit": "value",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -20756,7 +20756,7 @@
                             "measurable_concepts": [
                                 {
                                     "name": "Documentation",
-                                    "value": 10.0,
+                                    "value": 30.0,
                                     "impact": "NEGATIVE",
                                     "entity": "text files in the repository",
                                     "relevant_oss_aspect": "CODE",
@@ -20765,7 +20765,7 @@
                                     "measures": [
                                         {
                                             "name": "Average Gunning Fog Index",
-                                            "value": 10.0,
+                                            "value": 30.0,
                                             "unit": "value",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",
@@ -22342,7 +22342,7 @@
                                 },
                                 {
                                     "name": "Number of Stars - User community witnessing quality",
-                                    "value": 13172,
+                                    "value": 13173,
                                     "impact": "POSITIVE",
                                     "entity": "stars in the repository",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -22351,7 +22351,7 @@
                                     "measures": [
                                         {
                                             "name": "Stars Count",
-                                            "value": 13172,
+                                            "value": 13173,
                                             "unit": "star(s)",
                                             "scale": 1.0,
                                             "measurement_method": "AUTOMATIC",

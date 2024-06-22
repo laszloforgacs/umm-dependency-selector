@@ -1,0 +1,1261 @@
+{
+    "name": "Detailed Survey and Lessons Learned Quality Model",
+    "characteristics": [
+        {
+            "name": "Economic",
+            "sub_characteristics": [
+                {
+                    "name": "Maintenance Cost",
+                    "sub_characteristics": [
+                        {
+                            "name": "Bug fixing cost",
+                            "measures": [
+                                {
+                                    "name": "Number of bugs to fix"
+                                },
+                                {
+                                    "name": "Number of contributors"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Maintenance cost",
+                            "measures": [
+                                {
+                                    "name": "Sqale Index - Technical Debt"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Number of Maintainers",
+                    "sub_characteristics": [
+                        {
+                            "name": "Number of Contributors",
+                            "measures": [
+                                {
+                                    "name": "Number of contributors"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Core Maintainers",
+                            "measures": [
+                                {
+                                    "name": "Truck Factor"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Code Development Efficiency",
+                    "sub_characteristics": [
+                        {
+                            "name": "Change Requests Duration",
+                            "measures": [
+                                {
+                                    "name": "Closed Issue Resolution Duration"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Number of Change Requests Accepted",
+                            "measures": [
+                                {
+                                    "name": "Change Requests Accepted Count"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Change Requests Accepted to Total Change Requests Ratio",
+                            "measures": [
+                                {
+                                    "name": "Reviews Accepted - Total PR Ratio"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Number of Change Requests Declined",
+                            "measures": [
+                                {
+                                    "name": "Reviews Declined Count"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Change Requests Declined to Total Change Requests Ratio",
+                            "measures": [
+                                {
+                                    "name": "Reviews Declined - Total PR Ratio",
+                                    "base_measures": [
+                                        {
+                                            "name": "Reviews Declined Count"
+                                        },
+                                        {
+                                            "name": "Number of Total Issues"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Issue Resolution",
+                    "sub_characteristics": [
+                        {
+                            "name": "Issue Throughput",
+                            "measures": [
+                                {
+                                    "name": "Number of closed issues"
+                                },
+                                {
+                                    "name": "Number of total issues"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Number of Issues New",
+                            "measures": [
+                                {
+                                    "name": "New Issues Count"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Issues New to Total Issues Ratio",
+                            "measures": [
+                                {
+                                    "name": "New Issues Ratio"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Number of Issues Active",
+                            "measures": [
+                                {
+                                    "name": "Updated Issues Count"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Issues Active to Total Issues Ratio",
+                            "measures": [
+                                {
+                                    "name": "Active Issues Ratio"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Number of Issues Closed",
+                            "measures": [
+                                {
+                                    "name": "Closed Issues Count"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Issues Closed to Total Issues Ratio",
+                            "measures": [
+                                {
+                                    "name": "Closed Issues Ratio"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Issue Age Average",
+                            "measures": [
+                                {
+                                    "name": "Open Issue Age"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Issue Resolution Duration",
+                            "measures": [
+                                {
+                                    "name": "Duration to Resolve Pull Requests"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Flexible maintenance according to individual needs",
+                    "sub_characteristics": [
+                        {
+                            "name": "Flexible maintenance according to individual needs",
+                            "measures": [
+                                {
+                                    "name": "Sqale Rating"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Absence of license fees",
+                    "sub_characteristics": [
+                        {
+                            "name": "Absence of license fees",
+                            "measures": [
+                                {
+                                    "name": "License"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Quality",
+            "sub_characteristics": [
+                {
+                    "name": "Reliability",
+                    "sub_characteristics": [
+                        {
+                            "name": "Comment lines and code lines ratio",
+                            "measures": [
+                                {
+                                    "name": "Comment to Code Ratio",
+                                    "base_measures": [
+                                        {
+                                            "name": "Lines of Code"
+                                        },
+                                        {
+                                            "name": "Lines of Comments"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Number of releases",
+                            "measures": [
+                                {
+                                    "name": "ReleaseCount"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Reliability Rating",
+                            "measures": [
+                                {
+                                    "name": "Level of Reliability"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Average number of functions per class",
+                            "measures": [
+                                {
+                                    "name": "Avg number of functions per class",
+                                    "base_measures": [
+                                        {
+                                            "name": "Number of functions"
+                                        },
+                                        {
+                                            "name": "Number of classes"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Maintainability",
+                    "sub_characteristics": [
+                        {
+                            "name": "Comment lines and code lines ratio",
+                            "measures": [
+                                {
+                                    "name": "Comment to Code Ratio",
+                                    "base_measures": [
+                                        {
+                                            "name": "Lines of Code"
+                                        },
+                                        {
+                                            "name": "Lines of Comments"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Ease of Maintenance",
+                            "measures": [
+                                {
+                                    "name": "Sqale Rating"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Documentation",
+                            "measures": [
+                                {
+                                    "name": "Average Gunning Fog Index"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Security",
+                    "sub_characteristics": [
+                        {
+                            "name": "Security Rating",
+                            "measures": [
+                                {
+                                    "name": "Level of Security"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Number of Contributors",
+                            "measures": [
+                                {
+                                    "name": "Number of contributors"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Size",
+                    "sub_characteristics": [
+                        {
+                            "name": "Average Length of Functions",
+                            "measures": [
+                                {
+                                    "name": "Avg Lines of Code per Function"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Number of Classes",
+                            "measures": [
+                                {
+                                    "name": "Count of classes"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Number of Files",
+                            "measures": [
+                                {
+                                    "name": "Count of files"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Comment lines and code lines ratio",
+                            "measures": [
+                                {
+                                    "name": "Comment to Code Ratio",
+                                    "base_measures": [
+                                        {
+                                            "name": "Lines of Code"
+                                        },
+                                        {
+                                            "name": "Lines of Comments"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Prompt fixing of bugs",
+                    "sub_characteristics": [
+                        {
+                            "name": "Time to fix bugs",
+                            "measures": [
+                                {
+                                    "name": "Time to fix bugs"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Number of bugs",
+                            "measures": [
+                                {
+                                    "name": "Number of issues labeled as bugs"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Complexity",
+                    "sub_characteristics": [
+                        {
+                            "name": "Cyclomatic Complexity",
+                            "measures": [
+                                {
+                                    "name": "Cyclomatic Complexity - Lizard"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Average Length of Functions",
+                            "measures": [
+                                {
+                                    "name": "Avg Lines of Code per Function"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Comment lines and code lines ratio",
+                            "measures": [
+                                {
+                                    "name": "Comment to Code Ratio",
+                                    "base_measures": [
+                                        {
+                                            "name": "Lines of Code"
+                                        },
+                                        {
+                                            "name": "Lines of Comments"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Rapid Evolution - Issue Resolution",
+                    "sub_characteristics": [
+                        {
+                            "name": "Change Requests Duration",
+                            "measures": [
+                                {
+                                    "name": "Closed Issue Resolution Duration"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Issue Throughput",
+                            "measures": [
+                                {
+                                    "name": "Number of closed issues"
+                                },
+                                {
+                                    "name": "Number of total issues"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Time to Respond to Issues",
+                            "measures": [
+                                {
+                                    "name": "Issue Response Time"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Issue Resolution Duration",
+                            "measures": [
+                                {
+                                    "name": "Duration to Resolve Pull Requests"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Issue Age Average",
+                            "measures": [
+                                {
+                                    "name": "Open Issue Age"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Emerging Capability - Community Growth",
+                    "sub_characteristics": [
+                        {
+                            "name": "Number of New Contributors",
+                            "measures": [
+                                {
+                                    "name": "New Contributors Count"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Number of New Contributors Closing Issues",
+                            "measures": [
+                                {
+                                    "name": "Number of issues closed by new contributors",
+                                    "base_measures": [
+                                        {
+                                            "name": "New Contributors list"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Percentage of New Contributors Closing Issues",
+                            "measures": [
+                                {
+                                    "name": "Percentage of issues closed by new contributors",
+                                    "base_measures": [
+                                        {
+                                            "name": "New Contributors list"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Inactive Contributor Count In A Period",
+                            "measures": [
+                                {
+                                    "name": "Number of inactive contributors"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Documentation",
+                    "sub_characteristics": [
+                        {
+                            "name": "Documentation",
+                            "measures": [
+                                {
+                                    "name": "Average Gunning Fog Index"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Interoperability-Compatibility",
+                    "sub_characteristics": [
+                        {
+                            "name": "Technologies",
+                            "measures": [
+                                {
+                                    "name": "Popular Languages"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Support and Service",
+            "sub_characteristics": [
+                {
+                    "name": "Product Evolution",
+                    "sub_characteristics": [
+                        {
+                            "name": "Code Changes Commits",
+                            "measures": [
+                                {
+                                    "name": "Annual Commit Count"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Number of releases",
+                            "measures": [
+                                {
+                                    "name": "ReleaseCount"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Code Changes Lines",
+                            "measures": [
+                                {
+                                    "name": "Total Number of Line Changes"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Change Request Commits",
+                            "measures": [
+                                {
+                                    "name": "Avg number of commits per pull requests"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Number of Change Requests Accepted",
+                            "measures": [
+                                {
+                                    "name": "Change Requests Accepted Count"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Change Requests Accepted to Total Change Requests Ratio",
+                            "measures": [
+                                {
+                                    "name": "Reviews Accepted - Total PR Ratio"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Number of Change Requests Declined",
+                            "measures": [
+                                {
+                                    "name": "Reviews Declined Count"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Change Requests Declined to Total Change Requests Ratio",
+                            "measures": [
+                                {
+                                    "name": "Reviews Declined - Total PR Ratio",
+                                    "base_measures": [
+                                        {
+                                            "name": "Reviews Declined Count"
+                                        },
+                                        {
+                                            "name": "Number of Total Issues"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Change Requests - Opened Pull Requests",
+                            "measures": [
+                                {
+                                    "name": "Number of opened pull requests"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Contributors",
+                    "sub_characteristics": [
+                        {
+                            "name": "Number of New Contributors",
+                            "measures": [
+                                {
+                                    "name": "New Contributors Count"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Number of Contributors",
+                            "measures": [
+                                {
+                                    "name": "Number of contributors"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Maintainer Organization",
+                            "measures": [
+                                {
+                                    "name": "Organization Count"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Number of New Contributors Closing Issues",
+                            "measures": [
+                                {
+                                    "name": "Number of issues closed by new contributors",
+                                    "base_measures": [
+                                        {
+                                            "name": "New Contributors list"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Percentage of New Contributors Closing Issues",
+                            "measures": [
+                                {
+                                    "name": "Percentage of issues closed by new contributors",
+                                    "base_measures": [
+                                        {
+                                            "name": "New Contributors list"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Inactive Contributor Count In A Period",
+                            "measures": [
+                                {
+                                    "name": "Number of inactive contributors"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Complexity",
+                    "sub_characteristics": [
+                        {
+                            "name": "Cyclomatic Complexity",
+                            "measures": [
+                                {
+                                    "name": "Cyclomatic Complexity - Lizard"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Average Length of Functions",
+                            "measures": [
+                                {
+                                    "name": "Avg Lines of Code per Function"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Comment lines and code lines ratio",
+                            "measures": [
+                                {
+                                    "name": "Comment to Code Ratio",
+                                    "base_measures": [
+                                        {
+                                            "name": "Lines of Code"
+                                        },
+                                        {
+                                            "name": "Lines of Comments"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Community Lifespan - Community Growth",
+                    "sub_characteristics": [
+                        {
+                            "name": "Number of New Contributors",
+                            "measures": [
+                                {
+                                    "name": "New Contributors Count"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Number of New Contributors Closing Issues",
+                            "measures": [
+                                {
+                                    "name": "Number of issues closed by new contributors",
+                                    "base_measures": [
+                                        {
+                                            "name": "New Contributors list"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Percentage of New Contributors Closing Issues",
+                            "measures": [
+                                {
+                                    "name": "Percentage of issues closed by new contributors",
+                                    "base_measures": [
+                                        {
+                                            "name": "New Contributors list"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Inactive Contributor Count In A Period",
+                            "measures": [
+                                {
+                                    "name": "Number of inactive contributors"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Number Of Downloads",
+                            "measures": [
+                                {
+                                    "name": "Count of asset downloads"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Short-term support",
+                    "sub_characteristics": [
+                        {
+                            "name": "Community Interaction",
+                            "measures": [
+                                {
+                                    "name": "Repo Messages"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Issue Throughput",
+                            "measures": [
+                                {
+                                    "name": "Number of closed issues"
+                                },
+                                {
+                                    "name": "Number of total issues"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Average Issue Response Time",
+                            "measures": [
+                                {
+                                    "name": "Issue Response Time"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Number of Contributors",
+                            "measures": [
+                                {
+                                    "name": "Number of contributors"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Time since last commit",
+                            "measures": [
+                                {
+                                    "name": "Time Since Last Commit Measure"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Commit Frequency",
+                            "measures": [
+                                {
+                                    "name": "Commit Count"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Change Requests Duration",
+                            "measures": [
+                                {
+                                    "name": "Closed Issue Resolution Duration"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Change Request Reviews - Percentage of PRs Reviewed",
+                            "measures": [
+                                {
+                                    "name": "Percentage of PRs reviewed"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Change Request Reviews - Avg number of contributors per pull requests",
+                            "measures": [
+                                {
+                                    "name": "Avg number of contributors per pull requests"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Community and Adoption",
+            "sub_characteristics": [
+                {
+                    "name": "Community Health and Vitality",
+                    "sub_characteristics": [
+                        {
+                            "name": "Number of Contributors",
+                            "measures": [
+                                {
+                                    "name": "Number of contributors"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Time to Respond to Issues",
+                            "measures": [
+                                {
+                                    "name": "Issue Response Time"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Code Changes Commits",
+                            "measures": [
+                                {
+                                    "name": "Annual Commit Count"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Code Changes Lines",
+                            "measures": [
+                                {
+                                    "name": "Total Number of Line Changes"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Change Request Commits",
+                            "measures": [
+                                {
+                                    "name": "Avg number of commits per pull requests"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Change Request Contributors",
+                            "measures": [
+                                {
+                                    "name": "Avg number of contributors per pull requests"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Change Request Reviews - Percentage of PRs Reviewed",
+                            "measures": [
+                                {
+                                    "name": "Percentage of PRs reviewed"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Change Request Reviews - Avg number of contributors per pull requests",
+                            "measures": [
+                                {
+                                    "name": "Avg number of contributors per pull requests"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Number of New Contributors",
+                            "measures": [
+                                {
+                                    "name": "New Contributors Count"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Number of New Contributors Closing Issues",
+                            "measures": [
+                                {
+                                    "name": "Number of issues closed by new contributors",
+                                    "base_measures": [
+                                        {
+                                            "name": "New Contributors list"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Percentage of New Contributors Closing Issues",
+                            "measures": [
+                                {
+                                    "name": "Percentage of issues closed by new contributors",
+                                    "base_measures": [
+                                        {
+                                            "name": "New Contributors list"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Inactive Contributor Count In A Period",
+                            "measures": [
+                                {
+                                    "name": "Number of inactive contributors"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Number Of Downloads",
+                            "measures": [
+                                {
+                                    "name": "Count of asset downloads"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Community Capability",
+                    "sub_characteristics": [
+                        {
+                            "name": "Number of Contributors",
+                            "measures": [
+                                {
+                                    "name": "Number of contributors"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Core Maintainers - Truck Factor",
+                            "measures": [
+                                {
+                                    "name": "Truck Factor"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Issue Throughput",
+                            "measures": [
+                                {
+                                    "name": "Number of closed issues"
+                                },
+                                {
+                                    "name": "Number of total issues"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Issue Resolution Duration",
+                            "measures": [
+                                {
+                                    "name": "Duration to Resolve Pull Requests"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Change Requests Duration",
+                            "measures": [
+                                {
+                                    "name": "Closed Issue Resolution Duration"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Number of Change Requests Accepted",
+                            "measures": [
+                                {
+                                    "name": "Change Requests Accepted Count"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Change Requests Accepted to Total Change Requests Ratio",
+                            "measures": [
+                                {
+                                    "name": "Reviews Accepted - Total PR Ratio"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Number of Change Requests Declined",
+                            "measures": [
+                                {
+                                    "name": "Reviews Declined Count"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Change Requests Declined to Total Change Requests Ratio",
+                            "measures": [
+                                {
+                                    "name": "Reviews Declined - Total PR Ratio",
+                                    "base_measures": [
+                                        {
+                                            "name": "Reviews Declined Count"
+                                        },
+                                        {
+                                            "name": "Number of Total Issues"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Number of Issues New",
+                            "measures": [
+                                {
+                                    "name": "New Issues Count"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Issues New to Total Issues Ratio",
+                            "measures": [
+                                {
+                                    "name": "New Issues Ratio"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Number of Issues Active",
+                            "measures": [
+                                {
+                                    "name": "Updated Issues Count"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Issues Active to Total Issues Ratio",
+                            "measures": [
+                                {
+                                    "name": "Active Issues Ratio"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Number of Issues Closed",
+                            "measures": [
+                                {
+                                    "name": "Closed Issues Count"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Issues Closed to Total Issues Ratio",
+                            "measures": [
+                                {
+                                    "name": "Closed Issues Ratio"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Issue Age Average",
+                            "measures": [
+                                {
+                                    "name": "Open Issue Age"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Time to fix bugs",
+                    "sub_characteristics": [
+                        {
+                            "name": "Issue Age Average",
+                            "measures": [
+                                {
+                                    "name": "Open Issue Age"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Time to fix bugs",
+                            "measures": [
+                                {
+                                    "name": "Time to fix bugs"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Number of releases",
+                            "measures": [
+                                {
+                                    "name": "ReleaseCount"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Time since last commit",
+                            "measures": [
+                                {
+                                    "name": "Time Since Last Commit Measure"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Commit Frequency",
+                            "measures": [
+                                {
+                                    "name": "Commit Count"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Average Issue Response Time",
+                            "measures": [
+                                {
+                                    "name": "Issue Response Time"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Community Size",
+                    "sub_characteristics": [
+                        {
+                            "name": "Number of Contributors",
+                            "measures": [
+                                {
+                                    "name": "Number of contributors"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Number of New Contributors",
+                            "measures": [
+                                {
+                                    "name": "New Contributors Count"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Number of Watchers - User community witnessing quality",
+                            "measures": [
+                                {
+                                    "name": "Watchers Count"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Number of Stars - User community witnessing quality",
+                            "measures": [
+                                {
+                                    "name": "Stars Count"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Number of Forks - User community witnessing quality",
+                            "measures": [
+                                {
+                                    "name": "Forks Count"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Number of Testers",
+                            "measures": [
+                                {
+                                    "name": "Number of testers"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Maintainer Organization",
+                            "measures": [
+                                {
+                                    "name": "Organization Count"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -126,7 +126,6 @@ class BaseMeasure(Measure, LeafComponent, Generic[T], metaclass=ABCGenericMeta):
     def pretty_print(self) -> dict:
         return {
             "name": self.name,
-            "unit": self.unit,
         }
 
 
@@ -204,6 +203,5 @@ class DerivedMeasure(Measure, CompositeComponent, Generic[T], metaclass=ABCGener
     def pretty_print(self) -> dict:
         return {
             "name": self.name,
-            "unit": self.unit,
             "base_measures": [child.pretty_print() for child in self.children.values()],
         }

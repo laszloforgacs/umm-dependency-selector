@@ -18,7 +18,9 @@ class QualityModel(CompositeComponent, metaclass=ABCMeta):
         }
 
     def pretty_print(self) -> dict:
+        values = list(self.children.values())
+        vp = values[0]
         return {
             "name": self.name,
-            "viewpoints": [child.pretty_print() for child in self.children.values()]
+            "characteristics": vp.pretty_print()
         }

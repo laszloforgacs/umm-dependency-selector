@@ -91,6 +91,5 @@ class MeasurableConcept(CompositeComponent, Generic[T], metaclass=ABCGenericMeta
     def pretty_print(self) -> dict:
         return {
             "name": self.name,
-            "information_need": self.information_need,
             "measures": [child.pretty_print() for child in self.children.values()]
         }

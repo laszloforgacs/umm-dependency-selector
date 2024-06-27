@@ -81,7 +81,7 @@ class EvaluationViewModel:
                     mc.relevant_oss_aspect.name
                 ]
                 weights.append(weight)
-                criteria.append(f"{mc.name} - {mc.relevant_oss_aspect.name}")
+                criteria.append(f"{mc.parent.name} - {mc.name} - {mc.relevant_oss_aspect.name}")
 
             dm = skcriteria.mkdm(
                 matrix=matrix,

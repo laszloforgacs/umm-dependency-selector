@@ -566,11 +566,11 @@
                                                     "unit": "class(es)",
                                                     "scale": "0 to infinity",
                                                     "measurement_method": "AUTOMATIC",
-                                                    "visitor": "ClassesCountVisitor"
+                                                    "visitor": "NumberOfClassesVisitor"
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "AvgNumberOfFunctionsPerClassAggregateVisitor"
                                         }
                                     ]
                                 }
@@ -3352,11 +3352,11 @@
                                                     "unit": "class(es)",
                                                     "scale": "0 to infinity",
                                                     "measurement_method": "AUTOMATIC",
-                                                    "visitor": "ClassesCountVisitor"
+                                                    "visitor": "NumberOfClassesVisitor"
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "AvgNumberOfFunctionsPerClassAggregateVisitor"
                                         }
                                     ]
                                 }
@@ -6138,11 +6138,11 @@
                                                     "unit": "class(es)",
                                                     "scale": "0 to infinity",
                                                     "measurement_method": "AUTOMATIC",
-                                                    "visitor": "ClassesCountVisitor"
+                                                    "visitor": "NumberOfClassesVisitor"
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "AvgNumberOfFunctionsPerClassAggregateVisitor"
                                         }
                                     ]
                                 }
@@ -8924,11 +8924,11 @@
                                                     "unit": "class(es)",
                                                     "scale": "0 to infinity",
                                                     "measurement_method": "AUTOMATIC",
-                                                    "visitor": "ClassesCountVisitor"
+                                                    "visitor": "NumberOfClassesVisitor"
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "AvgNumberOfFunctionsPerClassAggregateVisitor"
                                         }
                                     ]
                                 }
@@ -11682,7 +11682,7 @@
                                 },
                                 {
                                     "name": "Average number of functions per class",
-                                    "value": 9584,
+                                    "value": 245.74358974358975,
                                     "impact": "NEGATIVE",
                                     "entity": "source code",
                                     "relevant_oss_aspect": "CODE",
@@ -11691,7 +11691,7 @@
                                     "measures": [
                                         {
                                             "name": "Avg number of functions per class",
-                                            "value": 9584,
+                                            "value": 245.74358974358975,
                                             "unit": "function(s)",
                                             "scale": "0 to infinity",
                                             "measurement_method": "AUTOMATIC",
@@ -11706,15 +11706,15 @@
                                                 },
                                                 {
                                                     "name": "Number of classes",
-                                                    "value": 0,
+                                                    "value": 39,
                                                     "unit": "class(es)",
                                                     "scale": "0 to infinity",
                                                     "measurement_method": "AUTOMATIC",
-                                                    "visitor": "ClassesCountVisitor"
+                                                    "visitor": "NumberOfClassesVisitor"
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "AvgNumberOfFunctionsPerClassAggregateVisitor"
                                         }
                                     ]
                                 }
@@ -14075,7 +14075,7 @@
                                 },
                                 {
                                     "name": "Number of Stars - User community witnessing quality",
-                                    "value": 45537,
+                                    "value": 45538,
                                     "impact": "POSITIVE",
                                     "entity": "stars in the repository",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -14084,7 +14084,7 @@
                                     "measures": [
                                         {
                                             "name": "Stars Count",
-                                            "value": 45537,
+                                            "value": 45538,
                                             "unit": "star(s)",
                                             "scale": "0 to infinity",
                                             "measurement_method": "AUTOMATIC",
@@ -14720,11 +14720,11 @@
                                                     "unit": "class(es)",
                                                     "scale": "0 to infinity",
                                                     "measurement_method": "AUTOMATIC",
-                                                    "visitor": "ClassesCountVisitor"
+                                                    "visitor": "NumberOfClassesVisitor"
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "AvgNumberOfFunctionsPerClassAggregateVisitor"
                                         }
                                     ]
                                 }
@@ -17506,11 +17506,11 @@
                                                     "unit": "class(es)",
                                                     "scale": "0 to infinity",
                                                     "measurement_method": "AUTOMATIC",
-                                                    "visitor": "ClassesCountVisitor"
+                                                    "visitor": "NumberOfClassesVisitor"
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "AvgNumberOfFunctionsPerClassAggregateVisitor"
                                         }
                                     ]
                                 }
@@ -20292,11 +20292,11 @@
                                                     "unit": "class(es)",
                                                     "scale": "0 to infinity",
                                                     "measurement_method": "AUTOMATIC",
-                                                    "visitor": "ClassesCountVisitor"
+                                                    "visitor": "NumberOfClassesVisitor"
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "AvgNumberOfFunctionsPerClassAggregateVisitor"
                                         }
                                     ]
                                 }
@@ -23078,11 +23078,11 @@
                                                     "unit": "class(es)",
                                                     "scale": "0 to infinity",
                                                     "measurement_method": "AUTOMATIC",
-                                                    "visitor": "ClassesCountVisitor"
+                                                    "visitor": "NumberOfClassesVisitor"
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "AvgNumberOfFunctionsPerClassAggregateVisitor"
                                         }
                                     ]
                                 }
@@ -25864,11 +25864,11 @@
                                                     "unit": "class(es)",
                                                     "scale": "0 to infinity",
                                                     "measurement_method": "AUTOMATIC",
-                                                    "visitor": "ClassesCountVisitor"
+                                                    "visitor": "NumberOfClassesVisitor"
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "AvgNumberOfFunctionsPerClassAggregateVisitor"
                                         }
                                     ]
                                 }
@@ -28650,11 +28650,11 @@
                                                     "unit": "class(es)",
                                                     "scale": "0 to infinity",
                                                     "measurement_method": "AUTOMATIC",
-                                                    "visitor": "ClassesCountVisitor"
+                                                    "visitor": "NumberOfClassesVisitor"
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "AvgNumberOfFunctionsPerClassAggregateVisitor"
                                         }
                                     ]
                                 }
@@ -31436,11 +31436,11 @@
                                                     "unit": "class(es)",
                                                     "scale": "0 to infinity",
                                                     "measurement_method": "AUTOMATIC",
-                                                    "visitor": "ClassesCountVisitor"
+                                                    "visitor": "NumberOfClassesVisitor"
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "AvgNumberOfFunctionsPerClassAggregateVisitor"
                                         }
                                     ]
                                 }
@@ -34222,11 +34222,11 @@
                                                     "unit": "class(es)",
                                                     "scale": "0 to infinity",
                                                     "measurement_method": "AUTOMATIC",
-                                                    "visitor": "ClassesCountVisitor"
+                                                    "visitor": "NumberOfClassesVisitor"
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "AvgNumberOfFunctionsPerClassAggregateVisitor"
                                         }
                                     ]
                                 }
@@ -37008,11 +37008,11 @@
                                                     "unit": "class(es)",
                                                     "scale": "0 to infinity",
                                                     "measurement_method": "AUTOMATIC",
-                                                    "visitor": "ClassesCountVisitor"
+                                                    "visitor": "NumberOfClassesVisitor"
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "AvgNumberOfFunctionsPerClassAggregateVisitor"
                                         }
                                     ]
                                 }
@@ -39794,11 +39794,11 @@
                                                     "unit": "class(es)",
                                                     "scale": "0 to infinity",
                                                     "measurement_method": "AUTOMATIC",
-                                                    "visitor": "ClassesCountVisitor"
+                                                    "visitor": "NumberOfClassesVisitor"
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "AvgNumberOfFunctionsPerClassAggregateVisitor"
                                         }
                                     ]
                                 }

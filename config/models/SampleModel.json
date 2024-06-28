@@ -546,7 +546,7 @@
                       "scale": "0 to infinity",
                       "measurement_method": "AUTOMATIC",
                       "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
-                      "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                      "aggregate_visitor": "./testing/visitors/AvgNumberOfFunctionsPerClassAggregateVisitor.py",
                       "base_measures": [
                         {
                           "name": "Number of functions",
@@ -560,7 +560,7 @@
                           "unit": "class(es)",
                           "scale": "0 to infinity",
                           "measurement_method": "AUTOMATIC",
-                          "visitor": "./testing/visitors/size/number_of_classes/ClassesCountVisitor.py"
+                          "visitor": "./testing/NumberOfClassesVisitor.py"
                         }
                       ]
                     }

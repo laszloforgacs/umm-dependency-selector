@@ -143,5 +143,6 @@
     "Number_of_testers_NumberOfTestersVisitor": 4,
     "Repository_Age_RepositoryAgeMeasureVisitor": 6,
     "Release_Count_ReleaseCountVisitor": 54,
-    "Cyclomatic_Complexity_Measure_LizardCyclomaticComplexityVisitor": 1.6
+    "Cyclomatic_Complexity_Measure_LizardCyclomaticComplexityVisitor": 1.6,
+    "Number_of_classes_NumberOfClassesVisitor": 39
 }

@@ -28,7 +28,7 @@ class MeasureSchema(Schema):
     name = fields.Str(required=True)
     value = fields.Raw(allow_none=True)
     unit = fields.Str()
-    scale = fields.Float()
+    scale = fields.Str()
 
     class Meta:
         unknown = INCLUDE

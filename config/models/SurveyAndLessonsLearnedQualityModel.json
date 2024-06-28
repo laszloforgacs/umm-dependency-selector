@@ -23,14 +23,14 @@
                     {
                       "name": "Number of bugs to fix",
                       "unit": "bug(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/bug_fixing_cost/NumberOfBugsToFixVisitor.py"
                     },
                     {
                       "name": "Number of contributors",
                       "unit": "contributor(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/communitycapability/PyGithubCommunityCountVisitor.py"
                     }
@@ -49,7 +49,7 @@
                     {
                       "name": "Sqale Index - Technical Debt",
                       "unit": "minutes and/or days",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/maintenance_cost/SqaleIndexVisitor.py"
                     }
@@ -68,7 +68,7 @@
                     {
                       "name": "Number of contributors",
                       "unit": "contributor(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/communitycapability/PyGithubCommunityCountVisitor.py"
                     }
@@ -87,7 +87,7 @@
                     {
                       "name": "Truck Factor",
                       "unit": "contributor(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/communitycapability/TruckFactorVisitor.py"
                     }
@@ -106,14 +106,14 @@
                     {
                       "name": "Number of closed issues",
                       "unit": "issue(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/subcharacteristic/communitycapability/AugurClosedIssuesCountVisitor.py"
                     },
                     {
                       "name": "Number of total issues",
                       "unit": "issue(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/subcharacteristic/communitycapability/AugurTotalIssuesCountVisitor.py"
                     }
@@ -132,7 +132,7 @@
                     {
                       "name": "Closed Issue Resolution Duration",
                       "unit": "issue(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/codecomplexity/DurationToResolveIssuesVisitor.py"
                     }
@@ -151,7 +151,7 @@
                     {
                       "name": "Change Requests Accepted Count",
                       "unit": "pull request(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/product_evolution/reviews_accepted/ReviewsAcceptedCountVisitor.py"
                     }
@@ -170,7 +170,7 @@
                     {
                       "name": "Reviews Accepted - Total PR Ratio",
                       "unit": "pull request(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/product_evolution/reviews_accepted/ReviewsAcceptedRatioVisitor.py"
                     }
@@ -189,7 +189,7 @@
                     {
                       "name": "Reviews Declined Count",
                       "unit": "pull request(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/product_evolution/declined_changes/ReviewsDeclinedCountVisitor.py"
                     }
@@ -208,7 +208,7 @@
                     {
                       "name": "Reviews Declined - Total PR Ratio",
                       "unit": "ratio",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
                       "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
@@ -216,14 +216,14 @@
                         {
                           "name": "Reviews Declined Count",
                           "unit": "pull request(s)",
-                          "scale": 1,
+                          "scale": "1",
                           "measurement_method": "AUTOMATIC",
                           "visitor": "./testing/visitors/product_evolution/declined_changes/ReviewsDeclinedCountVisitor.py"
                         },
                         {
                           "name": "Number of Total Issues",
                           "unit": "pull request(s)",
-                          "scale": 1,
+                          "scale": "1",
                           "measurement_method": "AUTOMATIC",
                           "visitor": "./testing/subcharacteristic/communitycapability/AugurTotalIssuesCountVisitor.py"
                         }
@@ -244,7 +244,7 @@
                     {
                       "name": "New Issues Count",
                       "unit": "issue(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/communitycapability/issue_resolution/issues_new/NewIssuesCountVisitor.py"
                     }
@@ -263,7 +263,7 @@
                     {
                       "name": "New Issues Ratio",
                       "unit": "new issues in a period - total issues ratio",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/communitycapability/issue_resolution/issues_new/NewIssuesRatioVisitor.py"
                     }
@@ -282,7 +282,7 @@
                     {
                       "name": "Updated Issues Count",
                       "unit": "updated issue",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/product_evolution/issue_interactions/UpdatedIssuesCountVisitor.py"
                     }
@@ -301,7 +301,7 @@
                     {
                       "name": "Active Issues Ratio",
                       "unit": "ratio",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/communitycapability/issue_resolution/issues_active/ActiveIssuesRatioVisitor.py"
                     }
@@ -320,7 +320,7 @@
                     {
                       "name": "Closed Issues Count",
                       "unit": "issue(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/subcharacteristic/communitycapability/AugurClosedIssuesCountVisitor.py"
                     }
@@ -339,7 +339,7 @@
                     {
                       "name": "Closed Issues Ratio",
                       "unit": "closed issues in a period - total issues ratio",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/communitycapability/issue_resolution/issues_closed/ClosedIssuesRatioVisitor.py"
                     }
@@ -358,7 +358,7 @@
                     {
                       "name": "Open Issue Age",
                       "unit": "day(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/product_evolution/staleness/OpenIssueAgeVisitor.py"
                     }
@@ -377,7 +377,7 @@
                     {
                       "name": "Duration to Resolve Pull Requests",
                       "unit": "day(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/communitycapability/change_requests_duration/DurationToResolvePullRequestsVisitor.py"
                     }
@@ -396,7 +396,7 @@
                     {
                       "name": "Sqale Rating",
                       "unit": "rating",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/maintainability_rating/SqaleRatingVisitor.py"
                     }
@@ -415,7 +415,7 @@
                     {
                       "name": "License",
                       "unit": "rating",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/license/OSSAQMLicenseVisitor.py"
                     }
@@ -444,7 +444,7 @@
                     {
                       "name": "ReleaseCount",
                       "unit": "release(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/numberofreleases/ReleaseCountVisitor.py"
                     }
@@ -463,7 +463,7 @@
                     {
                       "name": "Level of Reliability",
                       "unit": "rating",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/reliability_rating/LevelOfReliabilityVisitor.py"
                     }
@@ -482,7 +482,7 @@
                     {
                       "name": "Avg number of functions per class",
                       "unit": "function(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
                       "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
@@ -490,14 +490,14 @@
                         {
                           "name": "Number of functions",
                           "unit": "function(s)",
-                          "scale": 1,
+                          "scale": "1",
                           "measurement_method": "AUTOMATIC",
                           "visitor": "./testing/visitors/avg_number_of_methods_per_class/FunctionsCountVisitor.py"
                         },
                         {
                           "name": "Number of classes",
                           "unit": "class(es)",
-                          "scale": 1,
+                          "scale": "1",
                           "measurement_method": "AUTOMATIC",
                           "visitor": "./testing/visitors/size/number_of_classes/ClassesCountVisitor.py"
                         }
@@ -523,7 +523,7 @@
                     {
                       "name": "Sqale Rating",
                       "unit": "rating",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/maintainability_rating/SqaleRatingVisitor.py"
                     }
@@ -542,7 +542,7 @@
                     {
                       "name": "Average Gunning Fog Index",
                       "unit": "value",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/gunning_fog/AvgGunningFogIndexVisitor.py"
                     }
@@ -566,7 +566,7 @@
                     {
                       "name": "Level of Security",
                       "unit": "rating",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/security_rating/LevelOfSecurityVisitor.py"
                     }
@@ -585,7 +585,7 @@
                     {
                       "name": "Number of contributors",
                       "unit": "contributor(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/communitycapability/PyGithubCommunityCountVisitor.py"
                     }
@@ -609,7 +609,7 @@
                     {
                       "name": "Average Gunning Fog Index",
                       "unit": "value",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/gunning_fog/AvgGunningFogIndexVisitor.py"
                     }
@@ -628,7 +628,7 @@
                     {
                       "name": "Closed Issue Resolution Duration",
                       "unit": "issue(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/codecomplexity/DurationToResolveIssuesVisitor.py"
                     }
@@ -647,14 +647,14 @@
                     {
                       "name": "Number of closed issues",
                       "unit": "issue(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/subcharacteristic/communitycapability/AugurClosedIssuesCountVisitor.py"
                     },
                     {
                       "name": "Number of total issues",
                       "unit": "issue(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/subcharacteristic/communitycapability/AugurTotalIssuesCountVisitor.py"
                     }
@@ -673,7 +673,7 @@
                     {
                       "name": "Issue Response Time",
                       "unit": "second(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/codecomplexity/IssueResponseTimeVisitor.py"
                     }
@@ -692,7 +692,7 @@
                     {
                       "name": "Duration to Resolve Pull Requests",
                       "unit": "day(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/communitycapability/change_requests_duration/DurationToResolvePullRequestsVisitor.py"
                     }
@@ -711,7 +711,7 @@
                     {
                       "name": "Open Issue Age",
                       "unit": "day(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/product_evolution/staleness/OpenIssueAgeVisitor.py"
                     }
@@ -730,7 +730,7 @@
                     {
                       "name": "New Contributors Count",
                       "unit": "contributor(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/open_participation/NewContributorsCountVisitor.py"
                     }
@@ -749,7 +749,7 @@
                     {
                       "name": "Number of issues closed by new contributors",
                       "unit": "issue(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
                       "aggregate_visitor": "./testing/visitors/communitycapability/community_growth/ClosedIssuesCountByNewContributorsAggregator.py",
@@ -757,7 +757,7 @@
                         {
                           "name": "New Contributors list",
                           "unit": "contributor(s)",
-                          "scale": 1,
+                          "scale": "1",
                           "measurement_method": "AUTOMATIC",
                           "visitor": "./testing/visitors/communitycapability/community_growth/NewContributorsVisitor.py"
                         }
@@ -778,7 +778,7 @@
                     {
                       "name": "Percentage of issues closed by new contributors",
                       "unit": "percentage",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
                       "aggregate_visitor": "./testing/visitors/communitycapability/community_growth/ClosedIssuesPercentageByNewContributorsAggregator.py",
@@ -786,7 +786,7 @@
                         {
                           "name": "New Contributors list",
                           "unit": "contributor(s)",
-                          "scale": 1,
+                          "scale": "1",
                           "measurement_method": "AUTOMATIC",
                           "visitor": "./testing/visitors/communitycapability/community_growth/NewContributorsVisitor.py"
                         }
@@ -807,7 +807,7 @@
                     {
                       "name": "Number of inactive contributors",
                       "unit": "contributor(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/communitycapability/community_growth/InactiveContributorCountVisitor.py"
                     }
@@ -826,7 +826,7 @@
                     {
                       "name": "Time to fix bugs",
                       "unit": "day(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/time_to_fix_bugs/AvgTimeToFixBugsVisitor.py"
                     }
@@ -845,7 +845,7 @@
                     {
                       "name": "Avg Lines of Code per Function",
                       "unit": "lines",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/size/avg_length_of_functions/AvgLinesOfCodePerFunctionVisitor.py"
                     }
@@ -864,7 +864,7 @@
                     {
                       "name": "Count of classes",
                       "unit": "ranking",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/size/number_of_classes/ClassesCountVisitor.py"
                     }
@@ -883,7 +883,7 @@
                     {
                       "name": "Count of files",
                       "unit": "ranking",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/size/number_of_files/FilesCountVisitor.py"
                     }
@@ -902,7 +902,7 @@
                     {
                       "name": "Number of issues labeled as bugs",
                       "unit": "bug(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/bug_fixing_cost/NumberOfBugsToFixVisitor.py"
                     }
@@ -921,7 +921,7 @@
                     {
                       "name": "Cyclomatic Complexity - Lizard",
                       "unit": "value",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/codecomplexity/LizardCyclomaticComplexityVisitor.py"
                     }
@@ -940,7 +940,7 @@
                     {
                       "name": "Comment to Code Ratio",
                       "unit": "ratio",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
                       "aggregate_visitor": "./testing/visitors/codecomplexity/CruzCodeQualityDerivedMeasureAggregator.py",
@@ -948,14 +948,14 @@
                         {
                           "name": "Lines of Code",
                           "unit": "line(s)",
-                          "scale": 1,
+                          "scale": "1",
                           "measurement_method": "AUTOMATIC",
                           "visitor": "./testing/visitors/codecomplexity/LizardLinesOfCodeVisitor.py"
                         },
                         {
                           "name": "Lines of Comments",
                           "unit": "line(s)",
-                          "scale": 1,
+                          "scale": "1",
                           "measurement_method": "AUTOMATIC",
                           "visitor": "./testing/visitors/codecomplexity/ClocNumberOfCommentsVisitor.py"
                         }
@@ -981,7 +981,7 @@
                     {
                       "name": "Popular Languages",
                       "unit": "language(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/PopularLanguagesVisitor.py"
                     }
@@ -1010,7 +1010,7 @@
                     {
                       "name": "Repo Messages",
                       "unit": "comment(s) on pull requests",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/peer_influence/RepoMessagesVisitor.py"
                     }
@@ -1029,14 +1029,14 @@
                     {
                       "name": "Number of closed issues",
                       "unit": "issue(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/subcharacteristic/communitycapability/AugurClosedIssuesCountVisitor.py"
                     },
                     {
                       "name": "Number of total issues",
                       "unit": "issue(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/subcharacteristic/communitycapability/AugurTotalIssuesCountVisitor.py"
                     }
@@ -1055,7 +1055,7 @@
                     {
                       "name": "Issue Response Time",
                       "unit": "issue",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/codecomplexity/IssueResponseTimeVisitor.py"
                     }
@@ -1074,7 +1074,7 @@
                     {
                       "name": "Annual Commit Count",
                       "unit": "commit(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/popularity/AnnualCommitCountVisitor.py"
                     }
@@ -1093,7 +1093,7 @@
                     {
                       "name": "ReleaseCount",
                       "unit": "release(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/numberofreleases/ReleaseCountVisitor.py"
                     }
@@ -1112,7 +1112,7 @@
                     {
                       "name": "Total Number of Line Changes",
                       "unit": "line(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/communitycapability/LinesChangedCountVisitor.py"
                     }
@@ -1131,7 +1131,7 @@
                     {
                       "name": "Avg number of commits per pull requests",
                       "unit": "commit(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/communitycapability/change_request_commits/AvgNumberOfCommitsPerPRsVisitor.py"
                     }
@@ -1150,7 +1150,7 @@
                     {
                       "name": "Change Requests Accepted Count",
                       "unit": "pull request(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/product_evolution/reviews_accepted/ReviewsAcceptedCountVisitor.py"
                     }
@@ -1169,7 +1169,7 @@
                     {
                       "name": "Reviews Accepted - Total PR Ratio",
                       "unit": "pull request(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/product_evolution/reviews_accepted/ReviewsAcceptedRatioVisitor.py"
                     }
@@ -1188,7 +1188,7 @@
                     {
                       "name": "Reviews Declined Count",
                       "unit": "pull request(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/product_evolution/declined_changes/ReviewsDeclinedCountVisitor.py"
                     }
@@ -1207,7 +1207,7 @@
                     {
                       "name": "Reviews Declined - Total PR Ratio",
                       "unit": "ratio",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
                       "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
@@ -1215,14 +1215,14 @@
                         {
                           "name": "Reviews Declined Count",
                           "unit": "pull request(s)",
-                          "scale": 1,
+                          "scale": "1",
                           "measurement_method": "AUTOMATIC",
                           "visitor": "./testing/visitors/product_evolution/declined_changes/ReviewsDeclinedCountVisitor.py"
                         },
                         {
                           "name": "Number of Total Issues",
                           "unit": "pull request(s)",
-                          "scale": 1,
+                          "scale": "1",
                           "measurement_method": "AUTOMATIC",
                           "visitor": "./testing/subcharacteristic/communitycapability/AugurTotalIssuesCountVisitor.py"
                         }
@@ -1243,7 +1243,7 @@
                     {
                       "name": "Number of opened pull requests",
                       "unit": "pull request(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/product_evolution/opened_pull_requests/OpenedPullRequestCountVisitor.py"
                     }
@@ -1262,7 +1262,7 @@
                     {
                       "name": "Cyclomatic Complexity - Lizard",
                       "unit": "value",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/codecomplexity/LizardCyclomaticComplexityVisitor.py"
                     }
@@ -1281,7 +1281,7 @@
                     {
                       "name": "Comment to Code Ratio",
                       "unit": "ratio",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
                       "aggregate_visitor": "./testing/visitors/codecomplexity/CruzCodeQualityDerivedMeasureAggregator.py",
@@ -1289,14 +1289,14 @@
                         {
                           "name": "Lines of Code",
                           "unit": "line(s)",
-                          "scale": 1,
+                          "scale": "1",
                           "measurement_method": "AUTOMATIC",
                           "visitor": "./testing/visitors/codecomplexity/LizardLinesOfCodeVisitor.py"
                         },
                         {
                           "name": "Lines of Comments",
                           "unit": "line(s)",
-                          "scale": 1,
+                          "scale": "1",
                           "measurement_method": "AUTOMATIC",
                           "visitor": "./testing/visitors/codecomplexity/ClocNumberOfCommentsVisitor.py"
                         }
@@ -1317,7 +1317,7 @@
                     {
                       "name": "New Contributors Count",
                       "unit": "contributor(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/open_participation/NewContributorsCountVisitor.py"
                     }
@@ -1336,7 +1336,7 @@
                     {
                       "name": "Number of contributors",
                       "unit": "contributor(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/communitycapability/PyGithubCommunityCountVisitor.py"
                     }
@@ -1355,7 +1355,7 @@
                     {
                       "name": "Organization Count",
                       "unit": "organization(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/maintainer_organization/OrgCountMeasureVisitor.py"
                     }
@@ -1374,7 +1374,7 @@
                     {
                       "name": "Number of issues closed by new contributors",
                       "unit": "issue(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
                       "aggregate_visitor": "./testing/visitors/communitycapability/community_growth/ClosedIssuesCountByNewContributorsAggregator.py",
@@ -1382,7 +1382,7 @@
                         {
                           "name": "New Contributors list",
                           "unit": "contributor(s)",
-                          "scale": 1,
+                          "scale": "1",
                           "measurement_method": "AUTOMATIC",
                           "visitor": "./testing/visitors/communitycapability/community_growth/NewContributorsVisitor.py"
                         }
@@ -1403,7 +1403,7 @@
                     {
                       "name": "Percentage of issues closed by new contributors",
                       "unit": "percentage",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
                       "aggregate_visitor": "./testing/visitors/communitycapability/community_growth/ClosedIssuesPercentageByNewContributorsAggregator.py",
@@ -1411,7 +1411,7 @@
                         {
                           "name": "New Contributors list",
                           "unit": "contributor(s)",
-                          "scale": 1,
+                          "scale": "1",
                           "measurement_method": "AUTOMATIC",
                           "visitor": "./testing/visitors/communitycapability/community_growth/NewContributorsVisitor.py"
                         }
@@ -1432,7 +1432,7 @@
                     {
                       "name": "Number of inactive contributors",
                       "unit": "contributor(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/communitycapability/community_growth/InactiveContributorCountVisitor.py"
                     }
@@ -1451,7 +1451,7 @@
                     {
                       "name": "Count of asset downloads",
                       "unit": "asset(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/communitycapability/community_growth/AssetDownloadCountVisitor.py"
                     }
@@ -1470,7 +1470,7 @@
                     {
                       "name": "Time Since Last Commit Measure",
                       "unit": "day(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/product_evolution/updated_since/TimeSinceLastCommitVisitor.py"
                     }
@@ -1489,7 +1489,7 @@
                     {
                       "name": "Commit Count",
                       "unit": "commit(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/product_evolution/CommitCountVisitor.py"
                     }
@@ -1508,7 +1508,7 @@
                     {
                       "name": "Closed Issue Resolution Duration",
                       "unit": "issue(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/codecomplexity/DurationToResolveIssuesVisitor.py"
                     }
@@ -1527,7 +1527,7 @@
                     {
                       "name": "Percentage of PRs reviewed",
                       "unit": "percentage",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/communitycapability/change_request_reviews/PercentageOfPRsReviewedVisitor.py"
                     }
@@ -1546,7 +1546,7 @@
                     {
                       "name": "Avg number of contributors per pull requests",
                       "unit": "contributor(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/communitycapability/change_request_contributors/AvgNumberOfContributorsPerPRsVisitor.py"
                     }
@@ -1575,7 +1575,7 @@
                     {
                       "name": "Closed Issue Resolution Duration",
                       "unit": "issue(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/codecomplexity/DurationToResolveIssuesVisitor.py"
                     }
@@ -1594,14 +1594,14 @@
                     {
                       "name": "Number of closed issues",
                       "unit": "issue(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/subcharacteristic/communitycapability/AugurClosedIssuesCountVisitor.py"
                     },
                     {
                       "name": "Number of total issues",
                       "unit": "issue(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/subcharacteristic/communitycapability/AugurTotalIssuesCountVisitor.py"
                     }
@@ -1620,7 +1620,7 @@
                     {
                       "name": "Duration to Resolve Pull Requests",
                       "unit": "day(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/communitycapability/change_requests_duration/DurationToResolvePullRequestsVisitor.py"
                     }
@@ -1639,7 +1639,7 @@
                     {
                       "name": "Open Issue Age",
                       "unit": "day(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/product_evolution/staleness/OpenIssueAgeVisitor.py"
                     }
@@ -1658,7 +1658,7 @@
                     {
                       "name": "Number of contributors",
                       "unit": "contributor(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/communitycapability/PyGithubCommunityCountVisitor.py"
                     }
@@ -1677,7 +1677,7 @@
                     {
                       "name": "Issue Response Time",
                       "unit": "second(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/codecomplexity/IssueResponseTimeVisitor.py"
                     }
@@ -1696,7 +1696,7 @@
                     {
                       "name": "Annual Commit Count",
                       "unit": "commit(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/popularity/AnnualCommitCountVisitor.py"
                     }
@@ -1715,7 +1715,7 @@
                     {
                       "name": "Total Number of Line Changes",
                       "unit": "line(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/communitycapability/LinesChangedCountVisitor.py"
                     }
@@ -1734,7 +1734,7 @@
                     {
                       "name": "Avg number of commits per pull requests",
                       "unit": "commit(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/communitycapability/change_request_commits/AvgNumberOfCommitsPerPRsVisitor.py"
                     }
@@ -1753,7 +1753,7 @@
                     {
                       "name": "Avg number of contributors per pull requests",
                       "unit": "contributor(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/communitycapability/change_request_contributors/AvgNumberOfContributorsPerPRsVisitor.py"
                     }
@@ -1772,7 +1772,7 @@
                     {
                       "name": "Percentage of PRs reviewed",
                       "unit": "percentage",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/communitycapability/change_request_reviews/PercentageOfPRsReviewedVisitor.py"
                     }
@@ -1791,7 +1791,7 @@
                     {
                       "name": "Avg number of contributors per pull requests",
                       "unit": "contributor(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/communitycapability/change_request_contributors/AvgNumberOfContributorsPerPRsVisitor.py"
                     }
@@ -1810,7 +1810,7 @@
                     {
                       "name": "New Contributors Count",
                       "unit": "contributor(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/open_participation/NewContributorsCountVisitor.py"
                     }
@@ -1829,7 +1829,7 @@
                     {
                       "name": "Number of issues closed by new contributors",
                       "unit": "issue(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
                       "aggregate_visitor": "./testing/visitors/communitycapability/community_growth/ClosedIssuesCountByNewContributorsAggregator.py",
@@ -1837,7 +1837,7 @@
                         {
                           "name": "New Contributors list",
                           "unit": "contributor(s)",
-                          "scale": 1,
+                          "scale": "1",
                           "measurement_method": "AUTOMATIC",
                           "visitor": "./testing/visitors/communitycapability/community_growth/NewContributorsVisitor.py"
                         }
@@ -1858,7 +1858,7 @@
                     {
                       "name": "Percentage of issues closed by new contributors",
                       "unit": "percentage",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
                       "aggregate_visitor": "./testing/visitors/communitycapability/community_growth/ClosedIssuesPercentageByNewContributorsAggregator.py",
@@ -1866,7 +1866,7 @@
                         {
                           "name": "New Contributors list",
                           "unit": "contributor(s)",
-                          "scale": 1,
+                          "scale": "1",
                           "measurement_method": "AUTOMATIC",
                           "visitor": "./testing/visitors/communitycapability/community_growth/NewContributorsVisitor.py"
                         }
@@ -1887,7 +1887,7 @@
                     {
                       "name": "Number of inactive contributors",
                       "unit": "contributor(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/communitycapability/community_growth/InactiveContributorCountVisitor.py"
                     }
@@ -1906,7 +1906,7 @@
                     {
                       "name": "Count of asset downloads",
                       "unit": "asset(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/communitycapability/community_growth/AssetDownloadCountVisitor.py"
                     }
@@ -1925,7 +1925,7 @@
                     {
                       "name": "Time to fix bugs",
                       "unit": "day(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/time_to_fix_bugs/AvgTimeToFixBugsVisitor.py"
                     }
@@ -1944,7 +1944,7 @@
                     {
                       "name": "ReleaseCount",
                       "unit": "release(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/numberofreleases/ReleaseCountVisitor.py"
                     }
@@ -1963,7 +1963,7 @@
                     {
                       "name": "Time Since Last Commit Measure",
                       "unit": "day(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/product_evolution/updated_since/TimeSinceLastCommitVisitor.py"
                     }
@@ -1982,7 +1982,7 @@
                     {
                       "name": "Commit Count",
                       "unit": "commit(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/product_evolution/CommitCountVisitor.py"
                     }
@@ -2001,7 +2001,7 @@
                     {
                       "name": "Issue Response Time",
                       "unit": "issue",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/codecomplexity/IssueResponseTimeVisitor.py"
                     }
@@ -2020,7 +2020,7 @@
                     {
                       "name": "Truck Factor",
                       "unit": "contributor(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/communitycapability/TruckFactorVisitor.py"
                     }
@@ -2039,7 +2039,7 @@
                     {
                       "name": "Change Requests Accepted Count",
                       "unit": "pull request(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/product_evolution/reviews_accepted/ReviewsAcceptedCountVisitor.py"
                     }
@@ -2058,7 +2058,7 @@
                     {
                       "name": "Reviews Accepted - Total PR Ratio",
                       "unit": "pull request(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/product_evolution/reviews_accepted/ReviewsAcceptedRatioVisitor.py"
                     }
@@ -2077,7 +2077,7 @@
                     {
                       "name": "Reviews Declined Count",
                       "unit": "pull request(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/product_evolution/declined_changes/ReviewsDeclinedCountVisitor.py"
                     }
@@ -2096,7 +2096,7 @@
                     {
                       "name": "Reviews Declined - Total PR Ratio",
                       "unit": "ratio",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
                       "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
@@ -2104,14 +2104,14 @@
                         {
                           "name": "Reviews Declined Count",
                           "unit": "pull request(s)",
-                          "scale": 1,
+                          "scale": "1",
                           "measurement_method": "AUTOMATIC",
                           "visitor": "./testing/visitors/product_evolution/declined_changes/ReviewsDeclinedCountVisitor.py"
                         },
                         {
                           "name": "Number of Total Issues",
                           "unit": "pull request(s)",
-                          "scale": 1,
+                          "scale": "1",
                           "measurement_method": "AUTOMATIC",
                           "visitor": "./testing/subcharacteristic/communitycapability/AugurTotalIssuesCountVisitor.py"
                         }
@@ -2132,7 +2132,7 @@
                     {
                       "name": "New Issues Count",
                       "unit": "issue(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/communitycapability/issue_resolution/issues_new/NewIssuesCountVisitor.py"
                     }
@@ -2151,7 +2151,7 @@
                     {
                       "name": "New Issues Ratio",
                       "unit": "new issues in a period - total issues ratio",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/communitycapability/issue_resolution/issues_new/NewIssuesRatioVisitor.py"
                     }
@@ -2170,7 +2170,7 @@
                     {
                       "name": "Updated Issues Count",
                       "unit": "updated issue",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/product_evolution/issue_interactions/UpdatedIssuesCountVisitor.py"
                     }
@@ -2189,7 +2189,7 @@
                     {
                       "name": "Active Issues Ratio",
                       "unit": "ratio",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/communitycapability/issue_resolution/issues_active/ActiveIssuesRatioVisitor.py"
                     }
@@ -2208,7 +2208,7 @@
                     {
                       "name": "Closed Issues Count",
                       "unit": "issue(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/subcharacteristic/communitycapability/AugurClosedIssuesCountVisitor.py"
                     }
@@ -2227,7 +2227,7 @@
                     {
                       "name": "Closed Issues Ratio",
                       "unit": "closed issues in a period - total issues ratio",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/communitycapability/issue_resolution/issues_closed/ClosedIssuesRatioVisitor.py"
                     }
@@ -2246,7 +2246,7 @@
                     {
                       "name": "Open Issue Age",
                       "unit": "day(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/product_evolution/staleness/OpenIssueAgeVisitor.py"
                     }
@@ -2270,7 +2270,7 @@
                     {
                       "name": "Number of contributors",
                       "unit": "contributor(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/communitycapability/PyGithubCommunityCountVisitor.py"
                     }
@@ -2289,7 +2289,7 @@
                     {
                       "name": "New Contributors Count",
                       "unit": "contributor(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/open_participation/NewContributorsCountVisitor.py"
                     }
@@ -2308,7 +2308,7 @@
                     {
                       "name": "Watchers Count",
                       "unit": "watcher(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/popularity/WatchersCountVisitor.py"
                     }
@@ -2327,7 +2327,7 @@
                     {
                       "name": "Stars Count",
                       "unit": "star(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/popularity/StarsCountVisitor.py"
                     }
@@ -2346,7 +2346,7 @@
                     {
                       "name": "Forks Count",
                       "unit": "fork(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/popularity/ForksCountVisitor.py"
                     }
@@ -2365,7 +2365,7 @@
                     {
                       "name": "Number of testers",
                       "unit": "tester(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/NumberOfTestersVisitor.py"
                     }
@@ -2384,7 +2384,7 @@
                     {
                       "name": "Organization Count",
                       "unit": "organization(s)",
-                      "scale": 1,
+                      "scale": "1",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/maintainer_organization/OrgCountMeasureVisitor.py"
                     }

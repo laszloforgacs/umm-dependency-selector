@@ -35,7 +35,7 @@ class Measure(Generic[T], metaclass=ABCGenericMeta):
 
     @property
     @abstractmethod
-    def scale(self) -> float:
+    def scale(self) -> str:
         pass
 
     @property
@@ -71,7 +71,7 @@ class Measure(Generic[T], metaclass=ABCGenericMeta):
         return None
 
 class BaseMeasure(Measure, LeafComponent, Generic[T], metaclass=ABCGenericMeta):
-    def __init__(self, name: str, unit: str, scale: float,
+    def __init__(self, name: str, unit: str, scale: str,
                  measurement_method: MeasurementMethod = MeasurementMethod.AUTOMATIC, visitor=None):
         self._name = name
         self._unit = unit
@@ -89,7 +89,7 @@ class BaseMeasure(Measure, LeafComponent, Generic[T], metaclass=ABCGenericMeta):
         return self._unit
 
     @property
-    def scale(self) -> float:
+    def scale(self) -> str:
         return self._scale
 
     @property
@@ -130,7 +130,7 @@ class BaseMeasure(Measure, LeafComponent, Generic[T], metaclass=ABCGenericMeta):
 
 
 class DerivedMeasure(Measure, CompositeComponent, Generic[T], metaclass=ABCGenericMeta):
-    def __init__(self, name: str, unit: str, scale: float,
+    def __init__(self, name: str, unit: str, scale: str,
                  measurement_method: MeasurementMethod = MeasurementMethod.AUTOMATIC,
                  children: dict[str, BaseMeasure] = {}, normalize_visitor=None, aggregate_visitor=None):
         self._name = name
@@ -153,7 +153,7 @@ class DerivedMeasure(Measure, CompositeComponent, Generic[T], metaclass=ABCGener
         return self._unit
 
     @property
-    def scale(self) -> float:
+    def scale(self) -> str:
         return self._scale
 
     @property

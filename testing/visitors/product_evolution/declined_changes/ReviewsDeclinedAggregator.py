@@ -15,9 +15,9 @@ class ReviewsDeclinedAggregator(AggregateVisitor[tuple[Measure, int]]):
         total_issues = 0
 
         for measure, measure_value in normalized_measures:
-            if isinstance(measure, TotalIssuesCount):
+            if measure.name.lower() == "number of total issues":
                 total_issues += measure_value
-            if isinstance(measure, ReviewsDeclinedCount):
+            if measure.name.lower() == "reviews declined count":
                 declined_issues += measure_value
 
         if total_issues == 0:

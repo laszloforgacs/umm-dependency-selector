@@ -214,7 +214,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 }
@@ -1358,7 +1358,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -2387,7 +2387,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -3000,7 +3000,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 }
@@ -4144,7 +4144,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -5173,7 +5173,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -5786,7 +5786,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 }
@@ -6930,7 +6930,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -7959,7 +7959,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -8572,7 +8572,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 }
@@ -9716,7 +9716,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -10745,7 +10745,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -11326,7 +11326,7 @@
                                 },
                                 {
                                     "name": "Change Requests Declined to Total Change Requests Ratio",
-                                    "value": 10933,
+                                    "value": 0.17068208587643216,
                                     "impact": "NEGATIVE",
                                     "entity": "pull requests in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -11335,7 +11335,7 @@
                                     "measures": [
                                         {
                                             "name": "Reviews Declined - Total PR Ratio",
-                                            "value": 10933,
+                                            "value": 0.17068208587643216,
                                             "unit": "ratio",
                                             "scale": "0 to infinity",
                                             "measurement_method": "AUTOMATIC",
@@ -11358,7 +11358,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 }
@@ -12526,7 +12526,7 @@
                                 },
                                 {
                                     "name": "Change Requests Declined to Total Change Requests Ratio",
-                                    "value": 10933,
+                                    "value": 0.17068208587643216,
                                     "impact": "NEGATIVE",
                                     "entity": "pull requests in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -12535,7 +12535,7 @@
                                     "measures": [
                                         {
                                             "name": "Reviews Declined - Total PR Ratio",
-                                            "value": 10933,
+                                            "value": 0.17068208587643216,
                                             "unit": "ratio",
                                             "scale": "0 to infinity",
                                             "measurement_method": "AUTOMATIC",
@@ -12558,7 +12558,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -13723,7 +13723,7 @@
                                 },
                                 {
                                     "name": "Change Requests Declined to Total Change Requests Ratio",
-                                    "value": 10933,
+                                    "value": 0.17068208587643216,
                                     "impact": "NEGATIVE",
                                     "entity": "pull requests in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -13732,7 +13732,7 @@
                                     "measures": [
                                         {
                                             "name": "Reviews Declined - Total PR Ratio",
-                                            "value": 10933,
+                                            "value": 0.17068208587643216,
                                             "unit": "ratio",
                                             "scale": "0 to infinity",
                                             "measurement_method": "AUTOMATIC",
@@ -13755,7 +13755,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -14368,7 +14368,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 }
@@ -15512,7 +15512,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -16541,7 +16541,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -17154,7 +17154,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 }
@@ -18298,7 +18298,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -19327,7 +19327,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -19940,7 +19940,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 }
@@ -21084,7 +21084,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -22113,7 +22113,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -22726,7 +22726,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 }
@@ -23870,7 +23870,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -24899,7 +24899,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -25512,7 +25512,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 }
@@ -26656,7 +26656,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -27685,7 +27685,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -28298,7 +28298,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 }
@@ -29442,7 +29442,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -30471,7 +30471,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -31084,7 +31084,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 }
@@ -32228,7 +32228,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -33257,7 +33257,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -33870,7 +33870,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 }
@@ -35014,7 +35014,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -36043,7 +36043,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -36656,7 +36656,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 }
@@ -37800,7 +37800,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -38829,7 +38829,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -39442,7 +39442,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 }
@@ -40586,7 +40586,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -41615,7 +41615,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },

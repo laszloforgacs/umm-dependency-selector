@@ -195,7 +195,7 @@
                       "scale": "0 to infinity",
                       "measurement_method": "AUTOMATIC",
                       "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
-                      "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                      "aggregate_visitor": "./testing/visitors/product_evolution/declined_changes/ReviewsDeclinedAggregator.py",
                       "base_measures": [
                         {
                           "name": "Reviews Declined Count",
@@ -1323,7 +1323,7 @@
                       "scale": "0 to infinity",
                       "measurement_method": "AUTOMATIC",
                       "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
-                      "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                      "aggregate_visitor": "./testing/visitors/product_evolution/declined_changes/ReviewsDeclinedAggregator.py",
                       "base_measures": [
                         {
                           "name": "Reviews Declined Count",
@@ -2340,7 +2340,7 @@
                       "scale": "0 to infinity",
                       "measurement_method": "AUTOMATIC",
                       "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
-                      "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                      "aggregate_visitor": "./testing/visitors/product_evolution/declined_changes/ReviewsDeclinedAggregator.py",
                       "base_measures": [
                         {
                           "name": "Reviews Declined Count",

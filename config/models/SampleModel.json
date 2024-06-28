@@ -209,7 +209,7 @@
                           "unit": "pull request(s)",
                           "scale": "0 to infinity",
                           "measurement_method": "AUTOMATIC",
-                          "visitor": "./testing/subcharacteristic/communitycapability/AugurTotalIssuesCountVisitor.py"
+                          "visitor": "./testing/visitors/communitycapability/AugurTotalIssuesCountVisitor.py"
                         }
                       ]
                     }
@@ -228,21 +228,21 @@
                   "information_need": "Calculating the ratio of closed issues to total issues in the project",
                   "quality_requirement": "Increased closed issues to total issues ratio affects overall costs positively",
                   "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
-                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/communitycapability/AugurIssueThroughputVisitor.py",
                   "measures": [
                     {
                       "name": "Number of closed issues",
                       "unit": "issue(s)",
                       "scale": "0 to infinity",
                       "measurement_method": "AUTOMATIC",
-                      "visitor": "./testing/subcharacteristic/communitycapability/AugurClosedIssuesCountVisitor.py"
+                      "visitor": "./testing/visitors/communitycapability/AugurClosedIssuesCountVisitor.py"
                     },
                     {
                       "name": "Number of total issues",
                       "unit": "issue(s)",
                       "scale": "0 to infinity",
                       "measurement_method": "AUTOMATIC",
-                      "visitor": "./testing/subcharacteristic/communitycapability/AugurTotalIssuesCountVisitor.py"
+                      "visitor": "./testing/visitors/communitycapability/AugurTotalIssuesCountVisitor.py"
                     }
                   ]
                 },
@@ -337,7 +337,7 @@
                       "unit": "issue(s)",
                       "scale": "0 to infinity",
                       "measurement_method": "AUTOMATIC",
-                      "visitor": "./testing/subcharacteristic/communitycapability/AugurClosedIssuesCountVisitor.py"
+                      "visitor": "./testing/visitors/communitycapability/AugurClosedIssuesCountVisitor.py"
                     }
                   ]
                 },
@@ -940,21 +940,21 @@
                   "information_need": "Calculating the ratio of closed issues to total issues in the project",
                   "quality_requirement": "Increased closed issues to total issues ratio affects overall costs positively",
                   "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
-                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/communitycapability/AugurIssueThroughputVisitor.py",
                   "measures": [
                     {
                       "name": "Number of closed issues",
                       "unit": "issue(s)",
                       "scale": "0 to infinity",
                       "measurement_method": "AUTOMATIC",
-                      "visitor": "./testing/subcharacteristic/communitycapability/AugurClosedIssuesCountVisitor.py"
+                      "visitor": "./testing/visitors/communitycapability/AugurClosedIssuesCountVisitor.py"
                     },
                     {
                       "name": "Number of total issues",
                       "unit": "issue(s)",
                       "scale": "0 to infinity",
                       "measurement_method": "AUTOMATIC",
-                      "visitor": "./testing/subcharacteristic/communitycapability/AugurTotalIssuesCountVisitor.py"
+                      "visitor": "./testing/visitors/communitycapability/AugurTotalIssuesCountVisitor.py"
                     }
                   ]
                 },
@@ -1337,7 +1337,7 @@
                           "unit": "pull request(s)",
                           "scale": "0 to infinity",
                           "measurement_method": "AUTOMATIC",
-                          "visitor": "./testing/subcharacteristic/communitycapability/AugurTotalIssuesCountVisitor.py"
+                          "visitor": "./testing/visitors/communitycapability/AugurTotalIssuesCountVisitor.py"
                         }
                       ]
                     }
@@ -1732,21 +1732,21 @@
                   "information_need": "Calculating the ratio of closed issues to total issues in the project",
                   "quality_requirement": "Increased closed issues to total issues ratio affects overall costs positively",
                   "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
-                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/communitycapability/AugurIssueThroughputVisitor.py",
                   "measures": [
                     {
                       "name": "Number of closed issues",
                       "unit": "issue(s)",
                       "scale": "0 to infinity",
                       "measurement_method": "AUTOMATIC",
-                      "visitor": "./testing/subcharacteristic/communitycapability/AugurClosedIssuesCountVisitor.py"
+                      "visitor": "./testing/visitors/communitycapability/AugurClosedIssuesCountVisitor.py"
                     },
                     {
                       "name": "Number of total issues",
                       "unit": "issue(s)",
                       "scale": "0 to infinity",
                       "measurement_method": "AUTOMATIC",
-                      "visitor": "./testing/subcharacteristic/communitycapability/AugurTotalIssuesCountVisitor.py"
+                      "visitor": "./testing/visitors/communitycapability/AugurTotalIssuesCountVisitor.py"
                     }
                   ]
                 },
@@ -2211,21 +2211,21 @@
                   "information_need": "Calculating the ratio of closed issues to total issues in the project",
                   "quality_requirement": "Increased closed issues to total issues ratio affects overall costs positively",
                   "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
-                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/communitycapability/AugurIssueThroughputVisitor.py",
                   "measures": [
                     {
                       "name": "Number of closed issues",
                       "unit": "issue(s)",
                       "scale": "0 to infinity",
                       "measurement_method": "AUTOMATIC",
-                      "visitor": "./testing/subcharacteristic/communitycapability/AugurClosedIssuesCountVisitor.py"
+                      "visitor": "./testing/visitors/communitycapability/AugurClosedIssuesCountVisitor.py"
                     },
                     {
                       "name": "Number of total issues",
                       "unit": "issue(s)",
                       "scale": "0 to infinity",
                       "measurement_method": "AUTOMATIC",
-                      "visitor": "./testing/subcharacteristic/communitycapability/AugurTotalIssuesCountVisitor.py"
+                      "visitor": "./testing/visitors/communitycapability/AugurTotalIssuesCountVisitor.py"
                     }
                   ]
                 },
@@ -2354,7 +2354,7 @@
                           "unit": "pull request(s)",
                           "scale": "0 to infinity",
                           "measurement_method": "AUTOMATIC",
-                          "visitor": "./testing/subcharacteristic/communitycapability/AugurTotalIssuesCountVisitor.py"
+                          "visitor": "./testing/visitors/communitycapability/AugurTotalIssuesCountVisitor.py"
                         }
                       ]
                     }
@@ -2451,7 +2451,7 @@
                       "unit": "issue(s)",
                       "scale": "0 to infinity",
                       "measurement_method": "AUTOMATIC",
-                      "visitor": "./testing/subcharacteristic/communitycapability/AugurClosedIssuesCountVisitor.py"
+                      "visitor": "./testing/visitors/communitycapability/AugurClosedIssuesCountVisitor.py"
                     }
                   ]
                 },

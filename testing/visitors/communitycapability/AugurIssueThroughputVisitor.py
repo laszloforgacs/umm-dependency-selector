@@ -15,10 +15,17 @@ class AugurIssueThroughputVisitor(AggregateVisitor[tuple[Measure, int]]):
             closed_issues_count = 0
             total_issues_count = 0
             for measure, measure_value in normalized_measures:
-                if isinstance(measure, TotalIssuesCount):
+                if measure.name.lower() == "number of total issues":
                     total_issues_count += measure_value
-                elif isinstance(measure, ClosedIssuesCount):
+                elif measure.name.lower() == "number of closed issues":
                     closed_issues_count += measure_value
-            return closed_issues_count / total_issues_count
+
+            if total_issues_count == 0:
+                print(f"{repository.full_name}: Issue Throughput is 0.0")
+                return 0.0
+
+            throughput = closed_issues_count / total_issues_count
+            print(f"{repository.full_name}: Issue Throughput is {throughput}")
+            return throughput
         except Exception as e:
             raise Exception(str(e) + self.__class__.__name__)

@@ -2,8 +2,6 @@ from github.Repository import Repository
 
 from domain.model.Measure import Measure
 from presentation.core.visitors.Visitor import AggregateVisitor
-from testing.visitors.communitycapability.TotalIssuesCount import TotalIssuesCount
-from testing.visitors.product_evolution.declined_changes.ReviewsDeclinedCount import ReviewsDeclinedCount
 
 
 class ReviewsDeclinedAggregator(AggregateVisitor[tuple[Measure, int]]):

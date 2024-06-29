@@ -1361,6 +1361,25 @@
                       "visitor": "./testing/visitors/product_evolution/opened_pull_requests/OpenedPullRequestCountVisitor.py"
                     }
                   ]
+                },
+                {
+                  "name": "Number of Open Feature Requests",
+                  "impact": "NEGATIVE",
+                  "entity": "issues in version control history",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Calculating the number of open feature requests in the project",
+                  "quality_requirement": "Increased number of unresolved feature requests affect evolution negatively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Open Feature Requests Count",
+                      "unit": "issue(s)",
+                      "scale": "0 to infinity",
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/number_of_open_feature_request/OpenFeatureRequestCountVisitor.py"
+                    }
+                  ]
                 }
               ]
             },
@@ -4114,6 +4133,25 @@
                       "scale": "0 to infinity",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/product_evolution/opened_pull_requests/OpenedPullRequestCountVisitor.py"
+                    }
+                  ]
+                },
+                {
+                  "name": "Number of Open Feature Requests",
+                  "impact": "NEGATIVE",
+                  "entity": "issues in version control history",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Calculating the number of open feature requests in the project",
+                  "quality_requirement": "Increased number of unresolved feature requests affect evolution negatively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Open Feature Requests Count",
+                      "unit": "issue(s)",
+                      "scale": "0 to infinity",
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/number_of_open_feature_request/OpenFeatureRequestCountVisitor.py"
                     }
                   ]
                 }
@@ -6871,6 +6909,25 @@
                       "visitor": "./testing/visitors/product_evolution/opened_pull_requests/OpenedPullRequestCountVisitor.py"
                     }
                   ]
+                },
+                {
+                  "name": "Number of Open Feature Requests",
+                  "impact": "NEGATIVE",
+                  "entity": "issues in version control history",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Calculating the number of open feature requests in the project",
+                  "quality_requirement": "Increased number of unresolved feature requests affect evolution negatively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Open Feature Requests Count",
+                      "unit": "issue(s)",
+                      "scale": "0 to infinity",
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/number_of_open_feature_request/OpenFeatureRequestCountVisitor.py"
+                    }
+                  ]
                 }
               ]
             },
@@ -9624,6 +9681,25 @@
                       "scale": "0 to infinity",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/product_evolution/opened_pull_requests/OpenedPullRequestCountVisitor.py"
+                    }
+                  ]
+                },
+                {
+                  "name": "Number of Open Feature Requests",
+                  "impact": "NEGATIVE",
+                  "entity": "issues in version control history",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Calculating the number of open feature requests in the project",
+                  "quality_requirement": "Increased number of unresolved feature requests affect evolution negatively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Open Feature Requests Count",
+                      "unit": "issue(s)",
+                      "scale": "0 to infinity",
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/number_of_open_feature_request/OpenFeatureRequestCountVisitor.py"
                     }
                   ]
                 }
@@ -12381,6 +12457,25 @@
                       "visitor": "./testing/visitors/product_evolution/opened_pull_requests/OpenedPullRequestCountVisitor.py"
                     }
                   ]
+                },
+                {
+                  "name": "Number of Open Feature Requests",
+                  "impact": "NEGATIVE",
+                  "entity": "issues in version control history",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Calculating the number of open feature requests in the project",
+                  "quality_requirement": "Increased number of unresolved feature requests affect evolution negatively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Open Feature Requests Count",
+                      "unit": "issue(s)",
+                      "scale": "0 to infinity",
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/number_of_open_feature_request/OpenFeatureRequestCountVisitor.py"
+                    }
+                  ]
                 }
               ]
             },
@@ -15134,6 +15229,25 @@
                       "scale": "0 to infinity",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/product_evolution/opened_pull_requests/OpenedPullRequestCountVisitor.py"
+                    }
+                  ]
+                },
+                {
+                  "name": "Number of Open Feature Requests",
+                  "impact": "NEGATIVE",
+                  "entity": "issues in version control history",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Calculating the number of open feature requests in the project",
+                  "quality_requirement": "Increased number of unresolved feature requests affect evolution negatively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Open Feature Requests Count",
+                      "unit": "issue(s)",
+                      "scale": "0 to infinity",
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/number_of_open_feature_request/OpenFeatureRequestCountVisitor.py"
                     }
                   ]
                 }
@@ -17891,6 +18005,25 @@
                       "visitor": "./testing/visitors/product_evolution/opened_pull_requests/OpenedPullRequestCountVisitor.py"
                     }
                   ]
+                },
+                {
+                  "name": "Number of Open Feature Requests",
+                  "impact": "NEGATIVE",
+                  "entity": "issues in version control history",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Calculating the number of open feature requests in the project",
+                  "quality_requirement": "Increased number of unresolved feature requests affect evolution negatively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Open Feature Requests Count",
+                      "unit": "issue(s)",
+                      "scale": "0 to infinity",
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/number_of_open_feature_request/OpenFeatureRequestCountVisitor.py"
+                    }
+                  ]
                 }
               ]
             },
@@ -20644,6 +20777,25 @@
                       "scale": "0 to infinity",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/product_evolution/opened_pull_requests/OpenedPullRequestCountVisitor.py"
+                    }
+                  ]
+                },
+                {
+                  "name": "Number of Open Feature Requests",
+                  "impact": "NEGATIVE",
+                  "entity": "issues in version control history",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Calculating the number of open feature requests in the project",
+                  "quality_requirement": "Increased number of unresolved feature requests affect evolution negatively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Open Feature Requests Count",
+                      "unit": "issue(s)",
+                      "scale": "0 to infinity",
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/number_of_open_feature_request/OpenFeatureRequestCountVisitor.py"
                     }
                   ]
                 }
@@ -23401,6 +23553,25 @@
                       "visitor": "./testing/visitors/product_evolution/opened_pull_requests/OpenedPullRequestCountVisitor.py"
                     }
                   ]
+                },
+                {
+                  "name": "Number of Open Feature Requests",
+                  "impact": "NEGATIVE",
+                  "entity": "issues in version control history",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Calculating the number of open feature requests in the project",
+                  "quality_requirement": "Increased number of unresolved feature requests affect evolution negatively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Open Feature Requests Count",
+                      "unit": "issue(s)",
+                      "scale": "0 to infinity",
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/number_of_open_feature_request/OpenFeatureRequestCountVisitor.py"
+                    }
+                  ]
                 }
               ]
             },
@@ -26154,6 +26325,25 @@
                       "scale": "0 to infinity",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/product_evolution/opened_pull_requests/OpenedPullRequestCountVisitor.py"
+                    }
+                  ]
+                },
+                {
+                  "name": "Number of Open Feature Requests",
+                  "impact": "NEGATIVE",
+                  "entity": "issues in version control history",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Calculating the number of open feature requests in the project",
+                  "quality_requirement": "Increased number of unresolved feature requests affect evolution negatively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Open Feature Requests Count",
+                      "unit": "issue(s)",
+                      "scale": "0 to infinity",
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/number_of_open_feature_request/OpenFeatureRequestCountVisitor.py"
                     }
                   ]
                 }
@@ -28911,6 +29101,25 @@
                       "visitor": "./testing/visitors/product_evolution/opened_pull_requests/OpenedPullRequestCountVisitor.py"
                     }
                   ]
+                },
+                {
+                  "name": "Number of Open Feature Requests",
+                  "impact": "NEGATIVE",
+                  "entity": "issues in version control history",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Calculating the number of open feature requests in the project",
+                  "quality_requirement": "Increased number of unresolved feature requests affect evolution negatively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Open Feature Requests Count",
+                      "unit": "issue(s)",
+                      "scale": "0 to infinity",
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/number_of_open_feature_request/OpenFeatureRequestCountVisitor.py"
+                    }
+                  ]
                 }
               ]
             },
@@ -31664,6 +31873,25 @@
                       "scale": "0 to infinity",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/product_evolution/opened_pull_requests/OpenedPullRequestCountVisitor.py"
+                    }
+                  ]
+                },
+                {
+                  "name": "Number of Open Feature Requests",
+                  "impact": "NEGATIVE",
+                  "entity": "issues in version control history",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Calculating the number of open feature requests in the project",
+                  "quality_requirement": "Increased number of unresolved feature requests affect evolution negatively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Open Feature Requests Count",
+                      "unit": "issue(s)",
+                      "scale": "0 to infinity",
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/number_of_open_feature_request/OpenFeatureRequestCountVisitor.py"
                     }
                   ]
                 }
@@ -34421,6 +34649,25 @@
                       "visitor": "./testing/visitors/product_evolution/opened_pull_requests/OpenedPullRequestCountVisitor.py"
                     }
                   ]
+                },
+                {
+                  "name": "Number of Open Feature Requests",
+                  "impact": "NEGATIVE",
+                  "entity": "issues in version control history",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Calculating the number of open feature requests in the project",
+                  "quality_requirement": "Increased number of unresolved feature requests affect evolution negatively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Open Feature Requests Count",
+                      "unit": "issue(s)",
+                      "scale": "0 to infinity",
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/number_of_open_feature_request/OpenFeatureRequestCountVisitor.py"
+                    }
+                  ]
                 }
               ]
             },
@@ -37176,6 +37423,25 @@
                       "visitor": "./testing/visitors/product_evolution/opened_pull_requests/OpenedPullRequestCountVisitor.py"
                     }
                   ]
+                },
+                {
+                  "name": "Number of Open Feature Requests",
+                  "impact": "NEGATIVE",
+                  "entity": "issues in version control history",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Calculating the number of open feature requests in the project",
+                  "quality_requirement": "Increased number of unresolved feature requests affect evolution negatively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Open Feature Requests Count",
+                      "unit": "issue(s)",
+                      "scale": "0 to infinity",
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/number_of_open_feature_request/OpenFeatureRequestCountVisitor.py"
+                    }
+                  ]
                 }
               ]
             },
@@ -39929,6 +40195,25 @@
                       "scale": "0 to infinity",
                       "measurement_method": "AUTOMATIC",
                       "visitor": "./testing/visitors/product_evolution/opened_pull_requests/OpenedPullRequestCountVisitor.py"
+                    }
+                  ]
+                },
+                {
+                  "name": "Number of Open Feature Requests",
+                  "impact": "NEGATIVE",
+                  "entity": "issues in version control history",
+                  "relevant_oss_aspect": "COMMUNITY",
+                  "information_need": "Calculating the number of open feature requests in the project",
+                  "quality_requirement": "Increased number of unresolved feature requests affect evolution negatively",
+                  "normalize_visitor": "./testing/visitors/NoOpNormalizeVisitor.py",
+                  "aggregate_visitor": "./testing/visitors/AddAggregateVisitor.py",
+                  "measures": [
+                    {
+                      "name": "Open Feature Requests Count",
+                      "unit": "issue(s)",
+                      "scale": "0 to infinity",
+                      "measurement_method": "AUTOMATIC",
+                      "visitor": "./testing/visitors/number_of_open_feature_request/OpenFeatureRequestCountVisitor.py"
                     }
                   ]
                 }

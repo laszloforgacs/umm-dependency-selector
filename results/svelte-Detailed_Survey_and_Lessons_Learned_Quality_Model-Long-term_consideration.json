@@ -214,7 +214,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 }
@@ -566,11 +566,11 @@
                                                     "unit": "class(es)",
                                                     "scale": "0 to infinity",
                                                     "measurement_method": "AUTOMATIC",
-                                                    "visitor": "ClassesCountVisitor"
+                                                    "visitor": "NumberOfClassesVisitor"
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "AvgNumberOfFunctionsPerClassAggregateVisitor"
                                         }
                                     ]
                                 }
@@ -1358,7 +1358,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -1378,6 +1378,25 @@
                                             "scale": "0 to infinity",
                                             "measurement_method": "AUTOMATIC",
                                             "visitor": "OpenedPullRequestCountVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Number of Open Feature Requests",
+                                    "value": null,
+                                    "impact": "NEGATIVE",
+                                    "entity": "issues in version control history",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the number of open feature requests in the project",
+                                    "quality_requirement": "Increased number of unresolved feature requests affect evolution negatively",
+                                    "measures": [
+                                        {
+                                            "name": "Open Feature Requests Count",
+                                            "value": null,
+                                            "unit": "issue(s)",
+                                            "scale": "0 to infinity",
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "OpenFeatureRequestCountVisitor"
                                         }
                                     ]
                                 }
@@ -2387,7 +2406,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -3000,7 +3019,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 }
@@ -3352,11 +3371,11 @@
                                                     "unit": "class(es)",
                                                     "scale": "0 to infinity",
                                                     "measurement_method": "AUTOMATIC",
-                                                    "visitor": "ClassesCountVisitor"
+                                                    "visitor": "NumberOfClassesVisitor"
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "AvgNumberOfFunctionsPerClassAggregateVisitor"
                                         }
                                     ]
                                 }
@@ -4144,7 +4163,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -4164,6 +4183,25 @@
                                             "scale": "0 to infinity",
                                             "measurement_method": "AUTOMATIC",
                                             "visitor": "OpenedPullRequestCountVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Number of Open Feature Requests",
+                                    "value": null,
+                                    "impact": "NEGATIVE",
+                                    "entity": "issues in version control history",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the number of open feature requests in the project",
+                                    "quality_requirement": "Increased number of unresolved feature requests affect evolution negatively",
+                                    "measures": [
+                                        {
+                                            "name": "Open Feature Requests Count",
+                                            "value": null,
+                                            "unit": "issue(s)",
+                                            "scale": "0 to infinity",
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "OpenFeatureRequestCountVisitor"
                                         }
                                     ]
                                 }
@@ -5173,7 +5211,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -5786,7 +5824,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 }
@@ -6138,11 +6176,11 @@
                                                     "unit": "class(es)",
                                                     "scale": "0 to infinity",
                                                     "measurement_method": "AUTOMATIC",
-                                                    "visitor": "ClassesCountVisitor"
+                                                    "visitor": "NumberOfClassesVisitor"
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "AvgNumberOfFunctionsPerClassAggregateVisitor"
                                         }
                                     ]
                                 }
@@ -6930,7 +6968,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -6950,6 +6988,25 @@
                                             "scale": "0 to infinity",
                                             "measurement_method": "AUTOMATIC",
                                             "visitor": "OpenedPullRequestCountVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Number of Open Feature Requests",
+                                    "value": null,
+                                    "impact": "NEGATIVE",
+                                    "entity": "issues in version control history",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the number of open feature requests in the project",
+                                    "quality_requirement": "Increased number of unresolved feature requests affect evolution negatively",
+                                    "measures": [
+                                        {
+                                            "name": "Open Feature Requests Count",
+                                            "value": null,
+                                            "unit": "issue(s)",
+                                            "scale": "0 to infinity",
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "OpenFeatureRequestCountVisitor"
                                         }
                                     ]
                                 }
@@ -7959,7 +8016,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -8540,7 +8597,7 @@
                                 },
                                 {
                                     "name": "Change Requests Declined to Total Change Requests Ratio",
-                                    "value": 10933,
+                                    "value": 0.17068208587643216,
                                     "impact": "NEGATIVE",
                                     "entity": "pull requests in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -8549,7 +8606,7 @@
                                     "measures": [
                                         {
                                             "name": "Reviews Declined - Total PR Ratio",
-                                            "value": 10933,
+                                            "value": 0.17068208587643216,
                                             "unit": "ratio",
                                             "scale": "0 to infinity",
                                             "measurement_method": "AUTOMATIC",
@@ -8572,7 +8629,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 }
@@ -8583,7 +8640,7 @@
                             "measurable_concepts": [
                                 {
                                     "name": "Issue Throughput",
-                                    "value": 0.0,
+                                    "value": 0.8983831245315345,
                                     "impact": "POSITIVE",
                                     "entity": "issues in issue tracker",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -8896,7 +8953,7 @@
                                 },
                                 {
                                     "name": "Average number of functions per class",
-                                    "value": 9584,
+                                    "value": 245.74358974358975,
                                     "impact": "NEGATIVE",
                                     "entity": "source code",
                                     "relevant_oss_aspect": "CODE",
@@ -8905,7 +8962,7 @@
                                     "measures": [
                                         {
                                             "name": "Avg number of functions per class",
-                                            "value": 9584,
+                                            "value": 245.74358974358975,
                                             "unit": "function(s)",
                                             "scale": "0 to infinity",
                                             "measurement_method": "AUTOMATIC",
@@ -8920,15 +8977,15 @@
                                                 },
                                                 {
                                                     "name": "Number of classes",
-                                                    "value": 0,
+                                                    "value": 39,
                                                     "unit": "class(es)",
                                                     "scale": "0 to infinity",
                                                     "measurement_method": "AUTOMATIC",
-                                                    "visitor": "ClassesCountVisitor"
+                                                    "visitor": "NumberOfClassesVisitor"
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "AvgNumberOfFunctionsPerClassAggregateVisitor"
                                         }
                                     ]
                                 }
@@ -9306,7 +9363,7 @@
                                 },
                                 {
                                     "name": "Issue Throughput",
-                                    "value": 0.0,
+                                    "value": 0.8983831245315345,
                                     "impact": "POSITIVE",
                                     "entity": "issues in issue tracker",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -9740,7 +9797,7 @@
                                 },
                                 {
                                     "name": "Change Requests Declined to Total Change Requests Ratio",
-                                    "value": 10933,
+                                    "value": 0.17068208587643216,
                                     "impact": "NEGATIVE",
                                     "entity": "pull requests in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -9749,7 +9806,7 @@
                                     "measures": [
                                         {
                                             "name": "Reviews Declined - Total PR Ratio",
-                                            "value": 10933,
+                                            "value": 0.17068208587643216,
                                             "unit": "ratio",
                                             "scale": "0 to infinity",
                                             "measurement_method": "AUTOMATIC",
@@ -9772,7 +9829,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -9792,6 +9849,25 @@
                                             "scale": "0 to infinity",
                                             "measurement_method": "AUTOMATIC",
                                             "visitor": "OpenedPullRequestCountVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Number of Open Feature Requests",
+                                    "value": 171,
+                                    "impact": "NEGATIVE",
+                                    "entity": "issues in version control history",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the number of open feature requests in the project",
+                                    "quality_requirement": "Increased number of unresolved feature requests affect evolution negatively",
+                                    "measures": [
+                                        {
+                                            "name": "Open Feature Requests Count",
+                                            "value": 171,
+                                            "unit": "issue(s)",
+                                            "scale": "0 to infinity",
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "OpenFeatureRequestCountVisitor"
                                         }
                                     ]
                                 }
@@ -10277,7 +10353,7 @@
                                 },
                                 {
                                     "name": "Issue Throughput",
-                                    "value": 0.0,
+                                    "value": 0.8983831245315345,
                                     "impact": "POSITIVE",
                                     "entity": "issues in issue tracker",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -10815,7 +10891,7 @@
                                 },
                                 {
                                     "name": "Issue Throughput",
-                                    "value": 0.0,
+                                    "value": 0.8983831245315345,
                                     "impact": "POSITIVE",
                                     "entity": "issues in issue tracker",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -10937,7 +11013,7 @@
                                 },
                                 {
                                     "name": "Change Requests Declined to Total Change Requests Ratio",
-                                    "value": 10933,
+                                    "value": 0.17068208587643216,
                                     "impact": "NEGATIVE",
                                     "entity": "pull requests in version control history",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -10946,7 +11022,7 @@
                                     "measures": [
                                         {
                                             "name": "Reviews Declined - Total PR Ratio",
-                                            "value": 10933,
+                                            "value": 0.17068208587643216,
                                             "unit": "ratio",
                                             "scale": "0 to infinity",
                                             "measurement_method": "AUTOMATIC",
@@ -10969,7 +11045,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -11289,7 +11365,7 @@
                                 },
                                 {
                                     "name": "Number of Stars - User community witnessing quality",
-                                    "value": 45537,
+                                    "value": 45540,
                                     "impact": "POSITIVE",
                                     "entity": "stars in the repository",
                                     "relevant_oss_aspect": "COMMUNITY",
@@ -11298,7 +11374,7 @@
                                     "measures": [
                                         {
                                             "name": "Stars Count",
-                                            "value": 45537,
+                                            "value": 45540,
                                             "unit": "star(s)",
                                             "scale": "0 to infinity",
                                             "measurement_method": "AUTOMATIC",
@@ -11582,7 +11658,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 }
@@ -11934,11 +12010,11 @@
                                                     "unit": "class(es)",
                                                     "scale": "0 to infinity",
                                                     "measurement_method": "AUTOMATIC",
-                                                    "visitor": "ClassesCountVisitor"
+                                                    "visitor": "NumberOfClassesVisitor"
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "AvgNumberOfFunctionsPerClassAggregateVisitor"
                                         }
                                     ]
                                 }
@@ -12726,7 +12802,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -12746,6 +12822,25 @@
                                             "scale": "0 to infinity",
                                             "measurement_method": "AUTOMATIC",
                                             "visitor": "OpenedPullRequestCountVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Number of Open Feature Requests",
+                                    "value": null,
+                                    "impact": "NEGATIVE",
+                                    "entity": "issues in version control history",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the number of open feature requests in the project",
+                                    "quality_requirement": "Increased number of unresolved feature requests affect evolution negatively",
+                                    "measures": [
+                                        {
+                                            "name": "Open Feature Requests Count",
+                                            "value": null,
+                                            "unit": "issue(s)",
+                                            "scale": "0 to infinity",
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "OpenFeatureRequestCountVisitor"
                                         }
                                     ]
                                 }
@@ -13755,7 +13850,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -14368,7 +14463,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 }
@@ -14720,11 +14815,11 @@
                                                     "unit": "class(es)",
                                                     "scale": "0 to infinity",
                                                     "measurement_method": "AUTOMATIC",
-                                                    "visitor": "ClassesCountVisitor"
+                                                    "visitor": "NumberOfClassesVisitor"
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "AvgNumberOfFunctionsPerClassAggregateVisitor"
                                         }
                                     ]
                                 }
@@ -15512,7 +15607,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -15532,6 +15627,25 @@
                                             "scale": "0 to infinity",
                                             "measurement_method": "AUTOMATIC",
                                             "visitor": "OpenedPullRequestCountVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Number of Open Feature Requests",
+                                    "value": null,
+                                    "impact": "NEGATIVE",
+                                    "entity": "issues in version control history",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the number of open feature requests in the project",
+                                    "quality_requirement": "Increased number of unresolved feature requests affect evolution negatively",
+                                    "measures": [
+                                        {
+                                            "name": "Open Feature Requests Count",
+                                            "value": null,
+                                            "unit": "issue(s)",
+                                            "scale": "0 to infinity",
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "OpenFeatureRequestCountVisitor"
                                         }
                                     ]
                                 }
@@ -16541,7 +16655,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -17154,7 +17268,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 }
@@ -17506,11 +17620,11 @@
                                                     "unit": "class(es)",
                                                     "scale": "0 to infinity",
                                                     "measurement_method": "AUTOMATIC",
-                                                    "visitor": "ClassesCountVisitor"
+                                                    "visitor": "NumberOfClassesVisitor"
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "AvgNumberOfFunctionsPerClassAggregateVisitor"
                                         }
                                     ]
                                 }
@@ -18298,7 +18412,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -18318,6 +18432,25 @@
                                             "scale": "0 to infinity",
                                             "measurement_method": "AUTOMATIC",
                                             "visitor": "OpenedPullRequestCountVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Number of Open Feature Requests",
+                                    "value": null,
+                                    "impact": "NEGATIVE",
+                                    "entity": "issues in version control history",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the number of open feature requests in the project",
+                                    "quality_requirement": "Increased number of unresolved feature requests affect evolution negatively",
+                                    "measures": [
+                                        {
+                                            "name": "Open Feature Requests Count",
+                                            "value": null,
+                                            "unit": "issue(s)",
+                                            "scale": "0 to infinity",
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "OpenFeatureRequestCountVisitor"
                                         }
                                     ]
                                 }
@@ -19327,7 +19460,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -19940,7 +20073,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 }
@@ -20292,11 +20425,11 @@
                                                     "unit": "class(es)",
                                                     "scale": "0 to infinity",
                                                     "measurement_method": "AUTOMATIC",
-                                                    "visitor": "ClassesCountVisitor"
+                                                    "visitor": "NumberOfClassesVisitor"
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "AvgNumberOfFunctionsPerClassAggregateVisitor"
                                         }
                                     ]
                                 }
@@ -21084,7 +21217,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -21104,6 +21237,25 @@
                                             "scale": "0 to infinity",
                                             "measurement_method": "AUTOMATIC",
                                             "visitor": "OpenedPullRequestCountVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Number of Open Feature Requests",
+                                    "value": null,
+                                    "impact": "NEGATIVE",
+                                    "entity": "issues in version control history",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the number of open feature requests in the project",
+                                    "quality_requirement": "Increased number of unresolved feature requests affect evolution negatively",
+                                    "measures": [
+                                        {
+                                            "name": "Open Feature Requests Count",
+                                            "value": null,
+                                            "unit": "issue(s)",
+                                            "scale": "0 to infinity",
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "OpenFeatureRequestCountVisitor"
                                         }
                                     ]
                                 }
@@ -22113,7 +22265,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -22726,7 +22878,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 }
@@ -23078,11 +23230,11 @@
                                                     "unit": "class(es)",
                                                     "scale": "0 to infinity",
                                                     "measurement_method": "AUTOMATIC",
-                                                    "visitor": "ClassesCountVisitor"
+                                                    "visitor": "NumberOfClassesVisitor"
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "AvgNumberOfFunctionsPerClassAggregateVisitor"
                                         }
                                     ]
                                 }
@@ -23870,7 +24022,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -23890,6 +24042,25 @@
                                             "scale": "0 to infinity",
                                             "measurement_method": "AUTOMATIC",
                                             "visitor": "OpenedPullRequestCountVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Number of Open Feature Requests",
+                                    "value": null,
+                                    "impact": "NEGATIVE",
+                                    "entity": "issues in version control history",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the number of open feature requests in the project",
+                                    "quality_requirement": "Increased number of unresolved feature requests affect evolution negatively",
+                                    "measures": [
+                                        {
+                                            "name": "Open Feature Requests Count",
+                                            "value": null,
+                                            "unit": "issue(s)",
+                                            "scale": "0 to infinity",
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "OpenFeatureRequestCountVisitor"
                                         }
                                     ]
                                 }
@@ -24899,7 +25070,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -25512,7 +25683,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 }
@@ -25864,11 +26035,11 @@
                                                     "unit": "class(es)",
                                                     "scale": "0 to infinity",
                                                     "measurement_method": "AUTOMATIC",
-                                                    "visitor": "ClassesCountVisitor"
+                                                    "visitor": "NumberOfClassesVisitor"
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "AvgNumberOfFunctionsPerClassAggregateVisitor"
                                         }
                                     ]
                                 }
@@ -26656,7 +26827,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -26676,6 +26847,25 @@
                                             "scale": "0 to infinity",
                                             "measurement_method": "AUTOMATIC",
                                             "visitor": "OpenedPullRequestCountVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Number of Open Feature Requests",
+                                    "value": null,
+                                    "impact": "NEGATIVE",
+                                    "entity": "issues in version control history",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the number of open feature requests in the project",
+                                    "quality_requirement": "Increased number of unresolved feature requests affect evolution negatively",
+                                    "measures": [
+                                        {
+                                            "name": "Open Feature Requests Count",
+                                            "value": null,
+                                            "unit": "issue(s)",
+                                            "scale": "0 to infinity",
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "OpenFeatureRequestCountVisitor"
                                         }
                                     ]
                                 }
@@ -27685,7 +27875,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -28298,7 +28488,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 }
@@ -28650,11 +28840,11 @@
                                                     "unit": "class(es)",
                                                     "scale": "0 to infinity",
                                                     "measurement_method": "AUTOMATIC",
-                                                    "visitor": "ClassesCountVisitor"
+                                                    "visitor": "NumberOfClassesVisitor"
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "AvgNumberOfFunctionsPerClassAggregateVisitor"
                                         }
                                     ]
                                 }
@@ -29442,7 +29632,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -29462,6 +29652,25 @@
                                             "scale": "0 to infinity",
                                             "measurement_method": "AUTOMATIC",
                                             "visitor": "OpenedPullRequestCountVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Number of Open Feature Requests",
+                                    "value": null,
+                                    "impact": "NEGATIVE",
+                                    "entity": "issues in version control history",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the number of open feature requests in the project",
+                                    "quality_requirement": "Increased number of unresolved feature requests affect evolution negatively",
+                                    "measures": [
+                                        {
+                                            "name": "Open Feature Requests Count",
+                                            "value": null,
+                                            "unit": "issue(s)",
+                                            "scale": "0 to infinity",
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "OpenFeatureRequestCountVisitor"
                                         }
                                     ]
                                 }
@@ -30471,7 +30680,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -31084,7 +31293,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 }
@@ -31436,11 +31645,11 @@
                                                     "unit": "class(es)",
                                                     "scale": "0 to infinity",
                                                     "measurement_method": "AUTOMATIC",
-                                                    "visitor": "ClassesCountVisitor"
+                                                    "visitor": "NumberOfClassesVisitor"
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "AvgNumberOfFunctionsPerClassAggregateVisitor"
                                         }
                                     ]
                                 }
@@ -32228,7 +32437,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -32248,6 +32457,25 @@
                                             "scale": "0 to infinity",
                                             "measurement_method": "AUTOMATIC",
                                             "visitor": "OpenedPullRequestCountVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Number of Open Feature Requests",
+                                    "value": null,
+                                    "impact": "NEGATIVE",
+                                    "entity": "issues in version control history",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the number of open feature requests in the project",
+                                    "quality_requirement": "Increased number of unresolved feature requests affect evolution negatively",
+                                    "measures": [
+                                        {
+                                            "name": "Open Feature Requests Count",
+                                            "value": null,
+                                            "unit": "issue(s)",
+                                            "scale": "0 to infinity",
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "OpenFeatureRequestCountVisitor"
                                         }
                                     ]
                                 }
@@ -33257,7 +33485,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -33870,7 +34098,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 }
@@ -34222,11 +34450,11 @@
                                                     "unit": "class(es)",
                                                     "scale": "0 to infinity",
                                                     "measurement_method": "AUTOMATIC",
-                                                    "visitor": "ClassesCountVisitor"
+                                                    "visitor": "NumberOfClassesVisitor"
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "AvgNumberOfFunctionsPerClassAggregateVisitor"
                                         }
                                     ]
                                 }
@@ -35014,7 +35242,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -35034,6 +35262,25 @@
                                             "scale": "0 to infinity",
                                             "measurement_method": "AUTOMATIC",
                                             "visitor": "OpenedPullRequestCountVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Number of Open Feature Requests",
+                                    "value": null,
+                                    "impact": "NEGATIVE",
+                                    "entity": "issues in version control history",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the number of open feature requests in the project",
+                                    "quality_requirement": "Increased number of unresolved feature requests affect evolution negatively",
+                                    "measures": [
+                                        {
+                                            "name": "Open Feature Requests Count",
+                                            "value": null,
+                                            "unit": "issue(s)",
+                                            "scale": "0 to infinity",
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "OpenFeatureRequestCountVisitor"
                                         }
                                     ]
                                 }
@@ -36043,7 +36290,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -36656,7 +36903,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 }
@@ -37008,11 +37255,11 @@
                                                     "unit": "class(es)",
                                                     "scale": "0 to infinity",
                                                     "measurement_method": "AUTOMATIC",
-                                                    "visitor": "ClassesCountVisitor"
+                                                    "visitor": "NumberOfClassesVisitor"
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "AvgNumberOfFunctionsPerClassAggregateVisitor"
                                         }
                                     ]
                                 }
@@ -37800,7 +38047,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -37820,6 +38067,25 @@
                                             "scale": "0 to infinity",
                                             "measurement_method": "AUTOMATIC",
                                             "visitor": "OpenedPullRequestCountVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Number of Open Feature Requests",
+                                    "value": null,
+                                    "impact": "NEGATIVE",
+                                    "entity": "issues in version control history",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the number of open feature requests in the project",
+                                    "quality_requirement": "Increased number of unresolved feature requests affect evolution negatively",
+                                    "measures": [
+                                        {
+                                            "name": "Open Feature Requests Count",
+                                            "value": null,
+                                            "unit": "issue(s)",
+                                            "scale": "0 to infinity",
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "OpenFeatureRequestCountVisitor"
                                         }
                                     ]
                                 }
@@ -38829,7 +39095,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -39442,7 +39708,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 }
@@ -39794,11 +40060,11 @@
                                                     "unit": "class(es)",
                                                     "scale": "0 to infinity",
                                                     "measurement_method": "AUTOMATIC",
-                                                    "visitor": "ClassesCountVisitor"
+                                                    "visitor": "NumberOfClassesVisitor"
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "AvgNumberOfFunctionsPerClassAggregateVisitor"
                                         }
                                     ]
                                 }
@@ -40586,7 +40852,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
@@ -40606,6 +40872,25 @@
                                             "scale": "0 to infinity",
                                             "measurement_method": "AUTOMATIC",
                                             "visitor": "OpenedPullRequestCountVisitor"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "Number of Open Feature Requests",
+                                    "value": null,
+                                    "impact": "NEGATIVE",
+                                    "entity": "issues in version control history",
+                                    "relevant_oss_aspect": "COMMUNITY",
+                                    "information_need": "Calculating the number of open feature requests in the project",
+                                    "quality_requirement": "Increased number of unresolved feature requests affect evolution negatively",
+                                    "measures": [
+                                        {
+                                            "name": "Open Feature Requests Count",
+                                            "value": null,
+                                            "unit": "issue(s)",
+                                            "scale": "0 to infinity",
+                                            "measurement_method": "AUTOMATIC",
+                                            "visitor": "OpenFeatureRequestCountVisitor"
                                         }
                                     ]
                                 }
@@ -41615,7 +41900,7 @@
                                                 }
                                             ],
                                             "normalize_visitor": "NoOpNormalizeVisitor",
-                                            "aggregate_visitor": "AddAggregateVisitor"
+                                            "aggregate_visitor": "ReviewsDeclinedAggregator"
                                         }
                                     ]
                                 },
